@@ -1,45 +1,65 @@
-# Especificación Técnica: Escalamiento Global de Tipografía y Legibilidad
+# Especificación Técnica: Restauración del Primer Diseño Minimalista Orgánico
 
 ## 1. Resumen del Requerimiento
-Aumentar de manera homogénea el tamaño de tipografía en toda la web de **BioNativa LAB** (barra superior, menú de navegación, descripciones de productos, tarjetas de catálogo, fichas y pie de página), solucionando la presencia de textos excesivamente reducidos (antiguos `10px`, `11px` y `12px`) y elevando la legibilidad, jerarquía y confort de lectura según los principios del sistema de diseño editorial boticario **Aplós**.
+Revertir la estética visual general del sitio web **BioNativa LAB** al **primer diseño creado** (Estética Minimalista Orgánica Botánica), descartando la dirección editorial boticario/antigua (Aplós) pero **preservando de manera estricta todas las modificaciones funcionales y de identidad solicitadas por el cliente**:
+1. **Canales de Correo:** Enlace oficial a `ventas@bionativalab.com` con protocolo `mailto:` en la barra superior (Top Bar), en el cajón de navegación móvil y en el pie de página (Footer).
+2. **Redes Sociales Oficiales:** Íconos SVG interactivos y enlaces funcionales a TikTok (`@bionativalab`), Instagram (`@bionativalab`) y Facebook (`@bionativalab`) tanto en el Header como en el Footer.
+3. **Fondo de Imágenes:** Mantenimiento de las fotografías de productos optimizadas y recortadas limpias con fondo sólido (`img/products/creatina-monohidratada-1kg.jpg`, `img/products/ashwagandha-capsulas.jpg`, etc.), garantizando su perfecta integración cromática con las tarjetas y lienzos.
+4. **Legibilidad Optimizada:** Preservar la escala de tipografía cómoda y legible para asegurar una lectura fluida en móviles y escritorios.
 
 ---
 
-## 2. Diagnóstico de Tamaños Actuales vs. Nueva Escala Propuesta
+## 2. Comparativa: Primer Diseño Orgánico vs. Modificaciones Conservadas
 
-| Sección / Elemento | Tamaño Anterior | Nuevo Tamaño Propuesto | Impacto Visual / UX |
-| :--- | :--- | :--- | :--- |
-| **Barra Superior (Top Bar)** | `text-[11px] sm:text-xs` (11px / 12px)<br>Íconos: `14px` | `text-xs sm:text-[13.5px] lg:text-sm` (13.5px - 14px)<br>Íconos: `16px` (`w-4 h-4`) | Alta nitidez en monitores de alta resolución; lectura clara de ventas@ y WhatsApp sin forzar la vista. |
-| **Navegación Header** | `text-sm font-semibold` (14px)<br>Bolsa: `text-xs font-bold` (12px) | `text-[15px] lg:text-base font-semibold` (15px - 16px)<br>Bolsa: `text-sm font-bold` (14px) | Navegación más visible y accesible, alineada a estándares modernos de comercio electrónico. |
-| **Menú Móvil (Drawer)** | Enlaces: `text-base` (16px)<br>Ventas: `text-xs` (12px)<br>Redes: `w-9 h-9` | Enlaces: `text-lg font-bold` (18px)<br>Ventas: `text-sm font-medium` (14px)<br>Redes: `w-10 h-10` con íconos de `20px` | Área táctil ergonómica y texto cómodo para pulgar en móviles. |
-| **Tarjetas de Catálogo (`tienda.html` & `index.html`)** | Badges/Categoría: `text-[10px]`<br>Descripción: `text-xs` (12px)<br>Beneficios: `text-[11px]`<br>Precio: `text-base` (16px)<br>Botón: `text-xs` (12px) | Badges/Categoría: `text-xs font-semibold` (12px)<br>Descripción: `text-sm text-stone-600` (14px)<br>Beneficios: `text-xs font-medium` (12px)<br>Precio: `text-lg sm:text-xl font-bold` (18px - 20px)<br>Botón Ficha: `text-sm font-medium` (14px) | Las tarjetas ya no se ven diminutas ni apretadas; los precios y beneficios destacan con naturalidad. |
-| **Ficha de Producto (`producto.html`)** | Badges confianza: `text-[10px]`<br>Variantes: `text-xs`<br>Descripción / Uso: `text-xs sm:text-sm` | Badges confianza: `text-xs`<br>Variantes: `text-sm font-medium`<br>Descripción / Uso: `text-sm sm:text-base leading-relaxed` | Máxima facilidad de lectura de ingredientes, modo de toma y especificaciones COA. |
-| **Secciones de Contenido (Pilares, Categorías, Blog, Envíos)** | Párrafos descriptivos: `text-xs` (12px) | Párrafos descriptivos: `text-sm sm:text-[15px] leading-relaxed` (14px - 15px) | Lectura fluida sin fatiga visual. |
-| **Pie de Página (Footer)** | Texto descriptivo: `text-xs` (12px)<br>Correo: `text-xs`<br>Redes: `w-7 h-7` (28px)<br>Copyright: `text-[11px]` | Texto descriptivo: `text-sm text-stone-300` (14px)<br>Correo: `text-sm`<br>Redes: `w-8 h-8` (32px) con SVG `16px`<br>Copyright: `text-xs text-stone-400` (12px) | Footer balanceado, legible y con proporciones elegantes. |
-| **Tokens Globales (`css/styles.css`)** | `--text-caption: 12px`<br>`--text-body-sm: 14px`<br>`--text-body: 16px` | `--text-caption: 13px`<br>`--text-body-sm: 15px`<br>`--text-body: 17px`<br>`body { font-size: var(--text-body); }` | Escala base de tipografía modernizada para soporte universal. |
+| Dimensión Visual / Funcional | Primer Diseño Original (A Restaurar) | Modificaciones Recientes (A Conservar) |
+| :--- | :--- | :--- |
+| **Paleta Cromática** | • Verde Bosque Botánico (`#1E3B2B`)<br>• Terracota Mineral Ámbar (`#B67A52`)<br>• Blanco Lino Cálido (`#FAF9F6`)<br>• Crema Etiqueta (`#F5EFE6`) | Se mantiene idéntica, con contrastes nítidos y sin tonos oscuros o negros pesados innecesarios. |
+| **Tipografía** | • **Headings:** `Plus Jakarta Sans` (moderna, fresca, geométrica)<br>• **Cuerpo / UI:** `Outfit` (limpia, contemporánea)<br>• *(Se descarta Cormorant Garamond / Serif clásico)* | Escala de texto amplia y de alta legibilidad solicitada por el usuario. |
+| **Morfología y Bordes** | • Radios suaves y orgánicos: `rounded-2xl`, `rounded-xl`, `rounded-full`.<br>• Tarjetas `.organic-card` con elevación y sombras suaves al hover.<br>• *(Se descartan los bordes estrictos de 5px / esquinas duras)* | Bordes orgánicos y amigables característicos de la marca. |
+| **Header & Barra Superior** | • Header translúcido con desenfoque de fondo (`backdrop-blur-md`).<br>• Selector de variantes e insignias limpias. | **CONSERVAR:**<br>• Correo `ventas@bionativalab.com`<br>• Enlaces a TikTok, Instagram y Facebook.<br>• Teléfono y link a WhatsApp. |
+| **Menú Móvil (Drawer)** | • Menú deslizante limpio con buscador y navegación directa. | **CONSERVAR:**<br>• Acceso directo a correo de ventas.<br>• Barra de redes sociales oficiales. |
+| **Hero Section (Inicio)** | • Hero luminoso y cálido con propuesta de valor, badges botánicos y tarjeta destacada de *Unboxing Experience*. | Mantiene las fotos de producto limpias con fondo sólido armonizado. |
+| **Pie de Página (Footer)** | • Estructura en 5 columnas con Verde Bosque Profundo (`#14281D`), enlaces por categoría y descargo de salud E-E-A-T. | **CONSERVAR:**<br>• Correo de ventas activo.<br>• Íconos y enlaces a TikTok, Instagram y Facebook.<br>• Punto de entrega físico en Cusco y almacén Lima. |
+| **Imágenes de Catálogo** | • Contenedores orgánicos con zoom suave al hover (`group-hover:scale-105`). | **CONSERVAR:**<br>• Imágenes con fondo sólido limpio en lugar de artefactos blancos o bordes duros. |
 
 ---
 
 ## 3. Plan de Implementación por Fases
 
-1. **Fase 1: Tokens Globales en `css/styles.css`**
-   - Actualizar las variables de escala tipográfica (`--text-caption`, `--text-body-sm`, `--text-body`) para asentar la base general.
-2. **Fase 2: Header & Footer en las 10 Páginas HTML**
-   - Actualizar la barra superior a `text-xs sm:text-[13.5px] lg:text-sm` e íconos `w-4 h-4`.
-   - Escalar la barra de navegación de escritorio a `text-[15px] lg:text-base` y el botón del carrito a `text-sm`.
-   - Ajustar el cajón de menú móvil (`mobile-menu`).
-   - Escalar los textos y botones del footer a `text-sm` y copyright a `text-xs`.
-3. **Fase 3: Secciones Principales & Renderizado Dinámico**
-   - Actualizar tarjetas de catálogo estáticas y dinámicas en `index.html` y `tienda.html` (`renderCatalog()`).
-   - Actualizar la plantilla de ficha de producto en `producto.html` (`renderProductPage()`).
-   - Ajustar textos descriptivos en `nosotros.html`, `blog.html`, `articulo-magnesio.html`, `articulo-creatina.html`, `envios-y-cobertura.html`, `contacto.html` y `terminos-y-privacidad.html`.
-4. **Fase 4: Verificación Visual y Responsive**
-   - Comprobación de ausencia de desbordamientos horizontales o solapamientos en resoluciones móviles (360px a 430px), tablets (768px a 1024px) y desktop (1280px+).
+### Fase 1: Restauración de Tokens y Reglas en `css/styles.css`
+- Reemplazar la importación de `Cormorant Garamond` por la dupla moderna `Outfit` + `Plus Jakarta Sans`.
+- Restablecer las variables CSS raíz (`--color-primary`, `--color-accent`, `--color-canvas`, etc.).
+- Restablecer clases de diseño orgánico:
+  - `.organic-card` (borde sutil, radio de 1.25rem, elevación suave al hover).
+  - `.badge-clean` y `.badge-accent` (pills redondeados con padding balanceado).
+  - Efectos de zoom de imagen (`.product-img-wrapper img`) y animación de pulso WhatsApp (`.btn-whatsapp-pulse`).
+- Asegurar tamaños de fuente accesibles y cómodos para lectura.
+
+### Fase 2: Actualización de `index.html`
+- Restaurar el **Hero Section** original (diseño luminoso en gradiente cálido, tarjeta con `unboxing-experience.jpg`, badges flotantes de pureza COA).
+- Restaurar el **Pilar de Valores** con íconos circulares orgánicos.
+- Restaurar el **Banner Interactivo de Variantes de Creatina** (Bolsa 1kg, Pote 600g, Pote 300g, Frasco 120 Cápsulas) con cálculo dinámico y selector activo.
+- Mantener en la **Barra Superior** y en el **Footer**:
+  - Correo: `ventas@bionativalab.com` con `mailto:`
+  - Redes: TikTok, Instagram, Facebook con sus SVGs y enlaces
+- Mantener las imágenes de producto limpias con fondo sólido.
+
+### Fase 3: Actualización de Páginas Interiores (9 Páginas)
+- `tienda.html` & `producto.html`: Restaurar catálogo con tarjetas `.organic-card`, selector de variantes, pestañas de ficha técnica COA y badges orgánicos. Integrar barra superior con correo y redes.
+- `nosotros.html`: Restaurar comparativa visual orgánica vs. suplementos comerciales y certificaciones.
+- `blog.html`, `articulo-magnesio.html`, `articulo-creatina.html`: Restaurar tipografía editorial contemporánea sin fuentes góticas/antiguas.
+- `envios-y-cobertura.html`, `contacto.html`, `terminos-y-privacidad.html`: Restaurar estética moderna, formulario limpio y enlaces directos.
+
+### Fase 4: Verificación Integral
+- Comprobación de funcionamiento del carrito de compras (`cart.js`) y catálogo dinámico (`products-data.js`).
+- Comprobación de que todos los enlaces a redes sociales y correo de ventas funcionen con un clic.
+- Comprobación de responsive design en móviles (360px - 430px), tablets (768px - 1024px) y pantallas de escritorio (1280px+).
 
 ---
 
 ## 4. Criterios de Aceptación
-1. ✅ No quedan textos diminutos de `10px` o `11px` en ninguna sección clave del sitio.
-2. ✅ Los enlaces de ventas y redes sociales en header y footer se distinguen con claridad inmediata.
-3. ✅ Los precios, títulos y fichas de productos en el catálogo tienen jerarquía visual atractiva y legible.
-4. ✅ Se preserva la elegancia editorial del estilo boticario "Aplós" (sin romper maquetación ni espaciados).
+1. ✅ El diseño visual refleja fielmente el estilo minimalista orgánico original de BioNativa LAB (verde botánico, terracota, lino cálido, formas redondeadas y modernas).
+2. ✅ Se descartan los estilos rígidos de boticario (esquinas duras de 5px y tipografía Cormorant Garamond).
+3. ✅ Enlaces de **correo** (`ventas@bionativalab.com`) y **redes sociales** (TikTok, Instagram, Facebook) presentes y operativos en Header y Footer.
+4. ✅ Las **imágenes con fondo sólido** se mantienen integradas armoniosamente en todo el sitio.
+5. ✅ La navegación, el carrito de compras y la pasarela 3 en 1 funcionan al 100%.

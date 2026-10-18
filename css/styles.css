@@ -1,274 +1,68 @@
-/* ==========================================================================
-   BIONATIVA LAB — APOTHECARY DESIGN SYSTEM (SISTEMA BOTICARIO)
-   Inspirado en la dirección editorial "Aplós", conservando la paleta botánica
-   oficial de BioNativa LAB.
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. TIPOGRAFÍA Y FUENTES EDITORIALES
-   Serif: Cormorant Garamond (Elegancia clásica de boticario / Goudy Old Style)
-   Sans: Plus Jakarta Sans / Outfit (Claridad técnica para UI, etiquetas y botones)
-   -------------------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* ========================================================================
-     PALETA DE COLORES OFICIAL BIONATIVA (Preservada al 100%)
-     ======================================================================== */
   --color-primary: #1E3B2B;        /* Verde Bosque Botánico Oficial */
-  --color-primary-dark: #14281D;   /* Bosque Profundo / Ink Botánico */
-  --color-primary-light: #2A523C;  /* Salvia Intenso */
+  --color-primary-dark: #14281D;
+  --color-primary-light: #2A523C;
   --color-accent: #B67A52;         /* Terracota Mineral Oficial */
-  --color-accent-light: #CF926B;   /* Terracota Cálido */
+  --color-accent-light: #CF926B;
   --color-canvas: #FAF9F6;         /* Blanco Lino Cálido Minimalista */
-  --color-surface: #FFFFFF;        /* Blanco Puro de Papel */
-  --color-surface-soft: #F5EFE6;   /* Crema Suave de Etiquetas Oficiales */
-  --color-border: #E8E2D8;         /* Borde Neutro Papiro */
-  --color-text-main: #1E2421;      /* Carbón Botánico Primario */
-  --color-text-muted: #5C665F;     /* Gris Salvia Secundario */
-
-  /* Aliases Tonal Layering del Sistema Boticario (Aplós) */
-  --color-bone: var(--color-canvas);           /* Lienzo general */
-  --color-paper-white: var(--color-surface);   /* Superficies elevadas */
-  --color-cocoa: var(--color-primary-dark);    /* Bloques oscuros de alto contraste */
-  --color-ink: var(--color-text-main);         /* Tinta editorial */
-  --color-stone: var(--color-text-muted);      /* Textos auxiliares */
-  --color-ash: var(--color-border);            /* Separadores y bordes sutiles */
-
-  /* ========================================================================
-     TOKENS DE TIPOGRAFÍA (Sistema Boticario Editorial)
-     ======================================================================== */
-  --font-serif: 'Cormorant Garamond', 'Goudy Old Style', 'Playfair Display', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-goudy-old-style: var(--font-serif);
-  --font-system-sans-ui-chrome: var(--font-sans);
-
-  /* Escala Tipográfica Editorial */
-  --text-caption: 12px;
-  --leading-caption: 1.4;
-  --tracking-caption: 0px;
-
-  --text-body-sm: 14px;
-  --leading-body-sm: 1.5;
-  --tracking-body-sm: 0px;
-
-  --text-body: 16px;
-  --leading-body: 1.5;
-  --tracking-body: 0px;
-
-  --text-subheading: 20px;
-  --leading-subheading: 1.3;
-  --tracking-subheading: -0.01em;
-
-  --text-heading-sm: 26px;
-  --leading-heading-sm: 1.1;
-  --tracking-heading-sm: -0.015em;
-
-  --text-heading: 38px;
-  --leading-heading: 1.08;
-  --tracking-heading: -0.02em;
-
-  --text-display: 54px;
-  --leading-display: 1.05;
-  --tracking-display: -0.025em;
-
-  /* ========================================================================
-     TOKENS DE ESPACIADO (Escala base unit: 6px)
-     ======================================================================== */
-  --spacing-6: 6px;
-  --spacing-12: 12px;
-  --spacing-24: 24px;
-  --spacing-48: 48px;
-  --spacing-96: 96px;
-  --spacing-120: 120px;
-
-  /* ========================================================================
-     TOKENS DE FORMAS (Border Radius Estricto de Boticario: 5px)
-     ======================================================================== */
-  --radius-xs: 3px;
-  --radius-base: 5px;
-  --radius-card: 5px;
-  --radius-btn: 5px;
-  --radius-input: 5px;
-  --radius-tag: 5px;
-
-  /* Layout */
-  --page-max-width: 1200px;
-  --section-gap: 96px;
-  --card-padding: 24px;
+  --color-surface: #FFFFFF;
+  --color-surface-soft: #F5EFE6;   /* Tono Crema de las Etiquetas Oficiales */
+  --color-border: #E8E2D8;
+  --color-text-main: #1E2421;      /* Carbón Botánico */
+  --color-text-muted: #5C665F;     /* Gris Salvia */
 }
 
-/* --------------------------------------------------------------------------
-   2. ESTILOS BASE Y JERARQUÍA TIPOGRÁFICA
-   -------------------------------------------------------------------------- */
+/* Base Styles */
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-sans);
-  color: var(--color-text-main);
-  background-color: var(--color-canvas);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: var(--font-sans);
-  font-size: var(--text-body);
-  line-height: var(--leading-body);
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: var(--color-text-main);
   background-color: var(--color-canvas);
 }
 
-/* Titulares con tipografía Serif de Boticario */
-h1, h2, h3, h4, h5, h6, 
-.font-heading, 
-.font-serif, 
-.editorial-title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  color: var(--color-text-main);
-  font-feature-settings: "liga" on, "kern" on;
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.02em;
 }
 
-h1, .text-display {
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  line-height: var(--leading-display);
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1ECE4;
+}
+::-webkit-scrollbar-thumb {
+  background: #C8BEAF;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
 }
 
-h2, .text-heading {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  line-height: var(--leading-heading);
-}
-
-h3, .text-heading-sm {
-  font-size: clamp(1.35rem, 2vw, 1.75rem);
-  line-height: var(--leading-heading-sm);
-}
-
-/* Texto técnico, navegación, botones y códigos numéricos */
-.font-sans, 
-.ui-chrome, 
-nav, 
-button, 
-.btn, 
-.apothecary-num {
-  font-family: var(--font-sans);
-}
-
-/* --------------------------------------------------------------------------
-   3. COMPONENTES BOTICARIO (Aplós Style)
-   -------------------------------------------------------------------------- */
-
-/* Tarjetas con radio 5px y elevación tonal sutil */
-.organic-card,
-.apothecary-card {
+/* Subtle Organic Shadows & Cards */
+.organic-card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  padding: var(--card-padding);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.25s ease,
-              box-shadow 0.25s ease;
+  border-radius: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.organic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(30, 59, 43, 0.08), 0 4px 12px -2px rgba(182, 122, 82, 0.05);
+  border-color: rgba(182, 122, 82, 0.4);
 }
 
-.organic-card:hover,
-.apothecary-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--color-accent);
-  box-shadow: 0 8px 20px -4px rgba(30, 59, 43, 0.06);
-}
-
-/* Tarjeta Acento Oscuro de Boticario (Alto contraste) */
-.apothecary-card-dark {
-  background-color: var(--color-primary-dark);
-  color: #FFFFFF;
-  border-radius: var(--radius-card);
-  padding: var(--card-padding);
-  border: 1px solid transparent;
-}
-
-.apothecary-card-dark h3,
-.apothecary-card-dark h4 {
-  color: #FFFFFF;
-}
-
-.apothecary-card-dark .card-caption {
-  color: #D4DCD7;
-}
-
-/* Botones de Boticario (Radio 5px, sobrios y sin redondeos excesivos) */
-.btn-apothecary {
-  font-family: var(--font-sans);
-  font-size: var(--text-body-sm);
-  font-weight: 500;
-  border-radius: var(--radius-btn);
-  padding: 9px 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  letter-spacing: 0.01em;
-  transition: all 0.2s ease;
-}
-
-.btn-apothecary-primary {
-  background-color: var(--color-primary);
-  color: #FFFFFF;
-  border: 1px solid var(--color-primary);
-}
-
-.btn-apothecary-primary:hover {
-  background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
-  color: #FFFFFF;
-}
-
-.btn-apothecary-outline {
-  background-color: transparent;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-}
-
-.btn-apothecary-outline:hover {
-  background-color: var(--color-primary);
-  color: #FFFFFF;
-}
-
-.btn-apothecary-white {
-  background-color: #FFFFFF;
-  color: var(--color-primary-dark);
-  border: 1px solid #FFFFFF;
-}
-
-.btn-apothecary-white:hover {
-  background-color: var(--color-surface-soft);
-}
-
-/* Enlace fantasma con subrayado editorial */
-.ghost-link {
-  font-family: var(--font-sans);
-  font-size: var(--text-body-sm);
-  color: var(--color-text-main);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.ghost-link:hover {
-  border-bottom-color: var(--color-primary);
-}
-
-/* --------------------------------------------------------------------------
-   4. ETIQUETAS, BADGES Y NÚMEROS DE RECETARIO
-   -------------------------------------------------------------------------- */
+/* Badge Styles */
 .badge-clean {
   background-color: rgba(30, 59, 43, 0.08);
   color: var(--color-primary);
   font-weight: 600;
-  border-radius: var(--radius-tag);
-  padding: 0.25rem 0.65rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -278,69 +72,40 @@ button,
   background-color: rgba(182, 122, 82, 0.12);
   color: var(--color-accent);
   font-weight: 600;
-  border-radius: var(--radius-tag);
-  padding: 0.25rem 0.65rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
 }
 
-/* Número editorial de boticario (01, 02, 03) */
-.num-label {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  letter-spacing: 0.05em;
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* --------------------------------------------------------------------------
-   5. CONTENEDORES DE IMAGEN Y PRESENTACIÓN DE PRODUCTO
-   -------------------------------------------------------------------------- */
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* Image zoom effect */
 .product-img-wrapper {
   overflow: hidden;
   position: relative;
-  border-radius: var(--radius-card);
-  background-color: #FAF8F5;
+  border-radius: 1rem;
 }
-
 .product-img-wrapper img {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.organic-card:hover .product-img-wrapper img {
+  transform: scale(1.05);
 }
 
-.organic-card:hover .product-img-wrapper img,
-.apothecary-card:hover .product-img-wrapper img {
-  transform: scale(1.04);
-}
-
-/* --------------------------------------------------------------------------
-   6. SCROLLBAR Y DETALLES UTILITARIOS
-   -------------------------------------------------------------------------- */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-canvas);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
-}
-
-/* Botón flotante WhatsApp */
+/* Button Pulse */
 .btn-whatsapp-pulse {
   position: relative;
 }
-
 .btn-whatsapp-pulse::before {
   content: '';
   position: absolute;
@@ -356,13 +121,4 @@ button,
   0% { transform: scale(0.95); opacity: 0.6; }
   50% { transform: scale(1.08); opacity: 0; }
   100% { transform: scale(0.95); opacity: 0; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.25s ease-out forwards;
 }

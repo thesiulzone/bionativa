@@ -12,21 +12,6 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['Cormorant Garamond', 'Goudy Old Style', 'Playfair Display', 'Georgia', 'serif'],
-            sans: ['Plus Jakarta Sans', 'Outfit', 'system-ui', 'sans-serif']
-          },
-          borderRadius: {
-            'apothecary': '5px'
-          }
-        }
-      }
-    }
-  </script>
   <link rel="stylesheet" href="css/styles.css" />
 
   <!-- Dynamic Schema.org JSON-LD will be injected here -->
@@ -34,14 +19,14 @@
 </head>
 <body class="bg-[#FAF9F6] text-[#1E2421] antialiased flex flex-col min-h-screen">
 
-  <!-- Top Announcement Bar -->
-  <div class="bg-[#1E3B2B] text-white text-[11px] sm:text-xs py-2 px-4 border-b border-[#2A523C]">
+    <!-- Top Announcement Bar -->
+  <div class="bg-[#1E3B2B] text-white text-xs py-2 px-4 border-b border-[#2A523C]">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       <div class="flex items-center gap-2 truncate">
         <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></span>
-        <span class="font-medium tracking-wide truncate">Materia Prima Americana con COA • Despacho desde Lima & Cusco a todo el Perú</span>
+        <span class="font-medium tracking-wide truncate">Materia Prima Americana con Certificado COA | Distribución en Lima y Cusco</span>
       </div>
-      <div class="hidden md:flex items-center gap-4 lg:gap-5 text-stone-200 flex-shrink-0 text-[11px] sm:text-xs">
+      <div class="hidden md:flex items-center gap-4 lg:gap-5 text-stone-200 flex-shrink-0 text-xs">
         <!-- Correo de Ventas -->
         <a href="mailto:ventas@bionativalab.com" class="hover:text-white flex items-center gap-1.5 transition text-stone-200" title="Correo oficial de ventas">
           <svg class="w-3.5 h-3.5 text-[#CF926B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -75,7 +60,7 @@
     </div>
   </div>
 
-  <!-- Header -->
+
   <header class="sticky top-0 z-40 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-[#E8E2D8]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       <a href="index.html" class="flex-shrink-0">
@@ -92,10 +77,10 @@
       </nav>
 
       <div class="flex items-center gap-3">
-        <button class="open-cart-btn relative bg-[#1E3B2B] hover:bg-[#284f3a] text-white p-2.5 sm:px-4 sm:py-2 rounded-[5px] flex items-center gap-2 text-xs font-medium transition">
+        <button class="open-cart-btn relative bg-[#1E3B2B] hover:bg-[#284f3a] text-white p-2.5 sm:px-4 sm:py-2 rounded-full flex items-center gap-2 text-xs font-bold transition">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
           <span class="hidden sm:inline">Mi Bolsa</span>
-          <span class="cart-count-badge bg-[#B67A52] text-white text-[10px] w-5 h-5 rounded-[3px] flex items-center justify-center font-bold hidden">0</span>
+          <span class="cart-count-badge bg-[#B67A52] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
         </button>
 
         <button id="mobile-menu-toggle" class="lg:hidden p-2 text-[#1E3B2B]" aria-label="Abrir menú">
@@ -126,31 +111,31 @@
 
     <div class="border-t border-[#E8E2D8] pt-5 space-y-3">
       <!-- Correo de Ventas Mobile -->
-      <a href="mailto:ventas@bionativalab.com" class="w-full bg-white border border-[#E8E2D8] text-[#1E3B2B] py-2.5 px-4 rounded-[5px] font-medium text-xs flex items-center justify-center gap-2 hover:bg-[#FAF6F0] transition shadow-sm">
-        <svg class="w-4 h-4 text-[#CF926B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      <a href="mailto:ventas@bionativalab.com" class="w-full bg-white border border-[#E8E2D8] text-[#1E3B2B] py-2.5 px-4 rounded-xl font-medium text-xs flex items-center justify-center gap-2 hover:bg-[#FAF6F0] transition shadow-sm">
+        <svg class="w-4 h-4 text-[#CF926B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         <span>ventas@bionativalab.com</span>
       </a>
 
       <!-- Redes Sociales Mobile -->
       <div class="flex items-center justify-center gap-3 py-1">
-        <a href="https://www.tiktok.com/@bionativalab" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-[5px] bg-white border border-[#E8E2D8] text-[#1E3B2B] flex items-center justify-center hover:bg-[#FAF6F0] transition shadow-sm" aria-label="TikTok BioNativa LAB">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.95-4.49V8.62a8.28 8.28 0 0 0 5.23 1.83v-3.46a4.85 4.85 0 0 1-1.41-.3z"/></svg>
+        <a href="https://www.tiktok.com/@bionativalab" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-white border border-[#E8E2D8] text-[#1E3B2B] flex items-center justify-center hover:bg-[#FAF6F0] transition shadow-sm" aria-label="TikTok BioNativa LAB">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.95-4.49V8.62a8.28 8.28 0 0 0 5.23 1.83v-3.46a4.85 4.85 0 0 1-1.41-.3z"/></svg>
         </a>
-        <a href="https://www.instagram.com/bionativalab" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-[5px] bg-white border border-[#E8E2D8] text-[#1E3B2B] flex items-center justify-center hover:bg-[#FAF6F0] transition shadow-sm" aria-label="Instagram BioNativa LAB">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <a href="https://www.instagram.com/bionativalab" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-white border border-[#E8E2D8] text-[#1E3B2B] flex items-center justify-center hover:bg-[#FAF6F0] transition shadow-sm" aria-label="Instagram BioNativa LAB">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-        <a href="https://www.facebook.com/bionativalab" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-[5px] bg-white border border-[#E8E2D8] text-[#1E3B2B] flex items-center justify-center hover:bg-[#FAF6F0] transition shadow-sm" aria-label="Facebook BioNativa LAB">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <a href="https://www.facebook.com/bionativalab" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-white border border-[#E8E2D8] text-[#1E3B2B] flex items-center justify-center hover:bg-[#FAF6F0] transition shadow-sm" aria-label="Facebook BioNativa LAB">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
       </div>
 
-      <a href="https://wa.me/51981278458" target="_blank" class="w-full bg-[#25D366] text-white py-3 rounded-[5px] font-medium text-center flex items-center justify-center gap-2">
+      <a href="https://wa.me/51981278458" target="_blank" class="w-full bg-[#25D366] text-white py-3.5 rounded-xl font-bold text-center flex items-center justify-center gap-2 shadow-sm">
         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
-        Atención WhatsApp (+51 981 278 458)
+        <span>Atención WhatsApp (+51 981 278 458)</span>
       </a>
       <p class="text-xs text-center text-stone-500">Lima & Cusco • Distribución a todo el Perú</p>
     </div>
-  </div>
+</div>
 
   <!-- Breadcrumbs -->
   <div class="bg-[#FAF6F0] py-3 border-b border-[#E8E2D8]">
@@ -180,32 +165,36 @@
     </div>
   </main>
 
-  <!-- Footer -->
+    <!-- Footer -->
   <footer class="mt-auto bg-[#14281D] text-white border-t border-[#2A523C] pt-12 pb-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-stone-400 space-y-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-stone-300 space-y-4">
       <img src="img/logo.svg" alt="BioNativa LAB" class="h-10 w-auto mx-auto brightness-0 invert" />
-      <p class="max-w-2xl mx-auto">
-        BioNativa LAB • Suplementos puros certificados con COA. Envíos a todo el Perú desde Lima y Cusco vía Shalom y Marvisur.
+      <p class="max-w-2xl mx-auto leading-relaxed">
+        <strong>BioNativa LAB</strong> • Suplementos puros certificados con COA. Envíos diarios a todo el Perú desde Lima y Cusco vía Shalom y Marvisur.
       </p>
-
-      <!-- Canales de Contacto & Redes Sociales -->
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-2 text-stone-300">
-        <a href="mailto:ventas@bionativalab.com" class="hover:text-white flex items-center gap-1.5 transition">
-          <svg class="w-3.5 h-3.5 text-[#CF926B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      
+      <!-- Contacto Directo & Redes -->
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs pt-2">
+        <a href="mailto:ventas@bionativalab.com" class="text-stone-300 hover:text-white flex items-center gap-1.5 transition">
+          <svg class="w-4 h-4 text-[#CF926B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           <span>ventas@bionativalab.com</span>
         </a>
-        <span class="text-stone-600 hidden sm:inline">•</span>
-        <div class="flex items-center gap-2">
-          <a href="https://www.tiktok.com/@bionativalab" target="_blank" rel="noopener noreferrer" class="w-7 h-7 rounded-[5px] bg-white/10 hover:bg-[#CF926B] hover:text-[#14281D] text-white flex items-center justify-center transition" aria-label="TikTok BioNativa LAB" title="TikTok">
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.95-4.49V8.62a8.28 8.28 0 0 0 5.23 1.83v-3.46a4.85 4.85 0 0 1-1.41-.3z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/bionativalab" target="_blank" rel="noopener noreferrer" class="w-7 h-7 rounded-[5px] bg-white/10 hover:bg-[#CF926B] hover:text-[#14281D] text-white flex items-center justify-center transition" aria-label="Instagram BioNativa LAB" title="Instagram">
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-          <a href="https://www.facebook.com/bionativalab" target="_blank" rel="noopener noreferrer" class="w-7 h-7 rounded-[5px] bg-white/10 hover:bg-[#CF926B] hover:text-[#14281D] text-white flex items-center justify-center transition" aria-label="Facebook BioNativa LAB" title="Facebook">
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-        </div>
+        <span class="text-white/20">•</span>
+        <a href="https://wa.me/51981278458" target="_blank" class="text-emerald-400 font-semibold hover:underline">
+          WhatsApp: +51 981 278 458
+        </a>
+      </div>
+
+      <div class="flex items-center justify-center gap-2 pt-2">
+        <a href="https://www.tiktok.com/@bionativalab" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-[#CF926B] hover:text-[#14281D] text-white flex items-center justify-center transition-all duration-200" aria-label="TikTok BioNativa LAB" title="TikTok">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.95-4.49V8.62a8.28 8.28 0 0 0 5.23 1.83v-3.46a4.85 4.85 0 0 1-1.41-.3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/bionativalab" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-[#CF926B] hover:text-[#14281D] text-white flex items-center justify-center transition-all duration-200" aria-label="Instagram BioNativa LAB" title="Instagram">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/bionativalab" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-[#CF926B] hover:text-[#14281D] text-white flex items-center justify-center transition-all duration-200" aria-label="Facebook BioNativa LAB" title="Facebook">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
       </div>
 
       <p class="text-[11px] pt-4 border-t border-white/10 text-stone-500">
@@ -213,6 +202,7 @@
       </p>
     </div>
   </footer>
+
 
   <!-- Scripts -->
   <script src="js/products-data.js"></script>
@@ -295,28 +285,28 @@
       container.innerHTML = `
         <!-- Left: Image Gallery & Badges -->
         <div class="lg:col-span-6 space-y-4">
-          <div class="organic-card p-6 bg-white flex items-center justify-center relative overflow-hidden rounded-[5px]">
-            <span class="absolute top-4 left-4 bg-[#1E3B2B] text-white text-xs font-medium px-3 py-1 rounded-[3px] z-10 shadow-sm">
+          <div class="organic-card p-6 bg-white flex items-center justify-center relative overflow-hidden">
+            <span class="absolute top-4 left-4 bg-[#1E3B2B] text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow">
               ${currentProduct.badge || 'Puro COA'}
             </span>
-            <span class="absolute top-4 right-4 bg-[#FAF6F0] border border-[#E8E2D8] text-[#B67A52] text-[11px] font-semibold px-2.5 py-1 rounded-[3px] z-10">
+            <span class="absolute top-4 right-4 bg-[#FAF6F0] border border-[#D5CDBD] text-[#B67A52] text-[11px] font-bold px-3 py-1 rounded-full z-10">
               Materia Prima USA
             </span>
-            <img src="${currentProduct.image}" alt="${currentProduct.name}" class="w-full max-h-[440px] object-contain drop-shadow-md" />
+            <img src="${currentProduct.image}" alt="${currentProduct.name}" class="w-full max-h-[440px] object-contain drop-shadow-lg" />
           </div>
 
           <!-- Trust Cards Row -->
-          <div class="grid grid-cols-3 gap-3 text-center text-xs font-sans">
-            <div class="bg-white p-3 rounded-[5px] border border-[#E8E2D8]">
-              <span class="font-serif text-sm text-[#1E3B2B] block">Pureza 99.9%</span>
+          <div class="grid grid-cols-3 gap-3 text-center text-xs">
+            <div class="bg-white p-3 rounded-xl border border-[#E8E2D8]">
+              <span class="font-bold text-[#1E3B2B] block">Pureza 99.9%</span>
               <span class="text-[10px] text-stone-500">Certificado COA</span>
             </div>
-            <div class="bg-white p-3 rounded-[5px] border border-[#E8E2D8]">
-              <span class="font-serif text-sm text-[#1E3B2B] block">Despacho Inmediato</span>
+            <div class="bg-white p-3 rounded-xl border border-[#E8E2D8]">
+              <span class="font-bold text-[#1E3B2B] block">Despacho Inmediato</span>
               <span class="text-[10px] text-stone-500">Lima & Cusco</span>
             </div>
-            <div class="bg-white p-3 rounded-[5px] border border-[#E8E2D8]">
-              <span class="font-serif text-sm text-[#1E3B2B] block">Envío Nacional</span>
+            <div class="bg-white p-3 rounded-xl border border-[#E8E2D8]">
+              <span class="font-bold text-[#1E3B2B] block">Envío Nacional</span>
               <span class="text-[10px] text-stone-500">Shalom & Marvisur</span>
             </div>
           </div>
@@ -325,41 +315,41 @@
         <!-- Right: Information, Variants & Actions -->
         <div class="lg:col-span-6 space-y-6">
           <div>
-            <div class="flex items-center gap-2 mb-2 font-sans">
-              <span class="text-xs font-semibold text-[#B67A52] uppercase tracking-wider">${currentProduct.categoryName}</span>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xs font-bold text-[#B67A52] uppercase tracking-wider">${currentProduct.categoryName}</span>
               <span class="text-stone-300">•</span>
-              <div class="flex items-center text-amber-500 text-xs font-medium">
+              <div class="flex items-center text-amber-500 text-xs font-semibold">
                 <span>★ ${currentProduct.rating.toFixed(1)}</span>
                 <span class="text-stone-400 ml-1">(${currentProduct.reviewsCount} opiniones)</span>
               </div>
             </div>
 
-            <h1 class="font-serif text-2xl sm:text-3xl text-[#1E3B2B] leading-tight tracking-tight">${currentProduct.name}</h1>
-            <p class="text-xs text-stone-500 mt-1 font-sans">Origen: <strong class="text-stone-700 font-medium">${currentProduct.origin}</strong></p>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1E3B2B] leading-tight">${currentProduct.name}</h1>
+            <p class="text-xs text-stone-500 mt-1">Origen: <strong class="text-stone-700">${currentProduct.origin}</strong></p>
           </div>
 
           <!-- Price Display -->
-          <div class="p-4 bg-[#FAF6F0] rounded-[5px] border border-[#E8E2D8] flex items-baseline justify-between">
+          <div class="p-4 bg-[#FAF6F0] rounded-2xl border border-[#E8E2D8] flex items-baseline justify-between">
             <div>
-              <span class="text-xs text-stone-500 block font-sans">Precio Final con IGV:</span>
-              <div class="text-3xl font-serif text-[#1E3B2B]">
+              <span class="text-xs text-stone-500 block">Precio Final con IGV:</span>
+              <div class="text-3xl font-black text-[#1E3B2B]">
                 S/ <span id="display-price">${currentPrice.toFixed(2)}</span>
               </div>
             </div>
-            <span class="text-xs font-medium text-[#B67A52] bg-white px-3 py-1.5 rounded-[3px] border border-[#E8E2D8] font-sans" id="display-unit">
+            <span class="text-xs font-bold text-[#B67A52] bg-white px-3 py-1.5 rounded-full border border-[#D5CDBD]" id="display-unit">
               ${currentUnit}
             </span>
           </div>
 
           <!-- Variants Selector (If available) -->
           ${currentProduct.hasVariants ? `
-            <div class="space-y-2 font-sans">
-              <label class="block text-xs font-medium text-stone-700">Seleccionar Presentación / Formato:</label>
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-stone-700">Seleccionar Presentación / Formato:</label>
               <div class="grid grid-cols-2 gap-2.5">
                 ${currentProduct.variants.map(v => `
-                  <button type="button" onclick="setProductVariant('${v.id}')" class="variant-select-btn p-3 rounded-[5px] border text-left text-xs transition ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 font-semibold text-[#1E3B2B]' : 'border-stone-200 bg-white hover:border-stone-300'}">
-                    <div class="font-serif text-sm text-[#1E3B2B]">${v.name}</div>
-                    <div class="text-[11px] text-[#B67A52] font-medium">S/ ${v.price.toFixed(2)}</div>
+                  <button type="button" onclick="setProductVariant('${v.id}')" class="variant-select-btn p-3 rounded-xl border text-left text-xs transition ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 font-bold text-[#1E3B2B]' : 'border-stone-200 bg-white hover:border-stone-300'}">
+                    <div class="font-bold text-sm text-[#1E3B2B]">${v.name}</div>
+                    <div class="text-[11px] text-[#B67A52] font-semibold">S/ ${v.price.toFixed(2)}</div>
                     <div class="text-[10px] text-stone-400">${v.format}</div>
                   </button>
                 `).join("")}
@@ -368,39 +358,39 @@
           ` : ''}
 
           <!-- Quantity & Purchase Buttons -->
-          <div class="space-y-3 pt-2 font-sans">
+          <div class="space-y-3 pt-2">
             <div class="flex items-center gap-3">
               <!-- Qty Selector -->
-              <div class="flex items-center border border-[#E8E2D8] rounded-[5px] bg-white px-3 py-2">
-                <button onclick="changeQty(-1)" class="w-7 h-7 flex items-center justify-center font-bold text-stone-600 hover:text-[#1E3B2B]">−</button>
-                <span id="qty-val" class="w-8 text-center font-semibold text-sm text-[#1E3B2B]">1</span>
+              <div class="flex items-center border border-[#D5CDBD] rounded-xl bg-white px-3 py-2">
+                <button onclick="changeQty(-1)" class="w-7 h-7 flex items-center justify-center font-bold text-stone-600 hover:text-[#1E3B2B]">-</button>
+                <span id="qty-val" class="w-8 text-center font-bold text-sm text-[#1E3B2B]">1</span>
                 <button onclick="changeQty(1)" class="w-7 h-7 flex items-center justify-center font-bold text-stone-600 hover:text-[#1E3B2B]">+</button>
               </div>
 
               <!-- Add to Cart -->
-              <button onclick="addCurrentProductToCart()" class="flex-1 bg-[#1E3B2B] hover:bg-[#14281D] text-white font-medium py-3.5 px-6 rounded-[5px] text-sm shadow-sm transition flex items-center justify-center gap-2">
+              <button onclick="addCurrentProductToCart()" class="flex-1 bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-bold py-3.5 px-6 rounded-xl text-sm shadow-md transition flex items-center justify-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                 <span>Añadir a la Bolsa</span>
               </button>
             </div>
 
             <!-- Fast WhatsApp Buy -->
-            <button onclick="buyNowWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-medium py-3.5 px-6 rounded-[5px] text-sm shadow-sm transition flex items-center justify-center gap-2">
+            <button onclick="buyNowWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3.5 px-6 rounded-xl text-sm shadow transition flex items-center justify-center gap-2">
               <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
               <span>Comprar Inmediato por WhatsApp</span>
             </button>
           </div>
 
           <!-- Description Brief -->
-          <div class="border-t border-[#E8E2D8] pt-4 font-sans">
-            <h3 class="font-serif text-base text-[#1E3B2B] mb-1">Descripción:</h3>
+          <div class="border-t border-[#E8E2D8] pt-4">
+            <h3 class="font-bold text-sm text-[#1E3B2B] mb-1">Descripción:</h3>
             <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">${currentProduct.description}</p>
           </div>
         </div>
 
         <!-- Full Width Tabs Section: Beneficios, Modo de Uso, COA, FAQs -->
         <div class="lg:col-span-12 mt-8">
-          <div class="border-b border-[#E8E2D8] flex flex-wrap gap-4 text-xs font-medium font-sans">
+          <div class="border-b border-[#E8E2D8] flex flex-wrap gap-4 text-xs font-bold">
             <button onclick="switchTab('tab-benefits')" id="btn-tab-benefits" class="tab-nav-btn pb-3 border-b-2 border-[#1E3B2B] text-[#1E3B2B]">
               Beneficios Clínicos
             </button>
@@ -418,11 +408,11 @@
           <div class="py-6 text-xs sm:text-sm text-stone-700 leading-relaxed">
             <!-- Tab 1: Benefits -->
             <div id="tab-benefits" class="tab-panel space-y-3">
-              <h4 class="font-serif text-lg text-[#1E3B2B]">Beneficios Principales Comprobados:</h4>
-              <ul class="space-y-2 font-sans">
+              <h4 class="font-bold text-base text-[#1E3B2B]">Beneficios Principales Comprobados:</h4>
+              <ul class="space-y-2">
                 ${currentProduct.benefits.map((b, idx) => `
-                  <li class="flex items-start gap-2.5 bg-white p-3.5 rounded-[5px] border border-[#E8E2D8]">
-                    <span class="w-6 h-6 rounded-[3px] bg-[#FAF6F0] border border-[#E8E2D8] text-[#1E3B2B] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5">0${idx + 1}</span>
+                  <li class="flex items-start gap-2.5 bg-white p-3.5 rounded-xl border border-[#E8E2D8]">
+                    <span class="w-6 h-6 rounded-full bg-[#1E3B2B]/10 text-[#1E3B2B] font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
                     <span>${b}</span>
                   </li>
                 `).join("")}
@@ -431,8 +421,8 @@
 
             <!-- Tab 2: Usage -->
             <div id="tab-usage" class="tab-panel hidden space-y-4">
-              <div class="bg-white p-5 rounded-[5px] border border-[#E8E2D8] space-y-3 font-sans">
-                <h4 class="font-serif text-lg text-[#1E3B2B]">Instrucciones de Dosificación:</h4>
+              <div class="bg-white p-5 rounded-2xl border border-[#E8E2D8] space-y-3">
+                <h4 class="font-bold text-base text-[#1E3B2B]">Instrucciones de Dosificación:</h4>
                 <p>${currentProduct.howToUse}</p>
                 <div class="pt-2 text-xs text-stone-500 border-t border-stone-100">
                   💡 <em>Recomendación de almacenamiento: Conservar en lugar fresco, seco y al abrigo de la luz solar directa. Mantener el empaque bien cerrado.</em>
@@ -442,25 +432,25 @@
 
             <!-- Tab 3: COA & Composition -->
             <div id="tab-coa" class="tab-panel hidden space-y-4">
-              <div class="bg-white p-5 rounded-[5px] border border-[#E8E2D8] space-y-3 font-sans">
+              <div class="bg-white p-5 rounded-2xl border border-[#E8E2D8] space-y-3">
                 <div class="flex items-center justify-between">
-                  <h4 class="font-serif text-lg text-[#1E3B2B]">Especificaciones Técnicas & COA:</h4>
-                  <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-[3px] border border-emerald-200">COA Aprobado</span>
+                  <h4 class="font-bold text-base text-[#1E3B2B]">Especificaciones Técnicas & COA:</h4>
+                  <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">COA Aprobado</span>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-2">
-                  <div class="bg-[#FAF9F6] p-3 rounded-[5px] border border-[#E8E2D8]">
+                  <div class="bg-[#FAF9F6] p-3 rounded-lg border border-[#E8E2D8]">
                     <span class="text-stone-400 block">Composición Declarada:</span>
                     <strong class="text-stone-800">${currentProduct.composition}</strong>
                   </div>
-                  <div class="bg-[#FAF9F6] p-3 rounded-[5px] border border-[#E8E2D8]">
+                  <div class="bg-[#FAF9F6] p-3 rounded-lg border border-[#E8E2D8]">
                     <span class="text-stone-400 block">Pureza Analítica:</span>
                     <strong class="text-stone-800">${currentProduct.coaPurity}</strong>
                   </div>
-                  <div class="bg-[#FAF9F6] p-3 rounded-[5px] border border-[#E8E2D8]">
+                  <div class="bg-[#FAF9F6] p-3 rounded-lg border border-[#E8E2D8]">
                     <span class="text-stone-400 block">Estándar de Fabricación:</span>
                     <strong class="text-stone-800">Grado Farmacéutico / USP Compliant</strong>
                   </div>
-                  <div class="bg-[#FAF9F6] p-3 rounded-[5px] border border-[#E8E2D8]">
+                  <div class="bg-[#FAF9F6] p-3 rounded-lg border border-[#E8E2D8]">
                     <span class="text-stone-400 block">Metales Pesados & Microbiología:</span>
                     <strong class="text-stone-800">Cumple límites de pureza alimentaria</strong>
                   </div>
@@ -471,11 +461,11 @@
             <!-- Tab 4: Product FAQs -->
             <div id="tab-faqs" class="tab-panel hidden space-y-3">
               ${currentProduct.faqs && currentProduct.faqs.length > 0 ? currentProduct.faqs.map(faq => `
-                <div class="bg-white p-4 rounded-[5px] border border-[#E8E2D8] space-y-1">
-                  <h5 class="font-serif text-base text-[#1E3B2B]">${faq.q}</h5>
-                  <p class="text-xs text-stone-600 leading-relaxed font-sans">${faq.a}</p>
+                <div class="bg-white p-4 rounded-xl border border-[#E8E2D8] space-y-1">
+                  <h5 class="font-bold text-[#1E3B2B] text-sm">${faq.q}</h5>
+                  <p class="text-xs text-stone-600 leading-relaxed">${faq.a}</p>
                 </div>
-              `).join("") : '<p class="font-sans">No hay preguntas adicionales registradas para este producto.</p>'}
+              `).join("") : '<p>No hay preguntas adicionales registradas para este producto.</p>'}
             </div>
           </div>
         </div>
