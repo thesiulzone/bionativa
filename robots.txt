@@ -1,0 +1,27 @@
+# Robots.txt para www.bionativalab.com
+# Optimizado para Googlebot, Bingbot, PerplexityBot, Claude, ChatGPT y motores AEO
+
+User-agent: *
+Allow: /
+
+# Directivas para crawlers de Inteligencia Artificial (AEO / GEO)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Mapa del sitio
+Sitemap: https://www.bionativalab.com/sitemap.xml
