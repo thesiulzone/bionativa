@@ -258,11 +258,48 @@
             "url": `https://www.bionativalab.com/producto.html?id=${currentProduct.id}`,
             "priceCurrency": "PEN",
             "price": currentProduct.price,
+            "priceValidUntil": "2027-12-31",
             "availability": "https://schema.org/InStock",
             "itemCondition": "https://schema.org/NewCondition",
             "seller": {
               "@type": "Organization",
               "name": "BioNativa LAB"
+            },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "10.00",
+                "currency": "PEN"
+              },
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "PE"
+              },
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "unitCode": "DAY"
+                },
+                "transitTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 1,
+                  "maxValue": 3,
+                  "unitCode": "DAY"
+                }
+              }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": "PE",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 7,
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "returnFees": "https://schema.org/FreeReturn",
+              "returnPolicyLink": "https://www.bionativalab.com/terminos-y-privacidad.html"
             }
           },
           "aggregateRating": {
