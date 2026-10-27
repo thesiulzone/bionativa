@@ -1,0 +1,22 @@
+# Carpetas de desarrollo, agentes y habilidades
+.agents/
+.claude/
+agent/
+contenido-comercial-skill/
+skills-lock.json
+
+# Recursos internos, fichas técnicas y redes
+FICHAS TECNICAS/
+REDES SOCIALES RECURSOS/
+
+# Documentación interna y archivos de prueba
+*.md
+*.mp4
+
+# Archivos de control de versiones y sistema operativo
+.git/
+.gitignore
+.assetsignore
+Thumbs.db
+desktop.ini
+.DS_Store
