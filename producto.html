@@ -6,7 +6,23 @@
   <title id="page-title">Ficha de Producto | BioNativa LAB</title>
   
   <meta id="meta-description" name="description" content="Suplemento puro certificado con COA en Perú. Conoce sus beneficios, modo de uso y composición." />
-  <link rel="canonical" id="canonical-url" href="https://www.bionativalab.com/producto.html" />
+  <link rel="canonical" id="canonical-url" href="https://bionativalab.com/producto" />
+  <script>
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var id = params.get('id');
+        var canonical = document.getElementById('canonical-url');
+        if (canonical) {
+          if (id) {
+            canonical.href = 'https://bionativalab.com/producto?id=' + encodeURIComponent(id);
+          } else {
+            canonical.href = 'https://bionativalab.com/tienda';
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
 
@@ -63,17 +79,17 @@
 
   <header class="sticky top-0 z-40 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-[#E8E2D8]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-      <a href="index.html" class="flex-shrink-0">
+      <a href="/" class="flex-shrink-0">
         <img src="img/logo.svg" alt="BioNativa LAB" class="h-12 w-auto" />
       </a>
 
       <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#1E3B2B]">
-        <a href="index.html" class="hover:text-[#B67A52] transition">Inicio</a>
-        <a href="tienda.html" class="text-[#B67A52] transition">Catálogo Completo</a>
-        <a href="nosotros.html" class="hover:text-[#B67A52] transition">Calidad COA</a>
-        <a href="blog.html" class="hover:text-[#B67A52] transition">Blog de Bienestar</a>
-        <a href="envios-y-cobertura.html" class="hover:text-[#B67A52] transition">Envíos Perú</a>
-        <a href="contacto.html" class="hover:text-[#B67A52] transition">Contacto</a>
+        <a href="/" class="hover:text-[#B67A52] transition">Inicio</a>
+        <a href="tienda" class="text-[#B67A52] transition">Catálogo Completo</a>
+        <a href="nosotros" class="hover:text-[#B67A52] transition">Calidad COA</a>
+        <a href="blog" class="hover:text-[#B67A52] transition">Blog de Bienestar</a>
+        <a href="envios-y-cobertura" class="hover:text-[#B67A52] transition">Envíos Perú</a>
+        <a href="contacto" class="hover:text-[#B67A52] transition">Contacto</a>
       </nav>
 
       <div class="flex items-center gap-3">
@@ -100,12 +116,12 @@
         </button>
       </div>
       <nav class="mt-6 flex flex-col gap-4 text-base font-bold text-[#1E3B2B]">
-        <a href="index.html">Inicio</a>
-        <a href="tienda.html">Catálogo Completo</a>
-        <a href="nosotros.html">Pureza & Certificados COA</a>
-        <a href="blog.html">Blog de Salud & Guías</a>
-        <a href="envios-y-cobertura.html">Envíos Shalom & Marvisur</a>
-        <a href="contacto.html">Contacto Directo</a>
+        <a href="/">Inicio</a>
+        <a href="tienda">Catálogo Completo</a>
+        <a href="nosotros">Pureza & Certificados COA</a>
+        <a href="blog">Blog de Salud & Guías</a>
+        <a href="envios-y-cobertura">Envíos Shalom & Marvisur</a>
+        <a href="contacto">Contacto Directo</a>
       </nav>
     </div>
 
@@ -142,9 +158,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <nav class="flex text-xs text-stone-500" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 sm:space-x-2">
-          <li><a href="index.html" class="hover:text-[#1E3B2B]">Inicio</a></li>
+          <li><a href="/" class="hover:text-[#1E3B2B]">Inicio</a></li>
           <li><span>/</span></li>
-          <li><a href="tienda.html" class="hover:text-[#1E3B2B]">Catálogo</a></li>
+          <li><a href="tienda" class="hover:text-[#1E3B2B]">Catálogo</a></li>
           <li><span>/</span></li>
           <li id="breadcrumb-category" class="hover:text-[#1E3B2B] font-medium">Categoría</li>
           <li><span>/</span></li>
@@ -198,7 +214,7 @@
       </div>
 
       <p class="text-[11px] pt-4 border-t border-white/10 text-stone-500">
-        © 2026 BioNativa LAB (www.bionativalab.com). Todos los derechos reservados.
+        © 2026 BioNativa LAB (bionativalab.com). Todos los derechos reservados.
       </p>
     </div>
   </footer>
@@ -234,7 +250,7 @@
       if (metaDesc) metaDesc.content = `${currentProduct.shortName}: ${currentProduct.description.substring(0, 155)}`;
 
       const canonical = document.getElementById("canonical-url");
-      if (canonical) canonical.href = `https://www.bionativalab.com/producto.html?id=${currentProduct.id}`;
+      if (canonical) canonical.href = `https://bionativalab.com/producto?id=${currentProduct.id}`;
 
       document.getElementById("breadcrumb-category").textContent = currentProduct.categoryName;
       document.getElementById("breadcrumb-product").textContent = currentProduct.shortName;
@@ -246,7 +262,7 @@
           "@context": "https://schema.org/",
           "@type": "Product",
           "name": currentProduct.name,
-          "image": [ `https://www.bionativalab.com/${currentProduct.image}` ],
+          "image": [ `https://bionativalab.com/${currentProduct.image}` ],
           "description": currentProduct.description,
           "sku": currentProduct.id,
           "brand": {
@@ -255,7 +271,7 @@
           },
           "offers": {
             "@type": "Offer",
-            "url": `https://www.bionativalab.com/producto.html?id=${currentProduct.id}`,
+            "url": `https://bionativalab.com/producto?id=${currentProduct.id}`,
             "priceCurrency": "PEN",
             "price": currentProduct.price,
             "priceValidUntil": "2027-12-31",
@@ -299,7 +315,7 @@
               "merchantReturnDays": 7,
               "returnMethod": "https://schema.org/ReturnByMail",
               "returnFees": "https://schema.org/FreeReturn",
-              "returnPolicyLink": "https://www.bionativalab.com/terminos-y-privacidad.html"
+              "returnPolicyLink": "https://bionativalab.com/terminos-y-privacidad"
             }
           },
           "aggregateRating": {

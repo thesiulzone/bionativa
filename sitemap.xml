@@ -1,110 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Core Pages -->
+  <!-- Core Clean Pages -->
   <url>
-    <loc>https://www.bionativalab.com/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/tienda.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/tienda</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/nosotros.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/nosotros</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/blog.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/blog</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/envios-y-cobertura.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/envios-y-cobertura</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/contacto.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/contacto</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/terminos-y-privacidad.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/terminos-y-privacidad</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <!-- Blog Pillar Articles -->
   <url>
-    <loc>https://www.bionativalab.com/articulo-magnesio.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/articulo-magnesio</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/articulo-creatina.html</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/articulo-creatina</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- Key Products -->
+  <!-- Complete 16 Certified Products Catalog -->
   <url>
-    <loc>https://www.bionativalab.com/producto.html?id=creatina-monohidratada</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/producto?id=creatina-monohidratada</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/producto.html?id=citrato-de-magnesio</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/producto?id=citrato-de-magnesio</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/producto.html?id=glicinato-de-magnesio</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/producto?id=glicinato-de-magnesio</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/producto.html?id=proteina-suero-leche-80</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/producto?id=cloruro-de-magnesio</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/producto.html?id=colageno-hidrolizado</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/producto?id=citrato-de-potasio</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/producto.html?id=ashwagandha-pura</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/producto?id=sal-de-epsom</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/producto.html?id=ascorbato-de-sodio</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/producto?id=proteina-suero-leche-80</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.bionativalab.com/producto.html?id=sal-de-epsom</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://bionativalab.com/producto?id=proteina-soya-vegetal</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=glutamina-pura</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=arginina-pura</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=colageno-hidrolizado</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=glucosamina-sulfato</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=ascorbato-de-sodio</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=ashwagandha-pura</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=espirulina-pura</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=te-verde-extracto</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
   </url>
 </urlset>

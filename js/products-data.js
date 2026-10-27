@@ -522,8 +522,8 @@ const BIONATIVA_PRODUCTS = [
 const BIONATIVA_CONFIG = {
   brandName: "BioNativa LAB",
   tagline: "El estándar de tu naturaleza",
-  domain: "www.bionativalab.com",
-  canonicalBase: "https://www.bionativalab.com",
+  domain: "bionativalab.com",
+  canonicalBase: "https://bionativalab.com",
   whatsappNumber: "51981278458",
   whatsappFormatted: "+51 981 278 458",
   whatsappMessageBase: "¡Hola BioNativa LAB! Deseo realizar el siguiente pedido desde su tienda virtual:",

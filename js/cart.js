@@ -208,7 +208,7 @@ class BionativaCart {
             </div>
             <h4 class="font-bold text-[#1E3B2B] text-base mb-1">Tu carrito está vacío</h4>
             <p class="text-xs text-stone-500 max-w-xs mx-auto mb-6">Descubre nuestros 16 suplementos puros para fuerza, bienestar articular y descanso reparador.</p>
-            <a href="tienda.html" class="inline-block bg-[#1E3B2B] text-white px-6 py-2.5 rounded-full text-xs font-semibold hover:bg-[#284f3a] transition shadow-sm">Explorar Catálogo</a>
+            <a href="tienda" class="inline-block bg-[#1E3B2B] text-white px-6 py-2.5 rounded-full text-xs font-semibold hover:bg-[#284f3a] transition shadow-sm">Explorar Catálogo</a>
           </div>
 
           <div id="cart-drawer-items"></div>
@@ -476,7 +476,7 @@ class BionativaCart {
       let itemsText = this.items.map(item => `• ${item.quantity}x ${item.name} (${item.variantName}) - S/ ${(item.price * item.quantity).toFixed(2)}`).join("\n");
 
       let message = `🌿 *NUEVO PEDIDO - BIONATIVA LAB*\n` +
-        `🌐 *Dominio:* www.bionativalab.com\n` +
+        `🌐 *Dominio:* bionativalab.com\n` +
         `-----------------------------------------\n` +
         `📦 *PRODUCTOS SOLICITADOS:*\n${itemsText}\n` +
         `-----------------------------------------\n` +
@@ -613,7 +613,7 @@ class BionativaCart {
         <h3 class="text-xl font-bold text-[#1E3B2B]">¡Pago Procesado Exitosamente!</h3>
         <p class="text-xs text-stone-600 max-w-sm mx-auto">Tu transacción ha sido aprobada. Hemos enviado el comprobante a tu correo y el equipo de BioNativa LAB ya está preparando tu despacho.</p>
         <div class="pt-4">
-          <button onclick="window.cart.clearCart(); window.cart.closeCheckoutModal(); window.location.href='index.html';" class="bg-[#1E3B2B] text-white font-bold px-6 py-2.5 rounded-full text-xs hover:bg-[#284f3a] transition">
+          <button onclick="window.cart.clearCart(); window.cart.closeCheckoutModal(); window.location.href='/';" class="bg-[#1E3B2B] text-white font-bold px-6 py-2.5 rounded-full text-xs hover:bg-[#284f3a] transition">
             Volver al Inicio
           </button>
         </div>

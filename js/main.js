@@ -62,7 +62,7 @@ function initSearchRedirect() {
       e.preventDefault();
       const input = form.querySelector("input[name='q']");
       if (input && input.value.trim()) {
-        window.location.href = `tienda.html?q=${encodeURIComponent(input.value.trim())}`;
+        window.location.href = `tienda?q=${encodeURIComponent(input.value.trim())}`;
       }
     });
   });
