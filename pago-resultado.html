@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estado de tu Pago | BioNativa LAB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-[#F8F6F0] text-[#1E3B2B] min-h-screen flex flex-col font-['Plus_Jakarta_Sans',sans-serif]">
+
+  <!-- Header mínimo -->
+  <header class="py-4 border-b border-stone-200 bg-white/80 backdrop-blur-md">
+    <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+      <a href="/" class="flex items-center gap-2">
+        <span class="font-['Cinzel',serif] text-xl font-bold tracking-widest text-[#1E3B2B]">BIONATIVA</span>
+        <span class="text-[10px] bg-[#1E3B2B] text-white px-2 py-0.5 rounded tracking-wider uppercase">LAB</span>
+      </a>
+      <span class="text-xs text-stone-500 font-medium">Pasarela Segura SSL</span>
+    </div>
+  </header>
+
+  <!-- Contenido de Respuesta -->
+  <main class="flex-1 flex items-center justify-center p-4">
+    <div id="status-card" class="bg-white max-w-lg w-full p-8 rounded-2xl shadow-lg border border-stone-200 text-center space-y-6">
+      <!-- Se llena dinámicamente según la URL -->
+      <div class="animate-pulse py-12">
+        <div class="w-12 h-12 bg-stone-200 rounded-full mx-auto mb-4"></div>
+        <div class="h-4 bg-stone-200 rounded w-48 mx-auto mb-2"></div>
+        <div class="h-3 bg-stone-100 rounded w-64 mx-auto"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('status') || params.get('collection_status');
+    const paymentId = params.get('payment_id') || params.get('collection_id');
+    const cardEl = document.getElementById('status-card');
+
+    if (status === 'success' || status === 'approved') {
+      // Limpiar carrito si existía
+      try {
+        localStorage.removeItem('bionativa_cart');
+      } catch (e) {}
+
+      cardEl.innerHTML = `
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-[#B67A52] uppercase tracking-wider">Transacción Exitosa</span>
+          <h1 class="text-2xl font-bold text-[#1E3B2B]">¡Gracias por tu compra!</h1>
+          <p class="text-sm text-stone-600">Tu pago ha sido procesado de manera segura a través de Mercado Pago. Hemos recibido tu orden y comenzaremos a preparar tu despacho.</p>
+        </div>
+        ${paymentId ? `<div class="bg-stone-50 p-3 rounded-lg text-xs font-mono text-stone-600">ID de Transacción: <strong>${paymentId}</strong></div>` : ''}
+        <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">
+            Volver al Inicio
+          </a>
+          <a href="https://wa.me/51999999999?text=Hola,%20acabo%20de%20realizar%20un%20pago%20en%20la%20web%20con%20ID%20${paymentId || ''}" class="inline-flex justify-center items-center px-6 py-3 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700 text-xs font-bold tracking-wide transition">
+            Notificar por WhatsApp
+          </a>
+        </div>
+      `;
+    } else if (status === 'pending' || status === 'in_process') {
+      cardEl.innerHTML = `
+        <div class="w-16 h-16 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mx-auto">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Pago Pendiente</span>
+          <h1 class="text-2xl font-bold text-[#1E3B2B]">Estamos validando tu pago</h1>
+          <p class="text-sm text-stone-600">Tu transacción está en proceso o pendiente de acreditación (ej. pago en agente/efectivo). En cuanto se confirme, despacharemos tus productos.</p>
+        </div>
+        <div class="pt-4">
+          <a href="/" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">
+            Volver a la Tienda
+          </a>
+        </div>
+      `;
+    } else {
+      cardEl.innerHTML = `
+        <div class="w-16 h-16 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center mx-auto">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-rose-600 uppercase tracking-wider">Operación No Completada</span>
+          <h1 class="text-2xl font-bold text-[#1E3B2B]">No se pudo concretar el pago</h1>
+          <p class="text-sm text-stone-600">La transacción fue cancelada o rechazada por tu entidad bancaria. Ningún cargo ha sido realizado a tu cuenta.</p>
+        </div>
+        <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/tienda.html" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">
+            Intentar Nuevamente
+          </a>
+          <a href="/" class="inline-flex justify-center items-center px-6 py-3 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700 text-xs font-bold tracking-wide transition">
+            Ir al Inicio
+          </a>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

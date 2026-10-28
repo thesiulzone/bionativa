@@ -1,4 +1,4 @@
-﻿/**
+/**
  * BIONATIVA LAB - Sistema de Carrito de Compras y Checkout
  * Soporta persistencia en localStorage, drawer deslizante y Checkout multicanal
  */
@@ -641,52 +641,96 @@ class BionativaCart {
     content.innerHTML = `
       <div class="space-y-4 py-1 text-xs">
         <div class="border-b border-stone-200 pb-2">
-          <span class="text-xs font-bold text-[#B67A52] uppercase tracking-wider">Pasarela Segura SSL</span>
-          <h3 class="text-lg font-bold text-[#1E3B2B] mt-0.5">Pago con Tarjeta de Crédito / Débito</h3>
-          <p class="text-stone-500">Total a debitar: <strong class="text-sm text-[#1E3B2B]">S/ ${total}</strong></p>
+          <span class="text-xs font-bold text-[#B67A52] uppercase tracking-wider">Pasarela Segura SSL Oficial</span>
+          <h3 class="text-lg font-bold text-[#1E3B2B] mt-0.5">Mercado Pago / Tarjetas de Débito y Crédito</h3>
+          <p class="text-stone-500">Monto total: <strong class="text-sm text-[#1E3B2B]">S/ ${total}</strong></p>
         </div>
 
-        <form onsubmit="window.cart.processCardPayment(event)" class="space-y-3">
-          <div>
-            <label class="block font-semibold text-stone-700 mb-1">Número de Tarjeta</label>
-            <div class="relative">
-              <input type="text" required placeholder="•••• •••• •••• ••••" maxlength="19" class="w-full border border-stone-300 rounded-lg p-2.5 font-mono focus:border-[#1E3B2B] focus:ring-0" />
-              <div class="absolute right-3 top-2.5 flex items-center gap-1">
-                <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-1 rounded">VISA</span>
-                <span class="text-[10px] font-bold text-red-600 bg-red-50 px-1 rounded">MC</span>
-              </div>
-            </div>
+        <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200 space-y-2 text-stone-600">
+          <div class="flex items-center gap-2 text-xs font-semibold text-stone-800">
+            <svg class="w-4 h-4 text-emerald-700" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span>Conexión Cifrada SSL con Certificación PCI-DSS</span>
           </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">Vencimiento</label>
-              <input type="text" required placeholder="MM / AA" maxlength="5" class="w-full border border-stone-300 rounded-lg p-2.5 font-mono focus:border-[#1E3B2B] focus:ring-0" />
-            </div>
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">CVV / CVC</label>
-              <input type="password" required placeholder="•••" maxlength="4" class="w-full border border-stone-300 rounded-lg p-2.5 font-mono focus:border-[#1E3B2B] focus:ring-0" />
-            </div>
+          <p class="text-[11px] leading-relaxed">
+            Serás derivado al checkout seguro oficial de <strong>Mercado Pago</strong> para completar tu pago con tarjeta (Visa, Mastercard, Diners, American Express) o con saldo de cuenta.
+          </p>
+          <div class="flex items-center gap-2 pt-1">
+            <span class="px-2 py-0.5 bg-blue-100 text-blue-800 font-bold rounded text-[10px]">VISA</span>
+            <span class="px-2 py-0.5 bg-red-100 text-red-800 font-bold rounded text-[10px]">MASTERCARD</span>
+            <span class="px-2 py-0.5 bg-sky-100 text-sky-800 font-bold rounded text-[10px]">AMEX</span>
+            <span class="px-2 py-0.5 bg-cyan-100 text-cyan-800 font-bold rounded text-[10px]">MERCADO PAGO</span>
           </div>
+        </div>
 
-          <div>
-            <label class="block font-semibold text-stone-700 mb-1">Nombre en la Tarjeta</label>
-            <input type="text" required placeholder="Como figura en el plástico" class="w-full border border-stone-300 rounded-lg p-2.5 focus:border-[#1E3B2B] focus:ring-0 uppercase" />
-          </div>
-
-          <div class="flex items-center gap-2 text-stone-500 text-[11px] pt-1">
-            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
-            <span>Cifrado de grado bancario con tokenización SSL.</span>
-          </div>
-
-          <button type="submit" class="w-full bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-bold py-3.5 px-4 rounded-xl text-sm shadow transition">
-            Pagar S/ ${total} de forma segura
+        <div id="mp-button-container" class="pt-2">
+          <button id="btn-iniciar-mercadopago" onclick="window.cart.initMercadoPagoCheckout(${total})" class="w-full bg-[#009EE3] hover:bg-[#0086c3] text-white font-bold py-3.5 px-4 rounded-xl text-sm shadow transition flex items-center justify-center gap-2">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.11 1.87 1.34 0 1.94-.78 1.94-1.5 0-.96-.75-1.41-2.22-1.89-1.98-.65-3.08-1.56-3.08-3.16 0-1.63 1.25-2.88 2.89-3.26V5h2.67v1.89c1.47.33 2.65 1.35 2.78 3.11h-1.95c-.14-.97-.87-1.61-1.86-1.61-1.07 0-1.72.63-1.72 1.45 0 .83.65 1.25 2.05 1.73 2.13.73 3.25 1.63 3.25 3.32 0 1.77-1.32 3-2.91 3.2z"/></svg>
+            Continuar a Pasarela Mercado Pago (S/ ${total})
           </button>
-        </form>
+        </div>
+
+        <button onclick="window.cart.openCheckoutModal('pay-options')" class="w-full text-stone-500 hover:text-stone-800 text-center text-xs py-2">
+          ← Volver a elegir método de pago
+        </button>
       </div>
     `;
   }
 
+  async initMercadoPagoCheckout(total) {
+    const btn = document.getElementById("btn-iniciar-mercadopago");
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span class="inline-block animate-spin mr-2">⏳</span> Conectando con Mercado Pago...`;
+    }
+
+    try {
+      const cfg = window.PAYMENT_CONFIG?.mercadopago || {};
+      
+      // Intentar crear la preferencia en el backend (/api/create-preference)
+      if (cfg.preferenceEndpoint) {
+        const response = await fetch(cfg.preferenceEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: this.items.map(i => ({
+              id: i.id,
+              name: i.name,
+              price: i.price,
+              quantity: i.quantity
+            })),
+            payer: this.currentCustomerData || {}
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.init_point) {
+            window.location.href = data.init_point;
+            return;
+          }
+        }
+      }
+
+      // Fallback a enlace directo si existe
+      if (cfg.directPaymentLink) {
+        window.location.href = cfg.directPaymentLink;
+        return;
+      }
+
+      alert("Mercado Pago requiere configurar tus credenciales en functions/api/create-preference.js o js/payment-config.js.");
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = `Continuar a Pasarela Mercado Pago (S/ ${total})`;
+      }
+    } catch (err) {
+      console.error("Error al iniciar Mercado Pago:", err);
+      alert("Hubo un problema al conectar con la pasarela. Puedes optar por Yape / Transferencia o escribirnos por WhatsApp.");
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = `Continuar a Pasarela Mercado Pago (S/ ${total})`;
+      }
+    }
+  }
   processCardPayment(e) {
     e.preventDefault();
     const content = document.getElementById("checkout-modal-content");
