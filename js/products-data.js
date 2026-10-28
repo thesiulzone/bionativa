@@ -1,4 +1,4 @@
-/**
+﻿/**
  * BIONATIVA LAB - Catálogo Oficial de Productos
  * Optimizado para SEO, AEO (Answer Engine Optimization) y GEO
  * Moneda: Soles Peruanos (PEN - S/)
@@ -562,8 +562,8 @@ const BIONATIVA_CONFIG = {
     },
     {
       id: "transfer",
-      title: "Yape / Plin / Transferencia Bancaria (BCP, BBVA)",
-      desc: "Paga al instante escaneando código QR o a nuestras cuentas bancarias."
+      title: "Plin / Interbank / Banco de la Nación / Digitales",
+      desc: "Cuenta principal Interbank y Plin QR. También Banco de la Nación, Agora, Ligo y Lemon."
     },
     {
       id: "card",

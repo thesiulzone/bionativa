@@ -1,4 +1,4 @@
-/**
+﻿/**
  * BIONATIVA LAB - Sistema de Carrito de Compras y Checkout
  * Soporta persistencia en localStorage, drawer deslizante y Checkout multicanal
  */
@@ -405,7 +405,7 @@ class BionativaCart {
               <label class="flex items-center gap-3 p-3 border rounded-xl border-stone-200 hover:border-[#1E3B2B] cursor-pointer">
                 <input type="radio" name="pay-method" value="yape" class="text-[#1E3B2B] focus:ring-0" />
                 <div>
-                  <div class="font-bold text-[#1E3B2B]">Yape / Plin / Transferencia BCP / BBVA</div>
+                  <div class="font-bold text-[#1E3B2B]">Plin / Interbank (Principal) / Banco de la Nación / Digitales</div>
                   <div class="text-[11px] text-stone-500">Ver números de cuenta y código QR al instante.</div>
                 </div>
               </label>
@@ -516,36 +516,121 @@ class BionativaCart {
     const content = document.getElementById("checkout-modal-content");
     content.innerHTML = `
       <div class="text-center space-y-4 py-2">
-        <div class="w-14 h-14 rounded-full bg-[#1E3B2B]/10 text-[#1E3B2B] flex items-center justify-center mx-auto">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div class="w-14 h-14 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center mx-auto border border-emerald-200 shadow-sm">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         </div>
-        <h3 class="text-xl font-bold text-[#1E3B2B]">Cuentas para Pago en Soles</h3>
-        <p class="text-xs text-stone-600">Total a transferir: <strong class="text-base text-[#B67A52]">S/ ${total}</strong></p>
-
-        <div class="bg-[#FAF6F0] p-4 rounded-xl border border-[#E8E2D8] text-left text-xs space-y-3">
-          <div class="p-2.5 bg-white rounded-lg border border-stone-200">
-            <div class="font-bold text-[#742284]">💜 YAPE / PLIN:</div>
-            <div class="text-stone-800 font-mono text-sm mt-0.5"><strong>981 278 458</strong></div>
-            <div class="text-[11px] text-stone-500">Titular: BioNativa LAB / Administración</div>
-          </div>
-
-          <div class="p-2.5 bg-white rounded-lg border border-stone-200">
-            <div class="font-bold text-[#002A8F]">🔵 Banco de Crédito del Perú (BCP):</div>
-            <div class="text-stone-800 font-mono text-xs mt-0.5">Cuenta: <strong>191-XXXXXXXX-0-XX</strong></div>
-            <div class="text-stone-600 font-mono text-xs">CCI: <strong>002-191XXXXXXXXXX-XX</strong></div>
-          </div>
-
-          <div class="p-2.5 bg-white rounded-lg border border-stone-200">
-            <div class="font-bold text-[#004481]">🔷 BBVA Continental:</div>
-            <div class="text-stone-800 font-mono text-xs mt-0.5">Cuenta: <strong>0011-XXXX-XXXXXXXXXX</strong></div>
+        <div>
+          <span class="text-[11px] font-bold text-[#CF926B] tracking-wider uppercase">Confirmación de Pago</span>
+          <h3 class="text-xl font-bold text-[#1E3B2B] mt-0.5">Cuentas para Pago en Soles</h3>
+          <p class="text-xs text-stone-600 mt-1">Total a transferir: <strong class="text-base text-[#1E3B2B]">S/ ${total}</strong></p>
+          <div class="inline-block bg-amber-50 text-amber-800 border border-amber-200 text-[11px] px-3 py-1 rounded-full font-medium mt-2">
+            🏷️ Por favor consignar o indicar: <strong>Para Pedido BioNativa</strong>
           </div>
         </div>
 
-        <p class="text-[11px] text-stone-500">Una vez realizada la transferencia, haz clic en el siguiente botón para enviar la captura y los datos de tu pedido al WhatsApp oficial:</p>
+        <!-- CUENTA PRINCIPAL DESTACADA: INTERBANK -->
+        <div class="bg-gradient-to-b from-[#FAFDFB] to-[#F3F8F5] p-4 rounded-2xl border-2 border-[#009B3A]/40 text-left relative shadow-sm">
+          <div class="flex items-center justify-between mb-3 border-b border-emerald-100 pb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-[#009B3A] text-white flex items-center justify-center font-black text-xs shadow-sm">IB</span>
+              <div>
+                <span class="text-[10px] font-bold text-[#009B3A] tracking-wider uppercase block">Cuenta Principal Oficial</span>
+                <span class="font-bold text-sm text-[#1E3B2B]">INTERBANK</span>
+              </div>
+            </div>
+            <span class="bg-[#009B3A]/10 text-[#009B3A] text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-[#009B3A]/30">Recomendado</span>
+          </div>
 
-        <a href="${whatsappURL}" target="_blank" onclick="window.cart.clearCart(); window.cart.closeCheckoutModal();" class="inline-flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3.5 px-4 rounded-xl text-sm shadow transition">
+          <div class="space-y-2 text-xs">
+            <div class="bg-white p-2.5 rounded-xl border border-stone-200 flex items-center justify-between gap-2">
+              <div>
+                <span class="text-[10px] text-stone-500 block uppercase font-bold">Cuenta Negocios Soles:</span>
+                <strong class="font-mono text-sm text-stone-900 tracking-wider">2003008847590</strong>
+              </div>
+              <button type="button" onclick="navigator.clipboard.writeText('2003008847590'); alert('¡Número de cuenta Interbank copiado!');" class="text-[11px] bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold px-2 py-1 rounded border border-stone-300 transition">Copiar</button>
+            </div>
+
+            <div class="bg-white p-2.5 rounded-xl border border-stone-200 flex items-center justify-between gap-2">
+              <div>
+                <span class="text-[10px] text-stone-500 block uppercase font-bold">CCI Interbancario:</span>
+                <strong class="font-mono text-xs text-stone-800">00320000300884759037</strong>
+              </div>
+              <button type="button" onclick="navigator.clipboard.writeText('00320000300884759037'); alert('¡CCI Interbank copiado!');" class="text-[11px] bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold px-2 py-1 rounded border border-stone-300 transition">Copiar</button>
+            </div>
+
+            <div class="bg-white p-3 rounded-xl border border-emerald-200 flex flex-col sm:flex-row items-center gap-3">
+              <div class="flex-shrink-0 text-center">
+                <img src="img/qr-plin-interbank.png" alt="Código QR PLIN Interbank" class="w-24 h-24 rounded-lg border border-stone-300 p-1 bg-white shadow-sm mx-auto" />
+                <span class="text-[9px] text-stone-500 block mt-1 font-semibold">Escanear con PLIN</span>
+              </div>
+              <div class="flex-1 text-left w-full space-y-1">
+                <div class="flex items-center gap-1.5">
+                  <span class="bg-[#00D4B2] text-white font-extrabold text-[10px] px-1.5 py-0.5 rounded">PLIN</span>
+                  <span class="font-bold text-xs text-stone-800">Directo a Cuenta Negocios</span>
+                </div>
+                <div class="font-mono text-base font-black text-[#009B3A]">972 050 601</div>
+                <div class="text-[11px] text-stone-600 leading-tight pt-0.5">
+                  Titular: <strong class="text-stone-800">JORGE LUIS DE LA FLOR PARHUAYO</strong><br />
+                  <span class="text-stone-500 text-[10px] font-semibold">(BIONATIVALAB)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BANCO DE LA NACION DEL PERU -->
+        <div class="bg-white p-3.5 rounded-xl border border-rose-200 text-left shadow-sm">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 rounded bg-[#D31411] text-white flex items-center justify-center font-bold text-[10px] shadow-sm">BN</span>
+            <div>
+              <span class="font-bold text-xs text-stone-900 block">BANCO DE LA NACIÓN DEL PERÚ</span>
+              <span class="text-[10px] text-stone-500">Cta. Ahorros Soles</span>
+            </div>
+          </div>
+          <div class="bg-stone-50 p-2.5 rounded-lg border border-stone-200 flex items-center justify-between gap-2">
+            <strong class="font-mono text-sm text-stone-900 tracking-wider">04 181 512917</strong>
+            <button type="button" onclick="navigator.clipboard.writeText('04181512917'); alert('¡Número de cuenta Banco de la Nación copiado!');" class="text-[11px] bg-white hover:bg-stone-100 text-stone-700 font-semibold px-2 py-1 rounded border border-stone-300 transition">Copiar</button>
+          </div>
+        </div>
+
+        <!-- CUENTAS DIGITALES & BILLETERAS -->
+        <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200 text-left space-y-2">
+          <span class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Otras Cuentas Digitales y Billeteras</span>
+
+          <!-- AGORA SIP -->
+          <div class="bg-white p-2 rounded-lg border border-stone-200 flex items-center justify-between gap-2 text-xs">
+            <div>
+              <span class="font-bold text-stone-800 text-[11px] block">Cuenta SIP (AGORA)</span>
+              <span class="text-[10px] text-stone-500">CCI:</span> <strong class="font-mono text-[11px] text-stone-900">09400141001143811657</strong>
+            </div>
+            <button type="button" onclick="navigator.clipboard.writeText('09400141001143811657'); alert('¡CCI Agora copiado!');" class="text-[10px] bg-stone-100 hover:bg-stone-200 text-stone-700 px-2 py-1 rounded border border-stone-300">Copiar</button>
+          </div>
+
+          <!-- LIGO -->
+          <div class="bg-white p-2 rounded-lg border border-stone-200 flex items-center justify-between gap-2 text-xs">
+            <div>
+              <span class="font-bold text-stone-800 text-[11px] block">LIGO</span>
+              <span class="text-[10px] text-stone-500">Cuenta:</span> <strong class="font-mono text-[11px] text-stone-900">92100130217639772047</strong>
+            </div>
+            <button type="button" onclick="navigator.clipboard.writeText('92100130217639772047'); alert('¡Cuenta Ligo copiada!');" class="text-[10px] bg-stone-100 hover:bg-stone-200 text-stone-700 px-2 py-1 rounded border border-stone-300">Copiar</button>
+          </div>
+
+          <!-- LEMON -->
+          <div class="bg-white p-2 rounded-lg border border-stone-200 flex items-center justify-between gap-2 text-xs">
+            <div>
+              <span class="font-bold text-[#14C977] text-[11px] block">LEMON CASH</span>
+              <span class="text-[10px] text-stone-500">CCI:</span> <strong class="font-mono text-[11px] text-stone-900">92200300000342324790</strong><br/>
+              <span class="text-[10px] text-stone-500">LemonTag:</span> <strong class="font-mono text-[11px] text-emerald-700">$incotecsac</strong>
+            </div>
+            <button type="button" onclick="navigator.clipboard.writeText('92200300000342324790'); alert('¡CCI Lemon copiado!');" class="text-[10px] bg-stone-100 hover:bg-stone-200 text-stone-700 px-2 py-1 rounded border border-stone-300">Copiar</button>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-stone-500 leading-tight">Al realizar tu pago, haz clic en el siguiente botón para enviar el comprobante y coordinar el despacho inmediato por WhatsApp:</p>
+
+        <a href="${whatsappURL}" target="_blank" onclick="window.cart.clearCart(); window.cart.closeCheckoutModal();" class="inline-flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3.5 px-4 rounded-xl text-sm shadow-md transition transform active:scale-[0.98]">
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
-          Enviar Comprobante por WhatsApp
+          Enviar Comprobante a WhatsApp
         </a>
       </div>
     `;
