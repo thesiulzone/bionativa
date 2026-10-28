@@ -18,6 +18,10 @@ export async function onRequestPost(context) {
 
     const host = new URL(request.url).origin;
 
+    // Mercado Pago requiere URLs públicas válidas (http/https). En localhost o si no es HTTPS, omitir auto_return o usar dominio público
+    const isLocal = host.includes("localhost") || host.includes("127.0.0.1");
+    const baseUrl = isLocal ? "https://bionativa.pages.dev" : host;
+
     // Construir la preferencia para Mercado Pago Checkout Pro
     const preferencePayload = {
       items: (items || []).map(item => ({
@@ -39,9 +43,9 @@ export async function onRequestPost(context) {
         }
       },
       back_urls: {
-        success: `${host}/pago-resultado.html?status=success`,
-        failure: `${host}/pago-resultado.html?status=failure`,
-        pending: `${host}/pago-resultado.html?status=pending`
+        success: `${baseUrl}/pago-resultado.html?status=success`,
+        failure: `${baseUrl}/pago-resultado.html?status=failure`,
+        pending: `${baseUrl}/pago-resultado.html?status=pending`
       },
       auto_return: "approved",
       statement_descriptor: "BIONATIVA LAB",
