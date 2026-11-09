@@ -469,6 +469,43 @@ function* executeRequest(request) {
 __name(executeRequest, "executeRequest");
 var pages_template_worker_default = {
   async fetch(originalRequest, env, workerContext) {
+    const originalUrl = new URL(originalRequest.url);
+    const isGetOrHead = originalRequest.method === "GET" || originalRequest.method === "HEAD";
+    let shouldRedirect = false;
+
+    // 1. Enforce HTTPS: Redireccion permanente 301 para peticiones HTTP
+    const clientProto = originalRequest.headers.get("x-forwarded-proto") || (originalUrl.protocol.replace(":", ""));
+    if (clientProto === "http") {
+      originalUrl.protocol = "https:";
+      shouldRedirect = true;
+    }
+
+    // 2. Canonical Apex: Redireccion permanente 301 de subdominio www a apex
+    if (originalUrl.hostname.startsWith("www.")) {
+      originalUrl.hostname = originalUrl.hostname.replace(/^www\./, "");
+      shouldRedirect = true;
+    }
+
+    // 3. Clean URLs: Redireccion permanente 301 eliminando extension .html (evita 307 de Pages)
+    if (isGetOrHead && originalUrl.pathname.endsWith(".html")) {
+      let cleanPath = originalUrl.pathname.slice(0, -5);
+      if (cleanPath === "/index" || cleanPath === "") {
+        cleanPath = "/";
+      }
+      originalUrl.pathname = cleanPath;
+      shouldRedirect = true;
+    }
+
+    // 4. Redirigir /producto sin parametro ?id= hacia el catalogo /tienda
+    if (isGetOrHead && originalUrl.pathname === "/producto" && !originalUrl.searchParams.get("id")) {
+      originalUrl.pathname = "/tienda";
+      shouldRedirect = true;
+    }
+
+    if (shouldRedirect) {
+      return Response.redirect(originalUrl.toString(), isGetOrHead ? 301 : 308);
+    }
+
     let request = originalRequest;
     const handlerIterator = executeRequest(request);
     let data = {};
@@ -511,6 +548,17 @@ var pages_template_worker_default = {
         return cloneResponse(response);
       } else if ("ASSETS") {
         const response = await env["ASSETS"].fetch(request);
+        if (typeof HTMLRewriter !== "undefined" && originalUrl.pathname === "/producto" && originalUrl.searchParams.get("id")) {
+          const prodId = originalUrl.searchParams.get("id");
+          const canonicalHref = `https://bionativalab.com/producto?id=${encodeURIComponent(prodId)}`;
+          return new HTMLRewriter()
+            .on("link#canonical-url", {
+              element(e) {
+                e.setAttribute("href", canonicalHref);
+              }
+            })
+            .transform(cloneResponse(response));
+        }
         return cloneResponse(response);
       } else {
         const response = await fetch(request);
