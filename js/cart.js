@@ -412,9 +412,12 @@ class BionativaCart {
 
               <label class="flex items-center gap-3 p-3 border rounded-xl border-stone-200 hover:border-[#1E3B2B] cursor-pointer">
                 <input type="radio" name="pay-method" value="card" class="text-[#1E3B2B] focus:ring-0" />
-                <div>
-                  <div class="font-bold text-[#1E3B2B]">Tarjeta de Crédito o Débito (Visa, Mastercard)</div>
-                  <div class="text-[11px] text-stone-500">Pago seguro en línea procesado al instante.</div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-[#1E3B2B]">Tarjeta de Crédito o Débito (Visa, Mastercard, Amex)</span>
+                    <span class="text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">+4.71% pasarela</span>
+                  </div>
+                  <div class="text-[11px] text-stone-500">Procesado de forma 100% segura por Mercado Pago (+ comisión oficial 3.99% + IGV).</div>
                 </div>
               </label>
             </div>
@@ -434,20 +437,60 @@ class BionativaCart {
               <span>Costo de Envío:</span>
               <span>S/ ${shippingPrice.toFixed(2)}</span>
             </div>
+            <div id="checkout-card-fee-row" class="hidden justify-between text-amber-800 font-medium">
+              <span>Comisión Mercado Pago (3.99% + IGV):</span>
+              <span id="checkout-card-fee-amount">+S/ 0.00</span>
+            </div>
             <div class="flex justify-between text-sm font-black text-[#1E3B2B] pt-1 border-t border-stone-300">
               <span>Total a Pagar:</span>
-              <span class="text-base text-[#1E3B2B]">S/ ${total.toFixed(2)}</span>
+              <span id="checkout-modal-total-display" class="text-base text-[#1E3B2B]">S/ ${total.toFixed(2)}</span>
             </div>
           </div>
 
           <div class="pt-2">
-            <button type="submit" class="w-full bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-bold py-3.5 px-4 rounded-xl text-sm shadow-md transition transform active:scale-[0.98]">
+            <button id="checkout-submit-btn" type="submit" class="w-full bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-bold py-3.5 px-4 rounded-xl text-sm shadow-md transition transform active:scale-[0.98]">
               Confirmar Pedido (S/ ${total.toFixed(2)})
             </button>
           </div>
         </form>
       </div>
     `;
+
+    // Escuchar cambios de método de pago para recalcular dinámicamente el recargo
+    const payRadios = content.querySelectorAll('input[name="pay-method"]');
+    const feeRow = content.querySelector('#checkout-card-fee-row');
+    const feeAmount = content.querySelector('#checkout-card-fee-amount');
+    const totalDisplay = content.querySelector('#checkout-modal-total-display');
+    const submitBtn = content.querySelector('#checkout-submit-btn');
+
+    const updateTotalsDisplay = () => {
+      const selected = content.querySelector('input[name="pay-method"]:checked')?.value;
+      const baseTotal = this.getTotal();
+      const cfg = window.PAYMENT_CONFIG?.mercadopago || {};
+      const feePercent = (cfg.cardFeeEnabled ? cfg.cardFeePercentage : 0) || 0;
+
+      if (selected === 'card' && feePercent > 0) {
+        const fee = Number(((baseTotal * feePercent) / 100).toFixed(2));
+        const finalTotal = Number((baseTotal + fee).toFixed(2));
+        if (feeRow) {
+          feeRow.classList.remove('hidden');
+          feeRow.classList.add('flex');
+        }
+        if (feeAmount) feeAmount.textContent = `+S/ ${fee.toFixed(2)}`;
+        if (totalDisplay) totalDisplay.textContent = `S/ ${finalTotal.toFixed(2)}`;
+        if (submitBtn) submitBtn.textContent = `Pagar con Tarjeta (S/ ${finalTotal.toFixed(2)})`;
+      } else {
+        if (feeRow) {
+          feeRow.classList.add('hidden');
+          feeRow.classList.remove('flex');
+        }
+        if (totalDisplay) totalDisplay.textContent = `S/ ${baseTotal.toFixed(2)}`;
+        if (submitBtn) submitBtn.textContent = `Confirmar Pedido (S/ ${baseTotal.toFixed(2)})`;
+      }
+    };
+
+    payRadios.forEach(r => r.addEventListener('change', updateTotalsDisplay));
+    updateTotalsDisplay();
 
     modal.classList.remove("hidden");
   }
@@ -508,7 +551,13 @@ class BionativaCart {
       this.clearCart();
       this.showToast("¡Pedido enviado a WhatsApp con éxito!");
     } else if (payMethod === "card") {
-      this.renderCardPaymentSimulation(total);
+      this.currentCustomerData = { name, doc, phone, city, address };
+      const cfg = window.PAYMENT_CONFIG?.mercadopago || {};
+      const feePercent = (cfg.cardFeeEnabled ? cfg.cardFeePercentage : 0) || 0;
+      const baseNum = Number(total);
+      const feeNum = feePercent > 0 ? Number(((baseNum * feePercent) / 100).toFixed(2)) : 0;
+      const cardTotal = Number((baseNum + feeNum).toFixed(2));
+      this.renderCardPaymentSimulation(cardTotal, baseNum, feeNum, feePercent);
     }
   }
 
@@ -636,15 +685,36 @@ class BionativaCart {
     `;
   }
 
-  renderCardPaymentSimulation(total) {
+  renderCardPaymentSimulation(total, baseTotal = total, cardFee = 0, feePercent = 4.71) {
     const content = document.getElementById("checkout-modal-content");
     content.innerHTML = `
       <div class="space-y-4 py-1 text-xs">
         <div class="border-b border-stone-200 pb-2">
           <span class="text-xs font-bold text-[#B67A52] uppercase tracking-wider">Pasarela Segura SSL Oficial</span>
           <h3 class="text-lg font-bold text-[#1E3B2B] mt-0.5">Mercado Pago / Tarjetas de Débito y Crédito</h3>
-          <p class="text-stone-500">Monto total: <strong class="text-sm text-[#1E3B2B]">S/ ${total}</strong></p>
+          <p class="text-stone-500">Total a procesar: <strong class="text-base text-[#1E3B2B]">S/ ${Number(total).toFixed(2)}</strong></p>
         </div>
+
+        ${cardFee > 0 ? `
+        <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-3 text-stone-700 space-y-1">
+          <div class="font-bold text-[#1E3B2B] flex items-center justify-between text-xs">
+            <span>Desglose de Pago con Tarjeta</span>
+            <span class="text-[11px] text-amber-800 font-semibold">(Tarifas Oficiales Mercado Pago)</span>
+          </div>
+          <div class="flex justify-between text-stone-600">
+            <span>Subtotal productos + envío:</span>
+            <span>S/ ${Number(baseTotal).toFixed(2)}</span>
+          </div>
+          <div class="flex justify-between text-amber-900 font-semibold">
+            <span>Recargo pasarela tarjeta (${feePercent}%):</span>
+            <span>+S/ ${Number(cardFee).toFixed(2)}</span>
+          </div>
+          <div class="flex justify-between text-stone-900 font-bold border-t border-amber-200 pt-1 text-xs">
+            <span>Total final a cobrar en pasarela:</span>
+            <span class="text-[#1E3B2B]">S/ ${Number(total).toFixed(2)}</span>
+          </div>
+        </div>
+        ` : ''}
 
         <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200 space-y-2 text-stone-600">
           <div class="flex items-center gap-2 text-xs font-semibold text-stone-800">
@@ -663,7 +733,7 @@ class BionativaCart {
         </div>
 
         <div id="mp-button-container" class="pt-2">
-          <button id="btn-iniciar-mercadopago" onclick="window.cart.initMercadoPagoCheckout(${total})" class="w-full bg-[#009EE3] hover:bg-[#0086c3] text-white font-bold py-3.5 px-4 rounded-xl text-sm shadow transition flex items-center justify-center gap-2">
+          <button id="btn-iniciar-mercadopago" onclick="window.cart.initMercadoPagoCheckout(${total}, ${cardFee || 0})" class="w-full bg-[#009EE3] hover:bg-[#0086c3] text-white font-bold py-3.5 px-4 rounded-xl text-sm shadow transition flex items-center justify-center gap-2">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.11 1.87 1.34 0 1.94-.78 1.94-1.5 0-.96-.75-1.41-2.22-1.89-1.98-.65-3.08-1.56-3.08-3.16 0-1.63 1.25-2.88 2.89-3.26V5h2.67v1.89c1.47.33 2.65 1.35 2.78 3.11h-1.95c-.14-.97-.87-1.61-1.86-1.61-1.07 0-1.72.63-1.72 1.45 0 .83.65 1.25 2.05 1.73 2.13.73 3.25 1.63 3.25 3.32 0 1.77-1.32 3-2.91 3.2z"/></svg>
             Continuar a Pasarela Mercado Pago (S/ ${total})
           </button>
@@ -676,7 +746,7 @@ class BionativaCart {
     `;
   }
 
-  async initMercadoPagoCheckout(total) {
+  async initMercadoPagoCheckout(total, cardFee = 0) {
     const btn = document.getElementById("btn-iniciar-mercadopago");
     if (btn) {
       btn.disabled = true;
@@ -692,12 +762,26 @@ class BionativaCart {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            items: this.items.map(i => ({
-              id: i.id,
-              name: i.name,
-              price: i.price,
-              quantity: i.quantity
-            })),
+            items: [
+              ...this.items.map(i => ({
+                id: i.id,
+                name: `${i.name} (${i.variantName})`,
+                price: Number(i.price),
+                quantity: Number(i.quantity)
+              })),
+              ...(this.getShippingCost() > 0 ? [{
+                id: "costo-envio",
+                name: `Costo de Envío (${window.BIONATIVA_CONFIG?.shippingOptions?.find(o => o.id === this.selectedShipping)?.name || "Nacional"})`,
+                price: Number(this.getShippingCost().toFixed(2)),
+                quantity: 1
+              }] : []),
+              ...(cardFee > 0 ? [{
+                id: "recargo-tarjeta-mp",
+                name: `Recargo Pasarela Mercado Pago (${window.PAYMENT_CONFIG?.mercadopago?.cardFeePercentage || 4.71}%)`,
+                price: Number(cardFee.toFixed(2)),
+                quantity: 1
+              }] : [])
+            ],
             payer: this.currentCustomerData || {}
           })
         });

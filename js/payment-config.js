@@ -8,7 +8,14 @@ window.PAYMENT_CONFIG = {
     preferenceEndpoint: "/api/create-preference",
     
     // Fallback directo opcional
-    directPaymentLink: ""
+    directPaymentLink: "",
+
+    // Tarifa de Mercado Pago Perú para cobros online:
+    // Comisión 3.99% + 18% IGV sobre comisión = 4.71%
+    cardFeeEnabled: true,
+    cardFeePercentage: 4.71,
+    cardFeeLabel: "Comisión pasarela tarjeta (3.99% + IGV)"
   }
 };
+
 
