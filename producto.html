@@ -346,8 +346,23 @@
             <span class="absolute top-4 right-4 bg-[#FAF6F0] border border-[#D5CDBD] text-[#B67A52] text-[11px] font-bold px-3 py-1 rounded-full z-10">
               Materia Prima USA
             </span>
-            <img src="${currentProduct.image}" alt="${currentProduct.name}" class="w-full max-h-[440px] object-contain drop-shadow-lg" />
+            <img src="${getActiveImage()}" alt="${currentProduct.name}" id="main-product-image" class="w-full max-h-[440px] object-contain drop-shadow-lg transition-all duration-300" />
           </div>
+
+          <!-- Presentation Thumbnails Gallery -->
+          ${currentProduct.hasVariants && currentProduct.variants && currentProduct.variants.length > 1 ? `
+            <div class="flex items-center gap-2.5 overflow-x-auto pb-1">
+              ${currentProduct.variants.map((v, idx) => `
+                <button type="button" data-variant-id="${v.id}" onclick="setProductVariant('${v.id}')" class="presentation-thumb-btn flex-1 min-w-[120px] p-2 rounded-xl border transition flex items-center gap-2 ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 shadow-sm' : 'border-stone-200 bg-white hover:border-stone-300'}" title="${v.name}">
+                  <img src="${v.image || currentProduct.image}" alt="${v.name}" class="w-10 h-10 object-contain rounded bg-[#FAF6F0] p-1 flex-shrink-0" />
+                  <div class="text-left min-w-0">
+                    <span class="block text-[11px] font-bold text-[#1E3B2B] truncate">${v.weight || v.name}</span>
+                    <span class="block text-[10px] text-[#B67A52] font-semibold">S/ ${v.price.toFixed(2)}</span>
+                  </div>
+                </button>
+              `).join('')}
+            </div>
+          ` : ''}
 
           <!-- Trust Cards Row -->
           <div class="grid grid-cols-3 gap-3 text-center text-xs">
@@ -401,10 +416,11 @@
               <label class="block text-xs font-bold text-stone-700">Seleccionar Presentación / Formato:</label>
               <div class="grid grid-cols-2 gap-2.5">
                 ${currentProduct.variants.map(v => `
-                  <button type="button" onclick="setProductVariant('${v.id}')" class="variant-select-btn p-3 rounded-xl border text-left text-xs transition ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 font-bold text-[#1E3B2B]' : 'border-stone-200 bg-white hover:border-stone-300'}">
-                    <div class="font-bold text-sm text-[#1E3B2B]">${v.name}</div>
-                    <div class="text-[11px] text-[#B67A52] font-semibold">S/ ${v.price.toFixed(2)}</div>
-                    <div class="text-[10px] text-stone-400">${v.format}</div>
+                  <button type="button" data-variant-id="${v.id}" onclick="setProductVariant('${v.id}')" class="variant-select-btn p-3 rounded-xl border text-left text-xs transition relative overflow-hidden ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 font-bold text-[#1E3B2B]' : 'border-stone-200 bg-white hover:border-stone-300'}">
+                    ${v.isBulk ? '<span class="absolute top-1.5 right-1.5 text-[9px] bg-[#B67A52] text-white font-bold px-1.5 py-0.5 rounded">Granel</span>' : ''}
+                    <div class="font-bold text-sm text-[#1E3B2B] pr-10">${v.name}</div>
+                    <div class="text-[11px] text-[#B67A52] font-semibold mt-0.5">S/ ${v.price.toFixed(2)}</div>
+                    <div class="text-[10px] text-stone-400 mt-0.5">${v.format}</div>
                   </button>
                 `).join("")}
               </div>
@@ -542,19 +558,54 @@
       return currentProduct.unit;
     }
 
+    function getActiveImage() {
+      if (currentProduct.hasVariants && selectedVariantId) {
+        const v = currentProduct.variants.find(item => item.id === selectedVariantId);
+        if (v && v.image) return v.image;
+      }
+      return currentProduct.image;
+    }
+
     function setProductVariant(varId) {
       selectedVariantId = varId;
+
+      // Update variant selector buttons
       document.querySelectorAll(".variant-select-btn").forEach(btn => {
-        btn.classList.remove("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "font-bold", "text-[#1E3B2B]");
-        btn.classList.add("border-stone-200", "bg-white");
+        const btnVarId = btn.getAttribute("data-variant-id");
+        if (btnVarId === varId) {
+          btn.classList.add("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "font-bold", "text-[#1E3B2B]");
+          btn.classList.remove("border-stone-200", "bg-white");
+        } else {
+          btn.classList.remove("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "font-bold", "text-[#1E3B2B]");
+          btn.classList.add("border-stone-200", "bg-white");
+        }
       });
-      event.currentTarget.classList.add("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "font-bold", "text-[#1E3B2B]");
-      event.currentTarget.classList.remove("border-stone-200", "bg-white");
+
+      // Update presentation thumbnail buttons
+      document.querySelectorAll(".presentation-thumb-btn").forEach(btn => {
+        const btnVarId = btn.getAttribute("data-variant-id");
+        if (btnVarId === varId) {
+          btn.classList.add("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "shadow-sm");
+          btn.classList.remove("border-stone-200", "bg-white");
+        } else {
+          btn.classList.remove("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "shadow-sm");
+          btn.classList.add("border-stone-200", "bg-white");
+        }
+      });
+
+      // Update main product image reactively
+      const activeImg = getActiveImage();
+      const mainImg = document.getElementById("main-product-image");
+      if (mainImg && activeImg) {
+        mainImg.src = activeImg;
+      }
 
       const price = getActivePrice();
       const unit = getActiveUnitName();
-      document.getElementById("display-price").textContent = price.toFixed(2);
-      document.getElementById("display-unit").textContent = unit;
+      const priceElem = document.getElementById("display-price");
+      const unitElem = document.getElementById("display-unit");
+      if (priceElem) priceElem.textContent = price.toFixed(2);
+      if (unitElem) unitElem.textContent = unit;
     }
 
     function changeQty(delta) {

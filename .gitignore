@@ -6,6 +6,7 @@ desktop.ini
 # Editores y entornos
 .vscode/
 .idea/
+.antigravity-context.json
 
 # Logs y temporales
 *.log
@@ -13,4 +14,19 @@ desktop.ini
 
 # Recursos brutos de edición multimedia
 REDES SOCIALES RECURSOS/
+colageno_editado_9x16.mp4
+
+# Fichas técnicas internas de insumos
+FICHAS TECNICAS/
+
+# Temporales de generación y procesamiento de imágenes
+test_*
+crop_*
+temp_label_*
+verify_*
+caja_orig_text.png
+exact_caja_sticker.png
+__pycache__/
+*.pyc
+img/products/corregidas/
 

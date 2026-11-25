@@ -393,10 +393,10 @@
       grid.innerHTML = list.map(prod => `
         <div class="organic-card p-4 flex flex-col justify-between group">
           <div>
-            <div class="relative bg-[#FAF6F0] rounded-xl p-3 mb-3 border border-[#E8E2D8]/60 flex items-center justify-center h-48 overflow-hidden">
+            <a href="producto?id=${prod.id}" class="block relative bg-[#FAF6F0] rounded-xl p-3 mb-3 border border-[#E8E2D8]/60 flex items-center justify-center h-48 overflow-hidden cursor-pointer" title="Ver información y presentaciones de ${prod.shortName}" aria-label="Ver detalles de ${prod.shortName}">
               <span class="absolute top-2 left-2 text-[10px] font-bold bg-[#1E3B2B] text-white px-2 py-0.5 rounded-full z-10">${prod.badge || 'Puro COA'}</span>
               <img src="${prod.image}" alt="${prod.name}" class="h-40 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
-            </div>
+            </a>
 
             <span class="text-[10px] font-bold text-[#B67A52] uppercase tracking-wider">${prod.categoryName}</span>
             <h3 class="font-bold text-sm text-[#1E3B2B] mt-1 line-clamp-2 leading-tight">
@@ -404,6 +404,13 @@
             </h3>
             
             <p class="text-xs text-stone-500 mt-1 line-clamp-2">${prod.description}</p>
+
+            ${prod.hasVariants ? `
+              <div class="mt-2 text-[10px] text-stone-600 font-medium bg-[#FAF6F0] px-2.5 py-1 rounded-lg border border-[#E8E2D8]/60 flex items-center justify-between">
+                <span class="text-[#1E3B2B] font-bold">Presentaciones:</span>
+                <span class="text-[#B67A52] font-semibold">Bolsa • Pote • Granel</span>
+              </div>
+            ` : ''}
 
             <ul class="mt-2.5 space-y-1 text-[11px] text-stone-600 border-t border-stone-100 pt-2">
               <li class="flex items-center gap-1.5 truncate">

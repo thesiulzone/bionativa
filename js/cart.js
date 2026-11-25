@@ -147,9 +147,13 @@ class BionativaCart {
 
     container.innerHTML = this.items.map(item => `
       <div class="flex items-center gap-4 py-3.5 border-b border-[#E8E2D8] last:border-b-0 animate-fade-in">
-        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded-lg bg-[#FAF6F0] p-1 border border-[#E8E2D8]/60 flex-shrink-0" />
+        <a href="producto?id=${item.productId}" class="flex-shrink-0 hover:opacity-85 transition cursor-pointer" title="Ver detalles del producto">
+          <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded-lg bg-[#FAF6F0] p-1 border border-[#E8E2D8]/60" />
+        </a>
         <div class="flex-1 min-w-0">
-          <h4 class="font-semibold text-sm text-[#1E3B2B] truncate leading-tight">${item.name}</h4>
+          <h4 class="font-semibold text-sm text-[#1E3B2B] truncate leading-tight">
+            <a href="producto?id=${item.productId}" class="hover:text-[#B67A52] transition" title="Ver detalles del producto">${item.name}</a>
+          </h4>
           <span class="inline-block text-xs text-[#B67A52] font-medium mt-0.5">${item.variantName}</span>
           <div class="flex items-center justify-between mt-2">
             <div class="flex items-center border border-[#D5CDBD] rounded-full bg-white px-2 py-0.5">
