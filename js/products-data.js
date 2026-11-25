@@ -84,7 +84,7 @@ const BIONATIVA_PRODUCTS = [
     "badge": "Grado Americano",
     "rating": 4.8,
     "reviewsCount": 112,
-    "image": "img/products/proteina-suero-leche-80-1kg.jpg",
+    "image": "img/products/proteina-suero-leche-80-pote-1kg.jpg",
     "hasVariants": true,
     "price": 131.6,
     "unit": "1KG",
@@ -115,7 +115,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-WPC-BOL-1K",
-        "image": "img/products/proteina-suero-leche-80-1kg.jpg"
+        "image": "img/products/proteina-suero-leche-80-bolsa-1kg.jpg"
       },
       {
         "id": "pote-1kg",
@@ -125,7 +125,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-WPC-POT-1K",
-        "image": "img/products/proteina-suero-leche-80-1kg.jpg"
+        "image": "img/products/proteina-suero-leche-80-pote-1kg.jpg"
       },
       {
         "id": "saco-20kg",
@@ -279,7 +279,7 @@ const BIONATIVA_PRODUCTS = [
     "badge": "100% Vegano",
     "rating": 4.7,
     "reviewsCount": 89,
-    "image": "img/products/proteina-soya-vegetal-1kg.jpg",
+    "image": "img/products/proteina-soya-vegetal-pote-1kg.jpg",
     "hasVariants": true,
     "price": 35,
     "unit": "1KG",
@@ -310,7 +310,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-SOY-BOL-1K",
-        "image": "img/products/proteina-soya-vegetal-1kg.jpg"
+        "image": "img/products/proteina-soya-vegetal-bolsa-1kg.jpg"
       },
       {
         "id": "pote-1kg",
@@ -320,7 +320,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-SOY-POT-1K",
-        "image": "img/products/proteina-soya-vegetal-1kg.jpg"
+        "image": "img/products/proteina-soya-vegetal-pote-1kg.jpg"
       },
       {
         "id": "saco-20kg",

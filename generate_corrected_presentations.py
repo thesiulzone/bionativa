@@ -281,6 +281,28 @@ PRODUCTS_MAPPING = [
         "file_pote": "sal-de-epsom-pote-1kg.jpg",
         "file_ind": "sal-de-epsom-25kg.jpg",
         "is_orig_template": False
+    },
+    {
+        "id": "proteina-suero-leche-80",
+        "name_label": "PROTEÍNA DE SUERO 80%",
+        "weight_ind": "20 KG – SACO INDUSTRIAL",
+        "lote": "BNL240610A",
+        "fvenc": "06/2026",
+        "file_bolsa": "proteina-suero-leche-80-bolsa-1kg.jpg",
+        "file_pote": "proteina-suero-leche-80-pote-1kg.jpg",
+        "file_ind": "proteina-suero-leche-80-20kg.jpg",
+        "is_orig_template": False
+    },
+    {
+        "id": "proteina-soya-vegetal",
+        "name_label": "PROTEÍNA DE SOYA 90%",
+        "weight_ind": "20 KG – SACO INDUSTRIAL",
+        "lote": "BNL240611A",
+        "fvenc": "06/2026",
+        "file_bolsa": "proteina-soya-vegetal-bolsa-1kg.jpg",
+        "file_pote": "proteina-soya-vegetal-pote-1kg.jpg",
+        "file_ind": "proteina-soya-vegetal-20kg.jpg",
+        "is_orig_template": False
     }
 ]
 
