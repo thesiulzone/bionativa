@@ -7,11 +7,10 @@
 ## 1. Suplementos Nutricionales & Materias Primas Puras (Certificación COA)
 
 ### 1.1 Creatina Monohidratada 100% Pura Micronizada
-- **SKUs & Presentaciones:**
-  - `BIO-CRE-1000`: Bolsa 1kg (Formato Ahorro) — **S/ 85.40**
-  - `BIO-CRE-600`: Pote 600g (Edición Clásica) — **S/ 58.00**
-  - `BIO-CRE-300`: Pote 300g (Inicio / Práctico) — **S/ 35.00**
-  - `BIO-CRE-CAP`: Frasco 120 Cápsulas Vegetales (750mg c/u) — **S/ 48.00**
+- **SKUs & Presentaciones Oficiales (Precios Inteligentes):**
+  - `BIO-CRE-BOL-1K`: Bolsa de Polietileno 1kg (Formato Ahorro Sellado) — **S/ 85.40**
+  - `BIO-CRE-POT-1K`: Pote Plastificado 1kg (Envase Rígido HDPE Boticario con precinto, +S/ 4.50) — **S/ 89.90**
+  - `BIO-CRE-IND-25K`: Caja Industrial 25kg (Venta Mayorista / Granel a S/ 70.00/kg) — **S/ 1,749.90**
 - **Origen:** Materia Prima Americana Grado Farmacéutico (USP).
 - **Pureza COA:** 99.9% Pureza probada por HPLC. Malla 200 Mesh ultrafina para máxima solubilidad.
 - **Composición:** 100% Creatina Monohidratada micronizada. Libre de gluten, libre de lactosa, vegano, 0% aditivos, sin saborizantes ni maltodextrina.

@@ -11,6 +11,13 @@ desktop.ini
 # Logs y temporales
 *.log
 .wrangler/
+__pycache__/
+
+# Archivos de video pesados
+*.mp4
+
+# Contexto de agentes
+.antigravity-context.json
 
 # Recursos brutos de edición multimedia
 REDES SOCIALES RECURSOS/
