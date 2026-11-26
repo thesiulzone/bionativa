@@ -265,11 +265,15 @@
       // Inject Schema.org Product JSON-LD for Search Engines & AEO
       const schemaEl = document.getElementById("schema-product");
       if (schemaEl) {
+        const variantImages = currentProduct.hasVariants && Array.isArray(currentProduct.variants)
+          ? currentProduct.variants.map(v => `https://bionativalab.com/${v.image || currentProduct.image}`)
+          : [];
+        const allImages = Array.from(new Set([ `https://bionativalab.com/${currentProduct.image}`, ...variantImages ]));
         const schemaData = {
           "@context": "https://schema.org/",
           "@type": "Product",
           "name": currentProduct.name,
-          "image": [ `https://bionativalab.com/${currentProduct.image}` ],
+          "image": allImages,
           "description": currentProduct.description,
           "sku": currentProduct.id,
           "brand": {
@@ -362,7 +366,7 @@
                 <button type="button" data-variant-id="${v.id}" onclick="setProductVariant('${v.id}')" class="presentation-thumb-btn flex-1 min-w-[120px] p-2 rounded-xl border transition flex items-center gap-2 ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 shadow-sm' : 'border-stone-200 bg-white hover:border-stone-300'}" title="${v.name}">
                   <img src="${v.image || currentProduct.image}" alt="${v.name}" class="w-10 h-10 object-contain rounded bg-[#FAF6F0] p-1 flex-shrink-0" />
                   <div class="text-left min-w-0">
-                    <span class="block text-[11px] font-bold text-[#1E3B2B] truncate">${v.weight || v.name}</span>
+                    <span class="block text-[11px] font-bold text-[#1E3B2B] truncate">${v.packagingType === 'bolsa' ? 'Bolsa ' + v.weight : v.packagingType === 'pote' ? 'Pote ' + v.weight : v.packagingType === 'industrial-caja' ? 'Caja ' + v.weight : v.packagingType === 'industrial-saco' ? 'Saco ' + v.weight : v.packagingType === 'industrial-tambor' ? 'Tambor ' + v.weight : (v.weight || v.name)}</span>
                     <span class="block text-[10px] text-[#B67A52] font-semibold">S/ ${v.price.toFixed(2)}</span>
                   </div>
                 </button>
@@ -420,7 +424,7 @@
           ${currentProduct.hasVariants ? `
             <div class="space-y-2">
               <label class="block text-xs font-bold text-stone-700">Seleccionar Presentación / Formato:</label>
-              <div class="grid grid-cols-2 gap-2.5">
+              <div class="grid grid-cols-1 ${currentProduct.variants.length === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'} gap-2.5">
                 ${currentProduct.variants.map(v => `
                   <button type="button" data-variant-id="${v.id}" onclick="setProductVariant('${v.id}')" class="variant-select-btn p-3 rounded-xl border text-left text-xs transition relative overflow-hidden ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 font-bold text-[#1E3B2B]' : 'border-stone-200 bg-white hover:border-stone-300'}">
                     ${v.isBulk ? '<span class="absolute top-1.5 right-1.5 text-[9px] bg-[#B67A52] text-white font-bold px-1.5 py-0.5 rounded">Granel</span>' : ''}

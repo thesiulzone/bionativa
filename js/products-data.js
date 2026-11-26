@@ -539,7 +539,7 @@ const BIONATIVA_PRODUCTS = [
     "badge": "Superfood Nutritivo",
     "rating": 4.8,
     "reviewsCount": 88,
-    "image": "img/products/espirulina-pura-1kg.jpg",
+    "image": "img/products/espirulina-pura-bolsa-1kg.jpg",
     "hasVariants": true,
     "price": 91,
     "unit": "1KG",
@@ -570,7 +570,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-ESP-BOL-1K",
-        "image": "img/products/espirulina-pura-1kg.jpg"
+        "image": "img/products/espirulina-pura-bolsa-1kg.jpg"
       },
       {
         "id": "pote-1kg",
@@ -580,7 +580,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-ESP-POT-1K",
-        "image": "img/products/espirulina-pura-1kg.jpg"
+        "image": "img/products/espirulina-pura-pote-1kg.jpg"
       },
       {
         "id": "tambor-25kg",

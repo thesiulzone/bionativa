@@ -21,7 +21,7 @@ A continuación se detalla la concordancia entre los 11 folios del catálogo y l
 | 3 | **Proteína de Soya** (Pág. 4) | `proteina-soya-vegetal` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 20 kg** | Solo unitario 1KG sin selector |
 | 4 | **Ashwagandha** (Pág. 4) | `ashwagandha-pura` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | Solo unitario 1KG sin selector |
 | 5 | **Glucosamina** (Pág. 4) | `glucosamina-sulfato` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 6 | **Espirulina** (Pág. 5) | `espirulina-pura` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | Solo unitario 1KG sin selector |
+| 6 | **Espirulina** (Pág. 5) | `espirulina-pura` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado y Corregido:** 3 Presentaciones oficiales BioNativa LAB con imágenes de alta resolución (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
 | 7 | **Citrato de Magnesio** (Pág. 5) | `citrato-de-magnesio` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Solo unitario 1KG sin selector |
 | 8 | **Citrato de Potasio** (Pág. 5) | `citrato-de-potasio` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Solo unitario 1KG sin selector |
 | 9 | **Sal de Epsom** (Pág. 6) | `sal-de-epsom` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Solo unitario 1KG sin selector |
