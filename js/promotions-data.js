@@ -140,7 +140,7 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       regularTotalPrice: 78.40,
       comboPrice: 78.40,
       savings: 0,
-      image: "img/products/colageno-hidrolizado-peptidos-bolsa-1kg.jpg",
+      image: "img/products/colageno-hidrolizado-bolsa-1kg.jpg",
       enabled: false
     }
   ],

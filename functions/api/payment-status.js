@@ -13,6 +13,9 @@ export async function onRequestGet({ request, env }) {
     });
     if (!response.ok) return Response.json({ status: "unknown" }, { status: 200 });
     const payment = await response.json();
+    if (!payment || String(payment.id) !== paymentId || typeof payment.status !== "string") {
+      return Response.json({ status: "unknown" }, { status: 200 });
+    }
     return Response.json({ status: payment.status === "approved" ? "approved" : payment.status || "unknown" });
   } catch {
     return Response.json({ error: "No se pudo consultar el estado del pago." }, { status: 502 });

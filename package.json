@@ -1,0 +1,16 @@
+{
+  "name": "bionativa-lab-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web oficial y tienda online de BioNativa LAB",
+  "scripts": {
+    "build:css": "powershell -NoProfile -Command \"$twDir = Join-Path $env:LOCALAPPDATA 'bionativa-tailwind'; if (!(Test-Path (Join-Path $twDir 'node_modules\\.bin\\tailwindcss.cmd'))) { New-Item -ItemType Directory -Force -Path $twDir | Out-Null; npm --prefix $twDir install --no-save tailwindcss @tailwindcss/cli }; $env:NODE_PATH = Join-Path $twDir 'node_modules'; & (Join-Path $twDir 'node_modules\\.bin\\tailwindcss.cmd') -i ./src/tailwind.css -o ./css/tailwind.min.css --minify\"",
+    "watch:css": "powershell -NoProfile -Command \"$twDir = Join-Path $env:LOCALAPPDATA 'bionativa-tailwind'; $env:NODE_PATH = Join-Path $twDir 'node_modules'; & (Join-Path $twDir 'node_modules\\.bin\\tailwindcss.cmd') -i ./src/tailwind.css -o ./css/tailwind.min.css --watch\"",
+    "test": "node --test tests/checkout.test.mjs",
+    "dev": "npx wrangler dev"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  }
+}

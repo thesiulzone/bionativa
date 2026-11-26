@@ -412,3 +412,72 @@ test("store promotions engine never writes config to localStorage and hydrates f
   assert.equal(pricing.regularPrice, 99);
   assert.equal(pricing.promoPrice, 79);
 });
+
+test("pago-resultado.html never approves via URL params alone and clears cart only on server approved", async () => {
+  const html = fs.readFileSync("pago-resultado.html", "utf8");
+  const scriptMatch = html.match(/<script>([\s\S]*?)<\/script>/);
+  assert.ok(scriptMatch);
+
+  const createEl = (tag) => ({
+    tagName: tag.toUpperCase(),
+    className: "",
+    children: [],
+    attributes: {},
+    _textContent: "",
+    setAttribute(name, value) { this.attributes[name] = value; },
+    appendChild(child) { this.children.push(child); return child; },
+    append(...nodes) { this.children.push(...nodes); },
+    replaceChildren(...nodes) { this.children = [...nodes]; },
+    get textContent() { return this._textContent; },
+    set textContent(value) { this._textContent = String(value); }
+  });
+
+  // Case 1: URL says status=approved & status=rejected without payment_id -> must not clear cart or call API
+  for (const query of ["?status=approved", "?status=rejected"]) {
+    const statusCard = createEl("div");
+    let removedKeys = [];
+    let fetchCalled = false;
+    const context = {
+      URLSearchParams,
+      encodeURIComponent,
+      window: { location: { search: query } },
+      document: {
+        getElementById: (id) => (id === "status-card" ? statusCard : null),
+        createElement: createEl,
+        createElementNS: (_ns, tag) => createEl(tag),
+        createTextNode: (text) => ({ nodeType: 3, textContent: String(text) })
+      },
+      fetch: async () => { fetchCalled = true; return Response.json({ status: "approved" }); },
+      localStorage: { removeItem(key) { removedKeys.push(key); } }
+    };
+    vm.createContext(context);
+    vm.runInContext(scriptMatch[1], context);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    assert.equal(fetchCalled, false);
+    assert.deepEqual(removedKeys, []);
+    assert.equal(JSON.stringify(statusCard).includes("¡Gracias por tu compra!"), false);
+  }
+
+  // Case 2: Valid numeric payment_id with server returning approved -> clears cart
+  const statusCard = createEl("div");
+  let removedKeys = [];
+  const context = {
+    URLSearchParams,
+    encodeURIComponent,
+    window: { location: { search: "?payment_id=987654321" } },
+    document: {
+      getElementById: (id) => (id === "status-card" ? statusCard : null),
+      createElement: createEl,
+      createElementNS: (_ns, tag) => createEl(tag),
+      createTextNode: (text) => ({ nodeType: 3, textContent: String(text) })
+    },
+    fetch: async () => Response.json({ status: "approved" }),
+    localStorage: { removeItem(key) { removedKeys.push(key); } }
+  };
+  vm.createContext(context);
+  vm.runInContext(scriptMatch[1], context);
+  await new Promise(resolve => setTimeout(resolve, 0));
+  assert.deepEqual(removedKeys, ["bionativa_cart_v1", "bionativa_cart"]);
+  assert.equal(JSON.stringify(statusCard).includes("¡Gracias por tu compra!"), true);
+});
+

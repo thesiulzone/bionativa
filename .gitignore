@@ -12,6 +12,7 @@ desktop.ini
 *.log
 .wrangler/
 __pycache__/
+node_modules/
 
 # Archivos de video pesados
 *.mp4

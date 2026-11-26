@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="es" class="scroll-smooth">
 
@@ -60,7 +60,7 @@
 
   <!-- Tailwind CSS CDN -->
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.min.css" />
 
   <script>
 
@@ -326,7 +326,7 @@
 
 </head>
 
-<body class="bg-[#FAF9F6] text-[#1E2421] antialiased selection:bg-[#B67A52] selection:text-white flex flex-col min-h-screen">
+<body class="home-page bg-[#FAF9F6] text-[#1E2421] antialiased selection:bg-[#B67A52] selection:text-white flex flex-col min-h-screen">
 
 
 
@@ -339,15 +339,15 @@
         <!-- Slide 1: Pureza & COA -->
         <div class="promo-ticker-item active-slide flex items-center gap-2 text-xs truncate">
           <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></span>
-          <span class="font-bold text-[#CF926B]">Materia Prima Americana Grado USP:</span>
-          <span class="font-normal text-stone-200 truncate">Pureza 100% verificada con Certificado COA por lote</span>
+          <span class="font-bold text-[#CF926B]">Materia prima importada:</span>
+          <span class="font-normal text-stone-200 truncate">COA disponible para consultar por lote</span>
         </div>
 
         <!-- Slide 2: Formatos 1kg Ahorro -->
         <div class="promo-ticker-item hidden-slide flex items-center gap-2 text-xs truncate">
           <span class="inline-block w-2 h-2 rounded-full bg-amber-400 flex-shrink-0"></span>
           <span class="font-bold text-amber-300">🔥 Ahorro en Formatos 1 KG:</span>
-          <span class="font-normal text-stone-200 truncate">Hasta 22% de ahorro en presentaciones herméticas al vacío</span>
+          <span class="font-normal text-stone-200 truncate">Presentaciones de 1 kg en bolsa o pote</span>
         </div>
 
         <!-- Slide 3: Despacho y Logística -->
@@ -598,143 +598,63 @@
 
 
 
-  <!-- Hero Section (Modern Apothecary DTC Experience) -->
-  <section id="hero-section" class="relative overflow-hidden pt-8 pb-16 lg:pt-16 lg:pb-24 border-b border-[#E8E2D8] bg-gradient-to-b from-[#F5EFE6]/70 via-[#FAF9F6] to-[#FAF9F6]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <!-- Left Column: Copy, Health Goal Selector & Conversion CTAs -->
-        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-          
-          <!-- Authority & Scientific Rigor Badge -->
-          <div class="inline-flex items-center gap-2 bg-[#1E3B2B]/10 border border-[#1E3B2B]/15 text-[#1E3B2B] px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Materia Prima Americana Grado USP • Lote 2026 Auditado</span>
-          </div>
+  <!-- Home Hero: identidad boticaria y selección por objetivo -->
+  <section id="hero-section" class="home-hero border-b border-[#E8E2D8]">
+    <div class="home-hero-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="home-hero-layout">
+        <div class="home-hero-copy">
+          <p class="home-hero-kicker"><span class="home-hero-kicker-mark" aria-hidden="true">✦</span> El estándar de tu naturaleza</p>
+          <h1 class="home-hero-title">Suplementos puros para tu bienestar diario.</h1>
+          <p class="home-hero-description">Materias primas importadas con certificado de análisis por lote. Elige entre formatos en bolsa o pote y encuentra la opción que encaja contigo.</p>
 
-          <!-- Main H1 Headline -->
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1E3B2B] leading-[1.12]">
-            El estándar de tu naturaleza. <span class="text-[#B67A52] block sm:inline">Suplementos puros</span> para tu bienestar integral.
-          </h1>
-
-          <!-- Body Description -->
-          <p class="text-base sm:text-lg text-[#5C665F] max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            Nutrición celular de alta pureza sin excipientes ni azúcares ocultos. Diseñada para deportistas, practicantes de fitness y personas que eligen prevenir y vivir con máxima vitalidad y soporte fisiológico comprobado.
-          </p>
-
-          <!-- Interactive Health Goal Switcher (Trend DTC 2026) -->
-          <div class="pt-1 pb-1 space-y-2">
-            <div class="flex items-center justify-center lg:justify-start gap-2 text-xs font-bold text-[#B67A52] uppercase tracking-wider">
-              <svg class="w-3.5 h-3.5 text-[#B67A52]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-              <span>Selecciona tu objetivo prioritario:</span>
-            </div>
-            
-            <div class="flex flex-wrap justify-center lg:justify-start gap-2.5" id="hero-goals-switcher">
-              <button type="button" onclick="switchHeroGoal('fuerza')" id="goal-chip-fuerza" class="hero-goal-chip bg-[#1E3B2B] text-white border border-[#1E3B2B] px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition shadow-sm cursor-pointer" aria-label="Objetivo Fuerza y Rendimiento">
-                <span>⚡ Fuerza & Potencia</span>
-              </button>
-              <button type="button" onclick="switchHeroGoal('descanso')" id="goal-chip-descanso" class="hero-goal-chip bg-white hover:bg-[#FAF6F0] text-[#1E3B2B] border border-[#D5CDBD] px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition shadow-sm cursor-pointer" aria-label="Objetivo Magnesio y Sueño">
-                <span>🧠 Magnesio & Sueño</span>
-              </button>
-              <button type="button" onclick="switchHeroGoal('articular')" id="goal-chip-articular" class="hero-goal-chip bg-white hover:bg-[#FAF6F0] text-[#1E3B2B] border border-[#D5CDBD] px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition shadow-sm cursor-pointer" aria-label="Objetivo Articulaciones y Colágeno">
-                <span>🦴 Articulaciones & Piel</span>
-              </button>
+          <div class="home-goal-picker" aria-labelledby="home-goal-label">
+            <p id="home-goal-label" class="home-goal-label">¿Qué buscas hoy?</p>
+            <div id="hero-goals-switcher" class="home-goal-options">
+              <button type="button" onclick="switchHeroGoal('fuerza')" id="goal-chip-fuerza" class="hero-goal-chip is-active" aria-pressed="true">Fuerza y rendimiento</button>
+              <button type="button" onclick="switchHeroGoal('descanso')" id="goal-chip-descanso" class="hero-goal-chip" aria-pressed="false">Minerales y descanso</button>
+              <button type="button" onclick="switchHeroGoal('articular')" id="goal-chip-articular" class="hero-goal-chip" aria-pressed="false">Articulaciones y piel</button>
             </div>
           </div>
 
-          <!-- Conversion CTAs -->
-          <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-            <a id="hero-primary-cta" href="tienda" class="w-full sm:w-auto bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-bold px-8 py-4 rounded-xl text-sm shadow-lg hover:shadow-xl transition transform active:scale-[0.98] text-center flex items-center justify-center gap-2">
-              <span id="hero-cta-label">Ver Catálogo de 19 Productos</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <div class="home-hero-actions">
+            <a id="hero-primary-cta" href="tienda?cat=fuerza-deporte" class="home-button home-button-primary">
+              <span id="hero-cta-label">Explorar fuerza y rendimiento</span>
+              <span aria-hidden="true">→</span>
             </a>
-
-            <a href="https://wa.me/51981278458?text=Hola%20BioNativa%20LAB,%20deseo%20asesor%C3%ADa%20personalizada%20sobre%20suplementos%20con%20COA" target="_blank" class="w-full sm:w-auto bg-[#FAF6F0] hover:bg-white text-[#1E3B2B] border border-[#D5CDBD] font-bold px-6 py-4 rounded-xl text-sm flex items-center justify-center gap-2.5 transition text-center shadow-sm">
-              <div class="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse"></div>
-              <svg class="w-4 h-4 text-[#25D366] fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
-              <span>Asesoría en Directo (<span class="text-xs text-stone-500 font-normal">&lt; 5 min</span>)</span>
-            </a>
+            <a href="https://wa.me/51981278458?text=Hola%20BioNativa%20LAB,%20deseo%20asesor%C3%ADa%20personalizada" target="_blank" rel="noopener noreferrer" class="home-button home-button-secondary">Hablar con una persona</a>
           </div>
 
-          <!-- Trust & Credibility Ticker -->
-          <div class="pt-3 border-t border-[#E8E2D8] flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-[#5C665F]">
-            <div class="flex items-center gap-1.5 font-medium">
-              <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span><strong>99.8% Pureza</strong> (HPLC Tested)</span>
-            </div>
-            <div class="flex items-center gap-1.5 font-medium">
-              <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span>Certificados <strong>COA Oficiales</strong></span>
-            </div>
-            <div class="flex items-center gap-1.5 font-medium">
-              <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span>Despacho <strong>24h en Perú</strong></span>
-            </div>
-          </div>
-
+          <ul class="home-trust-list" aria-label="Información de compra">
+            <li><span aria-hidden="true">✓</span> COA por lote</li>
+            <li><span aria-hidden="true">✓</span> Bolsa o pote</li>
+            <li><span aria-hidden="true">✓</span> Lima, Cusco y envíos nacionales</li>
+          </ul>
         </div>
 
-        <!-- Right Column: Interactive Visual Showcase & Glass Floating Cards -->
-        <div class="lg:col-span-5 relative">
-          <div class="relative mx-auto max-w-md lg:max-w-none hero-product-glow">
-            
-            <!-- Main Hero Visual Card -->
-            <div class="organic-card overflow-hidden shadow-2xl p-4 bg-white relative z-10 border border-[#E8E2D8]">
-              
-              <!-- Spotlight Product Image -->
-              <div class="relative bg-gradient-to-b from-[#FAF6F0] to-white rounded-xl p-4 flex items-center justify-center min-h-[300px] sm:min-h-[340px]">
-                <img id="hero-showcase-img" src="img/products/creatina-monohidratada-pote-1kg.jpg" alt="Suplemento BioNativa LAB Grado Farmacéutico" class="w-64 h-64 sm:w-72 sm:h-72 object-contain drop-shadow-xl transition-all duration-500 transform hover:scale-105" />
-                
-                <!-- Floating Mini Badge -->
-                <div id="hero-tag-badge" class="absolute top-3 left-3 bg-[#1E3B2B] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
-                  Fuerza & Rendimiento
-                </div>
-              </div>
-
-              <!-- Product Info Ribbon -->
-              <div class="p-4 bg-[#FAF9F6] rounded-b-xl flex items-center justify-between border-t border-[#E8E2D8]">
-                <div>
-                  <span id="hero-format-label" class="text-[10px] font-bold text-[#B67A52] uppercase tracking-wider">Formato 1 KG Sellado al Vacío</span>
-                  <h4 id="hero-product-title" class="font-bold text-sm text-[#1E3B2B]">Creatina Monohidratada 100% Pura</h4>
-                </div>
-                <div class="text-right">
-                  <span class="text-[10px] text-stone-400 block font-medium">Precio desde</span>
-                  <span id="hero-product-price" class="text-base font-extrabold text-[#1E3B2B]">S/ 85.40</span>
-                </div>
-              </div>
-
+        <div class="home-hero-visual-wrap">
+          <div class="home-hero-visual">
+            <div class="home-hero-image-stage">
+              <span id="hero-tag-badge" class="home-product-tag">Fuerza y rendimiento</span>
+              <img id="hero-showcase-img" src="img/products/creatina-monohidratada-bolsa-1kg.jpg" alt="Creatina Monohidratada 1 kg de BioNativa LAB" fetchpriority="high" decoding="async" />
             </div>
-
-            <!-- Floating Glass Badge 1 (Top Right) -->
-            <div class="absolute -top-4 -right-4 glass-badge-card p-3 rounded-2xl hidden sm:flex items-center gap-2.5 z-20 animate-fade-in">
-              <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-xs">
-                ✓
-              </div>
-              <div class="text-left pr-1">
-                <div class="text-[11px] font-extrabold text-[#1E3B2B]">COA Verificado</div>
-                <div class="text-[9px] text-stone-500">Materia prima americana USP</div>
-              </div>
-            </div>
-
-            <!-- Floating Glass Badge 2 (Bottom Left) -->
-            <div class="absolute -bottom-6 -left-6 glass-badge-card p-3.5 rounded-2xl hidden sm:flex items-center gap-3 z-20 animate-fade-in">
-              <div class="w-10 h-10 rounded-full bg-[#FAF6F0] text-[#B67A52] flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              </div>
+            <div class="home-product-caption">
               <div>
-                <div class="text-[11px] font-bold text-[#1E3B2B]">Ahorro Directo Web</div>
-                <div class="text-[10px] text-stone-500">Hasta 22% menos en formatos 1kg</div>
+                <span id="hero-format-label" class="home-product-format">Bolsa · 1 kg</span>
+                <h2 id="hero-product-title" class="home-product-title">Creatina Monohidratada</h2>
+              </div>
+              <div class="home-product-price-block" aria-live="polite">
+                <span id="hero-product-regular-price" class="home-price-was hidden"></span>
+                <span class="home-price-caption">Precio</span>
+                <strong id="hero-product-price" class="home-product-price">S/ 74.90</strong>
               </div>
             </div>
-
+            <p id="hero-product-promo" class="home-promo-note">Precio promocional vigente</p>
           </div>
+          <p class="home-visual-note">Calidad clara. Ingredientes identificables. Información por lote.</p>
         </div>
-
       </div>
     </div>
   </section>
-
-
 
   <!-- Value Pillars Bar -->
 
@@ -852,13 +772,13 @@
 
             </div>
 
-            <span class="text-xs font-bold text-[#B67A52] uppercase">5 Productos Puros</span>
+            <span class="text-xs font-bold text-[#B67A52] uppercase">6 productos</span>
 
             <h3 class="text-xl font-bold text-[#1E3B2B] mt-1">Fuerza & Rendimiento Deportivo</h3>
 
             <p class="text-xs text-stone-600 mt-2 leading-relaxed">
 
-              Creatina micronizada, Concentrado de Proteína WPC 80%, L-Glutamina, L-Arginina y Proteína de Soya vegetal. Máxima potencia muscular.
+              Creatina, proteína de suero y de soya, L-glutamina, L-arginina y L-carnitina.
 
             </p>
 
@@ -892,13 +812,13 @@
 
             </div>
 
-            <span class="text-xs font-bold text-[#B67A52] uppercase">5 Productos Bioactivos</span>
+            <span class="text-xs font-bold text-[#B67A52] uppercase">7 productos</span>
 
             <h3 class="text-xl font-bold text-[#1E3B2B] mt-1">Salud Articular, Belleza & Vitalidad</h3>
 
             <p class="text-xs text-stone-600 mt-2 leading-relaxed">
 
-              Péptidos de Colágeno Hidrolizado, Sulfato de Glucosamina, Ascorbato de Sodio (Vitamina C alcalina), Espirulina y Té Verde concentrado.
+              Colágeno, glucosamina, vitamina C (ascorbato de sodio), espirulina, té verde, condroitina y stevia.
 
             </p>
 
@@ -932,13 +852,13 @@
 
             </div>
 
-            <span class="text-xs font-bold text-[#B67A52] uppercase">6 Minerales & Adaptógenos</span>
+            <span class="text-xs font-bold text-[#B67A52] uppercase">6 productos</span>
 
             <h3 class="text-xl font-bold text-[#1E3B2B] mt-1">Manejo del Estrés, Descanso & Magnesio</h3>
 
             <p class="text-xs text-stone-600 mt-2 leading-relaxed">
 
-              Citrato de Magnesio, Bisglicinato de Magnesio de máxima absorción, Cloruro de Magnesio, Citrato de Potasio, Sal de Epsom y Ashwagandha pura.
+              Citrato, glicinato y cloruro de magnesio, citrato de potasio, sal de Epsom y ashwagandha.
 
             </p>
 
@@ -996,210 +916,20 @@
 
 
 
-      <!-- 03 · Promociones Destacadas & Packs Sinergia (Stack & Save DTC System) -->
-      <div id="promociones-destacadas-module" class="mb-14">
-        
-        <!-- Header & Tab Navigation -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#E8E2D8]">
+      <!-- Ofertas calculadas desde el catálogo y el motor de promociones -->
+      <div id="promociones-destacadas-module" class="home-promotions mb-14">
+        <div class="home-section-heading">
           <div>
-            <div class="inline-flex items-center gap-1.5 bg-[#B67A52]/10 text-[#B67A52] text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-1">
-              <span>🔥 Combos con Descuento Inmediato</span>
-            </div>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-[#1E3B2B]">Packs Sinergia & Formatos de Ahorro</h3>
-            <p class="text-xs sm:text-sm text-stone-500 mt-0.5">Combina principios activos puros y maximiza tus beneficios biológicos con hasta S/ 25.00 de ahorro directo.</p>
+            <p class="home-section-kicker">Beneficios de compra</p>
+            <h3 class="home-section-title">Promociones vigentes</h3>
+            <p class="home-section-description">Precios y descuentos calculados con las presentaciones disponibles en el catálogo.</p>
           </div>
-
-          <!-- Tabs Switcher -->
-          <div class="flex items-center gap-2 bg-[#F5EFE6] p-1 rounded-xl border border-[#E8E2D8] self-start md:self-auto">
-            <button type="button" onclick="switchPromoTab('packs')" id="promo-tab-packs" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition shadow-sm bg-[#1E3B2B] text-white cursor-pointer">
-              ⭐ Packs Sinergia
-            </button>
-            <button type="button" onclick="switchPromoTab('formatos')" id="promo-tab-formatos" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-[#5C665F] hover:text-[#1E3B2B] cursor-pointer">
-              📦 Formatos 1 KG (Ahorro)
-            </button>
-          </div>
+          <a href="tienda" class="home-inline-link">Ver catálogo completo <span aria-hidden="true">→</span></a>
         </div>
-
-        <!-- Tab Content 1: Packs Sinergia Grid -->
-        <div id="promo-content-packs" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <!-- Pack 1: Sueño Profundo & Cero Estrés -->
-          <div class="organic-card bundle-pack-card p-5 bg-white border border-[#E8E2D8] flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="bg-[#1E3B2B] text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full">Sinergia Descanso</span>
-                <span class="bg-rose-100 text-rose-800 text-[10px] font-black px-2 py-0.5 rounded-full border border-rose-200">Ahorras S/ 25.00</span>
-              </div>
-
-              <!-- Product Images Duo -->
-              <div class="relative bg-[#FAF6F0] rounded-xl p-3 flex items-center justify-center h-44 overflow-hidden mb-4 border border-[#E8E2D8]/60 group">
-                <img src="img/products/glicinato-de-magnesio-1kg.jpg" alt="Glicinato de Magnesio 1kg" class="h-36 w-auto object-contain -mr-6 drop-shadow-md transition-transform group-hover:scale-105" />
-                <img src="img/products/citrato-de-magnesio-1kg.jpg" alt="Citrato de Magnesio 1kg" class="h-36 w-auto object-contain -ml-6 drop-shadow-md transition-transform group-hover:scale-105 z-10" />
-                <div class="absolute bottom-2 left-2 bg-[#1E3B2B]/90 text-white text-[9px] font-bold px-2 py-0.5 rounded backdrop-blur-sm">2 KG Totales</div>
-              </div>
-
-              <h4 class="font-extrabold text-base text-[#1E3B2B] leading-snug">Pack Sueño Profundo & Sistema Nervioso</h4>
-              <p class="text-xs text-[#B67A52] font-semibold mt-0.5">Glicinato de Magnesio 1kg + Citrato de Magnesio 1kg</p>
-
-              <!-- Benefits List -->
-              <ul class="mt-3 space-y-1.5 text-xs text-stone-600">
-                <li class="flex items-start gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span><strong>Glicinato:</strong> Relajación neuromuscular y sueño reparador.</span>
-                </li>
-                <li class="flex items-start gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span><strong>Citrato:</strong> Alivio de contracturas y soporte digestivo.</span>
-                </li>
-                <li class="flex items-start gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>100% materias primas puras con doble Certificado COA.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="pt-4 border-t border-[#E8E2D8] mt-4 flex items-center justify-between gap-3">
-              <div>
-                <span class="text-[11px] text-stone-400 line-through block">Antes S/ 170.00</span>
-                <span class="text-xl font-black text-[#1E3B2B]">S/ 145.00</span>
-              </div>
-              <button type="button" onclick="addPromoBundle('sueno')" class="bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-95 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow flex items-center gap-1.5 cursor-pointer" title="Añadir ambos productos a la bolsa con descuento">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                <span>Añadir Pack</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Pack 2: Máxima Potencia & Recuperación Muscular -->
-          <div class="organic-card bundle-pack-card p-5 bg-white border border-[#E8E2D8] flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="bg-[#B67A52] text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full">Sinergia Atletas</span>
-                <span class="bg-rose-100 text-rose-800 text-[10px] font-black px-2 py-0.5 rounded-full border border-rose-200">Ahorras S/ 25.00</span>
-              </div>
-
-              <!-- Product Images Duo -->
-              <div class="relative bg-[#FAF6F0] rounded-xl p-3 flex items-center justify-center h-44 overflow-hidden mb-4 border border-[#E8E2D8]/60 group">
-                <img src="img/products/creatina-monohidratada-1kg.jpg" alt="Creatina Monohidratada 1kg" class="h-36 w-auto object-contain -mr-6 drop-shadow-md transition-transform group-hover:scale-105" />
-                <img src="img/products/proteina-suero-leche-80-1kg.jpg" alt="Whey Protein WPC 80% 1kg" class="h-36 w-auto object-contain -ml-6 drop-shadow-md transition-transform group-hover:scale-105 z-10" />
-                <div class="absolute bottom-2 left-2 bg-[#1E3B2B]/90 text-white text-[9px] font-bold px-2 py-0.5 rounded backdrop-blur-sm">2 KG Totales</div>
-              </div>
-
-              <h4 class="font-extrabold text-base text-[#1E3B2B] leading-snug">Pack Fuerza & Recuperación Muscular</h4>
-              <p class="text-xs text-[#B67A52] font-semibold mt-0.5">Creatina Micronizada 1kg + Whey Protein WPC80 1kg</p>
-
-              <!-- Benefits List -->
-              <ul class="mt-3 space-y-1.5 text-xs text-stone-600">
-                <li class="flex items-start gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span><strong>Creatina 200 Mesh:</strong> Aumento de fuerza explosiva y ATP celular.</span>
-                </li>
-                <li class="flex items-start gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span><strong>Whey 80%:</strong> 24g de proteína pura por servicio sin azúcares.</span>
-                </li>
-                <li class="flex items-start gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Máxima síntesis proteica sin digestión pesada ni aditivos.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="pt-4 border-t border-[#E8E2D8] mt-4 flex items-center justify-between gap-3">
-              <div>
-                <span class="text-[11px] text-stone-400 line-through block">Antes S/ 194.00</span>
-                <span class="text-xl font-black text-[#1E3B2B]">S/ 169.00</span>
-              </div>
-              <button type="button" onclick="addPromoBundle('fuerza')" class="bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-95 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow flex items-center gap-1.5 cursor-pointer" title="Añadir ambos productos a la bolsa con descuento">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                <span>Añadir Pack</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Pack 3: Salud Articular & Longevidad -->
-          <div class="organic-card bundle-pack-card p-5 bg-white border border-[#E8E2D8] flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="bg-[#1E3B2B] text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full">Sinergia Articular</span>
-                <span class="bg-rose-100 text-rose-800 text-[10px] font-black px-2 py-0.5 rounded-full border border-rose-200">Ahorras S/ 18.00</span>
-              </div>
-
-              <!-- Product Images Duo -->
-              <div class="relative bg-[#FAF6F0] rounded-xl p-3 flex items-center justify-center h-44 overflow-hidden mb-4 border border-[#E8E2D8]/60 group">
-                <img src="img/products/colageno-hidrolizado-1kg.jpg" alt="Colágeno Hidrolizado 1kg" class="h-36 w-auto object-contain -mr-6 drop-shadow-md transition-transform group-hover:scale-105" />
-                <img src="img/products/citrato-de-magnesio-1kg.jpg" alt="Citrato de Magnesio 1kg" class="h-36 w-auto object-contain -ml-6 drop-shadow-md transition-transform group-hover:scale-105 z-10" />
-                <div class="absolute bottom-2 left-2 bg-[#1E3B2B]/90 text-white text-[9px] font-bold px-2 py-0.5 rounded backdrop-blur-sm">2 KG Totales</div>
-              </div>
-
-              <h4 class="font-extrabold text-base text-[#1E3B2B] leading-snug">Pack Salud Articular & Longevidad</h4>
-              <p class="text-xs text-[#B67A52] font-semibold mt-0.5">Colágeno Hidrolizado 1kg + Citrato de Magnesio 1kg</p>
-
-              <!-- Benefits List -->
-              <ul class="mt-3 space-y-1.5 text-xs text-stone-600">
-                <li class="flex items-start gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span><strong>Colágeno:</strong> Péptidos bioactivos para cartílagos, ligamentos y piel.</span>
-                </li>
-                <li class="flex items-start gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span><strong>Magnesio:</strong> Mineral cofactor esencial en la fijación celular.</span>
-                </li>
-                <li class="flex items-start gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Alta solubilidad, sin sabor amargo ni excipientes químicos.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="pt-4 border-t border-[#E8E2D8] mt-4 flex items-center justify-between gap-3">
-              <div>
-                <span class="text-[11px] text-stone-400 line-through block">Antes S/ 120.00</span>
-                <span class="text-xl font-black text-[#1E3B2B]">S/ 102.00</span>
-              </div>
-              <button type="button" onclick="addPromoBundle('articular')" class="bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-95 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow flex items-center gap-1.5 cursor-pointer" title="Añadir ambos productos a la bolsa con descuento">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                <span>Añadir Pack</span>
-              </button>
-            </div>
-          </div>
-
+        <div id="homepage-promotion-grid" class="home-promotion-grid" aria-live="polite">
+          <p class="home-promotions-empty">Consulta el catálogo para ver presentaciones y precios actuales.</p>
         </div>
-
-        <!-- Tab Content 2: Formatos 1 KG (Ahorro Inteligente por Volumen) -->
-        <div id="promo-content-formatos" class="hidden bg-gradient-to-r from-[#F5EFE6] via-white to-[#F5EFE6] p-6 sm:p-8 rounded-2xl border border-[#E8E2D8] shadow-sm">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            <div class="lg:col-span-8 space-y-3">
-              <span class="bg-[#1E3B2B] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full">¿Por qué comprar Formato 1 KG en BioNativa LAB?</span>
-              <h4 class="text-2xl font-extrabold text-[#1E3B2B]">Hasta 22% de Ahorro Directo vs. Frascos Pequeños Comerciales</h4>
-              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                Los suplementos comerciales de farmacia suelen venderse en frascos de 200g a 300g recargados de maltodextrina, saborizantes y márgenes de distribución intermediaria. En BioNativa LAB compras <strong>1000 gramos netos de principio activo puro</strong> en bolsa hermética de polietileno sellada al vacío, reduciendo el costo por dosis diaria a menos de <strong>S/ 0.35 al día</strong>.
-              </p>
-              <div class="flex flex-wrap gap-3 pt-2 text-xs font-bold text-[#1E3B2B]">
-                <span class="bg-white border border-[#D5CDBD] px-3 py-1.5 rounded-lg flex items-center gap-1.5">
-                  <span class="text-emerald-600">✓</span> Citrato de Magnesio 1kg: S/ 22.40 (Ahorro 22%)
-                </span>
-                <span class="bg-white border border-[#D5CDBD] px-3 py-1.5 rounded-lg flex items-center gap-1.5">
-                  <span class="text-emerald-600">✓</span> Cloruro de Magnesio 1kg: S/ 20.30
-                </span>
-                <span class="bg-white border border-[#D5CDBD] px-3 py-1.5 rounded-lg flex items-center gap-1.5">
-                  <span class="text-emerald-600">✓</span> Creatina 200 Mesh 1kg: S/ 85.40
-                </span>
-              </div>
-            </div>
-            <div class="lg:col-span-4 text-center">
-              <a href="tienda?cat=estres-descanso" class="inline-flex flex-col items-center justify-center bg-[#1E3B2B] hover:bg-[#284f3a] text-white p-5 rounded-2xl shadow-lg transition transform hover:-translate-y-1 w-full text-center">
-                <span class="text-xs text-[#CF926B] font-bold uppercase tracking-wider mb-1">Catálogo Formato 1kg</span>
-                <span class="text-base font-extrabold">Explorar Todos los Formatos Ahorro</span>
-                <span class="text-[11px] text-stone-300 mt-2 underline">Ver 19 materias primas disponibles →</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
       </div>
-
-
 
       <!-- Featured Grid Container (Rendered dynamically or static for SEO) -->
 
@@ -1278,21 +1008,21 @@
               
 
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                <button type="button" onclick="selectCreatinaVariant('bolsa-1kg', 85.40)" id="var-btn-bolsa-1kg" class="creatina-var-btn p-3 rounded-lg border text-left text-xs transition border-[#1E3B2B] bg-[#1E3B2B]/5 font-bold text-[#1E3B2B]">
+                <button type="button" onclick="selectCreatinaVariant('bolsa-1kg')" id="var-btn-bolsa-1kg" class="creatina-var-btn p-3 rounded-lg border text-left text-xs transition border-[#1E3B2B] bg-[#1E3B2B]/5 font-bold text-[#1E3B2B]">
                   <div class="text-[11px] text-stone-500">1 Kilo en Bolsa</div>
-                  <div class="text-base font-extrabold text-[#1E3B2B] mt-0.5">S/ 85.40</div>
+                  <div id="creatina-price-bolsa-1kg" class="text-base font-extrabold text-[#1E3B2B] mt-0.5">S/ 74.90</div>
                   <div class="text-[10px] text-[#B67A52] font-semibold mt-0.5">Formato Ahorro Sellado</div>
                 </button>
 
-                <button type="button" onclick="selectCreatinaVariant('pote-1kg', 89.90)" id="var-btn-pote-1kg" class="creatina-var-btn p-3 rounded-lg border text-left text-xs transition border-stone-200 hover:border-stone-400">
+                <button type="button" onclick="selectCreatinaVariant('pote-1kg')" id="var-btn-pote-1kg" class="creatina-var-btn p-3 rounded-lg border text-left text-xs transition border-stone-200 hover:border-stone-400">
                   <div class="text-[11px] text-stone-500">1 Kilo en Pote</div>
-                  <div class="text-base font-extrabold text-[#1E3B2B] mt-0.5">S/ 89.90</div>
+                  <div id="creatina-price-pote-1kg" class="text-base font-extrabold text-[#1E3B2B] mt-0.5">S/ 89.90</div>
                   <div class="text-[10px] text-[#1E3B2B] font-semibold mt-0.5">Plastificado (+S/ 4.50)</div>
                 </button>
 
-                <button type="button" onclick="selectCreatinaVariant('caja-25kg', 1749.90)" id="var-btn-caja-25kg" class="creatina-var-btn p-3 rounded-lg border text-left text-xs transition border-stone-200 hover:border-stone-400">
+                <button type="button" onclick="selectCreatinaVariant('caja-25kg')" id="var-btn-caja-25kg" class="creatina-var-btn p-3 rounded-lg border text-left text-xs transition border-stone-200 hover:border-stone-400">
                   <div class="text-[11px] text-stone-500">Caja por Mayor (25 kg)</div>
-                  <div class="text-base font-extrabold text-[#1E3B2B] mt-0.5">S/ 1,749.90</div>
+                  <div id="creatina-price-caja-25kg" class="text-base font-extrabold text-[#1E3B2B] mt-0.5">S/ 1,749.90</div>
                   <div class="text-[10px] text-stone-400 mt-0.5">S/ 70.00/kg Mayorista</div>
                 </button>
               </div>
@@ -1303,7 +1033,7 @@
 
                   <span class="text-xs text-stone-500">Precio seleccionado:</span>
 
-                  <div id="creatina-selected-price" class="text-2xl font-black text-[#1E3B2B]">S/ 85.40</div>
+                  <div id="creatina-selected-price" class="text-2xl font-black text-[#1E3B2B]">S/ 74.90</div>
 
                 </div>
 
@@ -1922,8 +1652,10 @@
       const featuredList = window.BIONATIVA_PRODUCTS.filter(p => featuredIds.includes(p.id));
 
       grid.innerHTML = featuredList.map(prod => {
-        const pricing = window.BionativaPromotions ? window.BionativaPromotions.getProductPricing(prod.id, null, prod.category, prod.price) : { hasDiscount: false, regularPrice: prod.price, promoPrice: prod.price };
-        const displayPrice = pricing.hasDiscount ? pricing.promoPrice : prod.price;
+        const defaultVariant = (prod.variants || []).find(variant => variant.id === prod.defaultVariant) || (prod.variants || [])[0];
+        const pricing = window.BionativaPromotions ? window.BionativaPromotions.getProductPricing(prod.id, defaultVariant?.id || null, prod.category, prod.price) : { hasDiscount: false, regularPrice: Number(defaultVariant?.price ?? prod.price), promoPrice: Number(defaultVariant?.price ?? prod.price) };
+        const displayPrice = pricing.hasDiscount ? pricing.promoPrice : pricing.regularPrice;
+        const displayImage = defaultVariant?.image || prod.image;
         const displayBadge = (pricing.hasDiscount && pricing.badge) ? pricing.badge : (prod.highlightBadge || prod.badge || 'Puro COA');
 
         return `
@@ -1932,7 +1664,7 @@
             <a href="producto?id=${prod.id}" class="block relative bg-[#FAF6F0] rounded-xl p-3 mb-3 border border-[#E8E2D8]/60 flex items-center justify-center h-48 overflow-hidden cursor-pointer" title="Ver información y presentaciones de ${prod.shortName}" aria-label="Ver detalles de ${prod.shortName}">
               <span class="absolute top-2 left-2 text-[10px] font-bold ${pricing.hasDiscount ? 'bg-emerald-800' : 'bg-[#1E3B2B]'} text-white px-2 py-0.5 rounded-full z-10 shadow-sm">${displayBadge}</span>
               ${pricing.hasDiscount ? `<span class="absolute top-2 right-2 text-[9px] font-black bg-rose-600 text-white px-2 py-0.5 rounded-full z-10 shadow-sm">OFERTA ACTIVA</span>` : ''}
-              <img src="${prod.image}" alt="${prod.name}" class="h-40 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+              <img src="${displayImage}" alt="${prod.name}" loading="lazy" decoding="async" class="h-40 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
             </a>
 
             <div class="flex items-center justify-between">
@@ -1959,7 +1691,7 @@
                 </div>
               ` : `
                 <span class="text-[10px] text-stone-400 block">${prod.unit}</span>
-                <span class="text-base font-extrabold text-[#1E3B2B]">S/ ${displayPrice.toFixed(2)}</span>
+                <span class="text-base font-extrabold text-[#1E3B2B]">S/ ${pricing.regularPrice.toFixed(2)}</span>
               `}
             </div>
 
@@ -2105,197 +1837,184 @@
     // 02 · GESTIÓN DEL HERO PRINCIPAL (HEALTH GOAL SWITCHER)
     // ==========================================
     const heroGoalData = {
-      fuerza: {
-        img: "img/products/creatina-monohidratada-pote-1kg.jpg",
-        tag: "Fuerza & Rendimiento",
-        format: "Formato 1 KG Sellado al Vacío",
-        title: "Creatina Monohidratada 100% Pura",
-        price: "S/ 85.40",
-        ctaLabel: "Ver Suplementos de Fuerza",
-        ctaHref: "tienda?cat=fuerza-deporte"
-      },
-      descanso: {
-        img: "img/products/glicinato-de-magnesio-1kg.jpg",
-        tag: "Minerales & Sueño",
-        format: "Formato 1 KG Quelado Puro",
-        title: "Glicinato de Magnesio de Alta Absorción",
-        price: "S/ 49.00",
-        ctaLabel: "Ver Línea de Magnesio",
-        ctaHref: "tienda?cat=estres-descanso"
-      },
-      articular: {
-        img: "img/products/colageno-hidrolizado-1kg.jpg",
-        tag: "Salud Articular & Piel",
-        format: "Formato 1 KG Péptidos Bioactivos",
-        title: "Colágeno Hidrolizado Bovino Puro",
-        price: "S/ 65.00",
-        ctaLabel: "Ver Línea Articular",
-        ctaHref: "tienda?cat=salud-articular"
-      }
+      fuerza: { productId: "creatina-monohidratada", tag: "Fuerza y rendimiento", ctaLabel: "Explorar fuerza y rendimiento", ctaHref: "tienda?cat=fuerza-deporte" },
+      descanso: { productId: "glicinato-de-magnesio", tag: "Minerales y descanso", ctaLabel: "Explorar minerales y descanso", ctaHref: "tienda?cat=estres-descanso" },
+      articular: { productId: "colageno-hidrolizado", tag: "Articulaciones y piel", ctaLabel: "Explorar articulaciones y piel", ctaHref: "tienda?cat=salud-articular" }
     };
+
+    function getHomeProductPricing(product, variant) {
+      if (window.BionativaPromotions) {
+        return window.BionativaPromotions.getProductPricing(product.id, variant?.id || null, product.category, variant?.price ?? product.price);
+      }
+      const regularPrice = Number(variant?.price ?? product.price) || 0;
+      return { regularPrice, promoPrice: regularPrice, hasDiscount: false, savings: 0 };
+    }
+
+    function formatHomePrice(value) {
+      return `S/ ${Number(value).toFixed(2)}`;
+    }
 
     function switchHeroGoal(goalKey) {
       const data = heroGoalData[goalKey];
-      if (!data) return;
+      const product = window.BIONATIVA_PRODUCTS?.find(item => item.id === data?.productId);
+      if (!product) return;
+      const variant = (product.variants || []).find(item => item.id === product.defaultVariant) || (product.variants || [])[0];
+      const pricing = getHomeProductPricing(product, variant);
+      const finalPrice = pricing.hasDiscount ? pricing.promoPrice : pricing.regularPrice;
+      const image = variant?.image || product.image;
 
-      document.querySelectorAll(".hero-goal-chip").forEach(btn => {
-        btn.classList.remove("bg-[#1E3B2B]", "text-white", "border-[#1E3B2B]");
-        btn.classList.add("bg-white", "text-[#1E3B2B]", "border-[#D5CDBD]");
+      document.querySelectorAll(".hero-goal-chip").forEach(button => {
+        const isActive = button.id === `goal-chip-${goalKey}`;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
       });
-      const activeBtn = document.getElementById(`goal-chip-${goalKey}`);
-      if (activeBtn) {
-        activeBtn.classList.add("bg-[#1E3B2B]", "text-white", "border-[#1E3B2B]");
-        activeBtn.classList.remove("bg-white", "text-[#1E3B2B]", "border-[#D5CDBD]");
-      }
 
       const imgEl = document.getElementById("hero-showcase-img");
       const tagEl = document.getElementById("hero-tag-badge");
       const formatEl = document.getElementById("hero-format-label");
       const titleEl = document.getElementById("hero-product-title");
       const priceEl = document.getElementById("hero-product-price");
+      const regularPriceEl = document.getElementById("hero-product-regular-price");
+      const promoEl = document.getElementById("hero-product-promo");
       const ctaLabel = document.getElementById("hero-cta-label");
       const primaryCta = document.getElementById("hero-primary-cta");
 
       if (imgEl) {
-        imgEl.style.opacity = "0";
-        imgEl.style.transform = "scale(0.96)";
-        setTimeout(() => {
-          imgEl.src = data.img;
-          if (tagEl) tagEl.textContent = data.tag;
-          if (formatEl) formatEl.textContent = data.format;
-          if (titleEl) titleEl.textContent = data.title;
-          if (priceEl) priceEl.textContent = data.price;
-          if (ctaLabel) ctaLabel.textContent = data.ctaLabel;
-          if (primaryCta) primaryCta.href = data.ctaHref;
-          imgEl.style.opacity = "1";
-          imgEl.style.transform = "scale(1)";
-        }, 180);
+        imgEl.src = image;
+        imgEl.alt = `${product.name}${variant?.name ? `, ${variant.name}` : ""} de BioNativa LAB`;
       }
+      if (tagEl) tagEl.textContent = data.tag;
+      if (formatEl) formatEl.textContent = variant?.name || product.unit || "Presentación disponible";
+      if (titleEl) titleEl.textContent = product.shortName || product.name;
+      if (priceEl) priceEl.textContent = formatHomePrice(finalPrice);
+      if (regularPriceEl) {
+        regularPriceEl.textContent = pricing.hasDiscount ? `Antes ${formatHomePrice(pricing.regularPrice)}` : "";
+        regularPriceEl.classList.toggle("hidden", !pricing.hasDiscount);
+      }
+      if (promoEl) {
+        promoEl.textContent = pricing.hasDiscount ? `${pricing.badge || "Precio promocional"} · Ahorras ${formatHomePrice(pricing.savings)}` : "Precio regular de catálogo";
+        promoEl.classList.toggle("is-discount", pricing.hasDiscount);
+      }
+      if (ctaLabel) ctaLabel.textContent = data.ctaLabel;
+      if (primaryCta) primaryCta.href = data.ctaHref;
+    }
+
+    function refreshCreatinaPrices() {
+      const product = window.BIONATIVA_PRODUCTS?.find(item => item.id === "creatina-monohidratada");
+      if (!product) return;
+      (product.variants || []).forEach(variant => {
+        const pricing = getHomeProductPricing(product, variant);
+        const finalPrice = pricing.hasDiscount ? pricing.promoPrice : pricing.regularPrice;
+        const priceElement = document.getElementById(`creatina-price-${variant.id}`);
+        if (priceElement) priceElement.textContent = formatHomePrice(finalPrice);
+      });
+      const selected = product.variants.find(variant => variant.id === currentCreatinaVariant);
+      if (selected) selectCreatinaVariant(selected.id);
+    }
+
+    function selectCreatinaVariant(variantId) {
+      const product = window.BIONATIVA_PRODUCTS?.find(item => item.id === "creatina-monohidratada");
+      const variant = product?.variants?.find(item => item.id === variantId);
+      if (!product || !variant) return;
+      currentCreatinaVariant = variant.id;
+      document.querySelectorAll(".creatina-var-btn").forEach(button => {
+        const isActive = button.id === `var-btn-${variantId}`;
+        button.classList.toggle("border-[#1E3B2B]", isActive);
+        button.classList.toggle("bg-[#1E3B2B]/5", isActive);
+        button.classList.toggle("font-bold", isActive);
+        button.classList.toggle("text-[#1E3B2B]", isActive);
+        button.classList.toggle("border-stone-200", !isActive);
+      });
+      const pricing = getHomeProductPricing(product, variant);
+      const finalPrice = pricing.hasDiscount ? pricing.promoPrice : pricing.regularPrice;
+      const selectedPrice = document.getElementById("creatina-selected-price");
+      if (selectedPrice) selectedPrice.textContent = formatHomePrice(finalPrice);
+      const imgEl = document.getElementById("creatina-feature-img");
+      const badgeEl = document.getElementById("creatina-feature-badge");
+      if (imgEl) imgEl.src = variant.image || product.image;
+      if (badgeEl) badgeEl.textContent = variant.name || variant.format || "Presentación disponible";
     }
 
     // ==========================================
-    // 03 · GESTIÓN DE PROMOCIONES Y PACKS SINERGIA
+    // 03 · OFERTAS DE PORTADA DESDE DATOS CANÓNICOS
     // ==========================================
-    function switchPromoTab(tabKey) {
-      const packsContent = document.getElementById("promo-content-packs");
-      const formatosContent = document.getElementById("promo-content-formatos");
-      const packsTab = document.getElementById("promo-tab-packs");
-      const formatosTab = document.getElementById("promo-tab-formatos");
-
-      if (tabKey === "packs") {
-        if (packsContent) packsContent.classList.remove("hidden");
-        if (formatosContent) formatosContent.classList.add("hidden");
-        if (packsTab) {
-          packsTab.classList.add("bg-[#1E3B2B]", "text-white");
-          packsTab.classList.remove("text-[#5C665F]");
-        }
-        if (formatosTab) {
-          formatosTab.classList.remove("bg-[#1E3B2B]", "text-white");
-          formatosTab.classList.add("text-[#5C665F]");
-        }
-      } else {
-        if (packsContent) packsContent.classList.add("hidden");
-        if (formatosContent) formatosContent.classList.remove("hidden");
-        if (formatosTab) {
-          formatosTab.classList.add("bg-[#1E3B2B]", "text-white");
-          formatosTab.classList.remove("text-[#5C665F]");
-        }
-        if (packsTab) {
-          packsTab.classList.remove("bg-[#1E3B2B]", "text-white");
-          packsTab.classList.add("text-[#5C665F]");
-        }
-      }
-    }
-
-    function addPromoBundle(bundleType) {
-      if (!window.cart) return;
-
-      if (bundleType === "sueno") {
-        window.cart.addItem("glicinato-de-magnesio", "bolsa-1kg", 1);
-        window.cart.addItem("citrato-de-magnesio", "bolsa-1kg", 1);
-      } else if (bundleType === "fuerza") {
-        window.cart.addItem("creatina-monohidratada", "bolsa-1kg", 1);
-        window.cart.addItem("proteina-suero-leche-80", "bolsa-1kg", 1);
-      } else if (bundleType === "articular") {
-        window.cart.addItem("colageno-hidrolizado", "bolsa-1kg", 1);
-        window.cart.addItem("citrato-de-magnesio", "bolsa-1kg", 1);
-      }
-
-      if (typeof window.cart.openCart === "function") {
-        window.cart.openCart();
-      }
+    function escapeHomeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[character]);
     }
 
     function initIndexPromotions() {
-      if (!window.BionativaPromotions) return;
+      const container = document.getElementById("homepage-promotion-grid");
+      const engine = window.BionativaPromotions;
+      const products = window.BIONATIVA_PRODUCTS;
+      if (!container || !engine || !Array.isArray(products)) return;
 
-      // Telemetría: Registrar impresión de la campaña en portada
-      window.BionativaPromotions.trackEvent("impression");
+      const activeCampaign = engine.getActiveCampaign();
+      const config = engine.config || {};
+      const activeCoupon = (config.coupons || []).find(coupon => {
+        const now = Date.now();
+        return coupon.enabled && (!coupon.startDate || now >= new Date(coupon.startDate).getTime()) && (!coupon.endDate || now <= new Date(coupon.endDate).getTime()) && (!coupon.maxUses || coupon.usedCount < coupon.maxUses);
+      });
 
-      const activeCamp = window.BionativaPromotions.getActiveCampaign();
-      const config = window.BionativaPromotions.config || {};
-
-      // 1. Barra de Anuncio Superior Dinámica
-      if (activeCamp) {
-        const slide1 = document.querySelector(".promo-ticker-item");
-        if (slide1) {
-          slide1.innerHTML = `
-            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></span>
-            <span class="font-bold text-amber-300">${activeCamp.bannerBadge || 'CAMPAÑA ACTIVA'}:</span>
-            <span class="font-normal text-stone-200 truncate">${activeCamp.name} — ${activeCamp.description}</span>
+      if (activeCampaign) {
+        const slide = document.querySelector(".promo-ticker-item");
+        if (slide) {
+          slide.innerHTML = `
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+            <span class="font-bold text-amber-300">${escapeHomeHtml(activeCampaign.bannerBadge || "CAMPAÑA ACTIVA")}:</span>
+            <span class="font-normal text-stone-200 truncate">${escapeHomeHtml(activeCampaign.name)} — ${escapeHomeHtml(activeCampaign.description)}</span>
           `;
         }
       }
 
-      // Cupón activo dinámico en la cabecera
-      const activeCoupon = (config.coupons || []).find(c => c.enabled);
       const couponBadge = document.getElementById("promo-coupon-badge");
       if (couponBadge && activeCoupon) {
-        couponBadge.setAttribute("onclick", `copyPromoCoupon('${activeCoupon.code}')`);
         couponBadge.innerHTML = `
           <span class="text-[10px] text-stone-300">Cupón:</span>
-          <span class="font-mono font-bold text-amber-300 text-[11px] tracking-wider">${activeCoupon.code}</span>
-          <span id="coupon-feedback-tag" class="text-[10px] text-emerald-300 font-semibold ml-0.5">Copiar 📋</span>
+          <span class="font-mono font-bold text-amber-300 text-[11px] tracking-wider">${escapeHomeHtml(activeCoupon.code)}</span>
+          <span class="text-[10px] text-stone-300">Mín. ${formatHomePrice(activeCoupon.minSpend || 0)}</span>
+          <span id="coupon-feedback-tag" class="text-[10px] text-emerald-300 font-semibold ml-0.5">Copiar</span>
         `;
+        couponBadge.onclick = () => copyPromoCoupon(activeCoupon.code);
+        couponBadge.title = `Copiar cupón ${activeCoupon.code}. Compra mínima ${formatHomePrice(activeCoupon.minSpend || 0)}.`;
       }
 
-      // 2. Renderizar Packs/Combos de Promoción Dinámicos
-      const packsContainer = document.getElementById("promo-content-packs");
-      const activeCombos = (config.combos || []).filter(c => c.enabled);
+      const offers = products.map(product => {
+        const variant = (product.variants || []).find(item => item.id === product.defaultVariant) || (product.variants || [])[0];
+        const pricing = engine.getProductPricing(product.id, variant?.id || null, product.category, variant?.price ?? product.price);
+        return { product, variant, pricing };
+      }).filter(entry => entry.variant && entry.pricing.hasDiscount);
 
-      if (packsContainer && activeCombos.length > 0) {
-        packsContainer.innerHTML = activeCombos.map(combo => `
-          <div class="organic-card bundle-pack-card p-5 bg-white border border-[#E8E2D8] flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="bg-[#1E3B2B] text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full">${combo.badge || 'Pack Sinergia'}</span>
-                <span class="bg-rose-100 text-rose-800 text-[10px] font-black px-2 py-0.5 rounded-full border border-rose-200">Ahorras S/ ${Number(combo.savings).toFixed(2)}</span>
-              </div>
+      if (!offers.length) {
+        container.innerHTML = '<p class="home-promotions-empty">No hay descuentos en productos activos en este momento. Explora las presentaciones y precios del catálogo.</p>';
+        return;
+      }
 
-              <div class="relative bg-[#FAF6F0] rounded-xl p-3 flex items-center justify-center h-44 overflow-hidden mb-4 border border-[#E8E2D8]/60 group">
-                <img src="${combo.image || 'img/products/combo-deportivo.jpg'}" alt="${combo.name}" class="h-36 w-auto object-contain drop-shadow-md transition-transform group-hover:scale-105" />
-                <div class="absolute bottom-2 left-2 bg-[#1E3B2B]/90 text-white text-[9px] font-bold px-2 py-0.5 rounded backdrop-blur-sm">${combo.items.length} Suplementos Puros</div>
-              </div>
-
-              <h4 class="font-extrabold text-base text-[#1E3B2B] leading-snug">${combo.name}</h4>
-              <p class="text-xs text-[#B67A52] font-semibold mt-0.5">${combo.shortDescription || combo.items.map(i => i.name).join(' + ')}</p>
-
-              <p class="mt-2.5 text-xs text-stone-600 line-clamp-3 leading-relaxed">${combo.description}</p>
-            </div>
-
-            <div class="pt-4 border-t border-[#E8E2D8] mt-4 flex items-center justify-between gap-3">
+      container.innerHTML = offers.map(({ product, variant, pricing }) => `
+        <article class="home-promotion-card">
+          <a class="home-promotion-image-link" href="producto?id=${encodeURIComponent(product.id)}" aria-label="Ver ${escapeHomeHtml(product.shortName || product.name)}">
+            <span class="home-promotion-badge">${escapeHomeHtml(pricing.badge || "Oferta vigente")}</span>
+            <img src="${escapeHomeHtml(variant.image || product.image)}" alt="${escapeHomeHtml(product.name)}" loading="lazy" decoding="async" />
+          </a>
+          <div class="home-promotion-content">
+            <p class="home-promotion-format">${escapeHomeHtml(variant.name || variant.format || "Presentación disponible")}</p>
+            <h4>${escapeHomeHtml(product.shortName || product.name)}</h4>
+            <div class="home-promotion-price-row">
               <div>
-                <span class="text-[11px] text-stone-400 line-through block">Antes S/ ${Number(combo.regularTotalPrice).toFixed(2)}</span>
-                <span class="text-xl font-black text-[#1E3B2B]">S/ ${Number(combo.comboPrice).toFixed(2)}</span>
+                <span class="home-promotion-was">Antes ${formatHomePrice(pricing.regularPrice)}</span>
+                <strong>${formatHomePrice(pricing.promoPrice)}</strong>
               </div>
-              <button type="button" onclick="window.BionativaPromotions.addComboToCart('${combo.id}')" class="bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-95 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow flex items-center gap-1.5 cursor-pointer" title="Añadir combo a la bolsa">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                <span>Añadir Pack</span>
-              </button>
+              <span class="home-promotion-saving">Ahorras ${formatHomePrice(pricing.savings)}</span>
             </div>
+            <button type="button" class="home-promotion-add" data-product-id="${escapeHomeHtml(product.id)}" data-variant-id="${escapeHomeHtml(variant.id)}">Agregar al carrito</button>
           </div>
-        `).join("");
-      }
+        </article>
+      `).join("");
+
+      container.querySelectorAll(".home-promotion-add").forEach(button => {
+        button.addEventListener("click", () => window.cart?.addItem(button.dataset.productId, button.dataset.variantId, 1));
+      });
     }
 
     // Inicializar Ticker, Promociones y Sede Guardada
@@ -2304,10 +2023,14 @@
       initSavedHub();
       initIndexFeatured();
       initIndexPromotions();
+      switchHeroGoal("fuerza");
+      refreshCreatinaPrices();
 
       window.addEventListener("bionativa:promotions_updated", () => {
         initIndexFeatured();
         initIndexPromotions();
+        switchHeroGoal(document.querySelector(".hero-goal-chip.is-active")?.id.replace("goal-chip-", "") || "fuerza");
+        refreshCreatinaPrices();
       });
     };
 

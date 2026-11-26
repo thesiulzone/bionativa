@@ -1,11 +1,27 @@
 import { onRequestPost as createPreference } from "./functions/api/create-preference.js";
 import { onRequestGet as getPaymentStatus } from "./functions/api/payment-status.js";
+import { onRequestGet as getCommercialConfig } from "./functions/api/commercial-config.js";
+import { onRequestPost as postQuote } from "./functions/api/quote.js";
 
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
 // ../.wrangler/tmp/pages-mrGLFx/functionsRoutes-0.6901871082668577.mjs
 var routes = [
+  {
+    routePath: "/api/commercial-config",
+    mountPath: "/api",
+    method: "GET",
+    middlewares: [],
+    modules: [getCommercialConfig]
+  },
+  {
+    routePath: "/api/quote",
+    mountPath: "/api",
+    method: "POST",
+    middlewares: [],
+    modules: [postQuote]
+  },
   {
     routePath: "/api/create-preference",
     mountPath: "/api",

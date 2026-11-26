@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.min.css" />
   <script>
     tailwind.config = {
       theme: {
@@ -102,9 +102,9 @@
 
       <!-- Estado en Vivo y Acciones Globales -->
       <div class="flex items-center gap-2.5">
-        <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Motor Activo en Tienda</span>
+        <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-950/40 border border-amber-500/30 text-amber-300 text-xs font-semibold" title="Los cambios aquí son un borrador local. Exporta el JSON para actualizar la configuración central del servidor.">
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span>Simulador Local (Exportar al Servidor)</span>
         </div>
 
         <button onclick="exportConfigJSON()" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition flex items-center gap-1.5" title="Exportar configuración de respaldo">

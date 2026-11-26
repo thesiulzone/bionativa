@@ -32,14 +32,54 @@ class BionativaCart {
     } catch (e) {}
     this.init();
     if (typeof window !== "undefined") {
-      window.addEventListener("bionativa:promotions_updated", () => this.updateUI());
+      window.addEventListener("bionativa:promotions_updated", () => {
+        this.syncCartPricesWithCatalog();
+        this.updateUI();
+      });
+    }
+  }
+
+  /**
+   * Re-sincroniza los precios almacenados en localStorage con el catálogo oficial vigente.
+   */
+  syncCartPricesWithCatalog() {
+    if (!Array.isArray(window.BIONATIVA_PRODUCTS) || !Array.isArray(this.items)) return;
+    let changed = false;
+    for (const item of this.items) {
+      const product = window.BIONATIVA_PRODUCTS.find(p => p.id === item.productId);
+      if (!product) continue;
+      const variant = item.variantId && Array.isArray(product.variants)
+        ? product.variants.find(v => v.id === item.variantId)
+        : null;
+      const officialPrice = variant ? Number(variant.price) : Number(product.price);
+      if (Number.isFinite(officialPrice) && officialPrice !== item.price) {
+        item.price = officialPrice;
+        changed = true;
+      }
+    }
+    if (changed) {
+      try {
+        localStorage.setItem(this.storageKey, JSON.stringify(this.items));
+      } catch (e) {}
     }
   }
 
   loadCart() {
     try {
       const data = localStorage.getItem(this.storageKey);
-      return data ? JSON.parse(data) : [];
+      const parsed = data ? JSON.parse(data) : [];
+      if (Array.isArray(parsed) && Array.isArray(window.BIONATIVA_PRODUCTS)) {
+        for (const item of parsed) {
+          const product = window.BIONATIVA_PRODUCTS.find(p => p.id === item.productId);
+          if (!product) continue;
+          const variant = item.variantId && Array.isArray(product.variants)
+            ? product.variants.find(v => v.id === item.variantId)
+            : null;
+          const officialPrice = variant ? Number(variant.price) : Number(product.price);
+          if (Number.isFinite(officialPrice)) item.price = officialPrice;
+        }
+      }
+      return parsed;
     } catch (e) {
       console.error("Error al cargar carrito:", e);
       return [];
@@ -164,7 +204,7 @@ class BionativaCart {
     };
   }
 
-  handleApplyCoupon() {
+  async handleApplyCoupon() {
     const input = document.getElementById("cart-coupon-input");
     if (!input) return;
     const code = input.value.trim().toUpperCase();
@@ -176,6 +216,36 @@ class BionativaCart {
     if (!window.BionativaPromotions) {
       this.showToast("Sistema de promociones no disponible.", "warning");
       return;
+    }
+
+    // Validar cupón en el servidor cuando está disponible para evitar discrepancias entre navegadores.
+    const protocol = String(window.location?.protocol || "");
+    if (typeof fetch === "function" && protocol !== "file:" && this.items.length > 0) {
+      try {
+        const res = await fetch("/api/quote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: this.items.map(i => ({ productId: i.productId, variantId: i.variantId, quantity: i.quantity })),
+            shippingId: this.selectedShipping,
+            couponCode: code
+          })
+        });
+        const quote = await res.json();
+        if (!res.ok) {
+          this.showToast(quote.error || "El cupón no es válido para este pedido.", "warning");
+          return;
+        }
+        this.appliedCoupon = quote.couponCode || code;
+        try {
+          localStorage.setItem("bionativa_applied_coupon", this.appliedCoupon);
+        } catch (e) {}
+        this.showToast(`¡Cupón ${this.appliedCoupon} aplicado con éxito! Ahorras S/ ${Number(quote.couponDiscountTotal || 0).toFixed(2)}`, "success");
+        this.updateUI();
+        return;
+      } catch (err) {
+        console.warn("[Cart] No se pudo validar cupón con el servidor, usando respaldo sincronizado:", err);
+      }
     }
 
     const currentSubtotal = this.items.reduce((s, i) => s + (i.price * i.quantity), 0);
@@ -805,7 +875,7 @@ class BionativaCart {
     if (modal) modal.classList.add("hidden");
   }
 
-  submitOrder(e) {
+  async submitOrder(e) {
     e.preventDefault();
     const name = document.getElementById("cust-name").value.trim();
     const doc = document.getElementById("cust-doc").value.trim();
@@ -822,14 +892,58 @@ class BionativaCart {
       { id: "provincias-shalom", name: "Envío Nacional vía Agencia Shalom", price: 15 },
       { id: "provincias-marvisur", name: "Envío Nacional vía Agencia Marvisur", price: 16 }
     ];
-    const shipping = shippingList.find(o => o.id === this.selectedShipping) || shippingList[0];
-    const promoEval = this.getPromotionEvaluation();
-    const regularSubtotal = promoEval.subtotalRegular.toFixed(2);
-    const subtotal = promoEval.finalSubtotal.toFixed(2);
-    const shippingCost = this.getShippingCost().toFixed(2);
-    const total = this.getTotal().toFixed(2);
-    const totalSavings = promoEval.totalSavings > 0 ? promoEval.totalSavings.toFixed(2) : null;
-    const appliedCoupon = this.appliedCoupon;
+    let shipping = shippingList.find(o => o.id === this.selectedShipping) || shippingList[0];
+    let promoEval = this.getPromotionEvaluation();
+    let regularSubtotal = promoEval.subtotalRegular.toFixed(2);
+    let subtotal = promoEval.finalSubtotal.toFixed(2);
+    let shippingCost = this.getShippingCost().toFixed(2);
+    let total = this.getTotal().toFixed(2);
+    let totalSavings = promoEval.totalSavings > 0 ? promoEval.totalSavings.toFixed(2) : null;
+    let appliedCoupon = this.appliedCoupon;
+
+    // Cotizar contra el servidor para garantizar precios y descuentos oficiales en todos los canales
+    const protocol = String(window.location?.protocol || "");
+    if (typeof fetch === "function" && protocol !== "file:" && this.items.length > 0) {
+      try {
+        const res = await fetch("/api/quote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: this.items.map(i => ({ productId: i.productId, variantId: i.variantId, quantity: i.quantity })),
+            shippingId: this.selectedShipping,
+            couponCode: this.appliedCoupon,
+            payMethod: payMethod === "card" ? "card" : "standard",
+            allowInvalidCoupon: true
+          })
+        });
+        if (res.ok) {
+          const quote = await res.json();
+          shipping = quote.shipping || shipping;
+          regularSubtotal = Number(quote.subtotalRegular).toFixed(2);
+          subtotal = Number(quote.finalSubtotal).toFixed(2);
+          shippingCost = Number(quote.shipping?.price ?? shippingCost).toFixed(2);
+          total = Number(quote.baseTotal).toFixed(2);
+          totalSavings = quote.totalSavings > 0 ? Number(quote.totalSavings).toFixed(2) : null;
+          appliedCoupon = quote.couponCode || null;
+          if (quote.couponError && this.appliedCoupon) {
+            this.appliedCoupon = null;
+            try { localStorage.removeItem("bionativa_applied_coupon"); } catch (err) {}
+          }
+          if (Array.isArray(quote.items)) {
+            promoEval = {
+              ...promoEval,
+              items: quote.items.map(qi => ({
+                ...qi,
+                pricing: qi.productDiscountBadge ? { hasDiscount: true, badge: qi.productDiscountBadge } : { hasDiscount: false },
+                volumeRule: qi.volumeOfferBadge ? { badge: qi.volumeOfferBadge } : null
+              }))
+            };
+          }
+        }
+      } catch (err) {
+        console.warn("[Cart] No se pudo cotizar con el servidor, usando respaldo sincronizado:", err);
+      }
+    }
 
     // Registrar conversión en analítica de campañas
     if (window.BionativaPromotions && typeof window.BionativaPromotions.trackEvent === "function") {

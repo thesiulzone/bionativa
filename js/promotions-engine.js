@@ -7,39 +7,105 @@
 class BionativaPromotionsEngine {
   constructor() {
     this.storageKey = "bionativa_promotions_config_v1";
+    this.isAdminPage = this.checkIsAdminPage();
+    this.serverSynced = false;
     this.config = this.loadConfig();
     this.initCrossTabSync();
+    if (!this.isAdminPage) {
+      this.syncFromServer();
+    }
+  }
+
+  checkIsAdminPage() {
+    const pathname = String(window.location?.pathname || "").toLowerCase();
+    return /(?:^|\/)admin-promociones(?:\.html)?\/?$/.test(pathname);
   }
 
   /**
-   * Carga la configuración desde localStorage o inicializa desde los datos predeterminados.
+   * La tienda usa la configuración oficial del servidor (con respaldo inicial de fábrica).
+   * Solo el panel de administración puede leer su borrador local del navegador.
    */
   loadConfig() {
-    try {
-      const stored = localStorage.getItem(this.storageKey);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (parsed && typeof parsed === "object") {
-          return parsed;
+    if (this.isAdminPage) {
+      try {
+        const stored = localStorage.getItem(this.storageKey);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (parsed && typeof parsed === "object") {
+            return parsed;
+          }
         }
+      } catch (err) {
+        console.warn("[PromotionsEngine] Error al leer localStorage, usando valores predeterminados:", err);
       }
-    } catch (err) {
-      console.warn("[PromotionsEngine] Error al leer localStorage, usando valores predeterminados:", err);
     }
 
-    // Usar copia profunda de los valores base
+    // Nunca permitir que una configuración local del visitante altere precios de tienda.
     const defaults = window.BIONATIVA_PROMOTIONS_DEFAULT || {};
     return JSON.parse(JSON.stringify(defaults));
   }
 
   /**
-   * Guarda la configuración actual en localStorage y emite evento custom.
+   * Sincroniza la configuración comercial y los precios vigentes desde el servidor.
+   */
+  async syncFromServer() {
+    if (this.isAdminPage || typeof fetch !== "function") return false;
+    const protocol = String(window.location?.protocol || "");
+    if (protocol === "file:") return false;
+
+    try {
+      const response = await fetch("/api/commercial-config", { cache: "no-store" });
+      if (!response.ok) return false;
+      const serverConfig = await response.json();
+      if (!serverConfig || typeof serverConfig !== "object") return false;
+
+      if (Array.isArray(serverConfig.catalog) && Array.isArray(window.BIONATIVA_PRODUCTS)) {
+        for (const serverProduct of serverConfig.catalog) {
+          const localProduct = window.BIONATIVA_PRODUCTS.find(p => p.id === serverProduct.id);
+          if (!localProduct) continue;
+          localProduct.price = Number(serverProduct.price);
+          if (Array.isArray(serverProduct.variants) && Array.isArray(localProduct.variants)) {
+            for (const sv of serverProduct.variants) {
+              const lv = localProduct.variants.find(v => v.id === sv.id);
+              if (lv) lv.price = Number(sv.price);
+            }
+          }
+        }
+      }
+
+      if (Array.isArray(serverConfig.shippingOptions) && window.BIONATIVA_CONFIG) {
+        window.BIONATIVA_CONFIG.shippingOptions = serverConfig.shippingOptions;
+      }
+
+      this.config = {
+        ...this.config,
+        version: serverConfig.version || this.config.version,
+        lastUpdated: serverConfig.serverTime || this.config.lastUpdated,
+        activeCampaign: serverConfig.activeCampaign || this.config.activeCampaign,
+        productDiscounts: Array.isArray(serverConfig.productDiscounts) ? serverConfig.productDiscounts : this.config.productDiscounts,
+        volumeOffers: Array.isArray(serverConfig.volumeOffers) ? serverConfig.volumeOffers : this.config.volumeOffers,
+        combos: Array.isArray(serverConfig.combos) ? serverConfig.combos : this.config.combos,
+        coupons: Array.isArray(serverConfig.coupons) ? serverConfig.coupons : this.config.coupons
+      };
+      this.serverSynced = true;
+      window.dispatchEvent(new CustomEvent("bionativa:promotions_updated", { detail: this.config }));
+      return true;
+    } catch (err) {
+      console.warn("[PromotionsEngine] No se pudo sincronizar con el servidor, usando respaldo oficial:", err);
+      return false;
+    }
+  }
+
+  /**
+   * Guarda el borrador local únicamente en el panel de administración.
    */
   saveConfig(newConfig) {
     try {
       newConfig.lastUpdated = new Date().toISOString();
       this.config = newConfig;
-      localStorage.setItem(this.storageKey, JSON.stringify(this.config));
+      if (this.isAdminPage) {
+        localStorage.setItem(this.storageKey, JSON.stringify(this.config));
+      }
       window.dispatchEvent(new CustomEvent("bionativa:promotions_updated", { detail: this.config }));
       return true;
     } catch (err) {
@@ -59,9 +125,10 @@ class BionativaPromotionsEngine {
   }
 
   /**
-   * Escucha cambios en localStorage desde otras pestañas (ej: panel de admin -> tienda abierta).
+   * Escucha cambios de borrador únicamente dentro del panel de administración.
    */
   initCrossTabSync() {
+    if (!this.isAdminPage) return;
     window.addEventListener("storage", (e) => {
       if (e.key === this.storageKey) {
         this.config = this.loadConfig();
@@ -109,15 +176,18 @@ class BionativaPromotionsEngine {
     const discounts = this.config.productDiscounts || [];
 
     // Base fallback
-    let regularPrice = Number(fallbackPrice) || 0;
+    const fallback = Number(fallbackPrice);
+    let regularPrice = Number.isFinite(fallback) && fallback >= 0 ? fallback : 0;
+    let resolvedVariantId = variantId;
 
-    // Buscar el producto en BIONATIVA_PRODUCTS si no vino fallbackPrice
-    if (!regularPrice && window.BIONATIVA_PRODUCTS && Array.isArray(window.BIONATIVA_PRODUCTS)) {
+    // El catálogo oficial define la variante y el precio base cuando el producto existe.
+    if (window.BIONATIVA_PRODUCTS && Array.isArray(window.BIONATIVA_PRODUCTS)) {
       const prod = window.BIONATIVA_PRODUCTS.find(p => p.id === productId);
       if (prod) {
         if (!categoryId && prod.category) categoryId = prod.category;
-        if (variantId && Array.isArray(prod.variants)) {
-          const v = prod.variants.find(item => item.id === variantId);
+        if (Array.isArray(prod.variants) && prod.variants.length) {
+          resolvedVariantId = variantId || prod.defaultVariant || prod.variants[0].id;
+          const v = prod.variants.find(item => item.id === resolvedVariantId);
           regularPrice = v ? Number(v.price) : Number(prod.price);
         } else {
           regularPrice = Number(prod.price);
@@ -143,7 +213,7 @@ class BionativaPromotionsEngine {
       d.enabled && 
       d.targetType === "product" && 
       d.targetId === productId && 
-      (!d.variantId || d.variantId === variantId)
+      (!d.variantId || d.variantId === resolvedVariantId)
     );
 
     // 2. Si no hay regla de producto, buscar coincidencia por categoría
@@ -369,8 +439,10 @@ class BionativaPromotionsEngine {
         }
       }
 
-      // Guardar métricas sin emitir spam de eventos
-      localStorage.setItem(this.storageKey, JSON.stringify(this.config));
+      // Solo persistir métricas en borrador local dentro del panel de administración
+      if (this.isAdminPage) {
+        localStorage.setItem(this.storageKey, JSON.stringify(this.config));
+      }
     } catch (e) {
       console.warn("[PromotionsEngine] Error al registrar evento:", e);
     }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -27,7 +27,7 @@
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
 
   <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.min.css" />
   <link rel="stylesheet" href="css/styles.css" />
 
   <!-- Dynamic Schema.org JSON-LD will be injected here -->
@@ -175,7 +175,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div id="product-container" class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <!-- Javascript renders product content here -->
+        <!-- Estado inicial de carga / respaldo sin JS -->
+        <div class="lg:col-span-12 bg-white p-8 rounded-3xl border border-[#E8E2D8] text-center space-y-3">
+          <p class="text-sm font-semibold text-[#1E3B2B]">Cargando ficha técnica del suplemento...</p>
+          <noscript>
+            <p class="text-xs text-stone-600">Esta ficha técnica interactiva requiere JavaScript para mostrar presentaciones, calculadora de dosis y certificado COA.</p>
+            <a href="tienda" class="inline-flex items-center justify-center mt-2 px-5 py-2.5 rounded-xl bg-[#1E3B2B] text-white text-xs font-bold">Volver al Catálogo</a>
+          </noscript>
+        </div>
       </div>
 
       <!-- Complementary Products (Cross-selling / Sinergias Biológicas) -->
@@ -250,6 +257,19 @@
     let currentConsumers = 1;
 
     function initProduct() {
+      if (!Array.isArray(window.BIONATIVA_PRODUCTS) || window.BIONATIVA_PRODUCTS.length === 0) {
+        const container = document.getElementById("product-container");
+        if (container) {
+          container.innerHTML = `
+            <div class="lg:col-span-12 bg-white p-8 rounded-3xl border border-[#E8E2D8] text-center space-y-4">
+              <h2 class="text-lg font-bold text-[#1E3B2B]">No pudimos cargar la ficha del producto</h2>
+              <p class="text-xs text-stone-600">Por favor actualiza la página o explora nuestro catálogo completo.</p>
+              <a href="tienda" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-[#1E3B2B] text-white text-xs font-bold">Ir al Catálogo</a>
+            </div>
+          `;
+        }
+        return;
+      }
       const params = new URLSearchParams(window.location.search);
       const prodId = params.get("id") || "creatina-monohidratada";
 
@@ -712,8 +732,8 @@
 
         <!-- Full Width Tabs Section (8. Ingredientes, 9. Specs, 10. COA, 11. Uso Responsable) -->
         <div class="lg:col-span-12 mt-12">
-          <!-- Tab Navigation -->
-          <div class="border-b border-[#E8E2D8] flex flex-wrap gap-2 sm:gap-6 text-xs font-extrabold overflow-x-auto pb-0.5">
+          <!-- Tab Navigation (scroll horizontal limpio en móvil) -->
+          <div class="border-b border-[#E8E2D8] flex flex-nowrap md:flex-wrap gap-4 sm:gap-6 text-xs font-extrabold overflow-x-auto pb-0.5 -mx-4 px-4 sm:mx-0 sm:px-0">
             <button onclick="switchTab('tab-benefits')" id="btn-tab-benefits" class="tab-nav-btn pb-3.5 border-b-2 border-[#1E3B2B] text-[#1E3B2B] whitespace-nowrap">
               1. Beneficios Clínicos
             </button>

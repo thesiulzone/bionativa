@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estado de tu Pago | BioNativa LAB</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/tailwind.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -127,7 +127,16 @@
     };
 
     async function verifyPayment() {
+      const urlStatus = (params.get('status') || params.get('collection_status') || '').toLowerCase();
       if (!paymentId) {
+        if (urlStatus === 'rejected' || urlStatus === 'failure' || urlStatus === 'cancelled') {
+          showStatus('unknown', 'El pago no fue completado', 'La pasarela indicó que el pago fue cancelado o rechazado. Conservamos tu carrito para que puedas reintentarlo o elegir Yape/Transferencia.');
+          return;
+        }
+        if (urlStatus === 'pending' || urlStatus === 'in_process') {
+          showStatus('pending', 'Tu pago está en proceso', 'Mercado Pago aún no asigna un identificador definitivo. Conservamos tu carrito mientras se confirma la operación.');
+          return;
+        }
         showStatus('unknown', 'Aún no podemos confirmar tu pago', 'No encontramos un identificador de pago válido. Conserva tu carrito y vuelve a la tienda para consultar o reintentar.');
         return;
       }

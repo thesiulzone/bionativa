@@ -13,10 +13,14 @@ REDES SOCIALES RECURSOS/
 *.md
 *.mp4
 
-# Archivos de control de versiones y sistema operativo
+# Archivos de control de versiones, build y sistema operativo
 .git/
 .gitignore
 .assetsignore
+node_modules/
+package.json
+package-lock.json
+src/
 Thumbs.db
 desktop.ini
 .DS_Store
