@@ -97,7 +97,7 @@
       "name": "Combo Deportivo Fuerza & Recuperación",
       "badge": "Combo Más Vendido",
       "description": "Creatina Monohidratada 1kg + Proteína WPC80 1kg para maximizar síntesis proteica.",
-      "productIds": ["creatina-monohidratada", "proteina-whey-wpc80"],
+      "productIds": ["creatina-monohidratada", "proteina-suero-leche-80"],
       "regularTotalPrice": 194.00,
       "comboPrice": 169.00,
       "savings": 25.00,

@@ -111,8 +111,8 @@ test("all three combos add every product to the cart and pass server checkout va
       payer: {}
     });
     assert.deepEqual(
-      checkout.items.slice(0, combo.items.length).map(item => item.id),
-      combo.items.map(item => `${item.productId}__${item.variantId}`)
+      JSON.parse(JSON.stringify(checkout.items.slice(0, combo.items.length).map(item => item.id))),
+      JSON.parse(JSON.stringify(Array.from(combo.items, item => `${item.productId}__${item.variantId}`)))
     );
     assert.ok(checkout.total > 0);
   }
@@ -318,4 +318,97 @@ test("pago-resultado.html avoids innerHTML and treats manipulated payment_id as 
   const serialized = JSON.stringify(statusCard);
   assert.equal(serialized.includes("<img"), false);
   assert.equal(serialized.includes("onerror"), false);
+});
+
+test("Cloudflare worker serves centralized commercial config without cache", async () => {
+  const response = await worker.fetch(
+    new Request("https://bionativalab.com/api/commercial-config"),
+    {},
+    { waitUntil() {} }
+  );
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("Cache-Control") || "", /no-store/);
+  const data = await response.json();
+  assert.equal(data.source, "server");
+  assert.equal(data.catalog.length, CATALOG.length);
+  assert.ok(data.productDiscounts.length > 0);
+  assert.ok(data.coupons.length > 0);
+  assert.ok(data.shippingOptions.length > 0);
+});
+
+test("Cloudflare worker /api/quote validates prices, volume offers, and coupons on server", async () => {
+  const validRes = await worker.fetch(
+    new Request("https://bionativalab.com/api/quote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items: [{ productId: "creatina-monohidratada", variantId: "bolsa-1kg", quantity: 2, price: 0.01 }],
+        shippingId: "lima-recojo",
+        couponCode: "semanabionativa"
+      })
+    }),
+    {},
+    { waitUntil() {} }
+  );
+  assert.equal(validRes.status, 200);
+  const quote = await validRes.json();
+  assert.equal(quote.couponCode, "SEMANABIONATIVA");
+  assert.equal(quote.baseTotal, 121.34);
+  assert.equal(quote.cardTotal, 127.06);
+
+  const invalidCouponRes = await worker.fetch(
+    new Request("https://bionativalab.com/api/quote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items: [{ productId: "citrato-de-magnesio", variantId: "bolsa-1kg", quantity: 1 }],
+        shippingId: "lima-recojo",
+        couponCode: "SEMANABIONATIVA"
+      })
+    }),
+    {},
+    { waitUntil() {} }
+  );
+  assert.equal(invalidCouponRes.status, 400);
+});
+
+test("store promotions engine never writes config to localStorage and hydrates from server", async () => {
+  const browser = loadBrowserData();
+  let setItemCalls = 0;
+  const context = {
+    window: {
+      ...browser,
+      BIONATIVA_CONFIG: { shippingOptions: [] },
+      location: { pathname: "/tienda.html", protocol: "https:" },
+      addEventListener() {},
+      dispatchEvent() {}
+    },
+    localStorage: {
+      getItem: () => null,
+      setItem() { setItemCalls += 1; }
+    },
+    fetch: async () => Response.json({
+      version: "2.0.0",
+      serverTime: "2026-11-26T20:00:00.000Z",
+      catalog: [{ id: "creatina-monohidratada", price: 99, variants: [{ id: "bolsa-1kg", price: 99 }] }],
+      shippingOptions: [{ id: "lima-recojo", name: "Retiro", price: 0 }],
+      activeCampaign: browser.BIONATIVA_PROMOTIONS_DEFAULT.activeCampaign,
+      productDiscounts: [{ id: "promo-server", targetType: "product", targetId: "creatina-monohidratada", variantId: "bolsa-1kg", regularPrice: 99, promoPrice: 79, discountPercent: 20, badge: "20% OFF", enabled: true }],
+      volumeOffers: [],
+      combos: [],
+      coupons: []
+    }),
+    CustomEvent: class CustomEvent {}
+  };
+  vm.createContext(context);
+  vm.runInContext(fs.readFileSync("js/promotions-engine.js", "utf8"), context);
+  await new Promise(resolve => setTimeout(resolve, 0));
+
+  const engine = context.window.BionativaPromotions;
+  engine.trackEvent("impression");
+  assert.equal(setItemCalls, 0, "Store must not persist promotions config or metrics in localStorage");
+  assert.equal(engine.serverSynced, true);
+  const pricing = engine.getProductPricing("creatina-monohidratada", "bolsa-1kg");
+  assert.equal(pricing.regularPrice, 99);
+  assert.equal(pricing.promoPrice, 79);
 });
