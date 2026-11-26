@@ -604,7 +604,7 @@ const BIONATIVA_PRODUCTS = [
     "badge": "Metabolismo & Longevidad",
     "rating": 4.8,
     "reviewsCount": 57,
-    "image": "img/products/te-verde-extracto-1kg.jpg",
+    "image": "img/products/te-verde-extracto-bolsa-1kg.jpg",
     "hasVariants": true,
     "price": 194.6,
     "unit": "1KG",
@@ -635,7 +635,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-TEV-BOL-1K",
-        "image": "img/products/te-verde-extracto-1kg.jpg"
+        "image": "img/products/te-verde-extracto-bolsa-1kg.jpg"
       },
       {
         "id": "pote-1kg",
@@ -645,7 +645,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-TEV-POT-1K",
-        "image": "img/products/te-verde-extracto-1kg.jpg"
+        "image": "img/products/te-verde-extracto-pote-1kg.jpg"
       },
       {
         "id": "tambor-25kg",
