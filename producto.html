@@ -512,28 +512,55 @@
 
             <!-- Tab 3: COA & Composition -->
             <div id="tab-coa" class="tab-panel hidden space-y-4">
-              <div class="bg-white p-5 rounded-2xl border border-[#E8E2D8] space-y-3">
-                <div class="flex items-center justify-between">
-                  <h4 class="font-bold text-base text-[#1E3B2B]">Especificaciones Técnicas & COA:</h4>
-                  <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">COA Aprobado</span>
+              <div class="bg-white p-6 rounded-2xl border border-[#E8E2D8] space-y-5">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <h4 class="font-bold text-base text-[#1E3B2B]">Especificaciones Técnicas & Pureza Analítica</h4>
+                    <p class="text-xs text-stone-500">Materia prima importada con verificación analítica de laboratorio</p>
+                  </div>
+                  <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 self-start sm:self-auto flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    <span>COA Aprobado & Vigente</span>
+                  </span>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-2">
-                  <div class="bg-[#FAF9F6] p-3 rounded-lg border border-[#E8E2D8]">
-                    <span class="text-stone-400 block">Composición Declarada:</span>
-                    <strong class="text-stone-800">${currentProduct.composition}</strong>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div class="bg-[#FAF9F6] p-3.5 rounded-xl border border-[#E8E2D8]">
+                    <span class="text-stone-400 block mb-0.5">Composición Declarada:</span>
+                    <strong class="text-stone-800 text-sm">${currentProduct.composition}</strong>
                   </div>
-                  <div class="bg-[#FAF9F6] p-3 rounded-lg border border-[#E8E2D8]">
-                    <span class="text-stone-400 block">Pureza Analítica:</span>
-                    <strong class="text-stone-800">${currentProduct.coaPurity}</strong>
+                  <div class="bg-[#FAF9F6] p-3.5 rounded-xl border border-[#E8E2D8]">
+                    <span class="text-stone-400 block mb-0.5">Pureza Analítica:</span>
+                    <strong class="text-stone-800 text-sm text-emerald-700">${currentProduct.coaPurity}</strong>
                   </div>
-                  <div class="bg-[#FAF9F6] p-3 rounded-lg border border-[#E8E2D8]">
-                    <span class="text-stone-400 block">Estándar de Fabricación:</span>
-                    <strong class="text-stone-800">Grado Farmacéutico / USP Compliant</strong>
+                  <div class="bg-[#FAF9F6] p-3.5 rounded-xl border border-[#E8E2D8]">
+                    <span class="text-stone-400 block mb-0.5">Estándar de Fabricación:</span>
+                    <strong class="text-stone-800 text-sm">Grado Farmacéutico / USP Compliant</strong>
                   </div>
-                  <div class="bg-[#FAF9F6] p-3 rounded-lg border border-[#E8E2D8]">
-                    <span class="text-stone-400 block">Metales Pesados & Microbiología:</span>
-                    <strong class="text-stone-800">Cumple límites de pureza alimentaria</strong>
+                  <div class="bg-[#FAF9F6] p-3.5 rounded-xl border border-[#E8E2D8]">
+                    <span class="text-stone-400 block mb-0.5">Metales Pesados & Microbiología:</span>
+                    <strong class="text-stone-800 text-sm">Cumple estándares USP de inocuidad</strong>
                   </div>
+                </div>
+
+                <!-- COA Actions: Direct Download & WhatsApp Batch Verification -->
+                <div class="pt-3 border-t border-[#E8E2D8] flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                  ${currentProduct.coaPdf ? `
+                    <a href="${currentProduct.coaPdf}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-bold px-5 py-3 rounded-xl text-xs transition shadow-sm hover:shadow">
+                      <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                      <span>Descargar Certificado COA Oficial (PDF)</span>
+                    </a>
+                  ` : ''}
+
+                  <a href="https://wa.me/51981278458?text=Hola%20BioNativa%20LAB,%20deseo%20verificar%20el%20Certificado%20COA%20del%20lote%20actual%20del%20producto:%20${encodeURIComponent(currentProduct.name)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-[#FAF9F6] hover:bg-[#F0ECE1] text-[#1E3B2B] font-bold px-5 py-3 rounded-xl text-xs border border-[#D5CDBD] transition">
+                    <svg class="w-4 h-4 text-[#25D366] fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
+                    <span>Consultar Lote Específico por WhatsApp</span>
+                  </a>
+                </div>
+
+                <div class="p-3 bg-[#FAF6F0] rounded-xl border border-[#E8E2D8] text-[11px] text-stone-600 flex items-start gap-2">
+                  <span class="text-sm">🔍</span>
+                  <p><strong>Trazabilidad por Lote:</strong> Cada empaque recibido incluye su número de lote y fecha de vencimiento impresa. Puedes contrastar tu lote escribiéndonos con la foto de tu etiqueta para remitirte la hoja analítica puntual emitida por el fabricante.</p>
                 </div>
               </div>
             </div>

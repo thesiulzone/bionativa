@@ -1,7 +1,7 @@
 /**
  * BIONATIVA LAB - Catálogo Oficial de Productos
  * Optimizado para SEO, AEO (Answer Engine Optimization) y GEO
- * Actualizado con Presentaciones Oficiales del Catálogo de Insumos & Maquila 2026
+ * Actualizado con Presentaciones Oficiales, Trazabilidad COA y Precios Web
  * Moneda: Soles Peruanos (PEN - S/)
  */
 
@@ -18,11 +18,11 @@ const BIONATIVA_PRODUCTS = [
     "image": "img/products/creatina-monohidratada-pote-1kg.jpg",
     "hasVariants": true,
     "defaultVariant": "bolsa-1kg",
-        "variants": [
+    "variants": [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 85.40,
+        "price": 85.4,
         "weight": "1 kg",
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -32,7 +32,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 89.90,
+        "price": 89.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario (+S/ 4.50)",
         "packagingType": "pote",
@@ -42,7 +42,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "caja-25kg",
         "name": "Caja Industrial 25 kg (Por Mayor / Granel)",
-        "price": 1749.90,
+        "price": 1749.9,
         "weight": "25 kg",
         "format": "Caja Corrugada Industrial (S/ 70.00/kg Mayorista)",
         "packagingType": "industrial-caja",
@@ -73,7 +73,11 @@ const BIONATIVA_PRODUCTS = [
         "q": "¿La creatina retiene líquidos o daña los riñones?",
         "a": "En personas sanas, la evidencia científica demuestra que la creatina es el suplemento más seguro del mundo. La retención hídrica es intracelular (dentro del miocito), lo cual favorece la síntesis proteica y el volumen celular, no es retención subcutánea ni hinchazón."
       }
-    ]
+    ],
+    "coaPdf": "docs/coa/coa-creatina-monohidratada.pdf",
+    "regularPrice": 98,
+    "discountBadge": "-13% WEB",
+    "highlightBadge": "🔥 MÁS VENDIDO"
   },
   {
     "id": "proteina-suero-leche-80",
@@ -138,7 +142,11 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/proteina-suero-leche-80-20kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "coaPdf": "docs/coa/coa-whey-protein-80.pdf",
+    "regularPrice": 149,
+    "discountBadge": "-12% WEB",
+    "highlightBadge": "💪 80% PROTEÍNA REAL"
   },
   {
     "id": "glutamina-pura",
@@ -333,7 +341,11 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/proteina-soya-vegetal-20kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "coaPdf": "docs/coa/coa-proteina-soya.pdf",
+    "regularPrice": 42,
+    "discountBadge": "-17% WEB",
+    "highlightBadge": "🌱 90% AISLADO VEGANO"
   },
   {
     "id": "colageno-hidrolizado",
@@ -398,7 +410,11 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/colageno-hidrolizado-20kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "coaPdf": "docs/coa/coa-colageno-hidrolizado.pdf",
+    "regularPrice": 68,
+    "discountBadge": "-18% WEB",
+    "highlightBadge": "✨ PÉPTIDOS BIOACTIVOS"
   },
   {
     "id": "glucosamina-sulfato",
@@ -463,7 +479,11 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/glucosamina-sulfato-25kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "coaPdf": "docs/coa/coa-glucosamina-sulfato.pdf",
+    "regularPrice": 72,
+    "discountBadge": "-16% WEB",
+    "highlightBadge": "🦴 SALUD ARTICULAR"
   },
   {
     "id": "ascorbato-de-sodio",
@@ -528,7 +548,10 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/ascorbato-de-sodio-25kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "regularPrice": 115,
+    "discountBadge": "-15% WEB",
+    "highlightBadge": "🍊 VITAMINA C ALCALINA"
   },
   {
     "id": "espirulina-pura",
@@ -593,7 +616,11 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/espirulina-pura-25kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "coaPdf": "docs/coa/coa-espirulina-pura.pdf",
+    "regularPrice": 105,
+    "discountBadge": "-13% WEB",
+    "highlightBadge": "🌿 SUPERALIMENTO 100%"
   },
   {
     "id": "te-verde-extracto",
@@ -727,7 +754,11 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/citrato-de-magnesio-25kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "coaPdf": "docs/coa/coa-citrato-magnesio.pdf",
+    "regularPrice": 28,
+    "discountBadge": "-20% WEB",
+    "highlightBadge": "🔥 MÁS VENDIDO"
   },
   {
     "id": "glicinato-de-magnesio",
@@ -792,7 +823,11 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/glicinato-de-magnesio-25kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "coaPdf": "docs/coa/coa-bisglicinato-magnesio.pdf",
+    "regularPrice": 58,
+    "discountBadge": "-15% WEB",
+    "highlightBadge": "🌙 NOBLE & QUELADO"
   },
   {
     "id": "cloruro-de-magnesio",
@@ -857,7 +892,10 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/cloruro-de-magnesio-25kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "regularPrice": 25,
+    "discountBadge": "-19% WEB",
+    "highlightBadge": "⚡ SAL MINERAL PURA"
   },
   {
     "id": "citrato-de-potasio",
@@ -987,7 +1025,10 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/sal-de-epsom-25kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "regularPrice": 16,
+    "discountBadge": "-22% WEB",
+    "highlightBadge": "🛁 PURIFICACIÓN PURA"
   },
   {
     "id": "ashwagandha-pura",
@@ -1052,7 +1093,10 @@ const BIONATIVA_PRODUCTS = [
         "image": "img/products/industrial/ashwagandha-pura-25kg.jpg",
         "isBulk": true
       }
-    ]
+    ],
+    "regularPrice": 142,
+    "discountBadge": "-12% WEB",
+    "highlightBadge": "🧘 ADAPTÓGENO PURO"
   },
   {
     "id": "sulfato-de-condroitina",
@@ -1251,7 +1295,6 @@ const BIONATIVA_PRODUCTS = [
   }
 ];
 
-// Configuración Global de la Marca y GEO
 const BIONATIVA_CONFIG = {
   "brandName": "BioNativa LAB",
   "tagline": "El estándar de tu naturaleza",
@@ -1337,8 +1380,10 @@ const BIONATIVA_CONFIG = {
   ]
 };
 
-// Exportar globalmente para el navegador
 if (typeof window !== "undefined") {
   window.BIONATIVA_PRODUCTS = BIONATIVA_PRODUCTS;
   window.BIONATIVA_CONFIG = BIONATIVA_CONFIG;
+}
+if (typeof module !== "undefined") {
+  module.exports = { BIONATIVA_PRODUCTS, BIONATIVA_CONFIG };
 }

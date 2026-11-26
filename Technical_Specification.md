@@ -1,155 +1,145 @@
-# Especificación Técnica: Actualización de Presentaciones Oficiales y Edición de Imágenes de Catálogo con Marca BioNativa LAB
+# Especificación Técnica: Correcciones de Calidad, UX/UI, Cumplimiento Regulatorio y Sistema COA
 
-## 1. Resumen Ejecutivo y Diagnóstico
-El usuario ha proporcionado el **Catálogo Oficial de Insumos & Maquila 2026 de Inchem**, solicitando:
-1. **Revisar todos los productos del catálogo adjunto** frente a los productos ya cargados en la plataforma web de **BioNativa LAB** (`bionativalab.com`).
-2. **Actualizar las presentaciones** de cada producto conforme a las especificaciones técnicas y comerciales del catálogo (formatos minoristas de 1 kg en Pote Plastificado y Bolsa de Polietileno, así como formatos industriales a granel de 20 kg y 25 kg en Caja, Saco o Tambor).
-3. **Editar las imágenes del catálogo** reemplazando todos los logotipos y membretes del proveedor/maquilador (*Inchem*) por la **identidad visual oficial de BioNativa LAB** (logotipo vectorizado, isotipo botánico/mineral `#1E3B2B` y `#B67A52`, tipografía boticaria y sellos de calidad).
-
-Conforme a las **Reglas Maestro de Desarrollo Web**, este documento formaliza la planificación técnica, estructura de datos, procesamiento de imagen y arquitectura UI/UX para su aprobación previa.
+**Fecha:** 25 de Noviembre de 2026  
+**Proyecto:** BioNativa LAB (`bionativalab.com`)  
+**Estado:** Propuesta Técnica para Aprobación  
 
 ---
 
-## 2. Matriz Comparativa: Catálogo Inchem vs. Productos BioNativa LAB
+## 1. Resumen de Objetivos
 
-A continuación se detalla la concordancia entre los 11 folios del catálogo y los 16 productos actualmente operativos en `js/products-data.js`, más los 3 productos nuevos identificados:
+El presente documento detalla la arquitectura técnica y el plan de implementación para solventar 5 aspectos clave de la plataforma BioNativa LAB:
 
-| # | Producto en Catálogo Inchem | ID en Web BioNativa | Categoría en Web | Presentación Minorista (1 kg) | Presentación Industrial / Granel | Estado en Web Actual |
-|---|-----------------------------|---------------------|------------------|-------------------------------|----------------------------------|----------------------|
-| 1 | **Creatina Monohidratada** (Pág. 3) | `creatina-monohidratada` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Tenía variantes desactualizadas (300g, 600g, cápsulas) |
-| 2 | **Proteína Suero de Leche** (Pág. 4) | `proteina-suero-leche-80` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 20 kg** | Solo unitario 1KG sin selector |
-| 3 | **Proteína de Soya** (Pág. 4) | `proteina-soya-vegetal` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 20 kg** | Solo unitario 1KG sin selector |
-| 4 | **Ashwagandha** (Pág. 4) | `ashwagandha-pura` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado y Corregido:** 3 Presentaciones oficiales BioNativa LAB (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
-| 5 | **Glucosamina** (Pág. 4) | `glucosamina-sulfato` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 6 | **Espirulina** (Pág. 5) | `espirulina-pura` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado y Corregido:** 3 Presentaciones oficiales BioNativa LAB con imágenes de alta resolución (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
-| 7 | **Citrato de Magnesio** (Pág. 5) | `citrato-de-magnesio` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 8 | **Citrato de Potasio** (Pág. 5) | `citrato-de-potasio` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 9 | **Sal de Epsom** (Pág. 6) | `sal-de-epsom` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 10 | **Cloruro de Magnesio Hexahidratado** (Pág. 6) | `cloruro-de-magnesio` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 11 | **Té Verde** (Pág. 6) | `te-verde-extracto` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado y Corregido:** 3 Presentaciones oficiales BioNativa LAB con imágenes de alta resolución (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
-| 12 | **Péptidos Bioactivos de Colágeno Hidrolizado Puro (Tipo I & III)** (Pág. 7) | `colageno-hidrolizado` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 20 kg** | Actualizado con imágenes reales (Bolsa 1kg y Saco 20kg) y selector completo |
-| 13 | **L - Arginina** (Pág. 7) | `arginina-pura` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 14 | **L - Glutamina** (Pág. 7) | `glutamina-pura` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 15 | **Ascorbato de Sodio** (Pág. 7) | `ascorbato-de-sodio` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 16 | **Glicinato de Magnesio** (Pág. 8) | `glicinato-de-magnesio` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 17 | **Sulfato de Condroitina** (Pág. 5) | `sulfato-de-condroitina` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado e Incorporado:** 3 Presentaciones oficiales BioNativa LAB (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
-| 18 | **L - Carnitina Base** (Pág. 8) | `l-carnitina-base` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado e Incorporado:** 3 Presentaciones oficiales BioNativa LAB (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
-| 19 | **Stevia** (Pág. 8) | `stevia-pura` | Salud Articular / Nutra | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado e Incorporado:** 3 Presentaciones oficiales BioNativa LAB (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
+1. **Corrección de caracteres y signos de interrogación en el banner de despachos (Portada).**
+2. **Corrección de textos mal renderizados en el pie de página y página de contacto («Y" Lima» y «Yss Perú Nacional»).**
+3. **Revisión científica y regulatoria de la sección de Preguntas Frecuentes (FAQ) en HTML y JSON-LD (Cumplimiento DIGESA / EFSA).**
+4. **Optimización comercial y de conversión en la sección de Productos Destacados (Precios ancla, badges de descuento y micro-llamadas a la acción).**
+5. **Implementación del Sistema de Consulta y Descarga de Certificados de Análisis (COA) por producto y verificación de lote.**
 
 ---
 
-## 3. Arquitectura del Modelo de Datos de Presentaciones (`js/products-data.js`)
+## 2. Diagnóstico Detallado y Solución Técnica
 
-Cada producto adoptará el esquema estandarizado de variantes (`variants`) habilitado por `hasVariants: true`:
-
-```javascript
-{
-  id: "creatina-monohidratada",
-  name: "Creatina Monohidratada 100% Pura",
-  shortName: "Creatina Monohidratada",
-  // ... metadatos SEO / beneficios / COA ...
-  hasVariants: true,
-  defaultVariant: "bolsa-1kg",
-  variants: [
-    {
-      id: "bolsa-1kg",
-      name: "Bolsa de Polietileno 1 kg",
-      shortDescription: "Formato Ahorro Termosellado listo para consumo o dosificación",
-      price: 85.40,
-      weight: "1 kg",
-      format: "Bolsa Polietileno Grado Alimentario",
-      packagingType: "bolsa",
-      sku: "BIO-CRE-BOL-1K",
-      image: "img/products/creatina-monohidratada-1kg.jpg"
-    },
-    {
-      id: "pote-1kg",
-      name: "Pote Plastificado 1 kg",
-      shortDescription: "Envase rígido boticario con tapa hermética y precinto",
-      price: 89.90, // Margen por envase rígido boticario
-      weight: "1 kg",
-      format: "Pote HDPE Blanco Farmacéutico",
-      packagingType: "pote",
-      sku: "BIO-CRE-POT-1K",
-      image: "img/products/creatina-monohidratada-1kg.jpg"
-    },
-    {
-      id: "caja-25kg",
-      name: "Caja Industrial 25 kg (Mayorista / Granel)",
-      shortDescription: "Insumo puro para envasado, distribución o formulación industrial",
-      price: 1850.00, // Precio industrial mayorista (S/ 74.00/kg)
-      weight: "25 kg",
-      format: "Caja Corrugada Industrial con Bolsa Doble Barrera",
-      packagingType: "industrial-caja",
-      sku: "BIO-CRE-IND-25K",
-      image: "img/products/industrial/creatina-monohidratada-25kg.jpg",
-      isBulk: true
-    }
-  ]
-}
-```
-
-### Reglas de Precios para Formatos Industriales:
-1. **Bolsa 1 kg:** Precio base actual del catálogo web.
-2. **Pote Plastificado 1 kg:** Precio base + S/ 4.50 a S/ 5.00 (absorción de costo de envase rígido de alta densidad con precinto de seguridad).
-3. **Presentación Industrial (20 kg / 25 kg):** Precio mayorista por volumen con descuento entre 12% y 20% por kilogramo respecto al precio unitario minorista, ideal para farmacias, gimnasios, centros de nutrición y formuladores independientes.
+### Componente 1: Banner de Despachos en Portada (`index.html`)
+* **Archivo afectado:** `index.html` (Línea 719 y Línea 1095).
+* **Problema:** Un carácter especial fue sustituido por un literal `?` (`Despacho inmediato en Lima y Cusco ? Envíos diarios vía Shalom y Marvisur`), y en la línea 1095 aparece `~. ★ Producto Estrella`.
+* **Solución Técnica:**
+  * Sustituir el `?` por un punto separador estilizado `&bull;` (`•`) o un micro-ícono SVG de verificación verde para máxima estabilidad entre navegadores.
+  * Formato resultante:
+    ```html
+    <p class="text-xs text-stone-500 pt-2 flex items-center justify-center lg:justify-start gap-2">
+      <svg class="w-4 h-4 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+      </svg>
+      <span>Despacho inmediato en <strong>Lima</strong> y <strong>Cusco</strong> • Envíos diarios a todo el Perú vía <strong>Shalom</strong> y <strong>Marvisur</strong></span>
+    </p>
+    ```
+  * En línea 1095, corregir `~. ★` por un ícono SVG de estrella o medalla de excelencia.
 
 ---
 
-## 4. Pipeline de Edición y Branding de Imágenes
-
-### 4.1. Origen de las Imágenes
-- Extracción vectorial y ráster a **300 DPI (4371 x 2835 píxeles)** directamente del documento maestro PDF mediante PyMuPDF (`fitz`).
-- Aislamiento fotográfico de los empaques:
-  - **Pote Plastificado + Bolsa de Polietileno (1 kg)**: Conservación de sombras, texturas de polietileno y contenido en polvo.
-  - **Caja Industrial (25 kg)**: Empaque corrugado con montículo de polvo de alta pureza.
-  - **Tambor Industrial (25 kg)**: Tambor de fibra kraft con aro metálico y muestra granulométrica.
-  - **Saco Industrial (20 kg / 25 kg)**: Saco de papel kraft multicapa con cuchara dosificadora/polvo.
-
-### 4.2. Tratamiento de Branding BioNativa LAB
-1. **Eliminación del Logo Inchem:**
-   - En las bolsas de 1 kg: Limpieza digital de la etiqueta rectangular vertical.
-   - En cajas y tambores industriales: Cobertura precisa de la zona de marca del proveedor respetando la tonalidad del papel sticker y la perspectiva fotográfica.
-2. **Aplicación del Sistema Gráfico BioNativa:**
-   - **Isotipo oficial:** Hoja botánica orgánica verde bosque (`#1E3B2B`) y faceta cristalina mineral terracota (`#B67A52`).
-   - **Logomarca:** *BioNativa LAB* con tipografía Plus Jakarta Sans 800.
-   - **Slogan institucional:** *"El estándar de tu naturaleza"*.
-   - **Etiqueta Boticaria en Pote Blanco:** Incorporación de etiqueta frontal minimalista boticaria en el pote cilíndrico blanco, elevando la percepción de producto terminado premium.
-   - **Sello COA:** Incorporación de la insignia *"Pureza Certificada COA | Lote Controlado"*.
-
-### 4.3. Nomenclatura y Rutas de Archivos:
-- `G:\Mi unidad\CONTABILIDAD\BIONATIVA\img\products\[id]-bolsa-1kg.jpg` (Presentación Bolsa de Polietileno con etiqueta oficial BioNativa LAB).
-- `G:\Mi unidad\CONTABILIDAD\BIONATIVA\img\products\[id]-pote-1kg.jpg` (Presentación Pote Boticario con etiqueta oficial de doble borde verde/cobre).
-- `G:\Mi unidad\CONTABILIDAD\BIONATIVA\img\products\[id]-1kg.jpg` (Imagen principal para tarjetas de catálogo y metadatos SEO).
-- `G:\Mi unidad\CONTABILIDAD\BIONATIVA\img\products\industrial\[id]-25kg.jpg` (o 20kg en Colágeno: Presentación Caja Industrial con montículo de polvo y etiqueta oficial).
-
----
-
-## 5. Mejoras de Interfaz de Usuario (UI/UX)
-
-1. **Ficha de Producto (`producto.html`):**
-   - Selector de presentaciones dinámico con selector visual de 3 tarjetas:
-     - 📦 *Bolsa de Polietileno 1 kg (Ahorro)*
-     - 🍶 *Pote Plastificado 1 kg (Boticario)*
-     - 🏭 *Caja Industrial 25 kg / 20 kg (Mayorista / Granel)*
-   - Cambio reactivo e instantáneo de fotografía principal según la presentación elegida (Bolsa, Pote o Caja Industrial).
-   - Actualización dinámica del precio, SKU y disponibilidad.
-   - En presentaciones industriales, botón de WhatsApp con mensaje especializado: *"Deseo cotizar / comprar al por mayor [Producto] en [Presentación Industrial]"*.
-
-2. **Catálogo de Tienda (`tienda.html`):**
-   - Tarjetas de producto con indicación de presentaciones disponibles: *"Presentaciones: Pote 1kg • Bolsa 1kg • Industrial"*.
-   - Rango de precio *"Desde S/ [precio_bolsa]"*.
-
-3. **Carrito y Checkout (`js/cart.js`):**
-   - Soporte total para registrar la variante exacta en el carrito.
-   - Detalle en el desglose de WhatsApp y Mercado Pago indicando la presentación seleccionada para evitar errores en despacho de almacén.
+### Componente 2: Footer y Contacto - Íconos Vectoriales SVG (`index.html`, `contacto.html`)
+* **Archivos afectados:** `index.html` (Líneas 1533-1541), `contacto.html` (Líneas 174-194).
+* **Problema:** Caracteres corruptos UTF-8 («Y" Lima» y «Yss Perú Nacional») producidos por codificación mojibake de emojis.
+* **Solución Técnica:**
+  * Reemplazar los textos corruptos por componentes estructurados con íconos vectoriales SVG inline con soporte responsivo y color temático boticario (`text-[#B67A52]` y `text-emerald-400`).
+  * Estructura técnica:
+    ```html
+    <div class="text-xs text-stone-400 space-y-2">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#B67A52] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        <p><strong>Lima:</strong> Despacho express y recojo coordinado en almacén.</p>
+      </div>
+      <div class="flex items-start gap-2">
+        <svg class="w-4 h-4 text-[#B67A52] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        <p><strong>Cusco:</strong> Av. Teodosio Serrudo B'10b, Urb. Coripata Sur (Retiro en tienda y reparto local).</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#B67A52] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+        </svg>
+        <p><strong>Perú Nacional:</strong> Envíos diarios vía agencias Shalom y Marvisur.</p>
+      </div>
+    </div>
+    ```
 
 ---
 
-## 6. Plan de Implementación y Fases
+### Componente 3: Adecuación Científica y Regulatoria en Preguntas Frecuentes (FAQ)
+* **Archivos afectados:** `index.html` (Líneas 245-318 en JSON-LD y Líneas 1240-1340 en HTML).
+* **Problema:** Declaraciones categóricas de salud ("eliminar calambres nocturnos", "la mejor para insomnio, ansiedad y estrés crónico"). En Perú (DIGESA) y estándares internacionales, los suplementos no pueden proclamarse como medicamentos curativos ni ansiolíticos.
+* **Solución Técnica:**
+  * Reformular respetando las directrices de salud funcional de EFSA / DIGESA:
+    1. **Citrato de Magnesio:** *"Favorece la digestión y el tránsito intestinal regular, apoya la función muscular normal y contribuye al equilibrio electrolítico frente al agotamiento físico."*
+    2. **Bisglicinato de Magnesio:** *"Forma quelada de máxima biodisponibilidad y excelente tolerancia gástrica. Contribuye a la relajación neuromuscular, apoya el funcionamiento del sistema nervioso y promueve un descanso nocturno reparador."*
+    3. **Cloruro de Magnesio:** *"Sal mineral tradicional que participa en el mantenimiento de la estructura ósea y en el rendimiento muscular."*
+    4. **FAQ 2 (Mecanismo):** Explicar con rigor fisiológico que el magnesio actúa como cofactor biológico en más de 300 reacciones enzimáticas, facilitando la síntesis de neurotransmisores asociados a la serenidad y la relajación neuromuscular.
+    5. **Disclaimer Regulatorio Oficial:** Añadir una caja de aviso transparente al pie del FAQ:
+       *«Aviso de Responsabilidad: Los suplementos nutricionales de BioNativa LAB son alimentos y complementos puros de grado farmacéutico. No son medicamentos ni sustituyen una alimentación equilibrada ni prescripciones médicas. Si usted se encuentra bajo tratamiento médico o en período de gestación, consulte con su especialista de la salud.»*
 
-- [x] **Fase 1: Diagnóstico e inventario exhaustivo** del catálogo Inchem vs. base de datos BioNativa.
-- [x] **Fase 2: Procesamiento gráfico automatizado** con script en Python (`generate_corrected_presentations.py`) aplicando las plantillas fotográficas reales (Bolsa, Pote Boticario y Caja Industrial con polvo) y tipografía antialias para los productos solicitados.
-- [x] **Fase 3: Actualización del catálogo de datos** en `js/products-data.js` con las nuevas presentaciones, SKUs, imágenes independientes por variante y precios.
-- [x] **Fase 4: Adaptación de la galería y selector dinámico** en `producto.html`.
-- [x] **Fase 5: Validación completa de flujo**, existencia y resolución de todas las imágenes.
+---
+
+### Componente 4: Sección de Productos Destacados de Alta Conversión
+* **Archivos afectados:** `index.html` (Líneas 1025-1065 y 1728-1775), `js/products-data.js`.
+* **Problema:** Grid plano de 8 productos sin badges de ahorro, sin precio tachado comparativo ni micro-incentivos de compra.
+* **Solución Técnica:**
+  * **Cintillo promocional:** Añadir un cintillo boticario sobre la grilla:
+    *«🌿 Pureza Farmacéutica Directa de Origen • Descuentos por Volumen y Formatos de 1 Kilo Sellado»*
+  * **Enriquecimiento de datos en `js/products-data.js`:**
+    * Agregar a los productos destacados el `regularPrice` (precio de referencia antes del descuento) y `discountBadge` (ej. `"-15% WEB"`, `"MÁS VENDIDO"`, `"FORMATO AHORRO"`).
+  * **Tarjetas Comerciales Mejoradas en `initIndexFeatured()`:**
+    * Badge visual flotante de descuento / popularidad (`bg-amber-600` o `bg-emerald-800`).
+    * Precios con Anclaje Visual: Precio regular tachado (`text-xs text-stone-400 line-through`) junto al precio final en negrita grande (`text-base sm:text-lg font-black text-[#1E3B2B]`).
+    * Micro-beneficio visible: `"Pureza 99.9% COA"` o `"Ahorra S/ 13.60"`.
+    * Botón primario *"Agregar"* + enlace sutil *"Ver Ficha y Presentaciones"*.
+
+---
+
+### Componente 5: Sistema de Consulta y Descarga de Certificados COA
+* **Archivos afectados:** `producto.html`, `index.html`, `js/products-data.js`.
+* **Carpeta de Documentos:** `docs/coa/` (Copiando los PDFs desde `FICHAS TECNICAS/` con nombres web amigables y libres de espacios para compatibilidad HTTP).
+* **Mapeo de Documentos Analíticos Oficiales:**
+  1. `creatina-monohidratada` -> `docs/coa/coa-creatina-monohidratada.pdf`
+  2. `citrato-de-magnesio` -> `docs/coa/coa-citrato-magnesio.pdf`
+  3. `glicinato-de-magnesio` -> `docs/coa/coa-bisglicinato-magnesio.pdf`
+  4. `proteina-suero-leche-80` -> `docs/coa/coa-whey-protein-80.pdf`
+  5. `colageno-hidrolizado` -> `docs/coa/coa-colageno-hidrolizado.pdf`
+  6. `espirulina-pura` -> `docs/coa/coa-espirulina-pura.pdf`
+  7. `glucosamina-sulfato` -> `docs/coa/coa-glucosamina-sulfato.pdf`
+  8. `proteina-soya-vegetal` -> `docs/coa/coa-proteina-soya.pdf`
+* **Implementación UI en `producto.html` (Pestaña COA):**
+  * Presentar las especificaciones fisicoquímicas reales.
+  * Botón primario: **[📄 Descargar Certificado de Análisis COA (PDF Oficial)]** con apertura en nueva pestaña (`target="_blank"`).
+  * Botón secundario: **[📲 Consultar Lote Específico por WhatsApp]** con enlace directo que envía:  
+    *`"Hola BioNativa LAB, deseo verificar el Certificado COA del lote actual del producto: [Nombre del Producto]"`*.
+* **Implementación en la Portada (`index.html`):**
+  * En la tarjeta de valor de "Certificado COA" de la portada, agregar un enlace/botón interactivo para ver los certificados analíticos descargables disponibles de los productos más vendidos.
+
+---
+
+## 3. Plan de Ejecución
+
+1. **Fase 1: Preparación de Recursos Documentales:**
+   * Crear la carpeta `docs/coa/` en la raíz del proyecto.
+   * Copiar y renombrar los archivos PDF desde `FICHAS TECNICAS/` a nombres web-safe.
+2. **Fase 2: Actualización de Datos (`js/products-data.js`):**
+   * Incorporar a los productos las propiedades: `coaPdf`, `regularPrice`, `badgeHighlight`.
+3. **Fase 3: Corrección Tipográfica y UI en Portada y Footer (`index.html`, `contacto.html`):**
+   * Reparar el banner de despachos (punto 1).
+   * Sustituir los textos mal renderizados del footer por los íconos SVG boticarios (punto 2).
+4. **Fase 4: Adecuación de Preguntas Frecuentes (`index.html`):**
+   * Actualizar FAQ en HTML y JSON-LD con declaraciones funcionales y descargo sanitario (punto 3).
+5. **Fase 5: Mejora del Grid de Destacados (`index.html`):**
+   * Actualizar la función `initIndexFeatured()` con la plantilla de alta conversión (punto 4).
+6. **Fase 6: Ficha de Producto y Trazabilidad COA (`producto.html`):**
+   * Integrar la descarga directa de COA y consulta de lote por WhatsApp (punto 5).
+7. **Fase 7: Verificación Cruzada y Testing:**
+   * Validar sintaxis, renderizado móvil y enlaces en navegador.
+
+---
+*Fin de la Especificación Técnica. En espera de confirmación para proceder con la ejecución.*
