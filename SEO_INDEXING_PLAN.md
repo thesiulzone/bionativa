@@ -90,10 +90,10 @@ Existen dos alternativas de implementación para resolver el problema de las fic
   - En `producto.html`, ubicar un script síncrono al inicio del `<head>` que inspeccione `window.location.search`.
   - Si existe un parámetro `id`, actualizar de forma síncrona la etiqueta canónica, el `<title>` y los metadatos antes de que el parser concluya el `<head>`.
   - En el HTML estático base, eliminar el enlace canónico fijo a `producto.html` para evitar que Googlebot lo interprete como la página canónica de todas las variantes.
-  - Enriquecer `sitemap.xml` con los 16 productos activos del catálogo usando la URL limpia: `https://bionativalab.com/producto?id=[id-producto]`.
+  - Enriquecer `sitemap.xml` con los 19 productos activos del catálogo usando la URL limpia: `https://bionativalab.com/producto?id=[id-producto]`.
 
 * **Estrategia B (Máximo Rendimiento SEO - Generación Estática por Producto):**
-  - Generar archivos estáticos individuales pre-renderizados para cada uno de los 16 productos (ej. `/producto-creatina-monohidratada.html` o similar).
+  - Generar archivos estáticos individuales pre-renderizados para cada uno de los 19 productos (ej. `/producto-creatina-monohidratada.html` o similar).
   - Cada archivo contiene su propio título, descripción, schema de producto y canonical exacto sin depender de ejecución JavaScript en el bot.
 
 ### Fase 4: Solicitud de Validación en Google Search Console
