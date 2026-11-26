@@ -1,6 +1,7 @@
 import os
 import shutil
-from PIL import Image, ImageDraw, ImageFont
+from collections import deque
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import numpy as np
 
 BASE_DIR = r"G:\Mi unidad\CONTABILIDAD\BIONATIVA"
@@ -71,7 +72,88 @@ def generate_pote_image(product_name, lote="BNL240501A", fvenc="05/2026"):
     return im_final.convert("RGB")
 
 
-def generate_bolsa_image(product_name, lote="BNL240501A", fvenc="05/2026"):
+def apply_powder_tone(pil_img, color_type=None):
+    if not color_type:
+        return pil_img
+    img = pil_img.convert('RGB')
+    arr = np.array(img).astype(np.float32)
+    h, w, _ = arr.shape
+    lum = arr.mean(axis=2)
+
+    visited = np.zeros((h, w), dtype=bool)
+    queue = deque()
+    for x in range(w):
+        for y in [0, 1, 2, h-3, h-2, h-1]:
+            if lum[y, x] >= 244 and not visited[y, x]:
+                visited[y, x] = True
+                queue.append((y, x))
+    for y in range(h):
+        for x in [0, 1, 2, w-3, w-2, w-1]:
+            if lum[y, x] >= 244 and not visited[y, x]:
+                visited[y, x] = True
+                queue.append((y, x))
+    while queue:
+        cy, cx = queue.popleft()
+        for dy, dx in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            ny, nx = cy + dy, cx + dx
+            if 0 <= ny < h and 0 <= nx < w and not visited[ny, nx]:
+                if lum[ny, nx] >= 245:
+                    visited[ny, nx] = True
+                    queue.append((ny, nx))
+    bg_mask = visited
+    bag_mask_raw = (~bg_mask).astype(np.float32)
+
+    label_mask = np.zeros((h, w), dtype=np.float32)
+    r = 13
+    for y in range(292, 739):
+        for x in range(221, 543):
+            dx = max(0, 221 + r - x, x - (542 - r))
+            dy = max(0, 292 + r - y, y - (738 - r))
+            if dx*dx + dy*dy <= r*r:
+                label_mask[y, x] = 1.0
+
+    label_pil = Image.fromarray((label_mask * 255).astype(np.uint8))
+    label_dilated = label_pil.filter(ImageFilter.MaxFilter(7))
+    label_weight = np.array(label_dilated).astype(np.float32) / 255.0
+
+    bag_pil = Image.fromarray((bag_mask_raw * 255).astype(np.uint8))
+    bag_eroded = bag_pil.filter(ImageFilter.MinFilter(3))
+    bag_smooth = bag_eroded.filter(ImageFilter.GaussianBlur(1.2))
+    bag_weight = np.array(bag_smooth).astype(np.float32) / 255.0
+
+    powder_weight = np.clip(bag_weight * (1.0 - label_weight), 0.0, 1.0)
+    pw_pil = Image.fromarray((powder_weight * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.0))
+    powder_weight = np.array(pw_pil).astype(np.float32) / 255.0
+
+    L = np.clip(lum / 255.0, 0.0, 1.0)
+    if color_type == "whey":
+        intensity = 0.95
+        r_factor = 1.0 + (0.05 * (1.0 - L) + 0.015) * intensity
+        g_factor = 1.0 - (0.07 * (1.0 - L) + 0.035) * intensity
+        b_factor = 1.0 - (0.29 * (1.0 - L) + 0.135) * intensity
+    elif color_type == "soya":
+        intensity = 0.70
+        r_factor = 1.0 + (0.04 * (1.0 - L) + 0.010) * intensity
+        g_factor = 1.0 - (0.05 * (1.0 - L) + 0.020) * intensity
+        b_factor = 1.0 - (0.22 * (1.0 - L) + 0.090) * intensity
+    else:
+        return pil_img
+
+    specular = np.clip((L - 0.94) / 0.05, 0.0, 1.0)
+    target_r = np.clip(arr[:, :, 0] * r_factor, 0, 255)
+    target_g = np.clip(arr[:, :, 1] * g_factor, 0, 255)
+    target_b = np.clip(arr[:, :, 2] * b_factor, 0, 255)
+    target_r = target_r * (1.0 - specular) + arr[:, :, 0] * specular
+    target_g = target_g * (1.0 - specular) + arr[:, :, 1] * specular
+    target_b = target_b * (1.0 - specular) + arr[:, :, 2] * specular
+
+    pw = powder_weight[:, :, np.newaxis]
+    blended = arr * (1.0 - pw) + np.stack([target_r, target_g, target_b], axis=2) * pw
+    blended = np.clip(blended, 0, 255).astype(np.uint8)
+    return Image.fromarray(blended)
+
+
+def generate_bolsa_image(product_name, lote="BNL240501A", fvenc="05/2026", color_type=None):
     im = bolsa_tpl.copy()
     arr = np.array(im).copy()
     
@@ -116,7 +198,10 @@ def generate_bolsa_image(product_name, lote="BNL240501A", fvenc="05/2026"):
     overlay_res = overlay.resize((w, h), Image.Resampling.LANCZOS)
     im_final = Image.alpha_composite(im_clean, overlay_res)
     
-    return im_final.convert("RGB")
+    im_rgb = im_final.convert("RGB")
+    if color_type:
+        return apply_powder_tone(im_rgb, color_type)
+    return im_rgb
 
 
 def generate_caja_image(product_name, weight_str="25 KG – CAJA INDUSTRIAL"):
@@ -288,6 +373,8 @@ PRODUCTS_MAPPING = [
         "weight_ind": "20 KG – SACO INDUSTRIAL",
         "lote": "BNL240610A",
         "fvenc": "06/2026",
+        "color_type": "whey",
+        "skip_ind": True,
         "file_bolsa": "proteina-suero-leche-80-bolsa-1kg.jpg",
         "file_pote": "proteina-suero-leche-80-pote-1kg.jpg",
         "file_ind": "proteina-suero-leche-80-20kg.jpg",
@@ -299,9 +386,23 @@ PRODUCTS_MAPPING = [
         "weight_ind": "20 KG – SACO INDUSTRIAL",
         "lote": "BNL240611A",
         "fvenc": "06/2026",
+        "color_type": "soya",
+        "skip_ind": True,
         "file_bolsa": "proteina-soya-vegetal-bolsa-1kg.jpg",
         "file_pote": "proteina-soya-vegetal-pote-1kg.jpg",
         "file_ind": "proteina-soya-vegetal-20kg.jpg",
+        "is_orig_template": False
+    },
+    {
+        "id": "arginina-pura",
+        "name_label": "L-ARGININA PURA",
+        "weight_ind": "25 KG – TAMBOR INDUSTRIAL",
+        "lote": "BNL240612A",
+        "fvenc": "06/2026",
+        "skip_ind": True,
+        "file_bolsa": "arginina-pura-bolsa-1kg.jpg",
+        "file_pote": "arginina-pura-pote-1kg.jpg",
+        "file_ind": "arginina-pura-25kg.jpg",
         "is_orig_template": False
     }
 ]
@@ -322,14 +423,18 @@ for p in PRODUCTS_MAPPING:
         caja_tpl.save(path_ind, quality=95)
         pote_tpl.save(path_main, quality=95)
     else:
-        im_bolsa = generate_bolsa_image(p["name_label"], p["lote"], p["fvenc"])
+        im_bolsa = generate_bolsa_image(p["name_label"], p["lote"], p["fvenc"], color_type=p.get("color_type"))
         im_bolsa.save(path_bolsa, quality=95)
+        
+        path_cat = os.path.join(PRODUCTS_DIR, "catalogo-1kg", f"{p['id']}-1kg.jpg")
+        im_bolsa.save(path_cat, quality=95)
         
         im_pote = generate_pote_image(p["name_label"], p["lote"], p["fvenc"])
         im_pote.save(path_pote, quality=95)
         
-        im_caja = generate_caja_image(p["name_label"], p["weight_ind"])
-        im_caja.save(path_ind, quality=95)
+        if not p.get("skip_ind"):
+            im_caja = generate_caja_image(p["name_label"], p["weight_ind"])
+            im_caja.save(path_ind, quality=95)
         
         # Guardar también como hero image 1kg (el pote boticario)
         im_pote.save(path_main, quality=95)

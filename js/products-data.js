@@ -214,7 +214,7 @@ const BIONATIVA_PRODUCTS = [
     "badge": "Óxido Nítrico & Circulación",
     "rating": 4.7,
     "reviewsCount": 64,
-    "image": "img/products/arginina-pura-1kg.jpg",
+    "image": "img/products/arginina-pura-pote-1kg.jpg",
     "hasVariants": true,
     "price": 57.4,
     "unit": "1KG",
@@ -245,7 +245,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-ARG-BOL-1K",
-        "image": "img/products/arginina-pura-1kg.jpg"
+        "image": "img/products/arginina-pura-bolsa-1kg.jpg"
       },
       {
         "id": "pote-1kg",
@@ -255,7 +255,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-ARG-POT-1K",
-        "image": "img/products/arginina-pura-1kg.jpg"
+        "image": "img/products/arginina-pura-pote-1kg.jpg"
       },
       {
         "id": "tambor-25kg",
