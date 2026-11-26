@@ -32,49 +32,73 @@ class BionativaCart {
   }
 
   init() {
-    document.addEventListener("DOMContentLoaded", () => {
+    const setup = () => {
       this.injectCartDrawer();
       this.bindEvents();
       this.updateUI();
-    });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setup);
+    } else {
+      setup();
+    }
   }
 
   addItem(productId, variantId = null, quantity = 1) {
+    if (!window.BIONATIVA_PRODUCTS || !Array.isArray(window.BIONATIVA_PRODUCTS)) {
+      console.error("BIONATIVA_PRODUCTS no está cargado.");
+      return;
+    }
+
     const product = window.BIONATIVA_PRODUCTS.find(p => p.id === productId);
-    if (!product) return;
+    if (!product) {
+      console.error("Producto no encontrado:", productId);
+      return;
+    }
 
-    let finalPrice = product.price;
-    let variantName = product.unit || "1KG";
+    // Auto-seleccionar variante por defecto si el producto tiene variantes y no se especificó una
+    let resolvedVariantId = variantId;
+    if (!resolvedVariantId && product.hasVariants && Array.isArray(product.variants) && product.variants.length > 0) {
+      resolvedVariantId = product.defaultVariant || product.variants[0].id;
+    }
+
+    let finalPrice = Number(product.price) || 0;
+    let variantName = product.unit || "1 kg";
     let cartItemId = product.id;
+    let selectedVariant = null;
 
-    if (variantId && product.variants) {
-      const variant = product.variants.find(v => v.id === variantId);
-      if (variant) {
-        finalPrice = variant.price;
-        variantName = variant.name;
-        cartItemId = `${product.id}__${variant.id}`;
+    if (resolvedVariantId && Array.isArray(product.variants)) {
+      selectedVariant = product.variants.find(v => v.id === resolvedVariantId);
+      if (selectedVariant) {
+        finalPrice = Number(selectedVariant.price) || finalPrice;
+        variantName = selectedVariant.name || variantName;
+        cartItemId = `${product.id}__${selectedVariant.id}`;
       }
     }
+
+    const itemImage = (selectedVariant && selectedVariant.image) ? selectedVariant.image : product.image;
+    const addQty = Math.max(1, Number(quantity) || 1);
 
     const existingIndex = this.items.findIndex(item => item.cartItemId === cartItemId);
 
     if (existingIndex > -1) {
-      this.items[existingIndex].quantity += quantity;
+      this.items[existingIndex].quantity += addQty;
     } else {
       this.items.push({
         cartItemId: cartItemId,
         productId: product.id,
-        variantId: variantId,
+        variantId: resolvedVariantId || null,
         name: product.shortName || product.name,
         variantName: variantName,
         price: finalPrice,
-        image: (variant && variant.image) ? variant.image : product.image,
-        quantity: quantity
+        image: itemImage,
+        quantity: addQty
       });
     }
 
     this.saveCart();
-    this.showToast(`¡Añadido al carrito: ${product.shortName} (${variantName})!`);
+    this.showToast(`¡Añadido a tu bolsa: ${product.shortName || product.name} (${variantName})!`);
     this.openDrawer();
   }
 
@@ -108,8 +132,15 @@ class BionativaCart {
   }
 
   getShippingCost() {
-    const option = window.BIONATIVA_CONFIG.shippingOptions.find(o => o.id === this.selectedShipping);
-    return option ? option.price : 0;
+    const shippingOptions = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
+      { id: "lima-express", name: "Delivery Lima Metropolitana (24 a 48 hrs)", price: 10 },
+      { id: "lima-recojo", name: "Retiro en Almacén Lima (Gratis)", price: 0 },
+      { id: "cusco-recojo", name: "Retiro en Tienda Cusco (Gratis)", price: 0 },
+      { id: "provincias-shalom", name: "Envío Nacional vía Agencia Shalom", price: 15 },
+      { id: "provincias-marvisur", name: "Envío Nacional vía Agencia Marvisur", price: 16 }
+    ];
+    const option = shippingOptions.find(o => o.id === this.selectedShipping);
+    return option ? Number(option.price) : 0;
   }
 
   getTotal() {
@@ -146,7 +177,7 @@ class BionativaCart {
     if (footerEl) footerEl.classList.remove("hidden");
 
     container.innerHTML = this.items.map(item => `
-      <div class="flex items-center gap-4 py-3.5 border-b border-[#E8E2D8] last:border-b-0 animate-fade-in">
+      <div class="flex items-center gap-3.5 py-3.5 border-b border-[#E8E2D8] last:border-b-0 animate-fade-in">
         <a href="producto?id=${item.productId}" class="flex-shrink-0 hover:opacity-85 transition cursor-pointer" title="Ver detalles del producto">
           <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded-lg bg-[#FAF6F0] p-1 border border-[#E8E2D8]/60" />
         </a>
@@ -156,15 +187,15 @@ class BionativaCart {
           </h4>
           <span class="inline-block text-xs text-[#B67A52] font-medium mt-0.5">${item.variantName}</span>
           <div class="flex items-center justify-between mt-2">
-            <div class="flex items-center border border-[#D5CDBD] rounded-full bg-white px-2 py-0.5">
-              <button onclick="window.cart.updateQuantity('${item.cartItemId}', -1)" class="w-5 h-5 flex items-center justify-center text-[#1E3B2B] hover:text-[#B67A52] font-bold text-sm">−</button>
-              <span class="w-7 text-center font-semibold text-xs text-[#1E3B2B]">${item.quantity}</span>
-              <button onclick="window.cart.updateQuantity('${item.cartItemId}', 1)" class="w-5 h-5 flex items-center justify-center text-[#1E3B2B] hover:text-[#B67A52] font-bold text-sm">+</button>
+            <div class="flex items-center border border-[#D5CDBD] rounded-full bg-white px-2 py-0.5 shadow-sm">
+              <button type="button" onclick="window.cart.updateQuantity('${item.cartItemId}', -1)" class="w-7 h-7 flex items-center justify-center text-[#1E3B2B] hover:text-[#B67A52] active:bg-stone-100 rounded-full font-bold text-base select-none" aria-label="Disminuir cantidad">−</button>
+              <span class="w-7 text-center font-bold text-xs text-[#1E3B2B]">${item.quantity}</span>
+              <button type="button" onclick="window.cart.updateQuantity('${item.cartItemId}', 1)" class="w-7 h-7 flex items-center justify-center text-[#1E3B2B] hover:text-[#B67A52] active:bg-stone-100 rounded-full font-bold text-base select-none" aria-label="Aumentar cantidad">+</button>
             </div>
             <span class="font-bold text-sm text-[#1E3B2B]">S/ ${(item.price * item.quantity).toFixed(2)}</span>
           </div>
         </div>
-        <button onclick="window.cart.removeItem('${item.cartItemId}')" title="Eliminar producto" class="text-stone-400 hover:text-red-500 transition-colors p-1 self-start">
+        <button type="button" onclick="window.cart.removeItem('${item.cartItemId}')" title="Eliminar producto" class="text-stone-400 hover:text-red-500 active:text-red-700 transition-colors p-2 -mr-1 self-start" aria-label="Eliminar producto de la bolsa">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
         </button>
       </div>
@@ -178,19 +209,27 @@ class BionativaCart {
   injectCartDrawer() {
     if (document.getElementById("cart-drawer-overlay")) return;
 
+    const shippingOptions = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
+      { id: "lima-express", name: "Delivery Lima Metropolitana (24 a 48 hrs)", price: 10 },
+      { id: "lima-recojo", name: "Retiro en Almacén Lima (Gratis)", price: 0 },
+      { id: "cusco-recojo", name: "Retiro en Tienda Cusco (Gratis)", price: 0 },
+      { id: "provincias-shalom", name: "Envío Nacional vía Agencia Shalom", price: 15 },
+      { id: "provincias-marvisur", name: "Envío Nacional vía Agencia Marvisur", price: 16 }
+    ];
+
     const drawerHTML = `
       <!-- Cart Drawer Overlay -->
-      <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/50 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+      <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/60 z-[90] opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
       <!-- Cart Drawer Panel -->
-      <div id="cart-drawer-panel" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#FAF9F6] shadow-2xl z-50 translate-x-full transition-transform duration-300 ease-in-out flex flex-col font-sans border-l border-[#E5DECF]">
+      <div id="cart-drawer-panel" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#FAF9F6] shadow-2xl z-[100] translate-x-full transition-transform duration-300 ease-in-out flex flex-col font-sans border-l border-[#E5DECF]">
         <!-- Header -->
-        <div class="p-5 border-b border-[#E8E2D8] flex items-center justify-between bg-white">
+        <div class="p-4 sm:p-5 border-b border-[#E8E2D8] flex items-center justify-between bg-white">
           <div class="flex items-center gap-2">
             <svg class="w-6 h-6 text-[#1E3B2B]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
             <h3 class="font-bold text-lg text-[#1E3B2B]">Tu Bolsa de Bienestar</h3>
           </div>
-          <button id="cart-drawer-close" class="p-2 rounded-full hover:bg-stone-100 text-stone-500 hover:text-stone-800 transition">
+          <button id="cart-drawer-close" class="p-2 rounded-full hover:bg-stone-100 text-stone-500 hover:text-stone-800 transition" aria-label="Cerrar bolsa">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
@@ -201,17 +240,17 @@ class BionativaCart {
             <svg class="w-4 h-4 text-[#B67A52]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
             Materia Prima Americana con COA
           </span>
-          <span class="font-semibold text-[#B67A52]">Envíos Perú</span>
+          <span class="font-semibold text-[#B67A52]">Envíos Todo el Perú</span>
         </div>
 
         <!-- Cart Items List -->
-        <div class="flex-1 overflow-y-auto px-5 py-3">
+        <div class="flex-1 overflow-y-auto px-4 sm:px-5 py-3" style="-webkit-overflow-scrolling: touch;">
           <div id="cart-drawer-empty" class="text-center py-16 hidden">
             <div class="w-20 h-20 mx-auto rounded-full bg-[#EFE9DF] flex items-center justify-center text-stone-400 mb-4">
               <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
             </div>
             <h4 class="font-bold text-[#1E3B2B] text-base mb-1">Tu carrito está vacío</h4>
-            <p class="text-xs text-stone-500 max-w-xs mx-auto mb-6">Descubre nuestros 16 suplementos puros para fuerza, bienestar articular y descanso reparador.</p>
+            <p class="text-xs text-stone-500 max-w-xs mx-auto mb-6">Descubre nuestros suplementos puros para fuerza, salud articular y descanso reparador.</p>
             <a href="tienda" class="inline-block bg-[#1E3B2B] text-white px-6 py-2.5 rounded-full text-xs font-semibold hover:bg-[#284f3a] transition shadow-sm">Explorar Catálogo</a>
           </div>
 
@@ -219,12 +258,12 @@ class BionativaCart {
         </div>
 
         <!-- Footer / Checkout Section -->
-        <div id="cart-drawer-footer" class="p-5 border-t border-[#E8E2D8] bg-white space-y-3.5">
+        <div id="cart-drawer-footer" class="p-4 sm:p-5 border-t border-[#E8E2D8] bg-white space-y-3.5">
           <!-- Shipping Selector -->
           <div>
             <label class="block text-xs font-bold text-stone-600 mb-1">Opciones de Entrega y Envío:</label>
             <select id="cart-shipping-select" class="w-full bg-[#FAF9F6] border border-[#D5CDBD] text-xs text-[#1E3B2B] font-medium rounded-lg p-2.5 focus:border-[#1E3B2B] focus:ring-0 cursor-pointer">
-              ${window.BIONATIVA_CONFIG.shippingOptions.map(opt => `
+              ${shippingOptions.map(opt => `
                 <option value="${opt.id}" ${opt.id === this.selectedShipping ? "selected" : ""}>
                   ${opt.name} (${opt.price > 0 ? "S/ " + opt.price.toFixed(2) : "GRATIS"})
                 </option>
@@ -250,26 +289,35 @@ class BionativaCart {
 
           <!-- Checkout Buttons -->
           <div class="space-y-2 pt-1">
-            <button onclick="window.cart.openCheckoutModal('whatsapp')" class="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md transition transform active:scale-[0.98]">
+            <button onclick="window.cart.openCheckoutModal('whatsapp')" class="w-full bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.98] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md transition">
               <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
               Comprar por WhatsApp (Rápido)
             </button>
 
-            <button onclick="window.cart.openCheckoutModal('pay-options')" class="w-full bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow transition">
+            <button onclick="window.cart.openCheckoutModal('pay-options')" class="w-full bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-[0.98] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow transition">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-              Pagar con Yape, Tarjeta o Transferencia
+              Pagar con Plin, Yape o Tarjeta
             </button>
           </div>
         </div>
       </div>
 
+      <!-- Floating Cart Button for Mobile (Bottom Right) -->
+      <button class="open-cart-btn fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[80] bg-[#1E3B2B] hover:bg-[#284f3a] text-white p-3.5 sm:px-4 sm:py-3 rounded-full shadow-2xl flex items-center gap-2 border-2 border-[#FAF9F6] active:scale-95 transition-all duration-300 group" aria-label="Abrir carrito de compras">
+        <div class="relative flex items-center justify-center">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="cart-count-badge absolute -top-2.5 -right-2.5 bg-[#B67A52] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-black shadow border border-white hidden">0</span>
+        </div>
+        <span class="hidden sm:inline text-xs font-bold pr-1">Mi Bolsa</span>
+      </button>
+
       <!-- Toast Notification Container -->
-      <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+      <div id="toast-container" class="fixed bottom-6 right-6 z-[120] flex flex-col gap-2 pointer-events-none"></div>
 
       <!-- Checkout Full Modal -->
-      <div id="checkout-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl font-sans border border-[#E8E2D8]">
-          <button onclick="window.cart.closeCheckoutModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 p-1">
+      <div id="checkout-modal" class="fixed inset-0 bg-black/60 z-[110] hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[92vh] overflow-y-auto p-5 sm:p-6 relative shadow-2xl font-sans border border-[#E8E2D8]" style="-webkit-overflow-scrolling: touch;">
+          <button onclick="window.cart.closeCheckoutModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 p-2 rounded-full hover:bg-stone-100 transition" aria-label="Cerrar modal">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
           <div id="checkout-modal-content"></div>
@@ -302,9 +350,21 @@ class BionativaCart {
         this.updateUI();
       });
     }
+
+    // Cerrar drawer y modal con tecla Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        this.closeDrawer();
+        this.closeCheckoutModal();
+      }
+    });
   }
 
   openDrawer() {
+    if (!document.getElementById("cart-drawer-panel")) {
+      this.injectCartDrawer();
+      this.bindEvents();
+    }
     const overlay = document.getElementById("cart-drawer-overlay");
     const panel = document.getElementById("cart-drawer-panel");
     if (overlay && panel) {
@@ -353,10 +413,12 @@ class BionativaCart {
       return;
     }
 
-    const shipping = window.BIONATIVA_CONFIG.shippingOptions.find(o => o.id === this.selectedShipping);
+    const shippingOptions = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [];
+    const shipping = shippingOptions.find(o => o.id === this.selectedShipping) || { name: "Lima Metropolitana", price: 10 };
     const subtotal = this.getSubtotal();
     const shippingPrice = this.getShippingCost();
     const total = this.getTotal();
+    const defaultPay = (mode === 'pay-options' || mode === 'yape' || mode === 'card') ? (mode === 'card' ? 'card' : 'yape') : 'whatsapp';
 
     content.innerHTML = `
       <div class="space-y-5">
@@ -370,28 +432,28 @@ class BionativaCart {
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label class="block font-semibold text-stone-700 mb-1">Nombre y Apellidos *</label>
-              <input type="text" id="cust-name" required placeholder="Ej: Juan Pérez" class="w-full border border-stone-300 rounded-lg p-2.5 focus:border-[#1E3B2B] focus:ring-0" />
+              <input type="text" id="cust-name" required placeholder="Ej: Juan Pérez" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
             </div>
             <div>
               <label class="block font-semibold text-stone-700 mb-1">DNI o RUC *</label>
-              <input type="text" id="cust-doc" required placeholder="8 u 11 dígitos" class="w-full border border-stone-300 rounded-lg p-2.5 focus:border-[#1E3B2B] focus:ring-0" />
+              <input type="text" id="cust-doc" required placeholder="8 u 11 dígitos" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label class="block font-semibold text-stone-700 mb-1">Teléfono Móvil / WhatsApp *</label>
-              <input type="tel" id="cust-phone" required placeholder="Ej: 987654321" class="w-full border border-stone-300 rounded-lg p-2.5 focus:border-[#1E3B2B] focus:ring-0" />
+              <input type="tel" id="cust-phone" required placeholder="Ej: 987654321" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
             </div>
             <div>
               <label class="block font-semibold text-stone-700 mb-1">Ciudad / Departamento *</label>
-              <input type="text" id="cust-city" required placeholder="Ej: Lima / Cusco / Arequipa" class="w-full border border-stone-300 rounded-lg p-2.5 focus:border-[#1E3B2B] focus:ring-0" />
+              <input type="text" id="cust-city" required placeholder="Ej: Lima / Cusco / Arequipa" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
             </div>
           </div>
 
           <div>
             <label class="block font-semibold text-stone-700 mb-1">Dirección exacta o Agencia de recojo (Shalom / Marvisur) *</label>
-            <input type="text" id="cust-address" required placeholder="Calle / Av. / Referencia o Nombre de Agencia" class="w-full border border-stone-300 rounded-lg p-2.5 focus:border-[#1E3B2B] focus:ring-0" />
+            <input type="text" id="cust-address" required placeholder="Calle / Av. / Referencia o Nombre de Agencia" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
           </div>
 
           <!-- Selección de Forma de Pago -->
@@ -399,7 +461,7 @@ class BionativaCart {
             <label class="block font-bold text-stone-800 mb-2">Selecciona tu Forma de Pago:</label>
             <div class="grid grid-cols-1 gap-2">
               <label class="flex items-center gap-3 p-3 border rounded-xl border-[#25D366]/40 bg-[#25D366]/5 cursor-pointer">
-                <input type="radio" name="pay-method" value="whatsapp" checked class="text-[#1E3B2B] focus:ring-0" />
+                <input type="radio" name="pay-method" value="whatsapp" ${defaultPay === 'whatsapp' ? 'checked' : ''} class="text-[#1E3B2B] focus:ring-0" />
                 <div>
                   <div class="font-bold text-[#1E3B2B]">Confirmar y coordinar por WhatsApp (Recomendado)</div>
                   <div class="text-[11px] text-stone-500">Un asesor te envía la confirmación con el método que elijas al chat.</div>
@@ -407,7 +469,7 @@ class BionativaCart {
               </label>
 
               <label class="flex items-center gap-3 p-3 border rounded-xl border-stone-200 hover:border-[#1E3B2B] cursor-pointer">
-                <input type="radio" name="pay-method" value="yape" class="text-[#1E3B2B] focus:ring-0" />
+                <input type="radio" name="pay-method" value="yape" ${defaultPay === 'yape' ? 'checked' : ''} class="text-[#1E3B2B] focus:ring-0" />
                 <div>
                   <div class="font-bold text-[#1E3B2B]">Plin / Interbank (Principal) / Banco de la Nación / Digitales</div>
                   <div class="text-[11px] text-stone-500">Ver números de cuenta y código QR al instante.</div>
@@ -415,7 +477,7 @@ class BionativaCart {
               </label>
 
               <label class="flex items-center gap-3 p-3 border rounded-xl border-stone-200 hover:border-[#1E3B2B] cursor-pointer">
-                <input type="radio" name="pay-method" value="card" class="text-[#1E3B2B] focus:ring-0" />
+                <input type="radio" name="pay-method" value="card" ${defaultPay === 'card' ? 'checked' : ''} class="text-[#1E3B2B] focus:ring-0" />
                 <div class="flex-1">
                   <div class="flex items-center justify-between">
                     <span class="font-bold text-[#1E3B2B]">Tarjeta de Crédito o Débito (Visa, Mastercard, Amex)</span>
@@ -543,14 +605,19 @@ class BionativaCart {
 
       const whatsappURL = `https://wa.me/${window.BIONATIVA_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-      // Si seleccionó Yape, mostramos los datos bancarios y botón para enviar captura a WhatsApp
+      // Si seleccionó Yape / Transferencia, mostramos los datos bancarios y botón para enviar captura a WhatsApp
       if (payMethod === "yape") {
         this.renderBankTransferDetails(total, whatsappURL);
         return;
       }
 
-      // Redirigir a WhatsApp
-      window.open(whatsappURL, "_blank");
+      // Redirigir a WhatsApp (en móviles directo a la app para evitar bloqueo de popups)
+      const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = whatsappURL;
+      } else {
+        window.open(whatsappURL, "_blank");
+      }
       this.closeCheckoutModal();
       this.clearCart();
       this.showToast("¡Pedido enviado a WhatsApp con éxito!");
@@ -768,7 +835,7 @@ class BionativaCart {
           body: JSON.stringify({
             items: [
               ...this.items.map(i => ({
-                id: i.id,
+                id: String(i.cartItemId || i.productId || "item"),
                 name: `${i.name} (${i.variantName})`,
                 price: Number(i.price),
                 quantity: Number(i.quantity)

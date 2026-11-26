@@ -1725,98 +1725,59 @@
 
 
     // Renderizar Productos Destacados en el Grid
-
-    document.addEventListener("DOMContentLoaded", () => {
-
+    function initIndexFeatured() {
       const grid = document.getElementById("featured-products-grid");
-
       if (!grid || !window.BIONATIVA_PRODUCTS) return;
 
-
-
       const featuredIds = [
-
         "creatina-monohidratada",
-
         "citrato-de-magnesio",
-
         "glicinato-de-magnesio",
-
         "proteina-suero-leche-80",
-
         "colageno-hidrolizado",
-
         "ashwagandha-pura",
-
         "ascorbato-de-sodio",
-
         "sal-de-epsom"
-
       ];
-
-
 
       const featuredList = window.BIONATIVA_PRODUCTS.filter(p => featuredIds.includes(p.id));
 
-
-
       grid.innerHTML = featuredList.map(prod => `
-
         <div class="organic-card p-4 flex flex-col justify-between group">
-
           <div>
-
             <a href="producto?id=${prod.id}" class="block relative bg-[#FAF6F0] rounded-xl p-3 mb-3 border border-[#E8E2D8]/60 flex items-center justify-center h-48 overflow-hidden cursor-pointer" title="Ver información y presentaciones de ${prod.shortName}" aria-label="Ver detalles de ${prod.shortName}">
-
               <span class="absolute top-2 left-2 text-[10px] font-bold bg-[#1E3B2B] text-white px-2 py-0.5 rounded-full z-10">${prod.badge || 'Puro COA'}</span>
-
               <img src="${prod.image}" alt="${prod.name}" class="h-40 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
-
             </a>
 
-
-
             <span class="text-[10px] font-bold text-[#B67A52] uppercase tracking-wider">${prod.categoryName}</span>
-
             <h3 class="font-bold text-sm text-[#1E3B2B] mt-1 line-clamp-2 leading-tight">
-
               <a href="producto?id=${prod.id}" class="hover:text-[#B67A52] transition">${prod.shortName}</a>
-
             </h3>
 
-            
-
             <p class="text-xs text-stone-500 mt-1 line-clamp-2">${prod.description}</p>
-
           </div>
-
-
 
           <div class="pt-4 border-t border-[#E8E2D8] mt-3 flex items-center justify-between">
-
             <div>
-
               <span class="text-[10px] text-stone-400 block">${prod.unit}</span>
-
               <span class="text-base font-extrabold text-[#1E3B2B]">S/ ${prod.price.toFixed(2)}</span>
-
             </div>
 
-            
-
-            <button onclick="window.cart.addItem('${prod.id}')" class="bg-[#1E3B2B] hover:bg-[#B67A52] text-white p-2.5 rounded-xl transition shadow flex items-center justify-center" title="Agregar al carrito">
-
+            <button onclick="window.cart.addItem('${prod.id}')" class="bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-95 text-white text-xs font-bold px-3 py-2 rounded-xl transition shadow flex items-center gap-1.5" title="Añadir a la bolsa" aria-label="Añadir ${prod.shortName} a la bolsa">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-
+              <span>Agregar</span>
             </button>
-
           </div>
-
         </div>
-
       `).join("");
+    }
 
-    });
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initIndexFeatured);
+    } else {
+      initIndexFeatured();
+    }
 
 
 

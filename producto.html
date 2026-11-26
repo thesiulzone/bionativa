@@ -230,19 +230,25 @@
     let selectedVariantId = null;
     let selectedQty = 1;
 
-    document.addEventListener("DOMContentLoaded", () => {
+    function initProduct() {
       const params = new URLSearchParams(window.location.search);
       const prodId = params.get("id") || "creatina-monohidratada";
 
       currentProduct = window.BIONATIVA_PRODUCTS.find(p => p.id === prodId) || window.BIONATIVA_PRODUCTS[0];
 
-      if (currentProduct.hasVariants) {
+      if (currentProduct && currentProduct.hasVariants && Array.isArray(currentProduct.variants) && currentProduct.variants.length > 0) {
         selectedVariantId = currentProduct.defaultVariant || currentProduct.variants[0].id;
       }
 
       updatePageMeta();
       renderProductPage();
-    });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initProduct);
+    } else {
+      initProduct();
+    }
 
     function updatePageMeta() {
       if (!currentProduct) return;
@@ -630,7 +636,13 @@
         `-----------------------------------------\n` +
         `Hola, deseo coordinar la entrega en Lima / Cusco / Provincia.`;
 
-      window.open(`https://wa.me/${window.BIONATIVA_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+      const whatsappURL = `https://wa.me/${window.BIONATIVA_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+      const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = whatsappURL;
+      } else {
+        window.open(whatsappURL, "_blank");
+      }
     }
 
     function switchTab(tabId) {

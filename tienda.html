@@ -292,7 +292,7 @@
     let searchQuery = "";
     let sortMode = "featured";
 
-    document.addEventListener("DOMContentLoaded", () => {
+    function initCatalog() {
       // Leer parámetros URL si existen (ej. ?cat=fuerza-deporte o ?q=magnesio)
       const params = new URLSearchParams(window.location.search);
       if (params.has("cat")) {
@@ -323,7 +323,13 @@
           renderCatalog();
         });
       }
-    });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initCatalog);
+    } else {
+      initCatalog();
+    }
 
     function filterCategory(cat) {
       activeCat = cat;
@@ -434,8 +440,9 @@
               <a href="producto?id=${prod.id}" class="bg-[#FAF6F0] hover:bg-white text-[#1E3B2B] border border-[#D5CDBD] text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm">
                 Ficha
               </a>
-              <button onclick="window.cart.addItem('${prod.id}')" class="bg-[#1E3B2B] hover:bg-[#B67A52] text-white p-2.5 rounded-xl transition shadow" title="Añadir a la bolsa">
+              <button onclick="window.cart.addItem('${prod.id}')" class="bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-95 text-white text-xs font-bold px-3 py-2 rounded-xl transition shadow flex items-center gap-1.5" title="Añadir a la bolsa" aria-label="Añadir ${prod.shortName} a la bolsa">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                <span>Agregar</span>
               </button>
             </div>
           </div>

@@ -3,11 +3,17 @@
  * Menú responsive, Acordeón de FAQs para AEO, Filtros y Utilidades
  */
 
-document.addEventListener("DOMContentLoaded", () => {
+function initMain() {
   initMobileMenu();
   initFaqAccordion();
   initSearchRedirect();
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initMain);
+} else {
+  initMain();
+}
 
 function initMobileMenu() {
   const toggleBtn = document.getElementById("mobile-menu-toggle");

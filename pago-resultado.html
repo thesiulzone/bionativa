@@ -44,6 +44,7 @@
     if (status === 'success' || status === 'approved') {
       // Limpiar carrito si existía
       try {
+        localStorage.removeItem('bionativa_cart_v1');
         localStorage.removeItem('bionativa_cart');
       } catch (e) {}
 
@@ -93,7 +94,7 @@
           <p class="text-sm text-stone-600">La transacción fue cancelada o rechazada por tu entidad bancaria. Ningún cargo ha sido realizado a tu cuenta.</p>
         </div>
         <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="/tienda.html" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">
+          <a href="/tienda" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">
             Intentar Nuevamente
           </a>
           <a href="/" class="inline-flex justify-center items-center px-6 py-3 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700 text-xs font-bold tracking-wide transition">
