@@ -68,7 +68,7 @@ class BionativaCart {
         name: product.shortName || product.name,
         variantName: variantName,
         price: finalPrice,
-        image: product.image,
+        image: (variant && variant.image) ? variant.image : product.image,
         quantity: quantity
       });
     }

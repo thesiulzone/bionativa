@@ -91,7 +91,10 @@
 ---
 
 ### 1.7 Proteína de Suero de Leche 80% (Whey Protein WPC80)
-- **SKU:** `BIO-WHEY-80-1000` | **Presentación:** Bolsa 1kg — **S/ 131.60**
+- **SKUs & Presentaciones Oficiales:**
+  - `BIO-WPC-BOL-1K`: Bolsa de Polietileno 1kg (Formato Ahorro Sellado) — **S/ 131.60**
+  - `BIO-WPC-POT-1K`: Pote Plastificado 1kg (HDPE Boticario con precinto) — **S/ 136.50**
+  - `BIO-WPC-IND-20K`: Saco Industrial Kraft 20kg (Mayorista / Granel a S/ 112.00/kg) — **S/ 2,240.00**
 - **Origen:** Materia Prima Americana (Wisconsin, USA — Glanbia / Valsa).
 - **Pureza COA:** 80.2% de proteína real neta por porción de producto. Ultrafiltración a baja temperatura.
 - **Composición:** Concentrado de suero de leche puro instantáneo con lecitina de girasol no-OMG. Sin azúcar, sin gomas espesantes, sin sucralosa.
@@ -103,7 +106,10 @@
 ---
 
 ### 1.8 Aislado de Proteína de Soya 90% No-GMO (Vegana)
-- **SKU:** `BIO-SOY-90-1000` | **Presentación:** Bolsa 1kg — **S/ 35.00**
+- **SKUs & Presentaciones Oficiales:**
+  - `BIO-SOY-BOL-1K`: Bolsa de Polietileno 1kg (Formato Ahorro Sellado) — **S/ 35.00**
+  - `BIO-SOY-POT-1K`: Pote Plastificado 1kg (HDPE Boticario con precinto) — **S/ 39.50**
+  - `BIO-SOY-IND-20K`: Saco Industrial Kraft 20kg (Mayorista / Granel a S/ 29.00/kg) — **S/ 580.00**
 - **Origen:** Materia Prima Americana No Transgénica.
 - **Pureza COA:** 90.0% Proteína vegetal aislada. Cero lactosa, cero colesterol.
 - **Beneficios:** Digestión limpia y vegetal, alto contenido natural de arginina y glutamina. Ideal para dietas veganas y repostería fit.
