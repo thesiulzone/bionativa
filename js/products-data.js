@@ -1,7 +1,7 @@
 /**
  * BIONATIVA LAB - Catálogo Oficial de Productos
- * Optimizado para SEO, AEO (Answer Engine Optimization) y GEO
- * Actualizado con Presentaciones Oficiales, Trazabilidad COA y Precios Web
+ * Optimizado para SEO, AEO y GEO
+ * Actualizado con Presentaciones Oficiales, Trazabilidad COA, Dosis Farmacopéicas y Especificaciones Técnicas
  * Moneda: Soles Peruanos (PEN - S/)
  */
 
@@ -27,7 +27,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-CRE-BOL-1K",
-        "image": "img/products/creatina-monohidratada-bolsa-1kg.jpg"
+        "image": "img/products/creatina-monohidratada-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -37,7 +38,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario (+S/ 4.50)",
         "packagingType": "pote",
         "sku": "BIO-CRE-POT-1K",
-        "image": "img/products/creatina-monohidratada-pote-1kg.jpg"
+        "image": "img/products/creatina-monohidratada-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "caja-25kg",
@@ -48,7 +50,8 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-caja",
         "sku": "BIO-CRE-IND-25K",
         "image": "img/products/industrial/creatina-monohidratada-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "price": 85.4,
@@ -77,7 +80,38 @@ const BIONATIVA_PRODUCTS = [
     "coaPdf": "docs/coa/coa-creatina-monohidratada.pdf",
     "regularPrice": 98,
     "discountBadge": "-13% WEB",
-    "highlightBadge": "🔥 MÁS VENDIDO"
+    "highlightBadge": "🔥 MÁS VENDIDO",
+    "dosage": {
+      "recommendedGrams": 5,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1 cucharadita dosificadora (5g)",
+      "timingText": "Post-entrenamiento o por la mañana con agua o zumo",
+      "minDose": 3,
+      "maxDose": 10
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Creatina Monohidrato Micronizada",
+      "casNumber": "6020-87-7",
+      "mesh": "200 Mesh (Micronizado)",
+      "grade": "USP Grade (Farmacopea EE.UU.)",
+      "solubility": "Alta solubilidad en líquidos a temperatura ambiente",
+      "appearance": "Polvo cristalino blanco ultra fino"
+    },
+    "responsibleUse": {
+      "instructions": "Disolver 5g en 250ml de agua o zumo. Mantener una hidratación adecuada (mínimo 2 litros de agua diarios).",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "No requiere fase de carga para ser efectiva.",
+        "Consulte a su médico en caso de afección renal preexistente."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C) y seco con el envase herméticamente cerrado."
+    },
+    "complementaryProductIds": [
+      "proteina-suero-leche-80",
+      "citrato-de-magnesio",
+      "glutamina-pura"
+    ]
   },
   {
     "id": "proteina-suero-leche-80",
@@ -119,7 +153,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-WPC-BOL-1K",
-        "image": "img/products/proteina-suero-leche-80-bolsa-1kg.jpg"
+        "image": "img/products/proteina-suero-leche-80-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -129,7 +164,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-WPC-POT-1K",
-        "image": "img/products/proteina-suero-leche-80-pote-1kg.jpg"
+        "image": "img/products/proteina-suero-leche-80-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "saco-20kg",
@@ -140,13 +176,45 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-saco",
         "sku": "BIO-WPC-IND-20K",
         "image": "img/products/industrial/proteina-suero-leche-80-20kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 20000
       }
     ],
     "coaPdf": "docs/coa/coa-whey-protein-80.pdf",
     "regularPrice": 149,
     "discountBadge": "-12% WEB",
-    "highlightBadge": "💪 80% PROTEÍNA REAL"
+    "highlightBadge": "💪 80% PROTEÍNA REAL",
+    "dosage": {
+      "recommendedGrams": 30,
+      "unit": "g",
+      "frequencyText": "1 a 2 veces al día",
+      "scoopEquivalent": "1 scoop colmado o 2 cucharadas soperas (30g)",
+      "timingText": "Inmediatamente post-entrenamiento o en el desayuno",
+      "minDose": 25,
+      "maxDose": 60
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Concentrado de Proteína de Suero de Leche (WPC 80)",
+      "casNumber": "91079-57-1",
+      "mesh": "Instantáneo (Ultrafiltrado en frío)",
+      "grade": "Grado Alimentario USP / FCC",
+      "solubility": "Disolución rápida con agitador o shaker",
+      "appearance": "Polvo cremoso marfil claro, sabor lácteo neutro"
+    },
+    "responsibleUse": {
+      "instructions": "Batir 30g en 250ml de agua, leche vegetal o batido.",
+      "warnings": [
+        "Contiene derivados lácteos.",
+        "No utilizar como única fuente de nutrición.",
+        "Acompañar de un estilo de vida activo y balanceado."
+      ],
+      "storage": "Cerrar bien el cierre hermético / tapa tras cada uso para evitar humedad."
+    },
+    "complementaryProductIds": [
+      "creatina-monohidratada",
+      "glutamina-pura",
+      "l-carnitina-base"
+    ]
   },
   {
     "id": "glutamina-pura",
@@ -188,7 +256,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-GLU-BOL-1K",
-        "image": "img/products/glutamina-pura-bolsa-1kg.jpg"
+        "image": "img/products/glutamina-pura-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -198,7 +267,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-GLU-POT-1K",
-        "image": "img/products/glutamina-pura-pote-1kg.jpg"
+        "image": "img/products/glutamina-pura-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "caja-25kg",
@@ -209,8 +279,39 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-caja",
         "sku": "BIO-GLU-IND-25K",
         "image": "img/products/industrial/glutamina-pura-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
+    ],
+    "dosage": {
+      "recommendedGrams": 5,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1 cucharadita dosificadora (5g)",
+      "timingText": "Antes de dormir o inmediatamente después de entrenar",
+      "minDose": 5,
+      "maxDose": 15
+    },
+    "technicalSpecs": {
+      "chemicalForm": "L-Glutamina Fermentada Pura",
+      "casNumber": "56-85-9",
+      "mesh": "200 Mesh",
+      "grade": "Grado Farmacéutico USP",
+      "solubility": "Excelente dispersión en agua templada o fría",
+      "appearance": "Polvo cristalino blanco, inodoro"
+    },
+    "responsibleUse": {
+      "instructions": "Mezclar 5g en 200ml de agua en ayunas o post-entreno.",
+      "warnings": [
+        "No combinar con bebidas hirviendo.",
+        "Consultar con especialista si padece problemas hepáticos."
+      ],
+      "storage": "Guardar en sitio fresco y seco protegido de la luz."
+    },
+    "complementaryProductIds": [
+      "creatina-monohidratada",
+      "proteina-suero-leche-80",
+      "colageno-hidrolizado"
     ]
   },
   {
@@ -253,7 +354,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-ARG-BOL-1K",
-        "image": "img/products/arginina-pura-bolsa-1kg.jpg"
+        "image": "img/products/arginina-pura-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -263,7 +365,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-ARG-POT-1K",
-        "image": "img/products/arginina-pura-pote-1kg.jpg"
+        "image": "img/products/arginina-pura-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "tambor-25kg",
@@ -274,8 +377,39 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-tambor",
         "sku": "BIO-ARG-IND-25K",
         "image": "img/products/industrial/arginina-pura-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
+    ],
+    "dosage": {
+      "recommendedGrams": 3,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1/2 cucharadita dosificadora (3g)",
+      "timingText": "30 a 45 minutos antes de la sesión de entrenamiento",
+      "minDose": 2,
+      "maxDose": 6
+    },
+    "technicalSpecs": {
+      "chemicalForm": "L-Arginina Base Pura",
+      "casNumber": "74-79-3",
+      "mesh": "100-120 Mesh",
+      "grade": "Grado Farmacéutico USP",
+      "solubility": "Soluble en agua (pH ligeramente alcalino)",
+      "appearance": "Polvo blanco cristalino"
+    },
+    "responsibleUse": {
+      "instructions": "Disolver 3g en agua con unas gotas de limón para optimizar palatabilidad.",
+      "warnings": [
+        "Personas con hipotensión arterial deben consultar a su médico.",
+        "No superar la dosis sugerida."
+      ],
+      "storage": "Conservar protegido de la humedad ambiental."
+    },
+    "complementaryProductIds": [
+      "creatina-monohidratada",
+      "l-carnitina-base",
+      "ascorbato-de-sodio"
     ]
   },
   {
@@ -318,7 +452,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-SOY-BOL-1K",
-        "image": "img/products/proteina-soya-vegetal-bolsa-1kg.jpg"
+        "image": "img/products/proteina-soya-vegetal-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -328,7 +463,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-SOY-POT-1K",
-        "image": "img/products/proteina-soya-vegetal-pote-1kg.jpg"
+        "image": "img/products/proteina-soya-vegetal-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "saco-20kg",
@@ -339,13 +475,44 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-saco",
         "sku": "BIO-SOY-IND-20K",
         "image": "img/products/industrial/proteina-soya-vegetal-20kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 20000
       }
     ],
     "coaPdf": "docs/coa/coa-proteina-soya.pdf",
     "regularPrice": 42,
     "discountBadge": "-17% WEB",
-    "highlightBadge": "🌱 90% AISLADO VEGANO"
+    "highlightBadge": "🌱 90% AISLADO VEGANO",
+    "dosage": {
+      "recommendedGrams": 30,
+      "unit": "g",
+      "frequencyText": "1 a 2 tomas diarias",
+      "scoopEquivalent": "2 cucharadas soperas colmadas (30g)",
+      "timingText": "Post-entreno, desayunos o meriendas proteicas",
+      "minDose": 20,
+      "maxDose": 50
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Aislado de Proteína de Soya 90% (SPI 90)",
+      "casNumber": "9010-10-0",
+      "mesh": "100 Mesh",
+      "grade": "Grado Alimentario USP / FCC",
+      "solubility": "Dispersable en licuadora o shaker con líquido frío",
+      "appearance": "Polvo fino color beige natural, 100% vegetal"
+    },
+    "responsibleUse": {
+      "instructions": "Licuar o batir enérgicamente con 300ml de agua o bebida vegetal.",
+      "warnings": [
+        "Contiene soya.",
+        "Apto para dietas veganas y vegetarianas."
+      ],
+      "storage": "Conservar en ambiente seco y fresco."
+    },
+    "complementaryProductIds": [
+      "creatina-monohidratada",
+      "espirulina-pura",
+      "ascorbato-de-sodio"
+    ]
   },
   {
     "id": "colageno-hidrolizado",
@@ -387,7 +554,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-COL-BOL-1K",
-        "image": "img/products/colageno-hidrolizado-bolsa-1kg.jpg"
+        "image": "img/products/colageno-hidrolizado-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -397,7 +565,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-COL-POT-1K",
-        "image": "img/products/colageno-hidrolizado-pote-1kg.jpg"
+        "image": "img/products/colageno-hidrolizado-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "saco-20kg",
@@ -408,13 +577,43 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-saco",
         "sku": "BIO-COL-IND-20K",
         "image": "img/products/industrial/colageno-hidrolizado-20kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 20000
       }
     ],
     "coaPdf": "docs/coa/coa-colageno-hidrolizado.pdf",
     "regularPrice": 68,
     "discountBadge": "-18% WEB",
-    "highlightBadge": "✨ PÉPTIDOS BIOACTIVOS"
+    "highlightBadge": "✨ PÉPTIDOS BIOACTIVOS",
+    "dosage": {
+      "recommendedGrams": 10,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1 cucharada sopera colmada (10g)",
+      "timingText": "En ayunas por la mañana o antes de dormir",
+      "minDose": 5,
+      "maxDose": 15
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Péptidos Bioactivos de Colágeno Bovino Tipo I y III",
+      "casNumber": "9007-34-5",
+      "mesh": "Instantáneo aglomerado (< 3000 Daltons)",
+      "grade": "Grado Farmacéutico y Nutracéutico USP",
+      "solubility": "Disolución instantánea y transparente en frío o caliente",
+      "appearance": "Polvo blanco granular fino, sin olor residual"
+    },
+    "responsibleUse": {
+      "instructions": "Mezclar 10g en café, zumo, té o agua. Para máxima absorción, combinar con Vitamina C.",
+      "warnings": [
+        "Uso continuado mínimo de 60 a 90 días para comprobar beneficios articulares y en la piel."
+      ],
+      "storage": "Mantener en recipiente seco, cerrado contra la humedad."
+    },
+    "complementaryProductIds": [
+      "ascorbato-de-sodio",
+      "glucosamina-sulfato",
+      "citrato-de-magnesio"
+    ]
   },
   {
     "id": "glucosamina-sulfato",
@@ -456,7 +655,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-GLS-BOL-1K",
-        "image": "img/products/glucosamina-sulfato-bolsa-1kg.jpg"
+        "image": "img/products/glucosamina-sulfato-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -466,7 +666,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-GLS-POT-1K",
-        "image": "img/products/glucosamina-sulfato-pote-1kg.jpg"
+        "image": "img/products/glucosamina-sulfato-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "caja-25kg",
@@ -477,13 +678,44 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-caja",
         "sku": "BIO-GLS-IND-25K",
         "image": "img/products/industrial/glucosamina-sulfato-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "coaPdf": "docs/coa/coa-glucosamina-sulfato.pdf",
     "regularPrice": 72,
     "discountBadge": "-16% WEB",
-    "highlightBadge": "🦴 SALUD ARTICULAR"
+    "highlightBadge": "🦴 SALUD ARTICULAR",
+    "dosage": {
+      "recommendedGrams": 1.5,
+      "unit": "g",
+      "frequencyText": "1 vez al día con alimento",
+      "scoopEquivalent": "1/2 cucharadita dosificadora (1.5g)",
+      "timingText": "Junto al almuerzo o comida principal",
+      "minDose": 1,
+      "maxDose": 2
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Sulfato de D-Glucosamina 2KCl",
+      "casNumber": "38899-05-7",
+      "mesh": "80-100 Mesh",
+      "grade": "Grado Farmacéutico USP",
+      "solubility": "Completamente soluble en agua",
+      "appearance": "Cristales blancos limpios y homogéneos"
+    },
+    "responsibleUse": {
+      "instructions": "Tomar disuelto en agua durante las comidas.",
+      "warnings": [
+        "Personas con alergia a mariscos y crustáceos deben consultar a su médico.",
+        "Monitorear en pacientes diabéticos."
+      ],
+      "storage": "Conservar cerrado en ambiente templado y seco."
+    },
+    "complementaryProductIds": [
+      "sulfato-de-condroitina",
+      "colageno-hidrolizado",
+      "ascorbato-de-sodio"
+    ]
   },
   {
     "id": "ascorbato-de-sodio",
@@ -525,7 +757,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-ASC-BOL-1K",
-        "image": "img/products/ascorbato-de-sodio-bolsa-1kg.jpg"
+        "image": "img/products/ascorbato-de-sodio-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -535,7 +768,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-ASC-POT-1K",
-        "image": "img/products/ascorbato-de-sodio-pote-1kg.jpg"
+        "image": "img/products/ascorbato-de-sodio-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "caja-25kg",
@@ -546,12 +780,42 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-caja",
         "sku": "BIO-ASC-IND-25K",
         "image": "img/products/industrial/ascorbato-de-sodio-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "regularPrice": 115,
     "discountBadge": "-15% WEB",
-    "highlightBadge": "🍊 VITAMINA C ALCALINA"
+    "highlightBadge": "🍊 VITAMINA C ALCALINA",
+    "dosage": {
+      "recommendedGrams": 1,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1/4 a 1/2 cucharadita (1000mg)",
+      "timingText": "Por la mañana con el desayuno o junto al colágeno",
+      "minDose": 0.5,
+      "maxDose": 2
+    },
+    "technicalSpecs": {
+      "chemicalForm": "L-Ascorbato de Sodio (Vitamina C no ácida)",
+      "casNumber": "134-03-2",
+      "mesh": "100 Mesh cristalino",
+      "grade": "Grado Farmacéutico USP / FCC",
+      "solubility": "Muy soluble en agua (pH neutro 7.0 - 7.5)",
+      "appearance": "Polvo cristalino blanco a ligeramente amarillento"
+    },
+    "responsibleUse": {
+      "instructions": "Disolver 1g en agua o zumo. No produce acidez estomacal.",
+      "warnings": [
+        "Aporta aproximadamente 111mg de sodio por cada gramo."
+      ],
+      "storage": "Proteger de la luz y el aire para prevenir oxidación."
+    },
+    "complementaryProductIds": [
+      "colageno-hidrolizado",
+      "espirulina-pura",
+      "citrato-de-magnesio"
+    ]
   },
   {
     "id": "espirulina-pura",
@@ -593,7 +857,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-ESP-BOL-1K",
-        "image": "img/products/espirulina-pura-bolsa-1kg.jpg"
+        "image": "img/products/espirulina-pura-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -603,7 +868,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-ESP-POT-1K",
-        "image": "img/products/espirulina-pura-pote-1kg.jpg"
+        "image": "img/products/espirulina-pura-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "tambor-25kg",
@@ -614,13 +880,44 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-tambor",
         "sku": "BIO-ESP-IND-25K",
         "image": "img/products/industrial/espirulina-pura-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "coaPdf": "docs/coa/coa-espirulina-pura.pdf",
     "regularPrice": 105,
     "discountBadge": "-13% WEB",
-    "highlightBadge": "🌿 SUPERALIMENTO 100%"
+    "highlightBadge": "🌿 SUPERALIMENTO 100%",
+    "dosage": {
+      "recommendedGrams": 3,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1 cucharadita de té (3g)",
+      "timingText": "Por la mañana en batidos verdes o zumos cítricos",
+      "minDose": 2,
+      "maxDose": 6
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Arthrospira platensis 100% Pura",
+      "casNumber": "223749-75-5",
+      "mesh": "Micro-fino 120 Mesh",
+      "grade": "Grado Nutracéutico / Alimentario",
+      "solubility": "Dispersión uniforme en líquidos y batidos",
+      "appearance": "Polvo verde oscuro profundo con aroma vegetal marino suave"
+    },
+    "responsibleUse": {
+      "instructions": "Incorporar a licuados, bowls o agua de piña.",
+      "warnings": [
+        "No apto para personas con fenilcetonuria.",
+        "Consultar en caso de patologías tiroideas."
+      ],
+      "storage": "Mantener herméticamente sellado en lugar oscuro."
+    },
+    "complementaryProductIds": [
+      "ascorbato-de-sodio",
+      "te-verde-extracto",
+      "colageno-hidrolizado"
+    ]
   },
   {
     "id": "te-verde-extracto",
@@ -662,7 +959,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-TEV-BOL-1K",
-        "image": "img/products/te-verde-extracto-bolsa-1kg.jpg"
+        "image": "img/products/te-verde-extracto-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -672,7 +970,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-TEV-POT-1K",
-        "image": "img/products/te-verde-extracto-pote-1kg.jpg"
+        "image": "img/products/te-verde-extracto-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "tambor-25kg",
@@ -683,8 +982,39 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-tambor",
         "sku": "BIO-TEV-IND-25K",
         "image": "img/products/industrial/te-verde-extracto-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
+    ],
+    "dosage": {
+      "recommendedGrams": 1,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1/4 cucharadita dosificadora (1g)",
+      "timingText": "Por la mañana o 30 minutos antes de actividad física",
+      "minDose": 0.5,
+      "maxDose": 1.5
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Extracto de Camellia sinensis estandarizado (>50% Polifenoles, >30% EGCG)",
+      "casNumber": "84650-60-2",
+      "mesh": "80 Mesh",
+      "grade": "Grado Alimentario / Nutracéutico",
+      "solubility": "Soluble en agua templada o caliente",
+      "appearance": "Polvo fino marrón verdoso característico"
+    },
+    "responsibleUse": {
+      "instructions": "Disolver en agua tibia o mezclar en bebidas pre-entreno.",
+      "warnings": [
+        "Contiene cafeína / teína natural.",
+        "Evitar tomar de noche."
+      ],
+      "storage": "Conservar en lugar fresco protegido de la luz."
+    },
+    "complementaryProductIds": [
+      "l-carnitina-base",
+      "espirulina-pura",
+      "creatina-monohidratada"
     ]
   },
   {
@@ -731,7 +1061,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-CMG-BOL-1K",
-        "image": "img/products/citrato-de-magnesio-bolsa-1kg.jpg"
+        "image": "img/products/citrato-de-magnesio-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -741,7 +1072,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-CMG-POT-1K",
-        "image": "img/products/citrato-de-magnesio-pote-1kg.jpg"
+        "image": "img/products/citrato-de-magnesio-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "caja-25kg",
@@ -752,13 +1084,44 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-caja",
         "sku": "BIO-CMG-IND-25K",
         "image": "img/products/industrial/citrato-de-magnesio-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "coaPdf": "docs/coa/coa-citrato-magnesio.pdf",
     "regularPrice": 28,
     "discountBadge": "-20% WEB",
-    "highlightBadge": "🔥 MÁS VENDIDO"
+    "highlightBadge": "🔥 MÁS VENDIDO",
+    "dosage": {
+      "recommendedGrams": 2.5,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1/2 cucharadita dosificadora (2.5g = ~400mg Magnesio elemental)",
+      "timingText": "Por la noche 45 a 60 minutos antes de dormir",
+      "minDose": 1.5,
+      "maxDose": 3.5
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Citrato de Magnesio Tribásico Anhidro",
+      "casNumber": "3344-18-2",
+      "mesh": "80-100 Mesh",
+      "grade": "Grado Farmacéutico USP / FCC",
+      "solubility": "Excelente solubilidad en agua a temperatura ambiente",
+      "appearance": "Polvo blanco fino de sabor cítrico suave"
+    },
+    "responsibleUse": {
+      "instructions": "Disolver 2.5g en un vaso con 200ml de agua tibia o fría.",
+      "warnings": [
+        "Ajustar a 1.5g si se presentan evacuaciones blandas.",
+        "Consultar con médico en caso de insuficiencia renal."
+      ],
+      "storage": "Cerrar inmediatamente para evitar que absorba humedad ambiental."
+    },
+    "complementaryProductIds": [
+      "citrato-de-potasio",
+      "ashwagandha-pura",
+      "colageno-hidrolizado"
+    ]
   },
   {
     "id": "glicinato-de-magnesio",
@@ -800,7 +1163,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-GMG-BOL-1K",
-        "image": "img/products/glicinato-de-magnesio-bolsa-1kg.jpg"
+        "image": "img/products/glicinato-de-magnesio-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -810,7 +1174,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-GMG-POT-1K",
-        "image": "img/products/glicinato-de-magnesio-pote-1kg.jpg"
+        "image": "img/products/glicinato-de-magnesio-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "caja-25kg",
@@ -821,13 +1186,44 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-caja",
         "sku": "BIO-GMG-IND-25K",
         "image": "img/products/industrial/glicinato-de-magnesio-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "coaPdf": "docs/coa/coa-bisglicinato-magnesio.pdf",
     "regularPrice": 58,
     "discountBadge": "-15% WEB",
-    "highlightBadge": "🌙 NOBLE & QUELADO"
+    "highlightBadge": "🌙 NOBLE & QUELADO",
+    "dosage": {
+      "recommendedGrams": 2.5,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1/2 cucharadita dosificadora (2.5g)",
+      "timingText": "Por la noche 30 a 60 minutos antes de acostarse",
+      "minDose": 1.5,
+      "maxDose": 3.5
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Bisglicinato de Magnesio Quelado 100% Puro",
+      "casNumber": "14783-68-7",
+      "mesh": "80-100 Mesh",
+      "grade": "Grado Farmacéutico USP",
+      "solubility": "Soluble en agua, alta tolerancia gastrointestinal",
+      "appearance": "Polvo blanco cristalino sin efecto laxante"
+    },
+    "responsibleUse": {
+      "instructions": "Tomar disuelto en agua antes de acostarse.",
+      "warnings": [
+        "Ideal para personas con sensibilidad digestiva.",
+        "No exceder la dosis diaria recomendada."
+      ],
+      "storage": "Conservar en lugar seco a menos de 25°C."
+    },
+    "complementaryProductIds": [
+      "ashwagandha-pura",
+      "citrato-de-potasio",
+      "creatina-monohidratada"
+    ]
   },
   {
     "id": "cloruro-de-magnesio",
@@ -869,7 +1265,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-CLMG-BOL-1K",
-        "image": "img/products/cloruro-de-magnesio-bolsa-1kg.jpg"
+        "image": "img/products/cloruro-de-magnesio-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -879,7 +1276,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-CLMG-POT-1K",
-        "image": "img/products/cloruro-de-magnesio-pote-1kg.jpg"
+        "image": "img/products/cloruro-de-magnesio-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "caja-25kg",
@@ -890,12 +1288,43 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-caja",
         "sku": "BIO-CLMG-IND-25K",
         "image": "img/products/industrial/cloruro-de-magnesio-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "regularPrice": 25,
     "discountBadge": "-19% WEB",
-    "highlightBadge": "⚡ SAL MINERAL PURA"
+    "highlightBadge": "⚡ SAL MINERAL PURA",
+    "dosage": {
+      "recommendedGrams": 2,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1/2 cucharadita rasa (2g) o para salmuera",
+      "timingText": "En ayunas o por la tarde disuelto en agua",
+      "minDose": 1,
+      "maxDose": 3
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Cloruro de Magnesio Hexahidratado",
+      "casNumber": "7791-18-6",
+      "mesh": "Cristales / Escamas",
+      "grade": "Grado Farmacéutico USP / FCC",
+      "solubility": "Extremadamente soluble en agua",
+      "appearance": "Cristales blancos translúcidos o escamas incoloras"
+    },
+    "responsibleUse": {
+      "instructions": "Disolver 2g en un vaso de agua con unas gotas de limón para atenuar el sabor amargo.",
+      "warnings": [
+        "Sabor amargo mineral natural.",
+        "Contraindicado en caso de diarreas agudas o insuficiencia renal."
+      ],
+      "storage": "Altamente delicuescente: mantener el envase hermético."
+    },
+    "complementaryProductIds": [
+      "citrato-de-potasio",
+      "colageno-hidrolizado",
+      "ascorbato-de-sodio"
+    ]
   },
   {
     "id": "citrato-de-potasio",
@@ -937,7 +1366,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-CPOT-BOL-1K",
-        "image": "img/products/citrato-de-potasio-bolsa-1kg.jpg"
+        "image": "img/products/citrato-de-potasio-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -947,7 +1377,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-CPOT-POT-1K",
-        "image": "img/products/citrato-de-potasio-pote-1kg.jpg"
+        "image": "img/products/citrato-de-potasio-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "caja-25kg",
@@ -958,8 +1389,39 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-caja",
         "sku": "BIO-CPOT-IND-25K",
         "image": "img/products/industrial/citrato-de-potasio-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
+    ],
+    "dosage": {
+      "recommendedGrams": 2,
+      "unit": "g",
+      "frequencyText": "1 vez al día con alimento",
+      "scoopEquivalent": "1/2 cucharadita dosificadora (2g = ~760mg Potasio elemental)",
+      "timingText": "Durante el almuerzo o cena con abundante líquido",
+      "minDose": 1,
+      "maxDose": 3
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Citrato de Potasio Monohidratado",
+      "casNumber": "6100-05-6",
+      "mesh": "Granular fino / 80 Mesh",
+      "grade": "Grado Farmacéutico USP / FCC",
+      "solubility": "Completamente soluble en agua",
+      "appearance": "Polvo cristalino blanco o granular inodoro"
+    },
+    "responsibleUse": {
+      "instructions": "Disolver siempre en un vaso grande de agua (mínimo 250ml) y consumir junto con comidas.",
+      "warnings": [
+        "Contraindicado en insuficiencia renal severa o hiperpotasemia.",
+        "No tomar con el estómago completamente vacío."
+      ],
+      "storage": "Guardar en envase cerrado en ambiente seco."
+    },
+    "complementaryProductIds": [
+      "citrato-de-magnesio",
+      "sal-de-epsom",
+      "glicinato-de-magnesio"
     ]
   },
   {
@@ -1002,7 +1464,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-EPS-BOL-1K",
-        "image": "img/products/sal-de-epsom-bolsa-1kg.jpg"
+        "image": "img/products/sal-de-epsom-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -1012,7 +1475,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-EPS-POT-1K",
-        "image": "img/products/sal-de-epsom-pote-1kg.jpg"
+        "image": "img/products/sal-de-epsom-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "caja-25kg",
@@ -1023,12 +1487,42 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-caja",
         "sku": "BIO-EPS-IND-25K",
         "image": "img/products/industrial/sal-de-epsom-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "regularPrice": 16,
     "discountBadge": "-22% WEB",
-    "highlightBadge": "🛁 PURIFICACIÓN PURA"
+    "highlightBadge": "🛁 PURIFICACIÓN PURA",
+    "dosage": {
+      "recommendedGrams": 5,
+      "unit": "g",
+      "frequencyText": "Uso oral esporádico o 100g-250g para baños",
+      "scoopEquivalent": "1 cucharadita para consumo oral / 1 taza para tina",
+      "timingText": "Tardes o noches en baño de inmersión relajante",
+      "minDose": 3,
+      "maxDose": 10
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Sulfato de Magnesio Heptahidratado (Sal de Epsom)",
+      "casNumber": "10034-99-8",
+      "mesh": "Cristalino homogéneo",
+      "grade": "Grado Farmacéutico USP",
+      "solubility": "Alta solubilidad en agua tibia o caliente",
+      "appearance": "Cristales blancos aciculares brillantes"
+    },
+    "responsibleUse": {
+      "instructions": "Disolver en agua caliente para baños de inmersión o pediluvios desinflamantes.",
+      "warnings": [
+        "En uso oral en dosis elevadas tiene efecto laxante osmótico rápido.",
+        "Uso oral únicamente bajo orientación médica."
+      ],
+      "storage": "Conservar en recipiente sellado para evitar eflorescencia."
+    },
+    "complementaryProductIds": [
+      "citrato-de-magnesio",
+      "cloruro-de-magnesio"
+    ]
   },
   {
     "id": "ashwagandha-pura",
@@ -1070,7 +1564,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-ASH-BOL-1K",
-        "image": "img/products/ashwagandha-pura-bolsa-1kg.jpg"
+        "image": "img/products/ashwagandha-pura-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -1080,7 +1575,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-ASH-POT-1K",
-        "image": "img/products/ashwagandha-pura-pote-1kg.jpg"
+        "image": "img/products/ashwagandha-pura-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "tambor-25kg",
@@ -1091,12 +1587,42 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-tambor",
         "sku": "BIO-ASH-IND-25K",
         "image": "img/products/industrial/ashwagandha-pura-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "regularPrice": 142,
     "discountBadge": "-12% WEB",
-    "highlightBadge": "🧘 ADAPTÓGENO PURO"
+    "highlightBadge": "🧘 ADAPTÓGENO PURO",
+    "dosage": {
+      "recommendedGrams": 1,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1/4 cucharadita dosificadora (1000mg)",
+      "timingText": "Por la noche con una infusión caliente o leche dorada",
+      "minDose": 0.5,
+      "maxDose": 2
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Withania somnifera Raíz en Polvo Pura",
+      "casNumber": "90147-43-6",
+      "mesh": "100 Mesh boticario",
+      "grade": "Grado Nutracéutico Puro",
+      "solubility": "Dispersable en líquidos calientes o tibios",
+      "appearance": "Polvo fino color arena con aroma terroso herbal"
+    },
+    "responsibleUse": {
+      "instructions": "Mezclar en leche tibia, té o batido nocturno.",
+      "warnings": [
+        "No consumir durante el embarazo o lactancia.",
+        "Consultar si se consumen sedantes o inmunosupresores."
+      ],
+      "storage": "Mantener en lugar seco y fresco, protegido de la luz."
+    },
+    "complementaryProductIds": [
+      "citrato-de-magnesio",
+      "glicinato-de-magnesio"
+    ]
   },
   {
     "id": "sulfato-de-condroitina",
@@ -1119,7 +1645,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Grado Alimentario)",
         "packagingType": "bolsa",
         "sku": "BIO-CON-BOL-1K",
-        "image": "img/products/sulfato-de-condroitina-bolsa-1kg.jpg"
+        "image": "img/products/sulfato-de-condroitina-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -1129,7 +1656,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-CON-POT-1K",
-        "image": "img/products/sulfato-de-condroitina-pote-1kg.jpg"
+        "image": "img/products/sulfato-de-condroitina-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "tambor-25kg",
@@ -1140,7 +1668,8 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-tambor",
         "sku": "BIO-CON-IND-25K",
         "image": "img/products/industrial/sulfato-de-condroitina-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "price": 145,
@@ -1161,6 +1690,35 @@ const BIONATIVA_PRODUCTS = [
         "q": "¿Cuál es el beneficio de tomar condroitina con glucosamina?",
         "a": "Es la combinación con mayor respaldo científico para el alivio del dolor osteoarticular. La glucosamina estimula la matriz de cartílago y la condroitina bloquea las enzimas líticas destructoras del tejido articular."
       }
+    ],
+    "dosage": {
+      "recommendedGrams": 1.2,
+      "unit": "g",
+      "frequencyText": "1 vez al día con comidas",
+      "scoopEquivalent": "1/2 cucharadita dosificadora (1200mg)",
+      "timingText": "Junto al almuerzo con abundante agua",
+      "minDose": 0.8,
+      "maxDose": 1.5
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Sulfato de Condroitina Sódica Bovina (>90%)",
+      "casNumber": "9007-28-7",
+      "mesh": "80 Mesh",
+      "grade": "Grado Farmacéutico USP",
+      "solubility": "Soluble en agua formando una solución ligeramente viscosa",
+      "appearance": "Polvo fino blanco a crema pálido"
+    },
+    "responsibleUse": {
+      "instructions": "Disolver en agua o mezclar con zumo junto con Glucosamina.",
+      "warnings": [
+        "Consultar con médico en caso de terapia con anticoagulantes."
+      ],
+      "storage": "Almacenar bien cerrado en ambiente seco."
+    },
+    "complementaryProductIds": [
+      "glucosamina-sulfato",
+      "colageno-hidrolizado",
+      "ascorbato-de-sodio"
     ]
   },
   {
@@ -1184,7 +1742,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Grado Alimentario)",
         "packagingType": "bolsa",
         "sku": "BIO-CAR-BOL-1K",
-        "image": "img/products/l-carnitina-base-bolsa-1kg.jpg"
+        "image": "img/products/l-carnitina-base-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -1194,7 +1753,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-CAR-POT-1K",
-        "image": "img/products/l-carnitina-base-pote-1kg.jpg"
+        "image": "img/products/l-carnitina-base-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "tambor-25kg",
@@ -1205,7 +1765,8 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-tambor",
         "sku": "BIO-CAR-IND-25K",
         "image": "img/products/industrial/l-carnitina-base-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "price": 78,
@@ -1226,6 +1787,36 @@ const BIONATIVA_PRODUCTS = [
         "q": "¿La L-Carnitina base es higroscópica?",
         "a": "Sí, es una materia prima que absorbe humedad del aire con rapidez. Mantener el envase herméticamente cerrado o refrigerar en épocas húmedas."
       }
+    ],
+    "dosage": {
+      "recommendedGrams": 2,
+      "unit": "g",
+      "frequencyText": "1 vez al día",
+      "scoopEquivalent": "1/2 cucharadita dosificadora (2000mg)",
+      "timingText": "30 a 45 minutos antes del entrenamiento cardiovascular",
+      "minDose": 1,
+      "maxDose": 3
+    },
+    "technicalSpecs": {
+      "chemicalForm": "L-Carnitina Base Pura (Levocarnitina)",
+      "casNumber": "541-15-1",
+      "mesh": "80 Mesh",
+      "grade": "Grado Farmacéutico USP",
+      "solubility": "Altamente soluble en agua",
+      "appearance": "Polvo cristalino blanco higroscópico"
+    },
+    "responsibleUse": {
+      "instructions": "Disolver en agua antes del entrenamiento.",
+      "warnings": [
+        "Materia prima muy higroscópica: cerrar la tapa inmediatamente tras usar.",
+        "No tomar tarde en la noche si causa activación."
+      ],
+      "storage": "Mantener con desecante y cerrado herméticamente."
+    },
+    "complementaryProductIds": [
+      "te-verde-extracto",
+      "creatina-monohidratada",
+      "arginina-pura"
     ]
   },
   {
@@ -1249,7 +1840,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Grado Alimentario)",
         "packagingType": "bolsa",
         "sku": "BIO-STE-BOL-1K",
-        "image": "img/products/stevia-pura-bolsa-1kg.jpg"
+        "image": "img/products/stevia-pura-bolsa-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "pote-1kg",
@@ -1259,7 +1851,8 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-STE-POT-1K",
-        "image": "img/products/stevia-pura-pote-1kg.jpg"
+        "image": "img/products/stevia-pura-pote-1kg.jpg",
+        "weightGrams": 1000
       },
       {
         "id": "tambor-25kg",
@@ -1270,7 +1863,8 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "industrial-tambor",
         "sku": "BIO-STE-IND-25K",
         "image": "img/products/industrial/stevia-pura-25kg.jpg",
-        "isBulk": true
+        "isBulk": true,
+        "weightGrams": 25000
       }
     ],
     "price": 160,
@@ -1291,99 +1885,43 @@ const BIONATIVA_PRODUCTS = [
         "q": "¿Tiene sabor amargo al final?",
         "a": "Al tratarse de extracto purificado de alta concentración en rebaudiósido, el amargor residual característico de hojas crudas es mínimo o inexistente."
       }
+    ],
+    "dosage": {
+      "recommendedGrams": 0.1,
+      "unit": "g",
+      "frequencyText": "A gusto como endulzante",
+      "scoopEquivalent": "Una pizca minúscula (punta de un cuchillo = 100mg)",
+      "timingText": "Al preparar café, batidos, infusiones o postres",
+      "minDose": 0.05,
+      "maxDose": 0.5
+    },
+    "technicalSpecs": {
+      "chemicalForm": "Glucósidos de Esteviol Puros (Rebaudioside A >98%)",
+      "casNumber": "57817-89-7",
+      "mesh": "100 Mesh ultra fino",
+      "grade": "Grado Alimentario USP / FCC",
+      "solubility": "Instantáneamente soluble en líquidos fríos o calientes",
+      "appearance": "Polvo blanco fino de dulzor puro sin amargor"
+    },
+    "responsibleUse": {
+      "instructions": "Usar cantidades mínimas: su poder endulzante es 300 veces superior al azúcar común.",
+      "warnings": [
+        "0 calorías, 0 índice glucémico. Apto para diabéticos y dietas keto."
+      ],
+      "storage": "Conservar en frasco hermético en lugar seco."
+    },
+    "complementaryProductIds": [
+      "proteina-suero-leche-80",
+      "proteina-soya-vegetal",
+      "te-verde-extracto"
     ]
   }
 ];
 
-const BIONATIVA_CONFIG = {
-  "brandName": "BioNativa LAB",
-  "tagline": "El estándar de tu naturaleza",
-  "domain": "bionativalab.com",
-  "canonicalBase": "https://bionativalab.com",
-  "whatsappNumber": "51981278458",
-  "whatsappFormatted": "+51 981 278 458",
-  "whatsappMessageBase": "¡Hola BioNativa LAB! Deseo realizar el siguiente pedido desde su tienda virtual:",
-  "currency": "PEN",
-  "currencySymbol": "S/",
-  "locations": {
-    "lima": {
-      "name": "Almacén Central Lima",
-      "address": "Lima Metropolitana (Despacho delivery y recojo previa coordinación)",
-      "city": "Lima",
-      "region": "Lima",
-      "country": "Perú",
-      "geo": {
-        "latitude": -12.046374,
-        "longitude": -77.042793
-      }
-    },
-    "cusco": {
-      "name": "Punto de Distribución & Tienda Cusco",
-      "address": "Av. Teodosio Serrudo B'10b, Urb. Coripata Sur, Santiago, Cusco",
-      "city": "Cusco",
-      "region": "Cusco",
-      "country": "Perú",
-      "geo": {
-        "latitude": -13.5285,
-        "longitude": -71.979
-      }
-    }
-  },
-  "shippingOptions": [
-    {
-      "id": "lima-express",
-      "name": "Delivery Lima Metropolitana (24 a 48 hrs)",
-      "price": 10,
-      "details": "Entrega a domicilio en distritos de Lima"
-    },
-    {
-      "id": "lima-recojo",
-      "name": "Retiro en Almacén Lima (Gratis)",
-      "price": 0,
-      "details": "Previa confirmación de preparación"
-    },
-    {
-      "id": "cusco-recojo",
-      "name": "Retiro en Tienda Cusco (Gratis)",
-      "price": 0,
-      "details": "Entrega express local en Cusco"
-    },
-    {
-      "id": "provincias-shalom",
-      "name": "Envío Nacional vía Agencia Shalom",
-      "price": 15,
-      "details": "Pago y recojo seguro en agencia más cercana de tu ciudad"
-    },
-    {
-      "id": "provincias-marvisur",
-      "name": "Envío Nacional vía Agencia Marvisur",
-      "price": 16,
-      "details": "Ideal para paquetes pesados y de gran volumen"
-    }
-  ],
-  "paymentMethods": [
-    {
-      "id": "whatsapp",
-      "title": "Cierre Directo por WhatsApp (Recomendado)",
-      "desc": "Envía tu pedido al instante y coordina con un asesor farmacéutico."
-    },
-    {
-      "id": "transfer",
-      "title": "Plin / Interbank / Banco de la Nación / Digitales",
-      "desc": "Cuenta principal Interbank y Plin QR. También Banco de la Nación, Agora, Ligo y Lemon."
-    },
-    {
-      "id": "card",
-      "title": "Tarjeta de Crédito o Débito (En línea)",
-      "desc": "Transacción 100% segura protegida por cifrado SSL de 256 bits."
-    }
-  ]
-};
-
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   window.BIONATIVA_PRODUCTS = BIONATIVA_PRODUCTS;
-  window.BIONATIVA_CONFIG = BIONATIVA_CONFIG;
 }
-if (typeof module !== "undefined") {
-  module.exports = { BIONATIVA_PRODUCTS, BIONATIVA_CONFIG };
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { BIONATIVA_PRODUCTS };
 }

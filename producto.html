@@ -178,6 +178,11 @@
         <!-- Javascript renders product content here -->
       </div>
 
+      <!-- Complementary Products (Cross-selling / Sinergias Biológicas) -->
+      <section id="complementary-products-section" class="mt-16 pt-12 border-t border-[#E8E2D8]">
+        <!-- Javascript renders complementary products here -->
+      </section>
+
     </div>
   </main>
 
@@ -229,6 +234,8 @@
     let currentProduct = null;
     let selectedVariantId = null;
     let selectedQty = 1;
+    let currentCustomDose = 5;
+    let currentConsumers = 1;
 
     function initProduct() {
       const params = new URLSearchParams(window.location.search);
@@ -240,8 +247,19 @@
         selectedVariantId = currentProduct.defaultVariant || currentProduct.variants[0].id;
       }
 
+      // Initialize default dose from product data
+      if (currentProduct && currentProduct.dosage && currentProduct.dosage.recommendedGrams) {
+        currentCustomDose = currentProduct.dosage.recommendedGrams;
+      } else {
+        currentCustomDose = 5;
+      }
+      currentConsumers = 1;
+      selectedQty = 1;
+
       updatePageMeta();
       renderProductPage();
+      renderComplementaryProducts();
+      updateDoseCalculator();
     }
 
     if (document.readyState === "loading") {
@@ -259,8 +277,12 @@
       const canonical = document.getElementById("canonical-url");
       if (canonical) canonical.href = `https://bionativalab.com/producto?id=${currentProduct.id}`;
 
-      document.getElementById("breadcrumb-category").textContent = currentProduct.categoryName;
-      document.getElementById("breadcrumb-product").textContent = currentProduct.shortName;
+      const breadcrumbCat = document.getElementById("breadcrumb-category");
+      if (breadcrumbCat) {
+        breadcrumbCat.innerHTML = `<a href="tienda?cat=${currentProduct.category}" class="hover:underline">${currentProduct.categoryName}</a>`;
+      }
+      const breadcrumbProd = document.getElementById("breadcrumb-product");
+      if (breadcrumbProd) breadcrumbProd.textContent = currentProduct.shortName;
 
       // Inject Schema.org Product JSON-LD for Search Engines & AEO
       const schemaEl = document.getElementById("schema-product");
@@ -284,49 +306,13 @@
             "@type": "Offer",
             "url": `https://bionativalab.com/producto?id=${currentProduct.id}`,
             "priceCurrency": "PEN",
-            "price": currentProduct.price,
+            "price": getActivePrice(),
             "priceValidUntil": "2027-12-31",
             "availability": "https://schema.org/InStock",
             "itemCondition": "https://schema.org/NewCondition",
             "seller": {
               "@type": "Organization",
               "name": "BioNativa LAB"
-            },
-            "shippingDetails": {
-              "@type": "OfferShippingDetails",
-              "shippingRate": {
-                "@type": "MonetaryAmount",
-                "value": "10.00",
-                "currency": "PEN"
-              },
-              "shippingDestination": {
-                "@type": "DefinedRegion",
-                "addressCountry": "PE"
-              },
-              "deliveryTime": {
-                "@type": "ShippingDeliveryTime",
-                "handlingTime": {
-                  "@type": "QuantitativeValue",
-                  "minValue": 0,
-                  "maxValue": 1,
-                  "unitCode": "DAY"
-                },
-                "transitTime": {
-                  "@type": "QuantitativeValue",
-                  "minValue": 1,
-                  "maxValue": 3,
-                  "unitCode": "DAY"
-                }
-              }
-            },
-            "hasMerchantReturnPolicy": {
-              "@type": "MerchantReturnPolicy",
-              "applicableCountry": "PE",
-              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-              "merchantReturnDays": 7,
-              "returnMethod": "https://schema.org/ReturnByMail",
-              "returnFees": "https://schema.org/FreeReturn",
-              "returnPolicyLink": "https://bionativalab.com/terminos-y-privacidad"
             }
           },
           "aggregateRating": {
@@ -339,268 +325,695 @@
       }
     }
 
+    function getActiveVariant() {
+      if (currentProduct.hasVariants && Array.isArray(currentProduct.variants)) {
+        return currentProduct.variants.find(v => v.id === selectedVariantId) || currentProduct.variants[0];
+      }
+      return null;
+    }
+
+    function getActivePrice() {
+      const v = getActiveVariant();
+      if (v && typeof v.price === 'number') return v.price;
+      return currentProduct.price;
+    }
+
+    function getActiveRegularPrice() {
+      const v = getActiveVariant();
+      if (v && typeof v.regularPrice === 'number') return v.regularPrice;
+      if (typeof currentProduct.regularPrice === 'number') return currentProduct.regularPrice;
+      return Math.round(getActivePrice() * 1.15);
+    }
+
+    function getActiveUnitName() {
+      const v = getActiveVariant();
+      if (v && v.name) return v.name;
+      return currentProduct.unit || '1 kg';
+    }
+
+    function getActiveWeightGrams() {
+      const v = getActiveVariant();
+      if (v && typeof v.weightGrams === 'number') return v.weightGrams;
+      if (v && v.weight) {
+        if (v.weight.includes('kg')) return parseFloat(v.weight) * 1000;
+        if (v.weight.includes('g')) return parseFloat(v.weight);
+      }
+      return 1000; // Default 1 kg = 1000g
+    }
+
+    function getActiveImage() {
+      const v = getActiveVariant();
+      if (v && v.image) return v.image;
+      return currentProduct.image;
+    }
+
     function renderProductPage() {
       const container = document.getElementById("product-container");
       if (!container || !currentProduct) return;
 
       const currentPrice = getActivePrice();
+      const regularPrice = getActiveRegularPrice();
       const currentUnit = getActiveUnitName();
+      const weightGrams = getActiveWeightGrams();
+      const savings = Math.max(0, regularPrice - currentPrice);
+      const discountPercent = regularPrice > currentPrice ? Math.round((savings / regularPrice) * 100) : 0;
+      const pricePerKg = ((currentPrice / (weightGrams / 1000))).toFixed(2);
+
+      const dosageInfo = currentProduct.dosage || {
+        recommendedGrams: 5,
+        unit: 'g',
+        frequencyText: '1 vez al día',
+        scoopEquivalent: '1 cucharadita dosificadora o cafetera (5g)',
+        timingText: 'En ayunas o según recomendación nutricional'
+      };
+
+      const techSpecs = currentProduct.technicalSpecs || {
+        chemicalForm: 'Materia prima pura micronizada',
+        mesh: '200 Mesh',
+        grade: 'Grado Farmacéutico USP / FCC',
+        solubility: 'Alta solubilidad en líquidos a temperatura ambiente',
+        appearance: 'Polvo puro homogéneo'
+      };
+
+      const respUse = currentProduct.responsibleUse || {
+        instructions: currentProduct.howToUse,
+        warnings: [
+          'No superar la dosis diaria recomendada.',
+          'Consulte a su médico o especialista en caso de embarazo, lactancia o condición clínica particular.',
+          'Mantener fuera del alcance de los niños menores de 12 años.'
+        ],
+        storage: 'Conservar en lugar fresco, seco y al abrigo de la luz solar directa.'
+      };
 
       container.innerHTML = `
-        <!-- Left: Image Gallery & Badges -->
-        <div class="lg:col-span-6 space-y-4">
-          <div class="organic-card p-6 bg-white flex items-center justify-center relative overflow-hidden">
-            <span class="absolute top-4 left-4 bg-[#1E3B2B] text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow">
-              ${currentProduct.badge || 'Puro COA'}
-            </span>
-            <span class="absolute top-4 right-4 bg-[#FAF6F0] border border-[#D5CDBD] text-[#B67A52] text-[11px] font-bold px-3 py-1 rounded-full z-10">
+        <!-- Left Column: Gallery, Badges & Trust Seals -->
+        <div class="lg:col-span-6 space-y-5">
+          <!-- Main Product Card -->
+          <div class="organic-card p-6 sm:p-8 bg-white rounded-3xl border border-[#E8E2D8] flex items-center justify-center relative overflow-hidden shadow-sm">
+            <!-- Badges -->
+            <div class="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
+              <span class="bg-[#1E3B2B] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm tracking-wide">
+                ${currentProduct.badge || 'Pureza 99.9% COA'}
+              </span>
+              <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Lote Verificado HPLC
+              </span>
+            </div>
+
+            <span class="absolute top-4 right-4 bg-[#FAF6F0] border border-[#D5CDBD] text-[#B67A52] text-[11px] font-bold px-3 py-1 rounded-full z-10 shadow-sm">
               Materia Prima USA
             </span>
-            <img src="${getActiveImage()}" alt="${currentProduct.name}" id="main-product-image" class="w-full max-h-[440px] object-contain drop-shadow-lg transition-all duration-300" />
+
+            <img src="${getActiveImage()}" alt="${currentProduct.name}" id="main-product-image" class="w-full max-h-[460px] object-contain drop-shadow-lg transition-transform duration-300 hover:scale-[1.02]" />
           </div>
 
-          <!-- Presentation Thumbnails Gallery -->
+          <!-- Presentation Thumbnails Gallery (1. Fotografía profesional con switch de presentación) -->
           ${currentProduct.hasVariants && currentProduct.variants && currentProduct.variants.length > 1 ? `
-            <div class="flex items-center gap-2.5 overflow-x-auto pb-1">
-              ${currentProduct.variants.map((v, idx) => `
-                <button type="button" data-variant-id="${v.id}" onclick="setProductVariant('${v.id}')" class="presentation-thumb-btn flex-1 min-w-[120px] p-2 rounded-xl border transition flex items-center gap-2 ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 shadow-sm' : 'border-stone-200 bg-white hover:border-stone-300'}" title="${v.name}">
-                  <img src="${v.image || currentProduct.image}" alt="${v.name}" class="w-10 h-10 object-contain rounded bg-[#FAF6F0] p-1 flex-shrink-0" />
-                  <div class="text-left min-w-0">
-                    <span class="block text-[11px] font-bold text-[#1E3B2B] truncate">${v.packagingType === 'bolsa' ? 'Bolsa ' + v.weight : v.packagingType === 'pote' ? 'Pote ' + v.weight : v.packagingType === 'industrial-caja' ? 'Caja ' + v.weight : v.packagingType === 'industrial-saco' ? 'Saco ' + v.weight : v.packagingType === 'industrial-tambor' ? 'Tambor ' + v.weight : (v.weight || v.name)}</span>
-                    <span class="block text-[10px] text-[#B67A52] font-semibold">S/ ${v.price.toFixed(2)}</span>
-                  </div>
-                </button>
-              `).join('')}
+            <div class="space-y-1.5">
+              <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider block">Vista por Presentación Disponible:</span>
+              <div class="flex items-center gap-2.5 overflow-x-auto pb-1">
+                ${currentProduct.variants.map((v) => `
+                  <button type="button" data-variant-id="${v.id}" onclick="setProductVariant('${v.id}')" class="presentation-thumb-btn flex-1 min-w-[130px] p-2.5 rounded-2xl border transition flex items-center gap-2.5 ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 shadow-sm ring-1 ring-[#1E3B2B]' : 'border-stone-200 bg-white hover:border-stone-300'}" title="${v.name}">
+                    <img src="${v.image || currentProduct.image}" alt="${v.name}" class="w-11 h-11 object-contain rounded-xl bg-[#FAF6F0] p-1 flex-shrink-0" />
+                    <div class="text-left min-w-0">
+                      <span class="block text-xs font-bold text-[#1E3B2B] truncate">${v.weight || v.name}</span>
+                      <span class="block text-[11px] text-[#B67A52] font-extrabold">S/ ${v.price.toFixed(2)}</span>
+                      <span class="block text-[9px] text-stone-400 capitalize">${v.packagingType || 'Envase sellado'}</span>
+                    </div>
+                  </button>
+                `).join('')}
+              </div>
             </div>
           ` : ''}
 
-          <!-- Trust Cards Row -->
+          <!-- Trust Cards Row (Garantías de pureza boticaria) -->
           <div class="grid grid-cols-3 gap-3 text-center text-xs">
-            <div class="bg-white p-3 rounded-xl border border-[#E8E2D8]">
-              <span class="font-bold text-[#1E3B2B] block">Pureza 99.9%</span>
-              <span class="text-[10px] text-stone-500">Certificado COA</span>
+            <div class="bg-white p-3.5 rounded-2xl border border-[#E8E2D8] shadow-sm">
+              <span class="font-bold text-[#1E3B2B] block text-xs sm:text-sm">Pureza 99.9%</span>
+              <span class="text-[10px] text-stone-500 mt-0.5 block">Certificado COA USP</span>
             </div>
-            <div class="bg-white p-3 rounded-xl border border-[#E8E2D8]">
-              <span class="font-bold text-[#1E3B2B] block">Despacho Inmediato</span>
-              <span class="text-[10px] text-stone-500">Lima & Cusco</span>
+            <div class="bg-white p-3.5 rounded-2xl border border-[#E8E2D8] shadow-sm">
+              <span class="font-bold text-[#1E3B2B] block text-xs sm:text-sm">Despacho Exprés</span>
+              <span class="text-[10px] text-stone-500 mt-0.5 block">Lima & Cusco Hoy</span>
             </div>
-            <div class="bg-white p-3 rounded-xl border border-[#E8E2D8]">
-              <span class="font-bold text-[#1E3B2B] block">Envío Nacional</span>
-              <span class="text-[10px] text-stone-500">Shalom & Marvisur</span>
+            <div class="bg-white p-3.5 rounded-2xl border border-[#E8E2D8] shadow-sm">
+              <span class="font-bold text-[#1E3B2B] block text-xs sm:text-sm">Envíos Perú</span>
+              <span class="text-[10px] text-stone-500 mt-0.5 block">Shalom & Marvisur</span>
+            </div>
+          </div>
+
+          <!-- Clean Label Quick Highlights (8. Ingredientes y composición) -->
+          <div class="p-4 bg-[#FAF6F0] rounded-2xl border border-[#E8E2D8] flex flex-wrap items-center justify-between gap-3 text-xs text-stone-700">
+            <div class="flex items-center gap-1.5">
+              <span class="text-emerald-700 font-bold">✓</span>
+              <span>100% Principio Activo</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-emerald-700 font-bold">✓</span>
+              <span>0% Maltodextrina</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-emerald-700 font-bold">✓</span>
+              <span>Sin Saborizantes</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-emerald-700 font-bold">✓</span>
+              <span>Libre de Gluten</span>
             </div>
           </div>
         </div>
 
-        <!-- Right: Information, Variants & Actions -->
+        <!-- Right Column: Information, Pricing, Dose Calculator & Action CTAs -->
         <div class="lg:col-span-6 space-y-6">
+          <!-- 2. Nombre comercial y descripción breve -->
           <div>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs font-bold text-[#B67A52] uppercase tracking-wider">${currentProduct.categoryName}</span>
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <a href="tienda?cat=${currentProduct.category}" class="text-xs font-extrabold text-[#B67A52] uppercase tracking-wider hover:underline">
+                ${currentProduct.categoryName}
+              </a>
               <span class="text-stone-300">•</span>
-              <div class="flex items-center text-amber-500 text-xs font-semibold">
+              <div class="flex items-center text-amber-500 text-xs font-bold">
                 <span>★ ${currentProduct.rating.toFixed(1)}</span>
-                <span class="text-stone-400 ml-1">(${currentProduct.reviewsCount} opiniones)</span>
+                <span class="text-stone-400 font-medium ml-1">(${currentProduct.reviewsCount} reseñas verificadas)</span>
               </div>
             </div>
 
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1E3B2B] leading-tight">${currentProduct.name}</h1>
-            <p class="text-xs text-stone-500 mt-1">Origen: <strong class="text-stone-700">${currentProduct.origin}</strong></p>
+            <h1 class="text-2xl sm:text-3xl font-black text-[#1E3B2B] leading-tight tracking-tight">${currentProduct.name}</h1>
+            <p class="text-xs text-stone-500 mt-1.5">
+              Procedencia: <strong class="text-stone-800 font-semibold">${currentProduct.origin}</strong>
+            </p>
+            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mt-2.5">
+              ${currentProduct.description}
+            </p>
           </div>
 
-          <!-- Price Display -->
-          <div class="p-4 bg-[#FAF6F0] rounded-2xl border border-[#E8E2D8] flex items-baseline justify-between">
-            <div>
-              <span class="text-xs text-stone-500 block">Precio Final con IGV:</span>
-              <div class="text-3xl font-black text-[#1E3B2B]">
-                S/ <span id="display-price">${currentPrice.toFixed(2)}</span>
+          <!-- 3. Precio regular y promocional con ahorro transparente -->
+          <div class="p-4 sm:p-5 bg-gradient-to-br from-[#FAF6F0] to-[#F5EFE6] rounded-3xl border border-[#E8E2D8] space-y-2">
+            <div class="flex items-baseline justify-between gap-4">
+              <div>
+                <span class="text-xs text-stone-500 font-medium block">Precio Promocional Web con IGV:</span>
+                <div class="flex items-baseline gap-2.5 flex-wrap">
+                  <div class="text-3xl sm:text-4xl font-black text-[#1E3B2B] tracking-tight">
+                    S/ <span id="display-price">${currentPrice.toFixed(2)}</span>
+                  </div>
+                  ${regularPrice > currentPrice ? `
+                    <span id="display-regular-price" class="text-sm font-semibold text-stone-400 line-through">
+                      S/ ${regularPrice.toFixed(2)}
+                    </span>
+                  ` : ''}
+                </div>
+              </div>
+
+              <div class="text-right">
+                <span class="text-xs font-bold text-[#B67A52] bg-white px-3 py-1.5 rounded-full border border-[#D5CDBD] shadow-sm inline-block" id="display-unit">
+                  ${currentUnit}
+                </span>
+                <span id="display-rate-kg" class="block text-[11px] text-stone-500 font-medium mt-1">
+                  S/ ${pricePerKg} / kg
+                </span>
               </div>
             </div>
-            <span class="text-xs font-bold text-[#B67A52] bg-white px-3 py-1.5 rounded-full border border-[#D5CDBD]" id="display-unit">
-              ${currentUnit}
-            </span>
+
+            ${savings > 0 ? `
+              <div id="savings-badge-box" class="pt-2 border-t border-[#E8E2D8]/60 flex items-center justify-between text-xs">
+                <span class="inline-flex items-center gap-1.5 bg-emerald-100/80 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full text-[11px]">
+                  <span>🔥 Ahorras S/ ${savings.toFixed(2)} (${discountPercent}% OFF)</span>
+                </span>
+                <span class="text-[11px] text-stone-500">Materia prima sin intermediarios</span>
+              </div>
+            ` : ''}
           </div>
 
-          <!-- Variants Selector (If available) -->
+          <!-- 4. Presentaciones disponibles (300g, 600g, 1kg, 25kg, etc.) -->
           ${currentProduct.hasVariants ? `
             <div class="space-y-2">
-              <label class="block text-xs font-bold text-stone-700">Seleccionar Presentación / Formato:</label>
+              <div class="flex items-center justify-between">
+                <label class="block text-xs font-bold text-stone-800 uppercase tracking-wider">
+                  4. Seleccionar Presentación / Empaque:
+                </label>
+                <span class="text-[10px] text-stone-500">Stock para entrega inmediata</span>
+              </div>
               <div class="grid grid-cols-1 ${currentProduct.variants.length === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'} gap-2.5">
                 ${currentProduct.variants.map(v => `
-                  <button type="button" data-variant-id="${v.id}" onclick="setProductVariant('${v.id}')" class="variant-select-btn p-3 rounded-xl border text-left text-xs transition relative overflow-hidden ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 font-bold text-[#1E3B2B]' : 'border-stone-200 bg-white hover:border-stone-300'}">
-                    ${v.isBulk ? '<span class="absolute top-1.5 right-1.5 text-[9px] bg-[#B67A52] text-white font-bold px-1.5 py-0.5 rounded">Granel</span>' : ''}
-                    <div class="font-bold text-sm text-[#1E3B2B] pr-10">${v.name}</div>
-                    <div class="text-[11px] text-[#B67A52] font-semibold mt-0.5">S/ ${v.price.toFixed(2)}</div>
-                    <div class="text-[10px] text-stone-400 mt-0.5">${v.format}</div>
+                  <button type="button" data-variant-id="${v.id}" onclick="setProductVariant('${v.id}')" class="variant-select-btn p-3 rounded-2xl border text-left text-xs transition relative overflow-hidden ${v.id === selectedVariantId ? 'border-[#1E3B2B] bg-[#1E3B2B]/5 font-bold text-[#1E3B2B] ring-1 ring-[#1E3B2B] shadow-sm' : 'border-stone-200 bg-white hover:border-stone-300'}">
+                    ${v.isBulk ? '<span class="absolute top-1.5 right-1.5 text-[9px] bg-[#B67A52] text-white font-bold px-1.5 py-0.5 rounded">Mayorista</span>' : ''}
+                    <div class="font-extrabold text-sm text-[#1E3B2B] pr-10">${v.name}</div>
+                    <div class="text-[12px] text-[#B67A52] font-black mt-0.5">S/ ${v.price.toFixed(2)}</div>
+                    <div class="text-[10px] text-stone-400 mt-0.5 truncate">${v.format}</div>
+                    <div class="text-[9px] text-stone-500 font-semibold mt-1 bg-stone-100 inline-block px-1.5 py-0.5 rounded">${v.weightGrams ? v.weightGrams.toLocaleString() + ' g netos' : v.weight}</div>
                   </button>
                 `).join("")}
               </div>
             </div>
           ` : ''}
 
-          <!-- Quantity & Purchase Buttons -->
-          <div class="space-y-3 pt-2">
-            <div class="flex items-center gap-3">
-              <!-- Qty Selector -->
-              <div class="flex items-center border border-[#D5CDBD] rounded-xl bg-white px-3 py-2">
-                <button onclick="changeQty(-1)" class="w-7 h-7 flex items-center justify-center font-bold text-stone-600 hover:text-[#1E3B2B]">-</button>
-                <span id="qty-val" class="w-8 text-center font-bold text-sm text-[#1E3B2B]">1</span>
-                <button onclick="changeQty(1)" class="w-7 h-7 flex items-center justify-center font-bold text-stone-600 hover:text-[#1E3B2B]">+</button>
+          <!-- ★ CONTADOR DE DOSIS DIARIAS Y CALCULADORA DE RENDIMIENTO BOTICARIO -->
+          <div class="p-4 sm:p-5 bg-white rounded-3xl border-2 border-[#1E3B2B]/20 shadow-sm space-y-4 relative">
+            <div class="flex items-center justify-between border-b border-[#E8E2D8] pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-full bg-[#1E3B2B] text-white flex items-center justify-center font-bold text-xs shadow-sm">⏱</span>
+                <div>
+                  <h3 class="font-extrabold text-sm text-[#1E3B2B]">Calculadora de Dosis & Rendimiento</h3>
+                  <p class="text-[10px] text-stone-500">¿Cuánto tiempo te durará esta presentación?</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                Transparencia Real
+              </span>
+            </div>
+
+            <!-- Controls: Dose adjuster + Consumers -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <!-- Grams Selector -->
+              <div class="bg-[#FAF9F6] p-3 rounded-2xl border border-[#E8E2D8] space-y-1.5">
+                <span class="text-[10px] font-bold text-stone-600 uppercase tracking-wide block">Dosis Diaria Recomendada:</span>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <button type="button" onclick="changeCalculatorDose(-0.5)" class="w-7 h-7 rounded-lg bg-white border border-stone-300 font-black text-stone-700 hover:bg-stone-50 flex items-center justify-center active:scale-95 transition">-</button>
+                    <span id="calc-dose-display" class="font-black text-base text-[#1E3B2B] min-w-[65px] text-center">${currentCustomDose} g/día</span>
+                    <button type="button" onclick="changeCalculatorDose(0.5)" class="w-7 h-7 rounded-lg bg-white border border-stone-300 font-black text-stone-700 hover:bg-stone-50 flex items-center justify-center active:scale-95 transition">+</button>
+                  </div>
+                  <span class="text-[9px] text-stone-400 text-right">Por toma</span>
+                </div>
+                <div class="text-[10px] text-stone-500 truncate pt-1">
+                  🥄 ${dosageInfo.scoopEquivalent}
+                </div>
               </div>
 
-              <!-- Add to Cart -->
-              <button onclick="addCurrentProductToCart()" class="flex-1 bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-bold py-3.5 px-6 rounded-xl text-sm shadow-md transition flex items-center justify-center gap-2">
+              <!-- Consumers Selector -->
+              <div class="bg-[#FAF9F6] p-3 rounded-2xl border border-[#E8E2D8] space-y-1.5">
+                <span class="text-[10px] font-bold text-stone-600 uppercase tracking-wide block">Personas que consumen:</span>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <button type="button" onclick="setConsumersCount(1)" id="btn-consumer-1" class="py-1.5 px-2 rounded-xl text-xs font-bold text-center transition border ${currentConsumers === 1 ? 'bg-[#1E3B2B] text-white border-[#1E3B2B]' : 'bg-white text-stone-700 border-stone-200 hover:border-stone-300'}">
+                    1 Persona
+                  </button>
+                  <button type="button" onclick="setConsumersCount(2)" id="btn-consumer-2" class="py-1.5 px-2 rounded-xl text-xs font-bold text-center transition border ${currentConsumers === 2 ? 'bg-[#1E3B2B] text-white border-[#1E3B2B]' : 'bg-white text-stone-700 border-stone-200 hover:border-stone-300'}">
+                    2 Personas
+                  </button>
+                </div>
+                <div class="text-[10px] text-stone-500 truncate pt-1">
+                  ⏰ ${dosageInfo.timingText || 'Toma diaria constante'}
+                </div>
+              </div>
+            </div>
+
+            <!-- Metric Outcome Cards (Duración, Meses, Costo diario) -->
+            <div class="grid grid-cols-3 gap-2.5 text-center">
+              <div class="bg-[#FAF6F0] p-3 rounded-2xl border border-[#E8E2D8]">
+                <span class="text-[10px] text-stone-500 uppercase font-semibold block">DURACIÓN TOTAL</span>
+                <span id="calc-days-val" class="text-xl sm:text-2xl font-black text-[#1E3B2B] block tracking-tight">--</span>
+                <span class="text-[9px] text-stone-400">Días de uso continuo</span>
+              </div>
+              <div class="bg-[#FAF6F0] p-3 rounded-2xl border border-[#E8E2D8]">
+                <span class="text-[10px] text-stone-500 uppercase font-semibold block">EQUIVALENCIA</span>
+                <span id="calc-months-val" class="text-sm sm:text-base font-extrabold text-[#B67A52] block tracking-tight mt-1">--</span>
+                <span class="text-[9px] text-stone-400">Meses de tratamiento</span>
+              </div>
+              <div class="bg-[#FAF6F0] p-3 rounded-2xl border border-[#E8E2D8]">
+                <span class="text-[10px] text-stone-500 uppercase font-semibold block">COSTO POR DÍA</span>
+                <span id="calc-cost-val" class="text-base sm:text-lg font-black text-emerald-700 block tracking-tight mt-0.5">--</span>
+                <span class="text-[9px] text-stone-400">Porción diaria neta</span>
+              </div>
+            </div>
+
+            <!-- Pharmacist Insight Banner -->
+            <div id="calc-summary-insight" class="p-3 bg-[#1E3B2B]/5 rounded-2xl border border-[#1E3B2B]/10 text-xs text-stone-700 flex items-start gap-2">
+              <span class="text-sm">💡</span>
+              <p class="leading-relaxed">
+                Calculando rendimiento con dosis clínica oficial...
+              </p>
+            </div>
+          </div>
+
+          <!-- 5. Selector de Cantidad y 6 & 7. Botones de Compra y Asesoría -->
+          <div class="space-y-3 pt-1">
+            <div class="flex items-center gap-3">
+              <!-- 5. Selector de Cantidad -->
+              <div class="flex items-center border border-[#D5CDBD] rounded-2xl bg-white px-3 py-2.5 shadow-sm">
+                <button type="button" onclick="changeQty(-1)" class="w-8 h-8 flex items-center justify-center font-bold text-stone-600 hover:text-[#1E3B2B] active:scale-95 transition">-</button>
+                <span id="qty-val" class="w-9 text-center font-black text-sm text-[#1E3B2B]">1</span>
+                <button type="button" onclick="changeQty(1)" class="w-8 h-8 flex items-center justify-center font-bold text-stone-600 hover:text-[#1E3B2B] active:scale-95 transition">+</button>
+              </div>
+
+              <!-- 6. Botón de Compra ("Añadir a la Bolsa") -->
+              <button type="button" onclick="addCurrentProductToCart()" class="flex-1 bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-black py-4 px-6 rounded-2xl text-sm shadow-md hover:shadow-lg transition flex items-center justify-center gap-2.5 active:scale-[0.98]">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                <span>Añadir a la Bolsa</span>
+                <span>Añadir a la Bolsa (S/ <span id="btn-subtotal">${(currentPrice * selectedQty).toFixed(2)}</span>)</span>
               </button>
             </div>
 
-            <!-- Fast WhatsApp Buy -->
-            <button onclick="buyNowWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3.5 px-6 rounded-xl text-sm shadow transition flex items-center justify-center gap-2">
-              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
-              <span>Comprar Inmediato por WhatsApp</span>
-            </button>
-          </div>
+            <!-- WhatsApp Actions: 7. Botón de Asesoría + Compra Inmediata -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <!-- 7. Botón de Asesoría Técnica Farmacéutica por WhatsApp -->
+              <button type="button" onclick="consultAdvisorWhatsApp()" class="w-full bg-[#FAF9F6] hover:bg-[#F0ECE1] text-[#1E3B2B] font-bold py-3 px-4 rounded-2xl text-xs border border-[#D5CDBD] shadow-sm transition flex items-center justify-center gap-2">
+                <svg class="w-4 h-4 text-[#25D366] fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
+                <span>Asesoría de Dosis por WhatsApp</span>
+              </button>
 
-          <!-- Description Brief -->
-          <div class="border-t border-[#E8E2D8] pt-4">
-            <h3 class="font-bold text-sm text-[#1E3B2B] mb-1">Descripción:</h3>
-            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">${currentProduct.description}</p>
+              <!-- Compra Inmediata Express por WhatsApp -->
+              <button type="button" onclick="buyNowWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3 px-4 rounded-2xl text-xs shadow transition flex items-center justify-center gap-2">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
+                <span>Comprar Inmediato por WhatsApp</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Full Width Tabs Section: Beneficios, Modo de Uso, COA, FAQs -->
-        <div class="lg:col-span-12 mt-8">
-          <div class="border-b border-[#E8E2D8] flex flex-wrap gap-4 text-xs font-bold">
-            <button onclick="switchTab('tab-benefits')" id="btn-tab-benefits" class="tab-nav-btn pb-3 border-b-2 border-[#1E3B2B] text-[#1E3B2B]">
-              Beneficios Clínicos
+        <!-- Full Width Tabs Section (8. Ingredientes, 9. Specs, 10. COA, 11. Uso Responsable) -->
+        <div class="lg:col-span-12 mt-12">
+          <!-- Tab Navigation -->
+          <div class="border-b border-[#E8E2D8] flex flex-wrap gap-2 sm:gap-6 text-xs font-extrabold overflow-x-auto pb-0.5">
+            <button onclick="switchTab('tab-benefits')" id="btn-tab-benefits" class="tab-nav-btn pb-3.5 border-b-2 border-[#1E3B2B] text-[#1E3B2B] whitespace-nowrap">
+              1. Beneficios Clínicos
             </button>
-            <button onclick="switchTab('tab-usage')" id="btn-tab-usage" class="tab-nav-btn pb-3 border-b-2 border-transparent text-stone-400 hover:text-[#1E3B2B]">
-              Modo de Uso & Dosis
+            <button onclick="switchTab('tab-usage')" id="btn-tab-usage" class="tab-nav-btn pb-3.5 border-b-2 border-transparent text-stone-400 hover:text-[#1E3B2B] whitespace-nowrap">
+              2. Modo de Uso & Dosis
             </button>
-            <button onclick="switchTab('tab-coa')" id="btn-tab-coa" class="tab-nav-btn pb-3 border-b-2 border-transparent text-stone-400 hover:text-[#1E3B2B]">
-              Certificado COA & Pureza
+            <button onclick="switchTab('tab-composition')" id="btn-tab-composition" class="tab-nav-btn pb-3.5 border-b-2 border-transparent text-stone-400 hover:text-[#1E3B2B] whitespace-nowrap">
+              3. Composición & Pureza
             </button>
-            <button onclick="switchTab('tab-faqs')" id="btn-tab-faqs" class="tab-nav-btn pb-3 border-b-2 border-transparent text-stone-400 hover:text-[#1E3B2B]">
-              Preguntas Frecuentes
+            <button onclick="switchTab('tab-specs')" id="btn-tab-specs" class="tab-nav-btn pb-3.5 border-b-2 border-transparent text-stone-400 hover:text-[#1E3B2B] whitespace-nowrap">
+              4. Especificaciones Técnicas
+            </button>
+            <button onclick="switchTab('tab-coa')" id="btn-tab-coa" class="tab-nav-btn pb-3.5 border-b-2 border-transparent text-stone-400 hover:text-[#1E3B2B] whitespace-nowrap">
+              5. Certificado COA Oficial
+            </button>
+            <button onclick="switchTab('tab-responsible')" id="btn-tab-responsible" class="tab-nav-btn pb-3.5 border-b-2 border-transparent text-stone-400 hover:text-[#1E3B2B] whitespace-nowrap">
+              6. Uso Responsable
+            </button>
+            <button onclick="switchTab('tab-faqs')" id="btn-tab-faqs" class="tab-nav-btn pb-3.5 border-b-2 border-transparent text-stone-400 hover:text-[#1E3B2B] whitespace-nowrap">
+              7. Preguntas Frecuentes
             </button>
           </div>
 
-          <div class="py-6 text-xs sm:text-sm text-stone-700 leading-relaxed">
+          <!-- Tab Panels Container -->
+          <div class="py-7 text-xs sm:text-sm text-stone-700 leading-relaxed">
             <!-- Tab 1: Benefits -->
-            <div id="tab-benefits" class="tab-panel space-y-3">
-              <h4 class="font-bold text-base text-[#1E3B2B]">Beneficios Principales Comprobados:</h4>
-              <ul class="space-y-2">
-                ${currentProduct.benefits.map((b, idx) => `
-                  <li class="flex items-start gap-2.5 bg-white p-3.5 rounded-xl border border-[#E8E2D8]">
-                    <span class="w-6 h-6 rounded-full bg-[#1E3B2B]/10 text-[#1E3B2B] font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
-                    <span>${b}</span>
-                  </li>
-                `).join("")}
-              </ul>
+            <div id="tab-benefits" class="tab-panel space-y-4">
+              <div class="bg-white p-6 rounded-3xl border border-[#E8E2D8] space-y-4">
+                <h4 class="font-bold text-base text-[#1E3B2B]">Beneficios Principales Comprobados por la Literatura Científica:</h4>
+                <ul class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  ${currentProduct.benefits.map((b, idx) => `
+                    <li class="flex items-start gap-3 bg-[#FAF9F6] p-4 rounded-2xl border border-[#E8E2D8]">
+                      <span class="w-6 h-6 rounded-full bg-[#1E3B2B] text-white font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
+                      <span class="text-xs sm:text-sm text-stone-700 font-medium">${b}</span>
+                    </li>
+                  `).join("")}
+                </ul>
+              </div>
             </div>
 
-            <!-- Tab 2: Usage -->
+            <!-- Tab 2: Usage & Dosage -->
             <div id="tab-usage" class="tab-panel hidden space-y-4">
-              <div class="bg-white p-5 rounded-2xl border border-[#E8E2D8] space-y-3">
-                <h4 class="font-bold text-base text-[#1E3B2B]">Instrucciones de Dosificación:</h4>
-                <p>${currentProduct.howToUse}</p>
-                <div class="pt-2 text-xs text-stone-500 border-t border-stone-100">
-                  💡 <em>Recomendación de almacenamiento: Conservar en lugar fresco, seco y al abrigo de la luz solar directa. Mantener el empaque bien cerrado.</em>
+              <div class="bg-white p-6 rounded-3xl border border-[#E8E2D8] space-y-4">
+                <h4 class="font-bold text-base text-[#1E3B2B]">Protocolo de Dosificación & Preparación:</h4>
+                <p class="leading-relaxed text-sm">${currentProduct.howToUse}</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  <div class="p-4 bg-[#FAF9F6] rounded-2xl border border-[#E8E2D8]">
+                    <span class="font-bold text-[#1E3B2B] block text-xs mb-1">⏰ Momento Óptimo:</span>
+                    <span class="text-xs text-stone-600">${dosageInfo.timingText || 'Consumir diariamente a la misma hora para asegurar saturación celular.'}</span>
+                  </div>
+                  <div class="p-4 bg-[#FAF9F6] rounded-2xl border border-[#E8E2D8]">
+                    <span class="font-bold text-[#1E3B2B] block text-xs mb-1">🥄 Medida Aproximada:</span>
+                    <span class="text-xs text-stone-600">${dosageInfo.scoopEquivalent}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Tab 3: COA & Composition -->
-            <div id="tab-coa" class="tab-panel hidden space-y-4">
-              <div class="bg-white p-6 rounded-2xl border border-[#E8E2D8] space-y-5">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <!-- Tab 3: Composition & Clean Label (8. Ingredientes y composición) -->
+            <div id="tab-composition" class="tab-panel hidden space-y-4">
+              <div class="bg-white p-6 rounded-3xl border border-[#E8E2D8] space-y-5">
+                <div class="flex items-center justify-between">
                   <div>
-                    <h4 class="font-bold text-base text-[#1E3B2B]">Especificaciones Técnicas & Pureza Analítica</h4>
-                    <p class="text-xs text-stone-500">Materia prima importada con verificación analítica de laboratorio</p>
+                    <h4 class="font-bold text-base text-[#1E3B2B]">Composición Declarada & Filosofía Clean Label</h4>
+                    <p class="text-xs text-stone-500">Materia prima sin rellenos comerciales ni diluyentes</p>
                   </div>
-                  <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 self-start sm:self-auto flex items-center gap-1.5">
-                    <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                    <span>COA Aprobado & Vigente</span>
+                  <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full border border-emerald-300">100% Puro</span>
+                </div>
+
+                <div class="p-4 bg-[#FAF9F6] rounded-2xl border border-[#E8E2D8]">
+                  <span class="text-xs text-stone-500 block mb-1">Ingrediente Único Declarado:</span>
+                  <div class="text-base font-extrabold text-[#1E3B2B]">${currentProduct.composition}</div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs">
+                  <div class="p-3 bg-white rounded-xl border border-[#E8E2D8]">
+                    <span class="font-bold text-[#1E3B2B] block">0% Rellenos</span>
+                    <span class="text-[10px] text-stone-500">Sin maltodextrina</span>
+                  </div>
+                  <div class="p-3 bg-white rounded-xl border border-[#E8E2D8]">
+                    <span class="font-bold text-[#1E3B2B] block">0% Azúcar</span>
+                    <span class="text-[10px] text-stone-500">Sin edulcorantes</span>
+                  </div>
+                  <div class="p-3 bg-white rounded-xl border border-[#E8E2D8]">
+                    <span class="font-bold text-[#1E3B2B] block">Sin Alérgenos</span>
+                    <span class="text-[10px] text-stone-500">Libre de gluten</span>
+                  </div>
+                  <div class="p-3 bg-white rounded-xl border border-[#E8E2D8]">
+                    <span class="font-bold text-[#1E3B2B] block">Non-GMO</span>
+                    <span class="text-[10px] text-stone-500">Sin transgénicos</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 4: Technical Specs (9. Especificaciones técnicas) -->
+            <div id="tab-specs" class="tab-panel hidden space-y-4">
+              <div class="bg-white p-6 rounded-3xl border border-[#E8E2D8] space-y-4">
+                <h4 class="font-bold text-base text-[#1E3B2B]">Especificaciones Farmacotécnicas de Laboratorio:</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+                  <div class="bg-[#FAF9F6] p-4 rounded-2xl border border-[#E8E2D8]">
+                    <span class="text-stone-400 block mb-0.5 text-[10px] uppercase font-bold">Forma Química:</span>
+                    <strong class="text-stone-800 text-sm block">${techSpecs.chemicalForm || currentProduct.shortName}</strong>
+                  </div>
+                  <div class="bg-[#FAF9F6] p-4 rounded-2xl border border-[#E8E2D8]">
+                    <span class="text-stone-400 block mb-0.5 text-[10px] uppercase font-bold">Granulometría / Malla:</span>
+                    <strong class="text-stone-800 text-sm block">${techSpecs.mesh || '200 Mesh Micronizado'}</strong>
+                  </div>
+                  <div class="bg-[#FAF9F6] p-4 rounded-2xl border border-[#E8E2D8]">
+                    <span class="text-stone-400 block mb-0.5 text-[10px] uppercase font-bold">Estándar Farmacopea:</span>
+                    <strong class="text-emerald-700 text-sm block">${techSpecs.grade || 'USP Compliant'}</strong>
+                  </div>
+                  <div class="bg-[#FAF9F6] p-4 rounded-2xl border border-[#E8E2D8]">
+                    <span class="text-stone-400 block mb-0.5 text-[10px] uppercase font-bold">Pureza Declarada:</span>
+                    <strong class="text-emerald-700 text-sm block">${currentProduct.coaPurity}</strong>
+                  </div>
+                  <div class="bg-[#FAF9F6] p-4 rounded-2xl border border-[#E8E2D8]">
+                    <span class="text-stone-400 block mb-0.5 text-[10px] uppercase font-bold">Solubilidad:</span>
+                    <strong class="text-stone-800 text-sm block">${techSpecs.solubility || 'Completa'}</strong>
+                  </div>
+                  <div class="bg-[#FAF9F6] p-4 rounded-2xl border border-[#E8E2D8]">
+                    <span class="text-stone-400 block mb-0.5 text-[10px] uppercase font-bold">Aspecto Físico:</span>
+                    <strong class="text-stone-800 text-sm block">${techSpecs.appearance || 'Polvo fino homogéneo'}</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 5: COA Certificate & Traceability (10. Certificado COA) -->
+            <div id="tab-coa" class="tab-panel hidden space-y-4">
+              <div class="bg-white p-6 rounded-3xl border border-[#E8E2D8] space-y-5">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div>
+                    <h4 class="font-bold text-base text-[#1E3B2B]">Certificado de Análisis (COA) Oficial</h4>
+                    <p class="text-xs text-stone-500">Verificación analítica del lote actual con parámetros de HPLC</p>
+                  </div>
+                  <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-300 self-start sm:self-auto flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>COA Vigente & Aprobado</span>
                   </span>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <div class="bg-[#FAF9F6] p-3.5 rounded-xl border border-[#E8E2D8]">
-                    <span class="text-stone-400 block mb-0.5">Composición Declarada:</span>
-                    <strong class="text-stone-800 text-sm">${currentProduct.composition}</strong>
-                  </div>
-                  <div class="bg-[#FAF9F6] p-3.5 rounded-xl border border-[#E8E2D8]">
-                    <span class="text-stone-400 block mb-0.5">Pureza Analítica:</span>
-                    <strong class="text-stone-800 text-sm text-emerald-700">${currentProduct.coaPurity}</strong>
-                  </div>
-                  <div class="bg-[#FAF9F6] p-3.5 rounded-xl border border-[#E8E2D8]">
-                    <span class="text-stone-400 block mb-0.5">Estándar de Fabricación:</span>
-                    <strong class="text-stone-800 text-sm">Grado Farmacéutico / USP Compliant</strong>
-                  </div>
-                  <div class="bg-[#FAF9F6] p-3.5 rounded-xl border border-[#E8E2D8]">
-                    <span class="text-stone-400 block mb-0.5">Metales Pesados & Microbiología:</span>
-                    <strong class="text-stone-800 text-sm">Cumple estándares USP de inocuidad</strong>
-                  </div>
-                </div>
-
                 <!-- COA Actions: Direct Download & WhatsApp Batch Verification -->
-                <div class="pt-3 border-t border-[#E8E2D8] flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   ${currentProduct.coaPdf ? `
-                    <a href="${currentProduct.coaPdf}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-bold px-5 py-3 rounded-xl text-xs transition shadow-sm hover:shadow">
+                    <a href="${currentProduct.coaPdf}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-[#1E3B2B] hover:bg-[#284f3a] text-white font-bold px-5 py-3.5 rounded-2xl text-xs transition shadow-sm hover:shadow">
                       <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                       <span>Descargar Certificado COA Oficial (PDF)</span>
                     </a>
                   ` : ''}
 
-                  <a href="https://wa.me/51981278458?text=Hola%20BioNativa%20LAB,%20deseo%20verificar%20el%20Certificado%20COA%20del%20lote%20actual%20del%20producto:%20${encodeURIComponent(currentProduct.name)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-[#FAF9F6] hover:bg-[#F0ECE1] text-[#1E3B2B] font-bold px-5 py-3 rounded-xl text-xs border border-[#D5CDBD] transition">
+                  <a href="https://wa.me/51981278458?text=Hola%20BioNativa%20LAB,%20deseo%20verificar%20el%20Certificado%20COA%20del%20lote%20actual%20del%20producto:%20${encodeURIComponent(currentProduct.name)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-[#FAF9F6] hover:bg-[#F0ECE1] text-[#1E3B2B] font-bold px-5 py-3.5 rounded-2xl text-xs border border-[#D5CDBD] transition">
                     <svg class="w-4 h-4 text-[#25D366] fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
                     <span>Consultar Lote Específico por WhatsApp</span>
                   </a>
                 </div>
 
-                <div class="p-3 bg-[#FAF6F0] rounded-xl border border-[#E8E2D8] text-[11px] text-stone-600 flex items-start gap-2">
-                  <span class="text-sm">🔍</span>
-                  <p><strong>Trazabilidad por Lote:</strong> Cada empaque recibido incluye su número de lote y fecha de vencimiento impresa. Puedes contrastar tu lote escribiéndonos con la foto de tu etiqueta para remitirte la hoja analítica puntual emitida por el fabricante.</p>
+                <div class="p-4 bg-[#FAF6F0] rounded-2xl border border-[#E8E2D8] text-xs text-stone-600 flex items-start gap-2.5">
+                  <span class="text-base">🔍</span>
+                  <p class="leading-relaxed">
+                    <strong>Trazabilidad por Lote:</strong> Cada empaque despachado incluye su número de lote y fecha de caducidad estampada. Puedes solicitar la hoja analítica puntual correspondiente a tu lote enviando una fotografía de tu empaque al canal de WhatsApp.
+                  </p>
                 </div>
               </div>
             </div>
 
-            <!-- Tab 4: Product FAQs -->
+            <!-- Tab 6: Responsible Use (11. Información de uso responsable) -->
+            <div id="tab-responsible" class="tab-panel hidden space-y-4">
+              <div class="bg-white p-6 rounded-3xl border border-[#E8E2D8] space-y-4">
+                <h4 class="font-bold text-base text-[#1E3B2B]">Consumo Responsable, Advertencias & Conservación:</h4>
+                <div class="space-y-3">
+                  <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-900 space-y-2">
+                    <span class="font-bold flex items-center gap-1.5 text-amber-900 text-sm">
+                      ⚠️ Advertencias Clínicas Responsables:
+                    </span>
+                    <ul class="list-disc pl-5 space-y-1">
+                      ${respUse.warnings.map(w => `<li>${w}</li>`).join('')}
+                    </ul>
+                  </div>
+
+                  <div class="p-4 bg-[#FAF9F6] rounded-2xl border border-[#E8E2D8] text-xs text-stone-700 space-y-1">
+                    <span class="font-bold text-[#1E3B2B] block">📦 Condiciones Óptimas de Almacenamiento:</span>
+                    <p>${respUse.storage}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 7: Product FAQs -->
             <div id="tab-faqs" class="tab-panel hidden space-y-3">
               ${currentProduct.faqs && currentProduct.faqs.length > 0 ? currentProduct.faqs.map(faq => `
-                <div class="bg-white p-4 rounded-xl border border-[#E8E2D8] space-y-1">
+                <div class="bg-white p-5 rounded-2xl border border-[#E8E2D8] space-y-1.5 shadow-sm">
                   <h5 class="font-bold text-[#1E3B2B] text-sm">${faq.q}</h5>
                   <p class="text-xs text-stone-600 leading-relaxed">${faq.a}</p>
                 </div>
-              `).join("") : '<p>No hay preguntas adicionales registradas para este producto.</p>'}
+              `).join("") : '<p class="text-xs text-stone-500">No hay preguntas adicionales registradas para este producto.</p>'}
             </div>
+          </div>
+        </div>
+      `;
+
+      updateDoseCalculator();
+    }
+
+    // 12. PRODUCTOS COMPLEMENTARIOS (Cross-selling / Sinergias Biológicas)
+    function renderComplementaryProducts() {
+      const compSection = document.getElementById("complementary-products-section");
+      if (!compSection || !currentProduct) return;
+
+      const compIds = currentProduct.complementaryProductIds || [];
+      const complementaryList = window.BIONATIVA_PRODUCTS.filter(p => compIds.includes(p.id) && p.id !== currentProduct.id).slice(0, 3);
+
+      if (complementaryList.length === 0) {
+        // Fallback to same category products
+        const fallback = window.BIONATIVA_PRODUCTS.filter(p => p.category === currentProduct.category && p.id !== currentProduct.id).slice(0, 3);
+        complementaryList.push(...fallback);
+      }
+
+      if (complementaryList.length === 0) {
+        compSection.innerHTML = '';
+        return;
+      }
+
+      compSection.innerHTML = `
+        <div class="space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+            <div>
+              <span class="text-xs font-bold text-[#B67A52] uppercase tracking-wider block">12. Sinergias Biológicas</span>
+              <h3 class="text-xl sm:text-2xl font-black text-[#1E3B2B]">Productos Complementarios Recomendados</h3>
+              <p class="text-xs text-stone-500 mt-1">Combina para potenciar la absorción y beneficios de este suplemento</p>
+            </div>
+            <a href="tienda" class="text-xs font-bold text-[#1E3B2B] hover:text-[#B67A52] flex items-center gap-1 transition">
+              <span>Ver todo el catálogo</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            ${complementaryList.map(item => `
+              <div class="organic-card bg-white p-5 rounded-3xl border border-[#E8E2D8] flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div>
+                  <div class="relative bg-[#FAF6F0] rounded-2xl p-4 flex items-center justify-center mb-4">
+                    <span class="absolute top-2 left-2 text-[10px] font-bold bg-[#1E3B2B] text-white px-2 py-0.5 rounded-full">
+                      ${item.badge || 'COA 99.9%'}
+                    </span>
+                    <img src="${item.image}" alt="${item.name}" class="h-32 object-contain drop-shadow" />
+                  </div>
+                  <span class="text-[10px] font-bold text-[#B67A52] uppercase tracking-wider block">${item.categoryName}</span>
+                  <h4 class="font-extrabold text-sm text-[#1E3B2B] mt-0.5 line-clamp-1">${item.name}</h4>
+                  <p class="text-[11px] text-stone-500 line-clamp-2 mt-1">${item.description}</p>
+                </div>
+
+                <div class="pt-4 border-t border-[#E8E2D8] mt-4 flex items-center justify-between gap-2">
+                  <div>
+                    <span class="text-[10px] text-stone-400 block">Presentación ${item.unit}</span>
+                    <span class="text-base font-black text-[#1E3B2B]">S/ ${item.price.toFixed(2)}</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <a href="producto?id=${item.id}" class="bg-[#FAF9F6] hover:bg-[#FAF6F0] text-[#1E3B2B] border border-[#D5CDBD] text-xs font-bold py-2 px-3 rounded-xl transition">
+                      Ver Ficha
+                    </a>
+                    <button type="button" onclick="window.cart.addItem('${item.id}', null, 1)" class="bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold p-2 rounded-xl transition" title="Añadir a la Bolsa">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
           </div>
         </div>
       `;
     }
 
-    function getActivePrice() {
-      if (currentProduct.hasVariants && selectedVariantId) {
-        const v = currentProduct.variants.find(item => item.id === selectedVariantId);
-        if (v) return v.price;
+    // ★ LÓGICA DE LA CALCULADORA DE DOSIS Y RENDIMIENTO
+    function updateDoseCalculator() {
+      const weightGrams = getActiveWeightGrams();
+      const currentPrice = getActivePrice();
+      const unitName = getActiveUnitName();
+
+      const dose = Math.max(0.1, currentCustomDose);
+      const consumers = Math.max(1, currentConsumers);
+
+      // Calculations
+      const days = Math.floor(weightGrams / (dose * consumers));
+      const months = (days / 30.4).toFixed(1);
+      const costPerDay = days > 0 ? (currentPrice / days).toFixed(2) : '0.00';
+
+      // Update DOM elements if present
+      const daysElem = document.getElementById("calc-days-val");
+      const monthsElem = document.getElementById("calc-months-val");
+      const costElem = document.getElementById("calc-cost-val");
+      const doseDisplay = document.getElementById("calc-dose-display");
+      const insightElem = document.getElementById("calc-summary-insight");
+
+      if (daysElem) daysElem.textContent = `${days} días`;
+      if (monthsElem) monthsElem.textContent = `~${months} meses`;
+      if (costElem) costElem.textContent = `S/ ${costPerDay}`;
+      if (doseDisplay) doseDisplay.textContent = `${dose} g/día`;
+
+      if (insightElem) {
+        if (days >= 180) {
+          insightElem.innerHTML = `<span class="text-sm">🔥</span><p class="leading-relaxed"><strong>Extraordinario rendimiento:</strong> Esta presentación de ${unitName} te otorga más de <strong>medio año (${days} días)</strong> de suplementación pura continua para ${consumers === 1 ? '1 persona' : '2 personas'} por apenas <strong>S/ ${costPerDay} al día</strong>.</p>`;
+        } else if (days >= 60) {
+          insightElem.innerHTML = `<span class="text-sm">💡</span><p class="leading-relaxed"><strong>Excelente economía:</strong> Obtienes <strong>${days} días (~${months} meses)</strong> de tratamiento garantizado a solo <strong>S/ ${costPerDay} diarios</strong>, sin pagar rellenos ni aditivos.</p>`;
+        } else {
+          insightElem.innerHTML = `<span class="text-sm">⏱</span><p class="leading-relaxed">Rendimiento estimado de <strong>${days} días</strong> con dosis activa de ${dose}g diarios para ${consumers} persona(s).</p>`;
+        }
       }
-      return currentProduct.price;
     }
 
-    function getActiveUnitName() {
-      if (currentProduct.hasVariants && selectedVariantId) {
-        const v = currentProduct.variants.find(item => item.id === selectedVariantId);
-        if (v) return v.name;
-      }
-      return currentProduct.unit;
+    function changeCalculatorDose(delta) {
+      currentCustomDose = Math.max(0.5, Math.min(60, Math.round((currentCustomDose + delta) * 10) / 10));
+      updateDoseCalculator();
     }
 
-    function getActiveImage() {
-      if (currentProduct.hasVariants && selectedVariantId) {
-        const v = currentProduct.variants.find(item => item.id === selectedVariantId);
-        if (v && v.image) return v.image;
+    function setConsumersCount(count) {
+      currentConsumers = count;
+      const btn1 = document.getElementById("btn-consumer-1");
+      const btn2 = document.getElementById("btn-consumer-2");
+
+      if (btn1 && btn2) {
+        if (count === 1) {
+          btn1.className = "py-1.5 px-2 rounded-xl text-xs font-bold text-center transition border bg-[#1E3B2B] text-white border-[#1E3B2B]";
+          btn2.className = "py-1.5 px-2 rounded-xl text-xs font-bold text-center transition border bg-white text-stone-700 border-stone-200 hover:border-stone-300";
+        } else {
+          btn2.className = "py-1.5 px-2 rounded-xl text-xs font-bold text-center transition border bg-[#1E3B2B] text-white border-[#1E3B2B]";
+          btn1.className = "py-1.5 px-2 rounded-xl text-xs font-bold text-center transition border bg-white text-stone-700 border-stone-200 hover:border-stone-300";
+        }
       }
-      return currentProduct.image;
+      updateDoseCalculator();
     }
 
     function setProductVariant(varId) {
@@ -610,10 +1023,10 @@
       document.querySelectorAll(".variant-select-btn").forEach(btn => {
         const btnVarId = btn.getAttribute("data-variant-id");
         if (btnVarId === varId) {
-          btn.classList.add("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "font-bold", "text-[#1E3B2B]");
+          btn.classList.add("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "font-bold", "text-[#1E3B2B]", "ring-1", "ring-[#1E3B2B]", "shadow-sm");
           btn.classList.remove("border-stone-200", "bg-white");
         } else {
-          btn.classList.remove("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "font-bold", "text-[#1E3B2B]");
+          btn.classList.remove("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "font-bold", "text-[#1E3B2B]", "ring-1", "ring-[#1E3B2B]", "shadow-sm");
           btn.classList.add("border-stone-200", "bg-white");
         }
       });
@@ -622,10 +1035,10 @@
       document.querySelectorAll(".presentation-thumb-btn").forEach(btn => {
         const btnVarId = btn.getAttribute("data-variant-id");
         if (btnVarId === varId) {
-          btn.classList.add("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "shadow-sm");
+          btn.classList.add("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "shadow-sm", "ring-1", "ring-[#1E3B2B]");
           btn.classList.remove("border-stone-200", "bg-white");
         } else {
-          btn.classList.remove("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "shadow-sm");
+          btn.classList.remove("border-[#1E3B2B]", "bg-[#1E3B2B]/5", "shadow-sm", "ring-1", "ring-[#1E3B2B]");
           btn.classList.add("border-stone-200", "bg-white");
         }
       });
@@ -638,34 +1051,74 @@
       }
 
       const price = getActivePrice();
+      const regPrice = getActiveRegularPrice();
       const unit = getActiveUnitName();
+      const weightGrams = getActiveWeightGrams();
+      const pricePerKg = ((price / (weightGrams / 1000))).toFixed(2);
+      const savings = Math.max(0, regPrice - price);
+      const discountPercent = regPrice > price ? Math.round((savings / regPrice) * 100) : 0;
+
       const priceElem = document.getElementById("display-price");
       const unitElem = document.getElementById("display-unit");
+      const regPriceElem = document.getElementById("display-regular-price");
+      const rateElem = document.getElementById("display-rate-kg");
+      const btnSubtotal = document.getElementById("btn-subtotal");
+
       if (priceElem) priceElem.textContent = price.toFixed(2);
       if (unitElem) unitElem.textContent = unit;
+      if (regPriceElem) regPriceElem.textContent = `S/ ${regPrice.toFixed(2)}`;
+      if (rateElem) rateElem.textContent = `S/ ${pricePerKg} / kg`;
+      if (btnSubtotal) btnSubtotal.textContent = (price * selectedQty).toFixed(2);
+
+      // Re-trigger dose calculator with new weight
+      updateDoseCalculator();
     }
 
     function changeQty(delta) {
       selectedQty = Math.max(1, selectedQty + delta);
-      document.getElementById("qty-val").textContent = selectedQty;
+      const qtyVal = document.getElementById("qty-val");
+      const btnSubtotal = document.getElementById("btn-subtotal");
+      const price = getActivePrice();
+
+      if (qtyVal) qtyVal.textContent = selectedQty;
+      if (btnSubtotal) btnSubtotal.textContent = (price * selectedQty).toFixed(2);
     }
 
     function addCurrentProductToCart() {
       window.cart.addItem(currentProduct.id, selectedVariantId, selectedQty);
     }
 
+    // 7. Botón de Asesoría Farmacéutica por WhatsApp
+    function consultAdvisorWhatsApp() {
+      const price = getActivePrice();
+      const unit = getActiveUnitName();
+      const dose = currentCustomDose;
+
+      const msg = `🌿 *CONSULTA TÉCNICA / DOSIFICACIÓN - BIONATIVA LAB*\n` +
+        `• Suplemento: *${currentProduct.name}*\n` +
+        `• Presentación activa: *${unit}* (S/ ${price.toFixed(2)})\n` +
+        `• Dosis diaria estimada: *${dose} g/día*\n` +
+        `-----------------------------------------\n` +
+        `Hola equipo de BioNativa LAB, deseo recibir asesoría sobre la toma adecuada de este suplemento, contraindicaciones y tiempos de entrega en Lima / Cusco / Provincia.`;
+
+      const whatsappURL = `https://wa.me/${window.BIONATIVA_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+      window.open(whatsappURL, "_blank");
+    }
+
+    // 6. Botón de Compra Rápida por WhatsApp
     function buyNowWhatsApp() {
       const price = getActivePrice();
       const unit = getActiveUnitName();
       const total = (price * selectedQty).toFixed(2);
 
-      const msg = `🌿 *CONSULTA / COMPRA DIRECTA - BIONATIVA LAB*\n` +
+      const msg = `🌿 *COMPRA DIRECTA INMEDIATA - BIONATIVA LAB*\n` +
         `• Producto: *${currentProduct.name}*\n` +
         `• Formato: *${unit}*\n` +
         `• Cantidad: *${selectedQty}*\n` +
         `• Total: *S/ ${total}*\n` +
+        `• Dosis diaria planeada: *${currentCustomDose} g/día*\n` +
         `-----------------------------------------\n` +
-        `Hola, deseo coordinar la entrega en Lima / Cusco / Provincia.`;
+        `Hola, deseo coordinar mi pedido y la entrega inmediata en Lima / Cusco / Provincia.`;
 
       const whatsappURL = `https://wa.me/${window.BIONATIVA_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
       const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
