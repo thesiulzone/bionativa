@@ -37,40 +37,97 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const paymentId = params.get('payment_id') || params.get('collection_id') || '';
+    const rawPaymentId = params.get('payment_id') || params.get('collection_id') || '';
+    const isValidPaymentId = (value) => /^\d{1,30}$/.test(value);
+    const paymentId = isValidPaymentId(rawPaymentId) ? rawPaymentId : '';
     const cardEl = document.getElementById('status-card');
+
+    // Construye la tarjeta usando nodos DOM y textContent para evitar inyección HTML.
     const showStatus = (kind, title, message, verified = false) => {
-      const styles = kind === 'approved'
+      const [iconBgClass, badgeColorClass, badgeText] = kind === 'approved'
         ? ['bg-emerald-100 text-emerald-700', 'text-[#B67A52]', 'Transacción confirmada']
         : kind === 'pending'
           ? ['bg-amber-100 text-amber-700', 'text-amber-600', 'Pago pendiente']
           : ['bg-stone-100 text-stone-600', 'text-stone-500', 'Estado no confirmado'];
-      const icon = kind === 'approved'
-        ? '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>'
-        : `<span class="text-2xl">${kind === 'pending' ? '…' : '!'}</span>`;
-      cardEl.innerHTML = `
-        <div class="w-16 h-16 rounded-full ${styles[0]} flex items-center justify-center mx-auto">
-          ${icon}
-        </div>
-        <div class="space-y-2">
-          <span class="text-xs font-bold ${styles[1]} uppercase tracking-wider">${styles[2]}</span>
-          <h1 class="text-2xl font-bold text-[#1E3B2B]">${title}</h1>
-          <p class="text-sm text-stone-600">${message}</p>
-        </div>
-        ${verified ? '<div class="bg-stone-50 p-3 rounded-lg text-xs font-mono text-stone-600">ID de Transacción: <strong id="verified-payment-id"></strong></div>' : ''}
-        <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="/" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">Volver a la Tienda</a>
-          ${verified ? '<a id="payment-whatsapp" href="https://wa.me/51981278458" class="inline-flex justify-center items-center px-6 py-3 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700 text-xs font-bold tracking-wide transition">Notificar por WhatsApp</a>' : ''}
-        </div>
-      `;
-      if (verified) {
-        document.getElementById('verified-payment-id').textContent = paymentId;
-        document.getElementById('payment-whatsapp').href = `https://wa.me/51981278458?text=${encodeURIComponent(`Hola BioNativa LAB, acabo de realizar mi pago. ID de Pago: ${paymentId}`)}`;
+
+      const iconWrapper = document.createElement('div');
+      iconWrapper.className = `w-16 h-16 rounded-full ${iconBgClass} flex items-center justify-center mx-auto`;
+
+      if (kind === 'approved') {
+        const svgNS = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(svgNS, 'svg');
+        svg.setAttribute('class', 'w-10 h-10');
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', 'currentColor');
+        svg.setAttribute('viewBox', '0 0 24 24');
+        const path = document.createElementNS(svgNS, 'path');
+        path.setAttribute('stroke-linecap', 'round');
+        path.setAttribute('stroke-linejoin', 'round');
+        path.setAttribute('stroke-width', '2');
+        path.setAttribute('d', 'M5 13l4 4L19 7');
+        svg.appendChild(path);
+        iconWrapper.appendChild(svg);
+      } else {
+        const symbol = document.createElement('span');
+        symbol.className = 'text-2xl';
+        symbol.textContent = kind === 'pending' ? '…' : '!';
+        iconWrapper.appendChild(symbol);
       }
+
+      const textGroup = document.createElement('div');
+      textGroup.className = 'space-y-2';
+
+      const badge = document.createElement('span');
+      badge.className = `text-xs font-bold ${badgeColorClass} uppercase tracking-wider`;
+      badge.textContent = badgeText;
+
+      const heading = document.createElement('h1');
+      heading.className = 'text-2xl font-bold text-[#1E3B2B]';
+      heading.textContent = title;
+
+      const paragraph = document.createElement('p');
+      paragraph.className = 'text-sm text-stone-600';
+      paragraph.textContent = message;
+
+      textGroup.append(badge, heading, paragraph);
+
+      const nodes = [iconWrapper, textGroup];
+
+      if (verified && paymentId) {
+        const idBox = document.createElement('div');
+        idBox.className = 'bg-stone-50 p-3 rounded-lg text-xs font-mono text-stone-600';
+        idBox.appendChild(document.createTextNode('ID de Transacción: '));
+        const idStrong = document.createElement('strong');
+        idStrong.id = 'verified-payment-id';
+        idStrong.textContent = paymentId;
+        idBox.appendChild(idStrong);
+        nodes.push(idBox);
+      }
+
+      const actions = document.createElement('div');
+      actions.className = 'pt-4 flex flex-col sm:flex-row gap-3 justify-center';
+
+      const homeLink = document.createElement('a');
+      homeLink.href = '/';
+      homeLink.className = 'inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition';
+      homeLink.textContent = 'Volver a la Tienda';
+      actions.appendChild(homeLink);
+
+      if (verified && paymentId) {
+        const whatsappLink = document.createElement('a');
+        whatsappLink.id = 'payment-whatsapp';
+        whatsappLink.href = `https://wa.me/51981278458?text=${encodeURIComponent(`Hola BioNativa LAB, acabo de realizar mi pago. ID de Pago: ${paymentId}`)}`;
+        whatsappLink.className = 'inline-flex justify-center items-center px-6 py-3 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700 text-xs font-bold tracking-wide transition';
+        whatsappLink.textContent = 'Notificar por WhatsApp';
+        actions.appendChild(whatsappLink);
+      }
+
+      nodes.push(actions);
+      cardEl.replaceChildren(...nodes);
     };
 
     async function verifyPayment() {
-      if (!/^\d{1,30}$/.test(paymentId)) {
+      if (!paymentId) {
         showStatus('unknown', 'Aún no podemos confirmar tu pago', 'No encontramos un identificador de pago válido. Conserva tu carrito y vuelve a la tienda para consultar o reintentar.');
         return;
       }

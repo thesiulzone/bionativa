@@ -16,6 +16,23 @@ function loadBrowserData() {
   return context.window;
 }
 
+function loadPromotionsEngine(pathname = "/", storedConfig = null) {
+  const browser = loadBrowserData();
+  const context = {
+    window: {
+      ...browser,
+      location: { pathname },
+      addEventListener() {},
+      dispatchEvent() {}
+    },
+    localStorage: { getItem: () => storedConfig, setItem() {} },
+    CustomEvent: class CustomEvent {}
+  };
+  vm.createContext(context);
+  vm.runInContext(fs.readFileSync("js/promotions-engine.js", "utf8"), context);
+  return context.window.BionativaPromotions;
+}
+
 test("server catalog matches browser product ids, variants, and prices", () => {
   const products = loadBrowserData().BIONATIVA_PRODUCTS;
   assert.deepEqual(JSON.parse(JSON.stringify(CATALOG)), JSON.parse(JSON.stringify(products.map(product => ({
@@ -36,10 +53,96 @@ test("enabled product promotions match the catalog and lower its regular price",
     assert.equal(rule.regularPrice, variant.price);
     assert.ok(rule.promoPrice > 0 && rule.promoPrice < variant.price);
   }
-  for (const combo of promotions.combos.filter(entry => entry.enabled)) {
+  for (const combo of promotions.combos) {
     assert.ok(combo.items.every(item => CATALOG.some(product => product.id === item.productId && product.variants?.some(variant => variant.id === item.variantId))));
-    assert.ok(combo.comboPrice < combo.regularTotalPrice);
+    const calculatedRegularTotal = combo.items.reduce((sum, item) => sum + item.regularPrice, 0);
+    assert.equal(combo.regularTotalPrice, calculatedRegularTotal, `Incorrect regular total: ${combo.id}`);
+    assert.equal(combo.savings, Math.round((combo.regularTotalPrice - combo.comboPrice) * 100) / 100, `Incorrect savings: ${combo.id}`);
+    if (combo.enabled) assert.ok(combo.comboPrice < combo.regularTotalPrice, `Enabled combo has no savings: ${combo.id}`);
   }
+});
+
+test("all three combos add every product to the cart and pass server checkout validation", () => {
+  const browser = loadBrowserData();
+  const expectedComboIds = [
+    "combo-deportivo-fuerza",
+    "combo-sueno-profundo",
+    "combo-articular-longevidad"
+  ];
+  assert.deepEqual(JSON.parse(JSON.stringify(browser.BIONATIVA_PROMOTIONS_DEFAULT.combos.map(c => c.id))), expectedComboIds);
+
+  for (const combo of browser.BIONATIVA_PROMOTIONS_DEFAULT.combos) {
+    const context = {
+      window: {
+        ...browser,
+        location: { pathname: "/" },
+        addEventListener() {},
+        dispatchEvent() {}
+      },
+      document: {
+        readyState: "loading",
+        addEventListener() {},
+        getElementById: () => null,
+        querySelectorAll: () => [],
+        body: { insertAdjacentHTML() {}, style: {} }
+      },
+      localStorage: { getItem: () => null, setItem() {} },
+      CustomEvent: class CustomEvent {}
+    };
+    vm.createContext(context);
+    vm.runInContext(fs.readFileSync("js/promotions-engine.js", "utf8"), context);
+    vm.runInContext(fs.readFileSync("js/cart.js", "utf8"), context);
+
+    const added = context.window.BionativaPromotions.addComboToCart(combo.id);
+    assert.equal(added, true, `Failed to add combo: ${combo.id}`);
+    assert.equal(context.window.cart.items.length, combo.items.length, `Unexpected item count for ${combo.id}`);
+
+    combo.items.forEach((expectedItem, index) => {
+      const cartItem = context.window.cart.items[index];
+      assert.equal(cartItem.productId, expectedItem.productId);
+      assert.equal(cartItem.variantId, expectedItem.variantId);
+      assert.equal(cartItem.quantity, 1);
+      assert.equal(cartItem.price, expectedItem.regularPrice);
+    });
+
+    const checkout = buildCheckout({
+      items: context.window.cart.items,
+      shippingId: "lima-recojo",
+      payer: {}
+    });
+    assert.deepEqual(
+      checkout.items.slice(0, combo.items.length).map(item => item.id),
+      combo.items.map(item => `${item.productId}__${item.variantId}`)
+    );
+    assert.ok(checkout.total > 0);
+  }
+});
+
+test("promotion pricing uses the catalog default variant when callers omit it", () => {
+  const engine = loadPromotionsEngine();
+  const listingPrice = engine.getProductPricing("creatina-monohidratada", null, null, 85.4);
+  const variantPrice = engine.getProductPricing("creatina-monohidratada", "bolsa-1kg", null, 85.4);
+  const unknownProductFallback = engine.getProductPricing("unknown-product", null, null, 42);
+
+  assert.equal(listingPrice.regularPrice, 85.4);
+  assert.equal(listingPrice.promoPrice, 74.9);
+  assert.equal(listingPrice.hasDiscount, true);
+  assert.deepEqual(JSON.parse(JSON.stringify(variantPrice)), JSON.parse(JSON.stringify(listingPrice)));
+  assert.equal(unknownProductFallback.regularPrice, 42);
+  assert.equal(unknownProductFallback.promoPrice, 42);
+  assert.equal(unknownProductFallback.hasDiscount, false);
+});
+
+test("store pricing ignores browser-local promotion edits while admin keeps its draft", () => {
+  const editedConfig = loadBrowserData().BIONATIVA_PROMOTIONS_DEFAULT;
+  editedConfig.productDiscounts[0].promoPrice = 1;
+  const storedConfig = JSON.stringify(editedConfig);
+
+  const storePricing = loadPromotionsEngine("/tienda", storedConfig).getProductPricing("creatina-monohidratada", "bolsa-1kg");
+  const adminPricing = loadPromotionsEngine("/admin-promociones", storedConfig).getProductPricing("creatina-monohidratada", "bolsa-1kg");
+
+  assert.equal(storePricing.promoPrice, 74.9);
+  assert.equal(adminPricing.promoPrice, 1);
 });
 
 test("server promotion rules match the browser defaults", () => {
@@ -129,7 +232,7 @@ test("payment status requires a numeric payment id and asks Mercado Pago", async
   let queriedUrl = "";
   globalThis.fetch = async url => {
     queriedUrl = url;
-    return Response.json({ status: "approved" });
+    return Response.json({ id: "12345", status: "approved" });
   };
   try {
     const invalid = await onRequestGet({ request: new Request("https://bionativalab.com/api/payment-status?payment_id=%3Cscript%3E") , env: { MP_ACCESS_TOKEN: "server-secret" } });
@@ -138,6 +241,10 @@ test("payment status requires a numeric payment id and asks Mercado Pago", async
     assert.equal(response.status, 200);
     assert.equal((await response.json()).status, "approved");
     assert.equal(queriedUrl, "https://api.mercadopago.com/v1/payments/12345");
+
+    globalThis.fetch = async () => Response.json({ id: "99999", status: "approved" });
+    const mismatched = await onRequestGet({ request: new Request("https://bionativalab.com/api/payment-status?payment_id=12345"), env: { MP_ACCESS_TOKEN: "server-secret" } });
+    assert.equal((await mismatched.json()).status, "unknown");
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -145,7 +252,7 @@ test("payment status requires a numeric payment id and asks Mercado Pago", async
 
 test("Cloudflare worker routes payment verification to the server handler", async () => {
   const originalFetch = globalThis.fetch;
-  globalThis.fetch = async () => Response.json({ status: "approved" });
+  globalThis.fetch = async () => Response.json({ id: "12345", status: "approved" });
   try {
     const response = await worker.fetch(
       new Request("https://bionativalab.com/api/payment-status?payment_id=12345"),
@@ -157,4 +264,58 @@ test("Cloudflare worker routes payment verification to the server handler", asyn
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test("pago-resultado.html avoids innerHTML and treats manipulated payment_id as invalid text", async () => {
+  const html = fs.readFileSync("pago-resultado.html", "utf8");
+  assert.equal(/\binnerHTML\b/.test(html), false, "pago-resultado.html must not use innerHTML");
+
+  const scriptMatch = html.match(/<script>([\s\S]*?)<\/script>/);
+  assert.ok(scriptMatch, "Expected inline script in pago-resultado.html");
+
+  const createEl = (tag) => {
+    const el = {
+      tagName: tag.toUpperCase(),
+      className: "",
+      children: [],
+      attributes: {},
+      _textContent: "",
+      setAttribute(name, value) { this.attributes[name] = value; },
+      appendChild(child) { this.children.push(child); return child; },
+      append(...nodes) { this.children.push(...nodes); },
+      replaceChildren(...nodes) { this.children = [...nodes]; },
+      get textContent() { return this._textContent; },
+      set textContent(value) { this._textContent = String(value); }
+    };
+    return el;
+  };
+
+  const statusCard = createEl("div");
+  let fetchCalled = false;
+  const context = {
+    URLSearchParams,
+    encodeURIComponent,
+    window: { location: { search: "?payment_id=%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E" } },
+    document: {
+      getElementById: (id) => (id === "status-card" ? statusCard : null),
+      createElement: (tag) => createEl(tag),
+      createElementNS: (_ns, tag) => createEl(tag),
+      createTextNode: (text) => ({ nodeType: 3, textContent: String(text) })
+    },
+    fetch: async () => {
+      fetchCalled = true;
+      return Response.json({ status: "approved" });
+    },
+    localStorage: { removeItem() {} }
+  };
+
+  vm.createContext(context);
+  vm.runInContext(scriptMatch[1], context);
+  await new Promise(resolve => setTimeout(resolve, 0));
+
+  assert.equal(fetchCalled, false, "Manipulated non-numeric payment_id should not trigger API fetch");
+  assert.ok(statusCard.children.length > 0, "Status card should render safe DOM nodes");
+  const serialized = JSON.stringify(statusCard);
+  assert.equal(serialized.includes("<img"), false);
+  assert.equal(serialized.includes("onerror"), false);
 });
