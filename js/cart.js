@@ -26,7 +26,14 @@ class BionativaCart {
     this.items = this.loadCart();
     this.selectedShipping = "lima-express";
     this.selectedPayment = "whatsapp";
+    this.appliedCoupon = null;
+    try {
+      this.appliedCoupon = localStorage.getItem("bionativa_applied_coupon") || null;
+    } catch (e) {}
     this.init();
+    if (typeof window !== "undefined") {
+      window.addEventListener("bionativa:promotions_updated", () => this.updateUI());
+    }
   }
 
   loadCart() {
@@ -140,8 +147,71 @@ class BionativaCart {
     this.saveCart();
   }
 
+  getPromotionEvaluation() {
+    if (window.BionativaPromotions && typeof window.BionativaPromotions.evaluateCart === "function") {
+      return window.BionativaPromotions.evaluateCart(this.items, this.appliedCoupon);
+    }
+    const regular = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    return {
+      items: this.items,
+      subtotalRegular: regular,
+      productDiscountTotal: 0,
+      volumeDiscountTotal: 0,
+      couponDiscountTotal: 0,
+      couponResult: null,
+      totalSavings: 0,
+      finalSubtotal: regular
+    };
+  }
+
+  handleApplyCoupon() {
+    const input = document.getElementById("cart-coupon-input");
+    if (!input) return;
+    const code = input.value.trim().toUpperCase();
+    if (!code) {
+      this.showToast("Por favor ingresa un código de cupón.", "warning");
+      return;
+    }
+
+    if (!window.BionativaPromotions) {
+      this.showToast("Sistema de promociones no disponible.", "warning");
+      return;
+    }
+
+    const currentSubtotal = this.items.reduce((s, i) => s + (i.price * i.quantity), 0);
+    const result = window.BionativaPromotions.validateCoupon(code, currentSubtotal);
+
+    if (!result.valid) {
+      this.showToast(result.error, "warning");
+      return;
+    }
+
+    this.appliedCoupon = result.code;
+    try {
+      localStorage.setItem("bionativa_applied_coupon", this.appliedCoupon);
+    } catch (e) {}
+
+    this.showToast(`¡Cupón ${result.code} aplicado con éxito! Ahorras S/ ${result.discountAmount.toFixed(2)}`, "success");
+    this.updateUI();
+  }
+
+  removeCoupon() {
+    this.appliedCoupon = null;
+    try {
+      localStorage.removeItem("bionativa_applied_coupon");
+    } catch (e) {}
+    this.showToast("Cupón removido.", "info");
+    this.updateUI();
+  }
+
   getSubtotal() {
-    return this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const evalData = this.getPromotionEvaluation();
+    return evalData.finalSubtotal;
+  }
+
+  getRegularSubtotal() {
+    const evalData = this.getPromotionEvaluation();
+    return evalData.subtotalRegular;
   }
 
   getItemCount() {
@@ -176,10 +246,22 @@ class BionativaCart {
     // Renderizar lista en el drawer
     const container = document.getElementById("cart-drawer-items");
     const subtotalEl = document.getElementById("cart-drawer-subtotal");
+    const regularSubtotalEl = document.getElementById("cart-drawer-regular-subtotal");
+    const regularRowEl = document.getElementById("cart-drawer-regular-row");
+    const promoDiscountRowEl = document.getElementById("cart-drawer-promo-discount-row");
+    const promoDiscountEl = document.getElementById("cart-drawer-promo-discount");
+    const couponDiscountRowEl = document.getElementById("cart-drawer-coupon-discount-row");
+    const couponDiscountEl = document.getElementById("cart-drawer-coupon-discount");
+    const savingsBannerEl = document.getElementById("cart-drawer-savings-banner");
     const totalEl = document.getElementById("cart-drawer-total");
     const shippingEl = document.getElementById("cart-drawer-shipping");
     const emptyMsg = document.getElementById("cart-drawer-empty");
     const footerEl = document.getElementById("cart-drawer-footer");
+
+    // Elementos de cupón
+    const couponInput = document.getElementById("cart-coupon-input");
+    const couponPill = document.getElementById("cart-applied-coupon-pill");
+    const couponLabel = document.getElementById("cart-applied-coupon-label");
 
     if (!container) return;
 
@@ -193,7 +275,15 @@ class BionativaCart {
     if (emptyMsg) emptyMsg.classList.add("hidden");
     if (footerEl) footerEl.classList.remove("hidden");
 
-    container.innerHTML = this.items.map(item => `
+    const promoEval = this.getPromotionEvaluation();
+    const evaluatedItems = promoEval.items || this.items;
+
+    container.innerHTML = evaluatedItems.map(item => {
+      const hasDiscount = item.pricing && item.pricing.hasDiscount;
+      const lineRegular = (item.pricing?.regularPrice || item.price) * item.quantity;
+      const lineFinal = item.lineTotal !== undefined ? item.lineTotal : (item.price * item.quantity);
+
+      return `
       <div class="flex items-center gap-3.5 py-3.5 border-b border-[#E8E2D8] last:border-b-0 animate-fade-in">
         <a href="producto?id=${item.productId}" class="flex-shrink-0 hover:opacity-85 transition cursor-pointer" title="Ver detalles del producto">
           <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded-lg bg-[#FAF6F0] p-1 border border-[#E8E2D8]/60" />
@@ -202,25 +292,105 @@ class BionativaCart {
           <h4 class="font-semibold text-sm text-[#1E3B2B] truncate leading-tight">
             <a href="producto?id=${item.productId}" class="hover:text-[#B67A52] transition" title="Ver detalles del producto">${item.name}</a>
           </h4>
-          <span class="inline-block text-xs text-[#B67A52] font-medium mt-0.5">${item.variantName}</span>
+          <div class="flex items-center gap-1.5 mt-0.5 flex-wrap">
+            <span class="inline-block text-xs text-[#B67A52] font-medium">${item.variantName}</span>
+            ${hasDiscount ? `
+              <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">${item.pricing.badge || 'Oferta'}</span>
+            ` : ''}
+            ${item.volumeRule ? `
+              <span class="text-[9px] bg-amber-100 text-amber-900 font-bold px-1.5 py-0.5 rounded">${item.volumeRule.badge || 'Volumen'} (-S/ ${item.volumeDiscount.toFixed(2)})</span>
+            ` : ''}
+          </div>
           <div class="flex items-center justify-between mt-2">
             <div class="flex items-center border border-[#D5CDBD] rounded-full bg-white px-2 py-0.5 shadow-sm">
               <button type="button" onclick="window.cart.updateQuantity('${item.cartItemId}', -1)" class="w-7 h-7 flex items-center justify-center text-[#1E3B2B] hover:text-[#B67A52] active:bg-stone-100 rounded-full font-bold text-base select-none" aria-label="Disminuir cantidad">−</button>
               <span class="w-7 text-center font-bold text-xs text-[#1E3B2B]">${item.quantity}</span>
               <button type="button" onclick="window.cart.updateQuantity('${item.cartItemId}', 1)" class="w-7 h-7 flex items-center justify-center text-[#1E3B2B] hover:text-[#B67A52] active:bg-stone-100 rounded-full font-bold text-base select-none" aria-label="Aumentar cantidad">+</button>
             </div>
-            <span class="font-bold text-sm text-[#1E3B2B]">S/ ${(item.price * item.quantity).toFixed(2)}</span>
+            <div class="text-right">
+              ${hasDiscount || item.volumeDiscount > 0 ? `
+                <span class="text-[10px] line-through text-stone-400 block leading-none">S/ ${lineRegular.toFixed(2)}</span>
+              ` : ''}
+              <span class="font-bold text-sm text-[#1E3B2B]">S/ ${lineFinal.toFixed(2)}</span>
+            </div>
           </div>
         </div>
         <button type="button" onclick="window.cart.removeItem('${item.cartItemId}')" title="Eliminar producto" class="text-stone-400 hover:text-red-500 active:text-red-700 transition-colors p-2 -mr-1 self-start" aria-label="Eliminar producto de la bolsa">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
         </button>
       </div>
-    `).join("");
+    `;
+    }).join("");
 
-    if (subtotalEl) subtotalEl.textContent = `S/ ${this.getSubtotal().toFixed(2)}`;
+    // Actualizar valores de totales
+    if (subtotalEl) subtotalEl.textContent = `S/ ${promoEval.finalSubtotal.toFixed(2)}`;
     if (shippingEl) shippingEl.textContent = `S/ ${this.getShippingCost().toFixed(2)}`;
     if (totalEl) totalEl.textContent = `S/ ${this.getTotal().toFixed(2)}`;
+
+    // Manejo de desglose de descuentos
+    const promoSavings = promoEval.productDiscountTotal + promoEval.volumeDiscountTotal;
+    if (regularRowEl && regularSubtotalEl) {
+      if (promoEval.totalSavings > 0) {
+        regularRowEl.classList.remove("hidden");
+        regularRowEl.classList.add("flex");
+        regularSubtotalEl.textContent = `S/ ${promoEval.subtotalRegular.toFixed(2)}`;
+      } else {
+        regularRowEl.classList.add("hidden");
+        regularRowEl.classList.remove("flex");
+      }
+    }
+
+    if (promoDiscountRowEl && promoDiscountEl) {
+      if (promoSavings > 0) {
+        promoDiscountRowEl.classList.remove("hidden");
+        promoDiscountRowEl.classList.add("flex");
+        promoDiscountEl.textContent = `-S/ ${promoSavings.toFixed(2)}`;
+      } else {
+        promoDiscountRowEl.classList.add("hidden");
+        promoDiscountRowEl.classList.remove("flex");
+      }
+    }
+
+    if (couponDiscountRowEl && couponDiscountEl) {
+      if (promoEval.couponDiscountTotal > 0) {
+        couponDiscountRowEl.classList.remove("hidden");
+        couponDiscountRowEl.classList.add("flex");
+        couponDiscountEl.textContent = `-S/ ${promoEval.couponDiscountTotal.toFixed(2)}`;
+      } else {
+        couponDiscountRowEl.classList.add("hidden");
+        couponDiscountRowEl.classList.remove("flex");
+      }
+    }
+
+    if (savingsBannerEl) {
+      if (promoEval.totalSavings > 0) {
+        savingsBannerEl.classList.remove("hidden");
+        savingsBannerEl.innerHTML = `
+          <div class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-2 rounded-xl text-xs font-bold flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <span>🎉</span> ¡Ahorras S/ ${promoEval.totalSavings.toFixed(2)} en este pedido!
+            </span>
+            <span class="text-[10px] bg-emerald-600 text-white px-2 py-0.5 rounded-full uppercase tracking-wider">Promo Aplicada</span>
+          </div>
+        `;
+      } else {
+        savingsBannerEl.classList.add("hidden");
+        savingsBannerEl.innerHTML = "";
+      }
+    }
+
+    // Actualizar estado del cupón en UI
+    if (couponPill && couponLabel) {
+      if (this.appliedCoupon) {
+        couponPill.classList.remove("hidden");
+        couponPill.classList.add("flex");
+        couponLabel.textContent = `✓ Cupón "${this.appliedCoupon}" activo`;
+        if (couponInput) couponInput.value = this.appliedCoupon;
+      } else {
+        couponPill.classList.add("hidden");
+        couponPill.classList.remove("flex");
+      }
+    }
   }
 
   injectCartDrawer() {
@@ -252,7 +422,7 @@ class BionativaCart {
         </div>
 
         <!-- Banner de Garantía y Pureza -->
-        <div class="bg-[#1E3B2B]/5 px-4 py-2.5 text-xs text-[#1E3B2B] flex items-center justify-between border-b border-[#1E3B2B]/10">
+        <div class="bg-[#1E3B2B]/5 px-4 py-2 text-xs text-[#1E3B2B] flex items-center justify-between border-b border-[#1E3B2B]/10">
           <span class="flex items-center gap-1.5 font-medium">
             <svg class="w-4 h-4 text-[#B67A52]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
             Materia Prima Americana con COA
@@ -275,11 +445,29 @@ class BionativaCart {
         </div>
 
         <!-- Footer / Checkout Section -->
-        <div id="cart-drawer-footer" class="p-4 sm:p-5 border-t border-[#E8E2D8] bg-white space-y-3.5">
+        <div id="cart-drawer-footer" class="p-4 sm:p-5 border-t border-[#E8E2D8] bg-white space-y-3">
+          <!-- Cupones de Descuento Box -->
+          <div class="bg-[#FAF6F0] p-2.5 rounded-xl border border-[#E8E2D8]/80 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-[#1E3B2B] flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-[#B67A52]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                Código de Descuento
+              </span>
+            </div>
+            <div class="flex gap-1.5">
+              <input type="text" id="cart-coupon-input" placeholder="Ej: SEMANABIONATIVA" class="flex-1 bg-white border border-[#D5CDBD] text-xs uppercase font-bold text-[#1E3B2B] px-3 py-1.5 rounded-lg focus:border-[#1E3B2B] focus:ring-0 outline-none" />
+              <button type="button" onclick="window.cart.handleApplyCoupon()" class="bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition active:scale-95 shadow-sm">Aplicar</button>
+            </div>
+            <div id="cart-applied-coupon-pill" class="hidden items-center justify-between bg-emerald-50 text-emerald-800 text-[11px] px-2.5 py-1 rounded-lg border border-emerald-200">
+              <span id="cart-applied-coupon-label" class="font-bold"></span>
+              <button type="button" onclick="window.cart.removeCoupon()" class="text-stone-400 hover:text-red-500 font-bold ml-2 text-sm leading-none" title="Quitar cupón">×</button>
+            </div>
+          </div>
+
           <!-- Shipping Selector -->
           <div>
             <label class="block text-xs font-bold text-stone-600 mb-1">Opciones de Entrega y Envío:</label>
-            <select id="cart-shipping-select" class="w-full bg-[#FAF9F6] border border-[#D5CDBD] text-xs text-[#1E3B2B] font-medium rounded-lg p-2.5 focus:border-[#1E3B2B] focus:ring-0 cursor-pointer">
+            <select id="cart-shipping-select" class="w-full bg-[#FAF9F6] border border-[#D5CDBD] text-xs text-[#1E3B2B] font-medium rounded-lg p-2 focus:border-[#1E3B2B] focus:ring-0 cursor-pointer">
               ${shippingOptions.map(opt => `
                 <option value="${opt.id}" ${opt.id === this.selectedShipping ? "selected" : ""}>
                   ${opt.name} (${opt.price > 0 ? "S/ " + opt.price.toFixed(2) : "GRATIS"})
@@ -288,17 +476,32 @@ class BionativaCart {
             </select>
           </div>
 
+          <!-- Banner de Ahorro Destacado -->
+          <div id="cart-drawer-savings-banner" class="hidden"></div>
+
           <!-- Totales -->
-          <div class="space-y-1.5 pt-1 text-xs text-stone-600">
+          <div class="space-y-1 pt-1 text-xs text-stone-600">
+            <div id="cart-drawer-regular-row" class="hidden justify-between text-stone-400 line-through">
+              <span>Precio regular:</span>
+              <span id="cart-drawer-regular-subtotal">S/ 0.00</span>
+            </div>
+            <div id="cart-drawer-promo-discount-row" class="hidden justify-between text-emerald-700 font-bold">
+              <span>Descuento de Campaña / Volumen:</span>
+              <span id="cart-drawer-promo-discount">-S/ 0.00</span>
+            </div>
+            <div id="cart-drawer-coupon-discount-row" class="hidden justify-between text-emerald-700 font-bold">
+              <span>Descuento por Cupón:</span>
+              <span id="cart-drawer-coupon-discount">-S/ 0.00</span>
+            </div>
             <div class="flex justify-between">
-              <span>Subtotal productos:</span>
+              <span>Subtotal neto:</span>
               <span id="cart-drawer-subtotal" class="font-bold text-[#1E3B2B]">S/ 0.00</span>
             </div>
             <div class="flex justify-between">
               <span>Costo de envío:</span>
               <span id="cart-drawer-shipping" class="font-bold text-[#B67A52]">S/ 10.00</span>
             </div>
-            <div class="flex justify-between text-base font-extrabold text-[#1E3B2B] pt-2 border-t border-dashed border-[#E8E2D8]">
+            <div class="flex justify-between text-base font-extrabold text-[#1E3B2B] pt-1.5 border-t border-dashed border-[#E8E2D8]">
               <span>Total Estimado:</span>
               <span id="cart-drawer-total" class="text-lg text-[#1E3B2B]">S/ 0.00</span>
             </div>
@@ -432,7 +635,9 @@ class BionativaCart {
 
     const shippingOptions = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [];
     const shipping = shippingOptions.find(o => o.id === this.selectedShipping) || { name: "Lima Metropolitana", price: 10 };
-    const subtotal = this.getSubtotal();
+    const promoEval = this.getPromotionEvaluation();
+    const regularSubtotal = promoEval.subtotalRegular;
+    const subtotal = promoEval.finalSubtotal;
     const shippingPrice = this.getShippingCost();
     const total = this.getTotal();
     const defaultPay = (mode === 'pay-options' || mode === 'yape' || mode === 'card') ? (mode === 'card' ? 'card' : 'yape') : 'whatsapp';
@@ -506,14 +711,24 @@ class BionativaCart {
             </div>
           </div>
 
-          <!-- Resumen de Totales -->
+          <!-- Resumen de Totales con Desglose de Descuentos -->
           <div class="bg-[#FAF6F0] p-3.5 rounded-xl border border-[#E8E2D8] space-y-1">
             <div class="flex justify-between text-stone-600">
               <span>Método de envío seleccionado:</span>
               <span class="font-semibold text-[#1E3B2B]">${shipping ? shipping.name : "Lima"}</span>
             </div>
+            ${promoEval.totalSavings > 0 ? `
+              <div class="flex justify-between text-stone-400 line-through">
+                <span>Subtotal regular:</span>
+                <span>S/ ${regularSubtotal.toFixed(2)}</span>
+              </div>
+              <div class="flex justify-between text-emerald-700 font-bold">
+                <span>Descuento aplicado ${this.appliedCoupon ? `(${this.appliedCoupon})` : ''}:</span>
+                <span>-S/ ${promoEval.totalSavings.toFixed(2)}</span>
+              </div>
+            ` : ''}
             <div class="flex justify-between text-stone-600">
-              <span>Subtotal:</span>
+              <span>Subtotal neto:</span>
               <span>S/ ${subtotal.toFixed(2)}</span>
             </div>
             <div class="flex justify-between text-stone-600">
@@ -528,6 +743,13 @@ class BionativaCart {
               <span>Total a Pagar:</span>
               <span id="checkout-modal-total-display" class="text-base text-[#1E3B2B]">S/ ${total.toFixed(2)}</span>
             </div>
+            ${promoEval.totalSavings > 0 ? `
+              <div class="pt-1 text-center">
+                <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full inline-block">
+                  🎉 Estás ahorrando S/ ${promoEval.totalSavings.toFixed(2)} en este pedido
+                </span>
+              </div>
+            ` : ''}
           </div>
 
           <div class="pt-2">
@@ -601,19 +823,40 @@ class BionativaCart {
       { id: "provincias-marvisur", name: "Envío Nacional vía Agencia Marvisur", price: 16 }
     ];
     const shipping = shippingList.find(o => o.id === this.selectedShipping) || shippingList[0];
-    const subtotal = this.getSubtotal().toFixed(2);
+    const promoEval = this.getPromotionEvaluation();
+    const regularSubtotal = promoEval.subtotalRegular.toFixed(2);
+    const subtotal = promoEval.finalSubtotal.toFixed(2);
     const shippingCost = this.getShippingCost().toFixed(2);
     const total = this.getTotal().toFixed(2);
+    const totalSavings = promoEval.totalSavings > 0 ? promoEval.totalSavings.toFixed(2) : null;
+    const appliedCoupon = this.appliedCoupon;
+
+    // Registrar conversión en analítica de campañas
+    if (window.BionativaPromotions && typeof window.BionativaPromotions.trackEvent === "function") {
+      window.BionativaPromotions.trackEvent("conversion", { amount: Number(total), couponCode: appliedCoupon });
+    }
 
     if (payMethod === "whatsapp" || payMethod === "yape") {
-      let itemsText = this.items.map(item => `• ${item.quantity}x ${item.name} (${item.variantName}) - S/ ${(item.price * item.quantity).toFixed(2)}`).join("\n");
+      const evalItems = promoEval.items || this.items;
+      let itemsText = evalItems.map(item => {
+        const lineTotal = item.lineTotal !== undefined ? item.lineTotal.toFixed(2) : (item.price * item.quantity).toFixed(2);
+        const discountTag = item.pricing?.hasDiscount ? ` [${item.pricing.badge}]` : "";
+        const volumeTag = item.volumeRule ? ` [${item.volumeRule.badge}]` : "";
+        return `• ${item.quantity}x ${item.name} (${item.variantName})${discountTag}${volumeTag} - S/ ${lineTotal}`;
+      }).join("\n");
+
+      let discountText = "";
+      if (totalSavings) {
+        discountText = `🎉 *AHORRO PROMOCIONAL TOTAL:* -S/ ${totalSavings} ${appliedCoupon ? `(Cupón: ${appliedCoupon})` : ""}\n`;
+      }
 
       let message = `🌿 *NUEVO PEDIDO - BIONATIVA LAB*\n` +
         `🌐 *Dominio:* bionativalab.com\n` +
         `-----------------------------------------\n` +
         `📦 *PRODUCTOS SOLICITADOS:*\n${itemsText}\n` +
         `-----------------------------------------\n` +
-        `💰 *Subtotal:* S/ ${subtotal}\n` +
+        (totalSavings ? `💵 *Subtotal Regular:* S/ ${regularSubtotal}\n${discountText}` : "") +
+        `💰 *Subtotal Neto:* S/ ${subtotal}\n` +
         `🚚 *Envío:* ${shipping ? shipping.name : "Coordinado"} (S/ ${shippingCost})\n` +
         `✅ *TOTAL A PAGAR: S/ ${total}*\n` +
         `-----------------------------------------\n` +
@@ -851,33 +1094,45 @@ class BionativaCart {
 
     try {
       const cfg = window.PAYMENT_CONFIG?.mercadopago || {};
+      const promoEval = this.getPromotionEvaluation();
+      const evalItems = promoEval.items || this.items;
+      const netSubtotal = promoEval.finalSubtotal;
+      const baseSubtotal = evalItems.reduce((s, i) => s + (i.lineTotal !== undefined ? i.lineTotal : (i.price * i.quantity)), 0);
+      const ratio = baseSubtotal > 0 ? (netSubtotal / baseSubtotal) : 1;
       
       // Intentar crear la preferencia en el backend (/api/create-preference)
       if (cfg.preferenceEndpoint) {
+        const mpItems = [
+          ...evalItems.map(i => {
+            const originalLine = i.lineTotal !== undefined ? i.lineTotal : (i.price * i.quantity);
+            const effectiveLine = Number((originalLine * ratio).toFixed(2));
+            const effectiveUnit = Number((effectiveLine / i.quantity).toFixed(2));
+            return {
+              id: String(i.cartItemId || i.productId || "item"),
+              name: `${i.name} (${i.variantName})`,
+              price: effectiveUnit,
+              quantity: Number(i.quantity)
+            };
+          }),
+          ...(this.getShippingCost() > 0 ? [{
+            id: "costo-envio",
+            name: `Costo de Envío (${window.BIONATIVA_CONFIG?.shippingOptions?.find(o => o.id === this.selectedShipping)?.name || "Nacional"})`,
+            price: Number(this.getShippingCost().toFixed(2)),
+            quantity: 1
+          }] : []),
+          ...(cardFee > 0 ? [{
+            id: "recargo-tarjeta-mp",
+            name: `Recargo Pasarela Mercado Pago (${window.PAYMENT_CONFIG?.mercadopago?.cardFeePercentage || 4.71}%)`,
+            price: Number(cardFee.toFixed(2)),
+            quantity: 1
+          }] : [])
+        ];
+
         const response = await fetch(cfg.preferenceEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            items: [
-              ...this.items.map(i => ({
-                id: String(i.cartItemId || i.productId || "item"),
-                name: `${i.name} (${i.variantName})`,
-                price: Number(i.price),
-                quantity: Number(i.quantity)
-              })),
-              ...(this.getShippingCost() > 0 ? [{
-                id: "costo-envio",
-                name: `Costo de Envío (${window.BIONATIVA_CONFIG?.shippingOptions?.find(o => o.id === this.selectedShipping)?.name || "Nacional"})`,
-                price: Number(this.getShippingCost().toFixed(2)),
-                quantity: 1
-              }] : []),
-              ...(cardFee > 0 ? [{
-                id: "recargo-tarjeta-mp",
-                name: `Recargo Pasarela Mercado Pago (${window.PAYMENT_CONFIG?.mercadopago?.cardFeePercentage || 4.71}%)`,
-                price: Number(cardFee.toFixed(2)),
-                quantity: 1
-              }] : [])
-            ],
+            items: mpItems,
             payer: this.currentCustomerData || {}
           })
         });
@@ -885,6 +1140,9 @@ class BionativaCart {
         if (response.ok) {
           const data = await response.json();
           if (data.init_point) {
+            if (window.BionativaPromotions) {
+              window.BionativaPromotions.trackEvent("conversion", { amount: Number(total), couponCode: this.appliedCoupon });
+            }
             window.location.href = data.init_point;
             return;
           }

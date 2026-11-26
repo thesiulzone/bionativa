@@ -237,6 +237,8 @@
 
   <!-- Scripts -->
   <script src="js/products-data.js"></script>
+  <script src="js/promotions-data.js"></script>
+  <script src="js/promotions-engine.js"></script>
   <script src="js/payment-config.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
@@ -270,6 +272,15 @@
       renderProductPage();
       renderComplementaryProducts();
       updateDoseCalculator();
+
+      if (window.BionativaPromotions && currentProduct) {
+        window.BionativaPromotions.trackEvent("click", { productId: currentProduct.id });
+      }
+
+      window.addEventListener("bionativa:promotions_updated", () => {
+        renderProductPage();
+        updateDoseCalculator();
+      });
     }
 
     if (document.readyState === "loading") {
@@ -344,15 +355,24 @@
 
     function getActivePrice() {
       const v = getActiveVariant();
-      if (v && typeof v.price === 'number') return v.price;
-      return currentProduct.price;
+      const base = (v && typeof v.price === 'number') ? v.price : currentProduct.price;
+      if (window.BionativaPromotions && currentProduct) {
+        const pricing = window.BionativaPromotions.getProductPricing(currentProduct.id, v ? v.id : null, currentProduct.category, base);
+        if (pricing.hasDiscount) return pricing.promoPrice;
+      }
+      return base;
     }
 
     function getActiveRegularPrice() {
       const v = getActiveVariant();
+      const base = (v && typeof v.price === 'number') ? v.price : currentProduct.price;
+      if (window.BionativaPromotions && currentProduct) {
+        const pricing = window.BionativaPromotions.getProductPricing(currentProduct.id, v ? v.id : null, currentProduct.category, base);
+        if (pricing.hasDiscount) return pricing.regularPrice;
+      }
       if (v && typeof v.regularPrice === 'number') return v.regularPrice;
       if (typeof currentProduct.regularPrice === 'number') return currentProduct.regularPrice;
-      return Math.round(getActivePrice() * 1.15);
+      return Math.round(base * 1.15);
     }
 
     function getActiveUnitName() {

@@ -1223,6 +1223,8 @@
 
   <!-- Scripts -->
   <script src="/js/products-data.js"></script>
+  <script src="/js/promotions-data.js"></script>
+  <script src="/js/promotions-engine.js"></script>
   <script src="/js/payment-config.js"></script>
   <script src="/js/cart.js"></script>
   <script src="/js/main.js"></script>
@@ -1339,11 +1341,17 @@
       noResults.classList.add("hidden");
       noResults.style.display = "none";
 
-      grid.innerHTML = list.map(prod => `
-        <div class="organic-card p-4 flex flex-col justify-between group">
+      grid.innerHTML = list.map(prod => {
+        const pricing = window.BionativaPromotions ? window.BionativaPromotions.getProductPricing(prod.id, null, prod.category, prod.price) : { hasDiscount: false, regularPrice: prod.price, promoPrice: prod.price };
+        const displayPrice = pricing.hasDiscount ? pricing.promoPrice : prod.price;
+        const displayBadge = (pricing.hasDiscount && pricing.badge) ? pricing.badge : (prod.badge || 'Puro COA');
+
+        return `
+        <div class="organic-card p-4 flex flex-col justify-between group hover:shadow-lg transition-all duration-300">
           <div>
             <a href="producto?id=${prod.id}" class="block relative bg-[#FAF6F0] rounded-xl p-3 mb-3 border border-[#E8E2D8]/60 flex items-center justify-center h-48 overflow-hidden cursor-pointer" title="Ver información y presentaciones de ${prod.shortName}" aria-label="Ver detalles de ${prod.shortName}">
-              <span class="absolute top-2 left-2 text-[10px] font-bold bg-[#1E3B2B] text-white px-2 py-0.5 rounded-full z-10">${prod.badge || 'Puro COA'}</span>
+              <span class="absolute top-2 left-2 text-[10px] font-bold ${pricing.hasDiscount ? 'bg-emerald-800' : 'bg-[#1E3B2B]'} text-white px-2 py-0.5 rounded-full z-10 shadow-sm">${displayBadge}</span>
+              ${pricing.hasDiscount ? `<span class="absolute top-2 right-2 text-[9px] font-black bg-rose-600 text-white px-2 py-0.5 rounded-full z-10 shadow-sm">OFERTA</span>` : ''}
               <img src="${prod.image}" alt="${prod.name}" class="h-40 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
             </a>
 
@@ -1376,7 +1384,14 @@
           <div class="pt-4 border-t border-[#E8E2D8] mt-4 flex items-center justify-between">
             <div>
               <span class="text-[10px] text-stone-400 block">${prod.hasVariants ? 'Desde' : prod.unit}</span>
-              <span class="text-base font-extrabold text-[#1E3B2B]">S/ ${prod.price.toFixed(2)}</span>
+              ${pricing.hasDiscount ? `
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-xs text-stone-400 line-through">S/ ${pricing.regularPrice.toFixed(2)}</span>
+                  <span class="text-base font-extrabold text-[#1E3B2B]">S/ ${displayPrice.toFixed(2)}</span>
+                </div>
+              ` : `
+                <span class="text-base font-extrabold text-[#1E3B2B]">S/ ${displayPrice.toFixed(2)}</span>
+              `}
             </div>
             
             <div class="flex items-center gap-1.5">
@@ -1390,8 +1405,13 @@
             </div>
           </div>
         </div>
-      `).join("");
+      `;}).join("");
     }
+
+    // Sincronización en vivo cuando cambian las promociones
+    window.addEventListener("bionativa:promotions_updated", () => {
+      renderCatalog();
+    });
   </script>
 </body>
 </html>

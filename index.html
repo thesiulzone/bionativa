@@ -1888,13 +1888,11 @@
 
 
   <!-- Scripts -->
-
   <script src="js/products-data.js"></script>
-
+  <script src="js/promotions-data.js"></script>
+  <script src="js/promotions-engine.js"></script>
   <script src="js/payment-config.js"></script>
-
   <script src="js/cart.js"></script>
-
   <script src="js/main.js"></script>
 
   <script>
@@ -1905,7 +1903,7 @@
 
 
 
-    // Renderizar Productos Destacados en el Grid
+    // Renderizar Productos Destacados en el Grid con Precios Dinámicos
     function initIndexFeatured() {
       const grid = document.getElementById("featured-products-grid");
       if (!grid || !window.BIONATIVA_PRODUCTS) return;
@@ -1923,12 +1921,17 @@
 
       const featuredList = window.BIONATIVA_PRODUCTS.filter(p => featuredIds.includes(p.id));
 
-      grid.innerHTML = featuredList.map(prod => `
+      grid.innerHTML = featuredList.map(prod => {
+        const pricing = window.BionativaPromotions ? window.BionativaPromotions.getProductPricing(prod.id, null, prod.category, prod.price) : { hasDiscount: false, regularPrice: prod.price, promoPrice: prod.price };
+        const displayPrice = pricing.hasDiscount ? pricing.promoPrice : prod.price;
+        const displayBadge = (pricing.hasDiscount && pricing.badge) ? pricing.badge : (prod.highlightBadge || prod.badge || 'Puro COA');
+
+        return `
         <div class="organic-card p-4 flex flex-col justify-between group hover:shadow-lg transition-all duration-300">
           <div>
             <a href="producto?id=${prod.id}" class="block relative bg-[#FAF6F0] rounded-xl p-3 mb-3 border border-[#E8E2D8]/60 flex items-center justify-center h-48 overflow-hidden cursor-pointer" title="Ver información y presentaciones de ${prod.shortName}" aria-label="Ver detalles de ${prod.shortName}">
-              <span class="absolute top-2 left-2 text-[10px] font-bold bg-[#1E3B2B] text-white px-2 py-0.5 rounded-full z-10">${prod.highlightBadge || prod.badge || 'Puro COA'}</span>
-              ${prod.discountBadge ? `<span class="absolute top-2 right-2 text-[9px] font-black bg-rose-600 text-white px-2 py-0.5 rounded-full z-10 shadow-sm">${prod.discountBadge}</span>` : ''}
+              <span class="absolute top-2 left-2 text-[10px] font-bold ${pricing.hasDiscount ? 'bg-emerald-800' : 'bg-[#1E3B2B]'} text-white px-2 py-0.5 rounded-full z-10 shadow-sm">${displayBadge}</span>
+              ${pricing.hasDiscount ? `<span class="absolute top-2 right-2 text-[9px] font-black bg-rose-600 text-white px-2 py-0.5 rounded-full z-10 shadow-sm">OFERTA ACTIVA</span>` : ''}
               <img src="${prod.image}" alt="${prod.name}" class="h-40 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
             </a>
 
@@ -1946,17 +1949,17 @@
 
           <div class="pt-3 border-t border-[#E8E2D8] mt-3 flex items-end justify-between gap-2">
             <div>
-              ${prod.regularPrice ? `
+              ${pricing.hasDiscount ? `
                 <div class="flex items-baseline gap-1.5">
-                  <span class="text-[11px] text-stone-400 line-through">S/ ${prod.regularPrice.toFixed(2)}</span>
-                  <span class="text-base sm:text-lg font-black text-[#1E3B2B]">S/ ${prod.price.toFixed(2)}</span>
+                  <span class="text-[11px] text-stone-400 line-through">S/ ${pricing.regularPrice.toFixed(2)}</span>
+                  <span class="text-base sm:text-lg font-black text-[#1E3B2B]">S/ ${displayPrice.toFixed(2)}</span>
                 </div>
                 <div class="text-[9px] font-bold text-emerald-800 mt-0.5">
-                  Ahorras S/ ${(prod.regularPrice - prod.price).toFixed(2)} • ${prod.unit}
+                  Ahorras S/ ${pricing.savings.toFixed(2)} • ${prod.unit}
                 </div>
               ` : `
                 <span class="text-[10px] text-stone-400 block">${prod.unit}</span>
-                <span class="text-base font-extrabold text-[#1E3B2B]">S/ ${prod.price.toFixed(2)}</span>
+                <span class="text-base font-extrabold text-[#1E3B2B]">S/ ${displayPrice.toFixed(2)}</span>
               `}
             </div>
 
@@ -1966,7 +1969,7 @@
             </button>
           </div>
         </div>
-      `).join("");
+      `;}).join("");
     }
 
     if (document.readyState === "loading") {
@@ -2223,15 +2226,95 @@
       }
     }
 
-    // Inicializar Ticker y Sede Guardada
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", () => {
-        startPromoTicker();
-        initSavedHub();
-      });
-    } else {
+    function initIndexPromotions() {
+      if (!window.BionativaPromotions) return;
+
+      // Telemetría: Registrar impresión de la campaña en portada
+      window.BionativaPromotions.trackEvent("impression");
+
+      const activeCamp = window.BionativaPromotions.getActiveCampaign();
+      const config = window.BionativaPromotions.config || {};
+
+      // 1. Barra de Anuncio Superior Dinámica
+      if (activeCamp) {
+        const slide1 = document.querySelector(".promo-ticker-item");
+        if (slide1) {
+          slide1.innerHTML = `
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></span>
+            <span class="font-bold text-amber-300">${activeCamp.bannerBadge || 'CAMPAÑA ACTIVA'}:</span>
+            <span class="font-normal text-stone-200 truncate">${activeCamp.name} — ${activeCamp.description}</span>
+          `;
+        }
+      }
+
+      // Cupón activo dinámico en la cabecera
+      const activeCoupon = (config.coupons || []).find(c => c.enabled);
+      const couponBadge = document.getElementById("promo-coupon-badge");
+      if (couponBadge && activeCoupon) {
+        couponBadge.setAttribute("onclick", `copyPromoCoupon('${activeCoupon.code}')`);
+        couponBadge.innerHTML = `
+          <span class="text-[10px] text-stone-300">Cupón:</span>
+          <span class="font-mono font-bold text-amber-300 text-[11px] tracking-wider">${activeCoupon.code}</span>
+          <span id="coupon-feedback-tag" class="text-[10px] text-emerald-300 font-semibold ml-0.5">Copiar 📋</span>
+        `;
+      }
+
+      // 2. Renderizar Packs/Combos de Promoción Dinámicos
+      const packsContainer = document.getElementById("promo-content-packs");
+      const activeCombos = (config.combos || []).filter(c => c.enabled);
+
+      if (packsContainer && activeCombos.length > 0) {
+        packsContainer.innerHTML = activeCombos.map(combo => `
+          <div class="organic-card bundle-pack-card p-5 bg-white border border-[#E8E2D8] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="bg-[#1E3B2B] text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full">${combo.badge || 'Pack Sinergia'}</span>
+                <span class="bg-rose-100 text-rose-800 text-[10px] font-black px-2 py-0.5 rounded-full border border-rose-200">Ahorras S/ ${Number(combo.savings).toFixed(2)}</span>
+              </div>
+
+              <div class="relative bg-[#FAF6F0] rounded-xl p-3 flex items-center justify-center h-44 overflow-hidden mb-4 border border-[#E8E2D8]/60 group">
+                <img src="${combo.image || 'img/products/combo-deportivo.jpg'}" alt="${combo.name}" class="h-36 w-auto object-contain drop-shadow-md transition-transform group-hover:scale-105" />
+                <div class="absolute bottom-2 left-2 bg-[#1E3B2B]/90 text-white text-[9px] font-bold px-2 py-0.5 rounded backdrop-blur-sm">${combo.items.length} Suplementos Puros</div>
+              </div>
+
+              <h4 class="font-extrabold text-base text-[#1E3B2B] leading-snug">${combo.name}</h4>
+              <p class="text-xs text-[#B67A52] font-semibold mt-0.5">${combo.shortDescription || combo.items.map(i => i.name).join(' + ')}</p>
+
+              <p class="mt-2.5 text-xs text-stone-600 line-clamp-3 leading-relaxed">${combo.description}</p>
+            </div>
+
+            <div class="pt-4 border-t border-[#E8E2D8] mt-4 flex items-center justify-between gap-3">
+              <div>
+                <span class="text-[11px] text-stone-400 line-through block">Antes S/ ${Number(combo.regularTotalPrice).toFixed(2)}</span>
+                <span class="text-xl font-black text-[#1E3B2B]">S/ ${Number(combo.comboPrice).toFixed(2)}</span>
+              </div>
+              <button type="button" onclick="window.BionativaPromotions.addComboToCart('${combo.id}')" class="bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-95 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow flex items-center gap-1.5 cursor-pointer" title="Añadir combo a la bolsa">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                <span>Añadir Pack</span>
+              </button>
+            </div>
+          </div>
+        `).join("");
+      }
+    }
+
+    // Inicializar Ticker, Promociones y Sede Guardada
+    const setupIndex = () => {
       startPromoTicker();
       initSavedHub();
+      initIndexFeatured();
+      initIndexPromotions();
+
+      window.addEventListener("bionativa:promotions_updated", () => {
+        initIndexFeatured();
+        initIndexPromotions();
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupIndex);
+    } else {
+      setupIndex();
     }
 
   </script>

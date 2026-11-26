@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Promociones y Campañas | BioNativa LAB</title>
+  
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Inter"', 'system-ui', 'sans-serif'],
+            mono: ['ui-monospace', 'monospace']
+          },
+          colors: {
+            botanical: {
+              DEFAULT: '#1E3B2B',
+              50: '#F4F7F5',
+              100: '#E6ECE8',
+              500: '#2A523C',
+              600: '#1E3B2B',
+              700: '#172E22',
+              900: '#0D1A13'
+            },
+            terracotta: {
+              DEFAULT: '#B67A52',
+              50: '#FAF5F1',
+              400: '#CF926B',
+              500: '#B67A52',
+              600: '#9B613D'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos boticario premium para panel dark */
+    body {
+      background-color: #0b0f17;
+      color: #e2e8f0;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+    .glass-panel {
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card {
+      background: rgba(22, 30, 49, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.2);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.4);
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col font-sans selection:bg-[#B67A52] selection:text-white">
+
+  <!-- Header Superior -->
+  <header id="admin-header" class="sticky top-0 z-40 bg-[#0B0F17]/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- Marca y Título -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2.5 group" title="Ir al Inicio">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#1E3B2B] to-[#2A523C] border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-extrabold text-lg shadow-inner group-hover:scale-105 transition-transform">
+            🌿
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-white text-base tracking-tight">BioNativa LAB</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full">v1.2</span>
+            </div>
+            <p class="text-[11px] text-slate-400 hidden sm:block">Centro de Promociones & Campañas Comerciales</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Estado en Vivo y Acciones Globales -->
+      <div class="flex items-center gap-2.5">
+        <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Motor Activo en Tienda</span>
+        </div>
+
+        <button onclick="exportConfigJSON()" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition flex items-center gap-1.5" title="Exportar configuración de respaldo">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span class="hidden sm:inline">Exportar JSON</span>
+        </button>
+
+        <label class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition flex items-center gap-1.5 cursor-pointer" title="Importar configuración JSON">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          <span class="hidden sm:inline">Importar</span>
+          <input type="file" id="import-json-file" accept=".json" class="hidden" onchange="importConfigJSON(event)" />
+        </label>
+
+        <button onclick="confirmResetDefaults()" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-red-950/30 hover:bg-red-900/50 text-red-300 text-xs font-semibold border border-red-800/40 transition flex items-center gap-1.5" title="Restablecer valores predeterminados">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span class="hidden sm:inline">Restablecer</span>
+        </button>
+
+        <a href="index.html" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-[#1E3B2B] hover:bg-[#2A523C] text-white text-xs font-bold border border-emerald-500/40 shadow-sm transition flex items-center gap-1.5">
+          <span>Ver Tienda</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main id="admin-main-container" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- SECCIÓN PROPUESTA: TARJETA PRINCIPAL "CAMPAÑA ACTIVA" -->
+    <section id="seccion-campana-activa" class="relative overflow-hidden rounded-2xl glass-panel p-6 sm:p-8 border border-emerald-500/20 shadow-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-emerald-950/30">
+      <div class="absolute -right-16 -top-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+        <!-- Columna Izquierda: Identidad y Estado de Campaña -->
+        <div class="space-y-3 flex-1">
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              CAMPAÑA ACTIVA
+            </span>
+            <div id="campaign-status-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold">
+              <!-- Renderizado dinámico -->
+            </div>
+          </div>
+
+          <h1 id="campaign-active-title" class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+            Semana BioNativa
+          </h1>
+
+          <p id="campaign-active-desc" class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+            Promociones especiales en productos seleccionados y packs de bienestar integral.
+          </p>
+
+          <!-- Fechas y Vigencia -->
+          <div class="flex items-center gap-4 pt-2 text-xs text-slate-400 flex-wrap">
+            <div class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span>Vigencia: <strong id="campaign-dates-display" class="text-slate-200">20 Nov - 15 Dic</strong></span>
+            </div>
+            <div id="campaign-countdown-pill" class="flex items-center gap-1.5 bg-amber-500/10 text-amber-300 border border-amber-500/20 px-3 py-1.5 rounded-lg font-bold">
+              ⏱️ <span id="campaign-countdown-text">Calculando tiempo...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Botones de Acción de Campaña -->
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-2.5 flex-shrink-0">
+          <button onclick="openEditCampaignModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white font-bold text-xs shadow-lg transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            <span>Configurar Campaña</span>
+          </button>
+
+          <button id="btn-toggle-campaign-status" onclick="toggleActiveCampaignStatus()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700 transition flex items-center justify-center gap-2">
+            <!-- Icono dinámico -->
+            <span id="btn-toggle-campaign-label">Pausar Campaña</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuadrícula de Métricas de Rendimiento en Tiempo Real -->
+      <div class="mt-8 pt-6 border-t border-slate-800/80 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <!-- Visitas / Impresiones -->
+        <div class="glass-card p-4 rounded-xl border border-slate-800">
+          <div class="flex items-center justify-between text-slate-400 text-xs mb-1">
+            <span>Visitas (Impresiones)</span>
+            <span class="text-emerald-400 text-sm">👁️</span>
+          </div>
+          <div id="metric-impressions" class="text-xl sm:text-2xl font-black text-white">0</div>
+          <p class="text-[10px] text-slate-500 mt-1">Impactos en portada y tienda</p>
+        </div>
+
+        <!-- Clics en Promociones -->
+        <div class="glass-card p-4 rounded-xl border border-slate-800">
+          <div class="flex items-center justify-between text-slate-400 text-xs mb-1">
+            <span>Clics en Ofertas</span>
+            <span class="text-blue-400 text-sm">🖱️</span>
+          </div>
+          <div id="metric-clicks" class="text-xl sm:text-2xl font-black text-white">0</div>
+          <p class="text-[10px] text-slate-500 mt-1">Interés generado en productos</p>
+        </div>
+
+        <!-- Compras Generadas -->
+        <div class="glass-card p-4 rounded-xl border border-slate-800">
+          <div class="flex items-center justify-between text-slate-400 text-xs mb-1">
+            <span>Compras Generadas</span>
+            <span class="text-amber-400 text-sm">🛍️</span>
+          </div>
+          <div id="metric-conversions" class="text-xl sm:text-2xl font-black text-white">0</div>
+          <p class="text-[10px] text-slate-500 mt-1">WhatsApp y Checkout Directo</p>
+        </div>
+
+        <!-- Ahorro Total a Clientes -->
+        <div class="glass-card p-4 rounded-xl border border-emerald-500/20 bg-emerald-950/20">
+          <div class="flex items-center justify-between text-emerald-300 text-xs mb-1">
+            <span>Monto Generado</span>
+            <span class="text-emerald-400 text-sm">💰</span>
+          </div>
+          <div id="metric-revenue" class="text-xl sm:text-2xl font-black text-emerald-400">S/ 0.00</div>
+          <p class="text-[10px] text-emerald-400/70 mt-1">Ingresos brutos por campaña</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGACIÓN POR PESTAÑAS (TABS) -->
+    <div class="border-b border-slate-800">
+      <nav id="admin-tabs" class="flex gap-2 sm:gap-4 overflow-x-auto pb-2 custom-scrollbar text-xs font-bold" aria-label="Tabs">
+        <button onclick="switchTab('tab-products')" id="tab-btn-products" class="tab-btn active px-3.5 py-2 rounded-xl bg-slate-800 text-white border border-slate-700 flex items-center gap-2 whitespace-nowrap">
+          <span>🏷️ Descuentos por Producto</span>
+          <span id="tab-count-products" class="bg-emerald-500/20 text-emerald-400 text-[10px] px-1.5 py-0.5 rounded-full">0</span>
+        </button>
+
+        <button onclick="switchTab('tab-volume')" id="tab-btn-volume" class="tab-btn px-3.5 py-2 rounded-xl bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-white border border-transparent transition flex items-center gap-2 whitespace-nowrap">
+          <span>📦 Compra Múltiple (Volumen)</span>
+          <span id="tab-count-volume" class="bg-slate-800 text-slate-300 text-[10px] px-1.5 py-0.5 rounded-full">0</span>
+        </button>
+
+        <button onclick="switchTab('tab-combos')" id="tab-btn-combos" class="tab-btn px-3.5 py-2 rounded-xl bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-white border border-transparent transition flex items-center gap-2 whitespace-nowrap">
+          <span>⚡ Combos & Packs Sinergia</span>
+          <span id="tab-count-combos" class="bg-slate-800 text-slate-300 text-[10px] px-1.5 py-0.5 rounded-full">0</span>
+        </button>
+
+        <button onclick="switchTab('tab-coupons')" id="tab-btn-coupons" class="tab-btn px-3.5 py-2 rounded-xl bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-white border border-transparent transition flex items-center gap-2 whitespace-nowrap">
+          <span>🎟️ Códigos de Descuento (Cupones)</span>
+          <span id="tab-count-coupons" class="bg-slate-800 text-slate-300 text-[10px] px-1.5 py-0.5 rounded-full">0</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- CONTENIDO DE PESTAÑAS -->
+    
+    <!-- PESTAÑA 1: DESCUENTOS POR PRODUCTO O CATEGORÍA -->
+    <div id="tab-products" class="tab-content space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h2 class="text-base font-bold text-white">Descuentos por Producto y Categoría</h2>
+          <p class="text-xs text-slate-400">Define precios promocionales específicos o porcentajes de descuento sobre el precio regular.</p>
+        </div>
+        <button onclick="openProductDiscountModal()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow transition flex items-center gap-1.5 self-start">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span>Nueva Promoción</span>
+        </button>
+      </div>
+
+      <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-900/80 text-slate-400 uppercase tracking-wider text-[10px] border-b border-slate-800">
+              <tr>
+                <th class="p-3.5">Producto / Objetivo</th>
+                <th class="p-3.5">Precio Regular</th>
+                <th class="p-3.5">Precio Promocional</th>
+                <th class="p-3.5">Descuento</th>
+                <th class="p-3.5">Badge Visible</th>
+                <th class="p-3.5 text-center">Estado</th>
+                <th class="p-3.5 text-right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="table-products-body" class="divide-y divide-slate-800/60">
+              <!-- Render dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PESTAÑA 2: OFERTAS POR VOLUMEN (COMPRA MÚLTIPLE) -->
+    <div id="tab-volume" class="tab-content hidden space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h2 class="text-base font-bold text-white">Ofertas por Volumen (Compra Múltiple)</h2>
+          <p class="text-xs text-slate-400">Incentiva tickets más altos aplicando descuentos automáticos a partir de 2 o más unidades.</p>
+        </div>
+        <button onclick="openVolumeOfferModal()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow transition flex items-center gap-1.5 self-start">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span>Nueva Oferta por Volumen</span>
+        </button>
+      </div>
+
+      <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-900/80 text-slate-400 uppercase tracking-wider text-[10px] border-b border-slate-800">
+              <tr>
+                <th class="p-3.5">Producto</th>
+                <th class="p-3.5">Cantidad Mínima</th>
+                <th class="p-3.5">Descuento Otorgado</th>
+                <th class="p-3.5">Etiqueta Comercial</th>
+                <th class="p-3.5 text-center">Estado</th>
+                <th class="p-3.5 text-right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="table-volume-body" class="divide-y divide-slate-800/60">
+              <!-- Render dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PESTAÑA 3: COMBOS & PACKS DE PRODUCTOS -->
+    <div id="tab-combos" class="tab-content hidden space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h2 class="text-base font-bold text-white">Combos y Packs Sinergia</h2>
+          <p class="text-xs text-slate-400">Packs agrupados con precio especial que el cliente puede agregar a su bolsa con un solo clic.</p>
+        </div>
+        <button onclick="openComboModal()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow transition flex items-center gap-1.5 self-start">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span>Nuevo Combo</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="combos-grid">
+        <!-- Tarjetas dinámicas de combos -->
+      </div>
+    </div>
+
+    <!-- PESTAÑA 4: CUPONES DE DESCUENTO -->
+    <div id="tab-coupons" class="tab-content hidden space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h2 class="text-base font-bold text-white">Códigos de Descuento (Cupones)</h2>
+          <p class="text-xs text-slate-400">Códigos promocionales canjeables en el carrito con compra mínima y límite de usos.</p>
+        </div>
+        <button onclick="openCouponModal()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow transition flex items-center gap-1.5 self-start">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span>Crear Nuevo Cupón</span>
+        </button>
+      </div>
+
+      <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-900/80 text-slate-400 uppercase tracking-wider text-[10px] border-b border-slate-800">
+              <tr>
+                <th class="p-3.5">Código</th>
+                <th class="p-3.5">Beneficio</th>
+                <th class="p-3.5">Compra Mínima</th>
+                <th class="p-3.5">Vigencia</th>
+                <th class="p-3.5">Usos Registrados</th>
+                <th class="p-3.5 text-center">Estado</th>
+                <th class="p-3.5 text-right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="table-coupons-body" class="divide-y divide-slate-800/60">
+              <!-- Render dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL 1: EDITAR CAMPAÑA ACTIVA -->
+  <div id="modal-campaign" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <span>🌿</span> Configurar Campaña Activa
+        </h3>
+        <button onclick="closeModal('modal-campaign')" class="text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
+      </div>
+
+      <form id="form-campaign" onsubmit="saveActiveCampaign(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Nombre de la Campaña *</label>
+          <input type="text" id="camp-name" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:border-emerald-500 focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Descripción / Subtítulo *</label>
+          <textarea id="camp-desc" rows="2" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:border-emerald-500 focus:outline-none"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Fecha y Hora de Inicio *</label>
+            <input type="datetime-local" id="camp-start" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Fecha y Hora de Fin *</label>
+            <input type="datetime-local" id="camp-end" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Badge para el Banner Superior</label>
+          <input type="text" id="camp-badge" placeholder="Ej: CAMPAÑA ACTIVA" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-slate-800">
+          <label class="flex items-center gap-2 cursor-pointer text-slate-300 font-medium">
+            <input type="checkbox" id="camp-highlight" class="rounded bg-slate-950 border-slate-700 text-emerald-500 focus:ring-0" />
+            <span>Destacar automáticamente en portada y barra superior</span>
+          </label>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-3 border-t border-slate-800">
+          <button type="button" onclick="closeModal('modal-campaign')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-lg">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 2: CREAR / EDITAR DESCUENTO DE PRODUCTO -->
+  <div id="modal-product" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 id="modal-product-title" class="text-base font-bold text-white flex items-center gap-2">
+          <span>🏷️</span> Nueva Promoción de Producto
+        </h3>
+        <button onclick="closeModal('modal-product')" class="text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
+      </div>
+
+      <form id="form-product" onsubmit="saveProductDiscount(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="prod-discount-id" />
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Seleccionar Producto del Catálogo *</label>
+          <select id="prod-select" onchange="onProductSelectChange()" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:border-emerald-500 focus:outline-none">
+            <!-- Opciones cargadas dinámicamente desde BIONATIVA_PRODUCTS -->
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Precio Regular (S/)</label>
+            <input type="number" step="0.10" id="prod-reg-price" readonly class="w-full bg-slate-900 text-slate-400 border border-slate-800 rounded-xl px-3 py-2 font-mono font-bold" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Precio Promocional (S/) *</label>
+            <input type="number" step="0.10" id="prod-promo-price" oninput="calculatePercentFromPromo()" required placeholder="Ej: 74.90" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-400 font-mono font-bold focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">% de Descuento</label>
+            <input type="number" id="prod-discount-pct" oninput="calculatePromoFromPercent()" placeholder="Ej: 12" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Ahorro para el Cliente</label>
+            <div id="prod-savings-calc" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-emerald-400 font-bold font-mono">
+              S/ 0.00
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Etiqueta Visible (Badge) *</label>
+          <input type="text" id="prod-badge" required placeholder="Ej: 12% OFF • Semana BioNativa" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+        </div>
+
+        <div class="flex justify-end gap-2 pt-3 border-t border-slate-800">
+          <button type="button" onclick="closeModal('modal-product')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-lg">Guardar Promoción</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 3: CREAR / EDITAR OFERTA POR VOLUMEN -->
+  <div id="modal-volume" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 id="modal-volume-title" class="text-base font-bold text-white flex items-center gap-2">
+          <span>📦</span> Regla de Compra Múltiple (Volumen)
+        </h3>
+        <button onclick="closeModal('modal-volume')" class="text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
+      </div>
+
+      <form id="form-volume" onsubmit="saveVolumeOffer(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="vol-id" />
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Producto Aplicable *</label>
+          <select id="vol-product-select" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:border-emerald-500 focus:outline-none">
+            <!-- Opciones cargadas dinámicamente -->
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Cantidad Mínima (Unidades) *</label>
+            <input type="number" id="vol-min-qty" min="2" value="2" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">% Descuento por Unidad *</label>
+            <input type="number" id="vol-discount-val" min="1" max="90" value="10" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-400 font-bold focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Texto de la Oferta *</label>
+          <input type="text" id="vol-label" placeholder="Ej: Descuento por 2 unidades (10% OFF)" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Badge Compacto *</label>
+          <input type="text" id="vol-badge" placeholder="Ej: Ahorro x2" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+        </div>
+
+        <div class="flex justify-end gap-2 pt-3 border-t border-slate-800">
+          <button type="button" onclick="closeModal('modal-volume')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-lg">Guardar Regla</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 4: CREAR / EDITAR COMBO -->
+  <div id="modal-combo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 id="modal-combo-title" class="text-base font-bold text-white flex items-center gap-2">
+          <span>⚡</span> Configurar Combo / Pack Sinergia
+        </h3>
+        <button onclick="closeModal('modal-combo')" class="text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
+      </div>
+
+      <form id="form-combo" onsubmit="saveCombo(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="combo-id" />
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Nombre del Combo *</label>
+          <input type="text" id="combo-name" placeholder="Ej: Combo Deportivo Fuerza & Recuperación" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:border-emerald-500 focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Badge de Campaña *</label>
+          <input type="text" id="combo-badge" placeholder="Ej: Combo Deportivo" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Productos que componen el Combo *</label>
+          <div id="combo-products-checklist" class="space-y-1.5 max-h-40 overflow-y-auto p-2.5 rounded-xl bg-slate-950 border border-slate-800 custom-scrollbar">
+            <!-- Checklist de productos -->
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Precio Sumado Individual (S/)</label>
+            <input type="text" id="combo-reg-sum" readonly class="w-full bg-slate-900 text-slate-400 border border-slate-800 rounded-xl px-3 py-2 font-mono font-bold" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Precio Combo Promocional (S/) *</label>
+            <input type="number" step="0.10" id="combo-promo-price" oninput="calculateComboSavings()" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-400 font-mono font-bold focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Ahorro para el Cliente</label>
+          <div id="combo-savings-display" class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-emerald-400 font-bold font-mono">
+            S/ 0.00
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Descripción del Beneficio *</label>
+          <textarea id="combo-desc" rows="2" placeholder="Beneficio farmacológico y sinérgico del pack..." required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none"></textarea>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-3 border-t border-slate-800">
+          <button type="button" onclick="closeModal('modal-combo')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-lg">Guardar Combo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 5: CREAR / EDITAR CUPÓN -->
+  <div id="modal-coupon" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 id="modal-coupon-title" class="text-base font-bold text-white flex items-center gap-2">
+          <span>🎟️</span> Nuevo Cupón de Descuento
+        </h3>
+        <button onclick="closeModal('modal-coupon')" class="text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
+      </div>
+
+      <form id="form-coupon" onsubmit="saveCoupon(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="coupon-id" />
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Código del Cupón *</label>
+            <input type="text" id="coup-code" required placeholder="SEMANABIONATIVA" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono uppercase font-bold focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Tipo de Descuento *</label>
+            <select id="coup-type" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:border-emerald-500 focus:outline-none">
+              <option value="percent">Porcentaje (%)</option>
+              <option value="fixed_amount">Monto Fijo (S/)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Valor del Descuento *</label>
+            <input type="number" id="coup-value" step="0.5" required placeholder="10" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-400 font-mono font-bold focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Compra Mínima (S/)</label>
+            <input type="number" id="coup-min-spend" step="5" placeholder="80" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Nombre / Descripción interna</label>
+          <input type="text" id="coup-label" placeholder="Ej: Cupón Especial Semana BioNativa (-10%)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Límite de Usos Máximo</label>
+            <input type="number" id="coup-max-uses" placeholder="500" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Usos Actuales</label>
+            <input type="number" id="coup-used-count" value="0" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-slate-400 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Inicio de Vigencia</label>
+            <input type="datetime-local" id="coup-start" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Fin de Vigencia</label>
+            <input type="datetime-local" id="coup-end" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-3 border-t border-slate-800">
+          <button type="button" onclick="closeModal('modal-coupon')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-lg">Guardar Cupón</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="admin-toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Scripts: Dependencias Base y Motores de BioNativa -->
+  <script src="js/products-data.js"></script>
+  <script src="js/promotions-data.js"></script>
+  <script src="js/promotions-engine.js"></script>
+
+  <!-- Lógica Específica del Panel Administrador -->
+  <script>
+    // Estado en memoria
+    let currentConfig = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadAndRenderAll();
+      initRealtimeTimers();
+      populateProductSelects();
+    });
+
+    function loadAndRenderAll() {
+      if (!window.BionativaPromotions) return;
+      currentConfig = window.BionativaPromotions.loadConfig();
+      renderActiveCampaignCard();
+      renderProductDiscountsTable();
+      renderVolumeOffersTable();
+      renderCombosGrid();
+      renderCouponsTable();
+      updateTabBadges();
+    }
+
+    // 1. Render de Tarjeta Principal "CAMPAÑA ACTIVA"
+    function renderActiveCampaignCard() {
+      const camp = currentConfig.activeCampaign || {};
+      const status = window.BionativaPromotions.getCampaignStatus(camp);
+
+      const titleEl = document.getElementById("campaign-active-title");
+      const descEl = document.getElementById("campaign-active-desc");
+      const datesEl = document.getElementById("campaign-dates-display");
+      const badgeEl = document.getElementById("campaign-status-badge");
+      const toggleBtnLabel = document.getElementById("btn-toggle-campaign-label");
+
+      if (titleEl) titleEl.textContent = camp.name || "Sin Campaña Activa";
+      if (descEl) descEl.textContent = camp.description || "Configura una campaña para ofrecer descuentos.";
+
+      // Formato de fechas
+      if (datesEl && camp.startDate && camp.endDate) {
+        const s = new Date(camp.startDate);
+        const e = new Date(camp.endDate);
+        datesEl.textContent = `${s.toLocaleDateString("es-PE", { day: 'numeric', month: 'short' })} - ${e.toLocaleDateString("es-PE", { day: 'numeric', month: 'short', year: 'numeric' })}`;
+      }
+
+      // Badge de estado
+      if (badgeEl) {
+        if (status === "active") {
+          badgeEl.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+          badgeEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Estado: Activa`;
+          if (toggleBtnLabel) toggleBtnLabel.textContent = "Pausar Campaña";
+        } else if (status === "paused") {
+          badgeEl.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30";
+          badgeEl.innerHTML = `⏸️ Estado: Pausada`;
+          if (toggleBtnLabel) toggleBtnLabel.textContent = "Reanudar Campaña";
+        } else if (status === "scheduled") {
+          badgeEl.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30";
+          badgeEl.innerHTML = `🗓️ Estado: Programada`;
+          if (toggleBtnLabel) toggleBtnLabel.textContent = "Activar Inmediatamente";
+        } else {
+          badgeEl.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30";
+          badgeEl.innerHTML = `⚠️ Estado: Vencida`;
+          if (toggleBtnLabel) toggleBtnLabel.textContent = "Renovar Vigencia";
+        }
+      }
+
+      // Métricas
+      const m = camp.metrics || { impressions: 0, clicks: 0, conversions: 0, revenueGenerated: 0 };
+      document.getElementById("metric-impressions").textContent = Number(m.impressions || 0).toLocaleString();
+      document.getElementById("metric-clicks").textContent = Number(m.clicks || 0).toLocaleString();
+      document.getElementById("metric-conversions").textContent = Number(m.conversions || 0).toLocaleString();
+      document.getElementById("metric-revenue").textContent = `S/ ${Number(m.revenueGenerated || 0).toFixed(2)}`;
+
+      updateCountdownDisplay();
+    }
+
+    function updateCountdownDisplay() {
+      const countdownEl = document.getElementById("campaign-countdown-text");
+      const camp = currentConfig?.activeCampaign;
+      if (!countdownEl || !camp || !camp.endDate) return;
+
+      const now = Date.now();
+      const end = new Date(camp.endDate).getTime();
+      const diff = end - now;
+
+      if (diff <= 0) {
+        countdownEl.textContent = "Campaña Finalizada";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      countdownEl.textContent = `${days}d ${hours}h ${mins}m restantes`;
+    }
+
+    function initRealtimeTimers() {
+      setInterval(updateCountdownDisplay, 60000);
+    }
+
+    // Toggle de Campaña Activa / Pausada
+    function toggleActiveCampaignStatus() {
+      const camp = currentConfig.activeCampaign;
+      if (!camp) return;
+
+      if (camp.status === "paused") {
+        camp.status = "active";
+        showToast("Campaña reactivada con éxito.");
+      } else {
+        camp.status = "paused";
+        showToast("Campaña pausada. Los descuentos no se aplicarán temporalmente.");
+      }
+
+      saveAndNotify();
+      renderActiveCampaignCard();
+    }
+
+    // 2. Render Tabla de Descuentos por Producto
+    function renderProductDiscountsTable() {
+      const tbody = document.getElementById("table-products-body");
+      if (!tbody) return;
+      const discounts = currentConfig.productDiscounts || [];
+
+      if (!discounts.length) {
+        tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-500">No hay descuentos por producto configurados.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = discounts.map(d => `
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3.5 font-semibold text-white">
+            <div>${d.targetName || d.targetId}</div>
+            <div class="text-[10px] text-slate-400 font-mono">${d.targetType === 'product' ? 'ID: ' + d.targetId : 'Categoría: ' + d.targetId}</div>
+          </td>
+          <td class="p-3.5 text-slate-400 font-mono">S/ ${Number(d.regularPrice || 0).toFixed(2)}</td>
+          <td class="p-3.5 text-emerald-400 font-mono font-bold">S/ ${Number(d.promoPrice || 0).toFixed(2)}</td>
+          <td class="p-3.5">
+            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded font-bold">${d.discountPercent || 0}% OFF</span>
+          </td>
+          <td class="p-3.5">
+            <span class="text-[11px] text-slate-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">${d.badge || 'Oferta'}</span>
+          </td>
+          <td class="p-3.5 text-center">
+            <button onclick="toggleProductDiscountStatus('${d.id}')" class="px-2.5 py-1 rounded-full text-[10px] font-bold ${d.enabled ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-slate-800 text-slate-500 border border-slate-700'}">
+              ${d.enabled ? '✓ Activo' : '✕ Inactivo'}
+            </button>
+          </td>
+          <td class="p-3.5 text-right space-x-2">
+            <button onclick="editProductDiscount('${d.id}')" class="text-blue-400 hover:text-blue-300 font-semibold" title="Editar">Editar</button>
+            <button onclick="deleteProductDiscount('${d.id}')" class="text-red-400 hover:text-red-300 font-semibold" title="Eliminar">Eliminar</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    // 3. Render Tabla de Ofertas por Volumen
+    function renderVolumeOffersTable() {
+      const tbody = document.getElementById("table-volume-body");
+      if (!tbody) return;
+      const volume = currentConfig.volumeOffers || [];
+
+      if (!volume.length) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-500">No hay ofertas por volumen configuradas.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = volume.map(v => `
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3.5 font-semibold text-white">
+            <div>${v.productName || v.productId}</div>
+            <div class="text-[10px] text-slate-400 font-mono">ID: ${v.productId}</div>
+          </td>
+          <td class="p-3.5 text-slate-300 font-bold">${v.minQuantity} o más unidades</td>
+          <td class="p-3.5 text-emerald-400 font-bold">${v.discountValue}% OFF c/u</td>
+          <td class="p-3.5 text-slate-300">${v.label}</td>
+          <td class="p-3.5 text-center">
+            <button onclick="toggleVolumeOfferStatus('${v.id}')" class="px-2.5 py-1 rounded-full text-[10px] font-bold ${v.enabled ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-slate-800 text-slate-500 border border-slate-700'}">
+              ${v.enabled ? '✓ Activo' : '✕ Inactivo'}
+            </button>
+          </td>
+          <td class="p-3.5 text-right space-x-2">
+            <button onclick="editVolumeOffer('${v.id}')" class="text-blue-400 hover:text-blue-300 font-semibold">Editar</button>
+            <button onclick="deleteVolumeOffer('${v.id}')" class="text-red-400 hover:text-red-300 font-semibold">Eliminar</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    // 4. Render Cuadrícula de Combos
+    function renderCombosGrid() {
+      const grid = document.getElementById("combos-grid");
+      if (!grid) return;
+      const combos = currentConfig.combos || [];
+
+      if (!combos.length) {
+        grid.innerHTML = `<div class="col-span-full p-8 text-center text-slate-500 glass-panel rounded-2xl">No hay combos configurados.</div>`;
+        return;
+      }
+
+      grid.innerHTML = combos.map(c => `
+        <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold bg-[#B67A52]/20 text-[#CF926B] border border-[#B67A52]/30 px-2 py-0.5 rounded-full uppercase">
+                ${c.badge || 'Pack Sinergia'}
+              </span>
+              <button onclick="toggleComboStatus('${c.id}')" class="text-[10px] font-bold px-2 py-0.5 rounded-full ${c.enabled ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-500'}">
+                ${c.enabled ? 'Activo' : 'Inactivo'}
+              </button>
+            </div>
+
+            <h3 class="text-sm font-bold text-white leading-tight">${c.name}</h3>
+            <p class="text-xs text-slate-400 line-clamp-2">${c.description}</p>
+
+            <div class="space-y-1 text-xs text-slate-400 bg-slate-950/70 p-2.5 rounded-xl border border-slate-800">
+              <div class="text-[11px] font-bold text-slate-300">Incluye:</div>
+              ${c.items.map(item => `
+                <div class="flex justify-between text-[11px]">
+                  <span>• ${item.name}</span>
+                  <span class="text-slate-500 font-mono">S/ ${Number(item.regularPrice).toFixed(2)}</span>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-slate-400 line-through block">S/ ${Number(c.regularTotalPrice).toFixed(2)}</span>
+              <span class="text-base font-extrabold text-emerald-400 font-mono">S/ ${Number(c.comboPrice).toFixed(2)}</span>
+              <span class="text-[10px] text-emerald-300 block font-bold">Ahorras S/ ${Number(c.savings).toFixed(2)}</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button onclick="editCombo('${c.id}')" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300">Editar</button>
+              <button onclick="deleteCombo('${c.id}')" class="text-red-400 hover:text-red-300 p-1.5 text-xs font-semibold">✕</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // 5. Render Tabla de Cupones
+    function renderCouponsTable() {
+      const tbody = document.getElementById("table-coupons-body");
+      if (!tbody) return;
+      const coupons = currentConfig.coupons || [];
+
+      if (!coupons.length) {
+        tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-500">No hay cupones configurados.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = coupons.map(c => `
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3.5 font-mono font-bold text-emerald-400">${c.code}</td>
+          <td class="p-3.5 text-white font-semibold">
+            ${c.discountType === 'percent' ? c.discountValue + '% de Descuento' : 'S/ ' + Number(c.discountValue).toFixed(2) + ' OFF'}
+          </td>
+          <td class="p-3.5 text-slate-400 font-mono">S/ ${Number(c.minSpend || 0).toFixed(2)}</td>
+          <td class="p-3.5 text-slate-400 text-[11px]">
+            ${c.endDate ? new Date(c.endDate).toLocaleDateString("es-PE") : "Sin límite"}
+          </td>
+          <td class="p-3.5 text-slate-300 font-mono">${c.usedCount || 0} / ${c.maxUses || '∞'}</td>
+          <td class="p-3.5 text-center">
+            <button onclick="toggleCouponStatus('${c.code}')" class="px-2.5 py-1 rounded-full text-[10px] font-bold ${c.enabled ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-slate-800 text-slate-500 border border-slate-700'}">
+              ${c.enabled ? '✓ Activo' : '✕ Inactivo'}
+            </button>
+          </td>
+          <td class="p-3.5 text-right space-x-2">
+            <button onclick="editCoupon('${c.code}')" class="text-blue-400 hover:text-blue-300 font-semibold">Editar</button>
+            <button onclick="deleteCoupon('${c.code}')" class="text-red-400 hover:text-red-300 font-semibold">Eliminar</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function updateTabBadges() {
+      document.getElementById("tab-count-products").textContent = (currentConfig.productDiscounts || []).length;
+      document.getElementById("tab-count-volume").textContent = (currentConfig.volumeOffers || []).length;
+      document.getElementById("tab-count-combos").textContent = (currentConfig.combos || []).length;
+      document.getElementById("tab-count-coupons").textContent = (currentConfig.coupons || []).length;
+    }
+
+    // Navegación de pestañas
+    function switchTab(tabId) {
+      document.querySelectorAll(".tab-content").forEach(el => el.classList.add("hidden"));
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.remove("bg-slate-800", "text-white", "border-slate-700");
+        btn.classList.add("bg-slate-900/60", "text-slate-400", "border-transparent");
+      });
+
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove("hidden");
+
+      const btn = document.getElementById(`tab-btn-${tabId.replace('tab-', '')}`);
+      if (btn) {
+        btn.classList.add("bg-slate-800", "text-white", "border-slate-700");
+        btn.classList.remove("bg-slate-900/60", "text-slate-400", "border-transparent");
+      }
+    }
+
+    // Guardado y emisión
+    function saveAndNotify() {
+      window.BionativaPromotions.saveConfig(currentConfig);
+    }
+
+    // Modal Helpers
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.remove("hidden");
+    }
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.add("hidden");
+    }
+
+    // Modales de Campaña Activa
+    function openEditCampaignModal() {
+      const camp = currentConfig.activeCampaign || {};
+      document.getElementById("camp-name").value = camp.name || "";
+      document.getElementById("camp-desc").value = camp.description || "";
+      document.getElementById("camp-start").value = camp.startDate ? camp.startDate.substring(0, 16) : "";
+      document.getElementById("camp-end").value = camp.endDate ? camp.endDate.substring(0, 16) : "";
+      document.getElementById("camp-badge").value = camp.bannerBadge || "CAMPAÑA ACTIVA";
+      document.getElementById("camp-highlight").checked = camp.highlightOnHome !== false;
+      openModal("modal-campaign");
+    }
+
+    function saveActiveCampaign(e) {
+      e.preventDefault();
+      const camp = currentConfig.activeCampaign || {};
+      camp.name = document.getElementById("camp-name").value.trim();
+      camp.description = document.getElementById("camp-desc").value.trim();
+      camp.startDate = document.getElementById("camp-start").value;
+      camp.endDate = document.getElementById("camp-end").value;
+      camp.bannerBadge = document.getElementById("camp-badge").value.trim() || "CAMPAÑA ACTIVA";
+      camp.highlightOnHome = document.getElementById("camp-highlight").checked;
+
+      currentConfig.activeCampaign = camp;
+      saveAndNotify();
+      closeModal("modal-campaign");
+      renderActiveCampaignCard();
+      showToast("Configuración de campaña actualizada con éxito.");
+    }
+
+    // Llenar selectores con productos de BIONATIVA_PRODUCTS
+    function populateProductSelects() {
+      const prods = window.BIONATIVA_PRODUCTS || [];
+      const prodSelect = document.getElementById("prod-select");
+      const volSelect = document.getElementById("vol-product-select");
+      const comboChecklist = document.getElementById("combo-products-checklist");
+
+      const optionsHTML = prods.map(p => `
+        <option value="${p.id}" data-price="${p.price}" data-name="${p.shortName}">
+          ${p.shortName} (S/ ${Number(p.price).toFixed(2)})
+        </option>
+      `).join("");
+
+      if (prodSelect) prodSelect.innerHTML = optionsHTML;
+      if (volSelect) volSelect.innerHTML = optionsHTML;
+
+      if (comboChecklist) {
+        comboChecklist.innerHTML = prods.map(p => `
+          <label class="flex items-center justify-between p-1.5 rounded hover:bg-slate-900 cursor-pointer">
+            <span class="flex items-center gap-2">
+              <input type="checkbox" name="combo-prod" value="${p.id}" data-name="${p.shortName}" data-price="${p.price}" onchange="recalculateComboSum()" class="rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-0" />
+              <span class="text-slate-300 font-medium">${p.shortName}</span>
+            </span>
+            <span class="text-slate-500 font-mono">S/ ${Number(p.price).toFixed(2)}</span>
+          </label>
+        `).join("");
+      }
+    }
+
+    // Manejo de Descuentos por Producto
+    function onProductSelectChange() {
+      const select = document.getElementById("prod-select");
+      const selected = select.options[select.selectedIndex];
+      const price = Number(selected.getAttribute("data-price") || 0);
+      document.getElementById("prod-reg-price").value = price.toFixed(2);
+      calculatePercentFromPromo();
+    }
+
+    function calculatePercentFromPromo() {
+      const reg = Number(document.getElementById("prod-reg-price").value) || 0;
+      const promo = Number(document.getElementById("prod-promo-price").value) || 0;
+      if (reg > 0 && promo > 0 && promo < reg) {
+        const savings = reg - promo;
+        const pct = Math.round((savings / reg) * 100);
+        document.getElementById("prod-discount-pct").value = pct;
+        document.getElementById("prod-savings-calc").textContent = `S/ ${savings.toFixed(2)} (${pct}% OFF)`;
+      } else {
+        document.getElementById("prod-savings-calc").textContent = `S/ 0.00`;
+      }
+    }
+
+    function calculatePromoFromPercent() {
+      const reg = Number(document.getElementById("prod-reg-price").value) || 0;
+      const pct = Number(document.getElementById("prod-discount-pct").value) || 0;
+      if (reg > 0 && pct > 0 && pct < 100) {
+        const savings = reg * (pct / 100);
+        const promo = reg - savings;
+        document.getElementById("prod-promo-price").value = promo.toFixed(2);
+        document.getElementById("prod-savings-calc").textContent = `S/ ${savings.toFixed(2)} (${pct}% OFF)`;
+      }
+    }
+
+    function openProductDiscountModal() {
+      document.getElementById("prod-discount-id").value = "";
+      document.getElementById("modal-product-title").innerHTML = `<span>🏷️</span> Nueva Promoción de Producto`;
+      onProductSelectChange();
+      document.getElementById("prod-promo-price").value = "";
+      document.getElementById("prod-discount-pct").value = "";
+      document.getElementById("prod-badge").value = "Semana BioNativa";
+      openModal("modal-product");
+    }
+
+    function editProductDiscount(id) {
+      const discount = (currentConfig.productDiscounts || []).find(d => d.id === id);
+      if (!discount) return;
+
+      document.getElementById("prod-discount-id").value = discount.id;
+      document.getElementById("modal-product-title").innerHTML = `<span>🏷️</span> Editar Promoción`;
+      document.getElementById("prod-select").value = discount.targetId;
+      document.getElementById("prod-reg-price").value = Number(discount.regularPrice).toFixed(2);
+      document.getElementById("prod-promo-price").value = Number(discount.promoPrice).toFixed(2);
+      document.getElementById("prod-discount-pct").value = discount.discountPercent || "";
+      document.getElementById("prod-badge").value = discount.badge || "";
+      calculatePercentFromPromo();
+      openModal("modal-product");
+    }
+
+    function saveProductDiscount(e) {
+      e.preventDefault();
+      const id = document.getElementById("prod-discount-id").value || `promo-${Date.now()}`;
+      const select = document.getElementById("prod-select");
+      const selected = select.options[select.selectedIndex];
+      const targetId = select.value;
+      const targetName = selected.getAttribute("data-name");
+      const regularPrice = Number(document.getElementById("prod-reg-price").value);
+      const promoPrice = Number(document.getElementById("prod-promo-price").value);
+      const discountPercent = Number(document.getElementById("prod-discount-pct").value) || Math.round(((regularPrice - promoPrice) / regularPrice) * 100);
+      const badge = document.getElementById("prod-badge").value.trim() || `${discountPercent}% OFF`;
+
+      const list = currentConfig.productDiscounts || [];
+      const existingIdx = list.findIndex(d => d.id === id);
+
+      const obj = {
+        id,
+        campaignId: currentConfig.activeCampaign?.id || "camp",
+        targetType: "product",
+        targetId,
+        targetName,
+        regularPrice,
+        promoPrice,
+        discountPercent,
+        badge,
+        enabled: true
+      };
+
+      if (existingIdx >= 0) {
+        list[existingIdx] = obj;
+      } else {
+        list.push(obj);
+      }
+
+      currentConfig.productDiscounts = list;
+      saveAndNotify();
+      closeModal("modal-product");
+      renderProductDiscountsTable();
+      updateTabBadges();
+      showToast("Promoción guardada con éxito.");
+    }
+
+    function toggleProductDiscountStatus(id) {
+      const item = (currentConfig.productDiscounts || []).find(d => d.id === id);
+      if (item) {
+        item.enabled = !item.enabled;
+        saveAndNotify();
+        renderProductDiscountsTable();
+      }
+    }
+
+    function deleteProductDiscount(id) {
+      if (!confirm("¿Eliminar esta promoción?")) return;
+      currentConfig.productDiscounts = (currentConfig.productDiscounts || []).filter(d => d.id !== id);
+      saveAndNotify();
+      renderProductDiscountsTable();
+      updateTabBadges();
+      showToast("Promoción eliminada.");
+    }
+
+    // Manejo de Ofertas por Volumen
+    function openVolumeOfferModal() {
+      document.getElementById("vol-id").value = "";
+      document.getElementById("vol-min-qty").value = 2;
+      document.getElementById("vol-discount-val").value = 10;
+      document.getElementById("vol-label").value = "Descuento por 2 unidades (10% OFF)";
+      document.getElementById("vol-badge").value = "Ahorro x2";
+      openModal("modal-volume");
+    }
+
+    function editVolumeOffer(id) {
+      const vol = (currentConfig.volumeOffers || []).find(v => v.id === id);
+      if (!vol) return;
+      document.getElementById("vol-id").value = vol.id;
+      document.getElementById("vol-product-select").value = vol.productId;
+      document.getElementById("vol-min-qty").value = vol.minQuantity;
+      document.getElementById("vol-discount-val").value = vol.discountValue;
+      document.getElementById("vol-label").value = vol.label;
+      document.getElementById("vol-badge").value = vol.badge || "";
+      openModal("modal-volume");
+    }
+
+    function saveVolumeOffer(e) {
+      e.preventDefault();
+      const id = document.getElementById("vol-id").value || `vol-${Date.now()}`;
+      const select = document.getElementById("vol-product-select");
+      const selected = select.options[select.selectedIndex];
+      const productId = select.value;
+      const productName = selected.getAttribute("data-name");
+      const minQuantity = Number(document.getElementById("vol-min-qty").value);
+      const discountValue = Number(document.getElementById("vol-discount-val").value);
+      const label = document.getElementById("vol-label").value.trim();
+      const badge = document.getElementById("vol-badge").value.trim() || `x${minQuantity}`;
+
+      const list = currentConfig.volumeOffers || [];
+      const existingIdx = list.findIndex(v => v.id === id);
+
+      const obj = {
+        id,
+        productId,
+        productName,
+        minQuantity,
+        discountType: "percent",
+        discountValue,
+        label,
+        badge,
+        enabled: true
+      };
+
+      if (existingIdx >= 0) list[existingIdx] = obj;
+      else list.push(obj);
+
+      currentConfig.volumeOffers = list;
+      saveAndNotify();
+      closeModal("modal-volume");
+      renderVolumeOffersTable();
+      updateTabBadges();
+      showToast("Oferta por volumen guardada.");
+    }
+
+    function toggleVolumeOfferStatus(id) {
+      const item = (currentConfig.volumeOffers || []).find(v => v.id === id);
+      if (item) {
+        item.enabled = !item.enabled;
+        saveAndNotify();
+        renderVolumeOffersTable();
+      }
+    }
+
+    function deleteVolumeOffer(id) {
+      if (!confirm("¿Eliminar esta oferta por volumen?")) return;
+      currentConfig.volumeOffers = (currentConfig.volumeOffers || []).filter(v => v.id !== id);
+      saveAndNotify();
+      renderVolumeOffersTable();
+      updateTabBadges();
+      showToast("Oferta eliminada.");
+    }
+
+    // Manejo de Combos
+    function recalculateComboSum() {
+      const checked = document.querySelectorAll('input[name="combo-prod"]:checked');
+      let sum = 0;
+      checked.forEach(cb => {
+        sum += Number(cb.getAttribute("data-price") || 0);
+      });
+      document.getElementById("combo-reg-sum").value = sum.toFixed(2);
+      calculateComboSavings();
+    }
+
+    function calculateComboSavings() {
+      const sum = Number(document.getElementById("combo-reg-sum").value) || 0;
+      const promo = Number(document.getElementById("combo-promo-price").value) || 0;
+      const savings = Math.max(0, sum - promo);
+      document.getElementById("combo-savings-display").textContent = `S/ ${savings.toFixed(2)} de ahorro`;
+    }
+
+    function openComboModal() {
+      document.getElementById("combo-id").value = "";
+      document.getElementById("combo-name").value = "";
+      document.getElementById("combo-badge").value = "Combo Más Vendido";
+      document.getElementById("combo-promo-price").value = "";
+      document.getElementById("combo-desc").value = "";
+      document.querySelectorAll('input[name="combo-prod"]').forEach(cb => cb.checked = false);
+      recalculateComboSum();
+      openModal("modal-combo");
+    }
+
+    function editCombo(id) {
+      const combo = (currentConfig.combos || []).find(c => c.id === id);
+      if (!combo) return;
+
+      document.getElementById("combo-id").value = combo.id;
+      document.getElementById("combo-name").value = combo.name;
+      document.getElementById("combo-badge").value = combo.badge || "";
+      document.getElementById("combo-promo-price").value = Number(combo.comboPrice).toFixed(2);
+      document.getElementById("combo-desc").value = combo.description || "";
+
+      const selectedIds = (combo.items || []).map(i => i.productId);
+      document.querySelectorAll('input[name="combo-prod"]').forEach(cb => {
+        cb.checked = selectedIds.includes(cb.value);
+      });
+
+      recalculateComboSum();
+      openModal("modal-combo");
+    }
+
+    function saveCombo(e) {
+      e.preventDefault();
+      const id = document.getElementById("combo-id").value || `combo-${Date.now()}`;
+      const name = document.getElementById("combo-name").value.trim();
+      const badge = document.getElementById("combo-badge").value.trim() || "Combo";
+      const promoPrice = Number(document.getElementById("combo-promo-price").value);
+      const regularSum = Number(document.getElementById("combo-reg-sum").value);
+      const description = document.getElementById("combo-desc").value.trim();
+
+      const checked = document.querySelectorAll('input[name="combo-prod"]:checked');
+      if (checked.length < 2) {
+        alert("Por favor selecciona al menos 2 productos para el combo.");
+        return;
+      }
+
+      const items = Array.from(checked).map(cb => ({
+        productId: cb.value,
+        name: cb.getAttribute("data-name"),
+        regularPrice: Number(cb.getAttribute("data-price"))
+      }));
+
+      const savings = Math.max(0, regularSum - promoPrice);
+
+      const list = currentConfig.combos || [];
+      const existingIdx = list.findIndex(c => c.id === id);
+
+      const obj = {
+        id,
+        name,
+        badge,
+        shortDescription: items.map(i => i.name).join(" + "),
+        description,
+        items,
+        regularTotalPrice: regularSum,
+        comboPrice: promoPrice,
+        savings,
+        image: "img/products/combo-deportivo.jpg",
+        enabled: true
+      };
+
+      if (existingIdx >= 0) list[existingIdx] = obj;
+      else list.push(obj);
+
+      currentConfig.combos = list;
+      saveAndNotify();
+      closeModal("modal-combo");
+      renderCombosGrid();
+      updateTabBadges();
+      showToast("Combo guardado con éxito.");
+    }
+
+    function toggleComboStatus(id) {
+      const item = (currentConfig.combos || []).find(c => c.id === id);
+      if (item) {
+        item.enabled = !item.enabled;
+        saveAndNotify();
+        renderCombosGrid();
+      }
+    }
+
+    function deleteCombo(id) {
+      if (!confirm("¿Eliminar este combo?")) return;
+      currentConfig.combos = (currentConfig.combos || []).filter(c => c.id !== id);
+      saveAndNotify();
+      renderCombosGrid();
+      updateTabBadges();
+      showToast("Combo eliminado.");
+    }
+
+    // Manejo de Cupones
+    function openCouponModal() {
+      document.getElementById("coupon-id").value = "";
+      document.getElementById("coup-code").value = "";
+      document.getElementById("coup-type").value = "percent";
+      document.getElementById("coup-value").value = "10";
+      document.getElementById("coup-min-spend").value = "90";
+      document.getElementById("coup-label").value = "Descuento Especial";
+      document.getElementById("coup-max-uses").value = "500";
+      document.getElementById("coup-used-count").value = "0";
+      document.getElementById("coup-start").value = "";
+      document.getElementById("coup-end").value = "";
+      openModal("modal-coupon");
+    }
+
+    function editCoupon(code) {
+      const coupon = (currentConfig.coupons || []).find(c => c.code === code);
+      if (!coupon) return;
+      document.getElementById("coupon-id").value = coupon.code;
+      document.getElementById("coup-code").value = coupon.code;
+      document.getElementById("coup-type").value = coupon.discountType || "percent";
+      document.getElementById("coup-value").value = coupon.discountValue;
+      document.getElementById("coup-min-spend").value = coupon.minSpend || "";
+      document.getElementById("coup-label").value = coupon.label || "";
+      document.getElementById("coup-max-uses").value = coupon.maxUses || "";
+      document.getElementById("coup-used-count").value = coupon.usedCount || 0;
+      document.getElementById("coup-start").value = coupon.startDate ? coupon.startDate.substring(0, 16) : "";
+      document.getElementById("coup-end").value = coupon.endDate ? coupon.endDate.substring(0, 16) : "";
+      openModal("modal-coupon");
+    }
+
+    function saveCoupon(e) {
+      e.preventDefault();
+      const code = document.getElementById("coup-code").value.trim().toUpperCase();
+      const originalCode = document.getElementById("coupon-id").value;
+      const discountType = document.getElementById("coup-type").value;
+      const discountValue = Number(document.getElementById("coup-value").value);
+      const minSpend = Number(document.getElementById("coup-min-spend").value) || 0;
+      const label = document.getElementById("coup-label").value.trim() || `Cupón ${code}`;
+      const maxUses = Number(document.getElementById("coup-max-uses").value) || null;
+      const usedCount = Number(document.getElementById("coup-used-count").value) || 0;
+      const startDate = document.getElementById("coup-start").value || null;
+      const endDate = document.getElementById("coup-end").value || null;
+
+      const list = currentConfig.coupons || [];
+      const existingIdx = list.findIndex(c => c.code === (originalCode || code));
+
+      const obj = {
+        code,
+        label,
+        discountType,
+        discountValue,
+        minSpend,
+        startDate,
+        endDate,
+        maxUses,
+        usedCount,
+        enabled: true
+      };
+
+      if (existingIdx >= 0) list[existingIdx] = obj;
+      else list.push(obj);
+
+      currentConfig.coupons = list;
+      saveAndNotify();
+      closeModal("modal-coupon");
+      renderCouponsTable();
+      updateTabBadges();
+      showToast("Cupón guardado con éxito.");
+    }
+
+    function toggleCouponStatus(code) {
+      const item = (currentConfig.coupons || []).find(c => c.code === code);
+      if (item) {
+        item.enabled = !item.enabled;
+        saveAndNotify();
+        renderCouponsTable();
+      }
+    }
+
+    function deleteCoupon(code) {
+      if (!confirm(`¿Eliminar el cupón ${code}?`)) return;
+      currentConfig.coupons = (currentConfig.coupons || []).filter(c => c.code !== code);
+      saveAndNotify();
+      renderCouponsTable();
+      updateTabBadges();
+      showToast("Cupón eliminado.");
+    }
+
+    // Exportar e Importar JSON
+    function exportConfigJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentConfig, null, 2));
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `bionativa-promociones-${new Date().toISOString().slice(0, 10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast("Archivo JSON de respaldo exportado.");
+    }
+
+    function importConfigJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (parsed && typeof parsed === "object") {
+            currentConfig = parsed;
+            saveAndNotify();
+            loadAndRenderAll();
+            showToast("Configuración importada y aplicada en tienda con éxito.");
+          }
+        } catch (err) {
+          alert("Error al leer el archivo JSON: formato inválido.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function confirmResetDefaults() {
+      if (!confirm("¿Restablecer todas las promociones y campañas a los valores predeterminados de fábrica?")) return;
+      currentConfig = window.BionativaPromotions.resetToDefaults();
+      loadAndRenderAll();
+      showToast("Valores de fábrica restablecidos.");
+    }
+
+    // Feedback Toast
+    function showToast(msg) {
+      const container = document.getElementById("admin-toast-container");
+      if (!container) return;
+      const toast = document.createElement("div");
+      toast.className = "bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl border border-emerald-500/40 flex items-center gap-2 transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto";
+      toast.innerHTML = `<span class="text-emerald-400">✓</span><span>${msg}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.classList.remove("translate-y-2", "opacity-0"), 10);
+      setTimeout(() => {
+        toast.classList.add("opacity-0");
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
