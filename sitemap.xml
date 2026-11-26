@@ -155,4 +155,22 @@
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=sulfato-de-condroitina</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=l-carnitina-base</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://bionativalab.com/producto?id=stevia-pura</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
 </urlset>

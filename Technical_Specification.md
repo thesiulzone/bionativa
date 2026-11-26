@@ -19,7 +19,7 @@ A continuación se detalla la concordancia entre los 11 folios del catálogo y l
 | 1 | **Creatina Monohidratada** (Pág. 3) | `creatina-monohidratada` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Tenía variantes desactualizadas (300g, 600g, cápsulas) |
 | 2 | **Proteína Suero de Leche** (Pág. 4) | `proteina-suero-leche-80` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 20 kg** | Solo unitario 1KG sin selector |
 | 3 | **Proteína de Soya** (Pág. 4) | `proteina-soya-vegetal` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 20 kg** | Solo unitario 1KG sin selector |
-| 4 | **Ashwagandha** (Pág. 4) | `ashwagandha-pura` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | Solo unitario 1KG sin selector |
+| 4 | **Ashwagandha** (Pág. 4) | `ashwagandha-pura` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado y Corregido:** 3 Presentaciones oficiales BioNativa LAB (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
 | 5 | **Glucosamina** (Pág. 4) | `glucosamina-sulfato` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Solo unitario 1KG sin selector |
 | 6 | **Espirulina** (Pág. 5) | `espirulina-pura` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado y Corregido:** 3 Presentaciones oficiales BioNativa LAB con imágenes de alta resolución (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
 | 7 | **Citrato de Magnesio** (Pág. 5) | `citrato-de-magnesio` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Solo unitario 1KG sin selector |
@@ -32,9 +32,9 @@ A continuación se detalla la concordancia entre los 11 folios del catálogo y l
 | 14 | **L - Glutamina** (Pág. 7) | `glutamina-pura` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | Solo unitario 1KG sin selector |
 | 15 | **Ascorbato de Sodio** (Pág. 7) | `ascorbato-de-sodio` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Solo unitario 1KG sin selector |
 | 16 | **Glicinato de Magnesio** (Pág. 8) | `glicinato-de-magnesio` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 17 | **Sulfato de Condroitina** (Pág. 5) | `sulfato-de-condroitina` *(Opcional)* | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Disponible para incorporación |
-| 18 | **L - Carnitina Base** (Pág. 8) | `l-carnitina-base` *(Opcional)* | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Disponible para incorporación |
-| 19 | **Stevia** (Pág. 8) | `stevia-pura` *(Opcional)* | Salud Articular / Nutra | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | Disponible para incorporación |
+| 17 | **Sulfato de Condroitina** (Pág. 5) | `sulfato-de-condroitina` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado e Incorporado:** 3 Presentaciones oficiales BioNativa LAB (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
+| 18 | **L - Carnitina Base** (Pág. 8) | `l-carnitina-base` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado e Incorporado:** 3 Presentaciones oficiales BioNativa LAB (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
+| 19 | **Stevia** (Pág. 8) | `stevia-pura` | Salud Articular / Nutra | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | **Actualizado e Incorporado:** 3 Presentaciones oficiales BioNativa LAB (Bolsa 1 kg, Pote 1 kg y Tambor 25 kg) |
 
 ---
 

@@ -998,7 +998,7 @@ const BIONATIVA_PRODUCTS = [
     "badge": "Adaptógeno Anti-Estrés",
     "rating": 4.9,
     "reviewsCount": 153,
-    "image": "img/products/ashwagandha-pura-1kg.jpg",
+    "image": "img/products/ashwagandha-pura-pote-1kg.jpg",
     "hasVariants": true,
     "price": 124.6,
     "unit": "1KG",
@@ -1029,7 +1029,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-ASH-BOL-1K",
-        "image": "img/products/ashwagandha-pura-1kg.jpg"
+        "image": "img/products/ashwagandha-pura-bolsa-1kg.jpg"
       },
       {
         "id": "pote-1kg",
@@ -1039,7 +1039,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-ASH-POT-1K",
-        "image": "img/products/ashwagandha-pura-1kg.jpg"
+        "image": "img/products/ashwagandha-pura-pote-1kg.jpg"
       },
       {
         "id": "tambor-25kg",
@@ -1063,7 +1063,7 @@ const BIONATIVA_PRODUCTS = [
     "badge": "Regenerador Articular",
     "rating": 4.8,
     "reviewsCount": 52,
-    "image": "img/products/sulfato-de-condroitina-1kg.jpg",
+    "image": "img/products/sulfato-de-condroitina-pote-1kg.jpg",
     "hasVariants": true,
     "defaultVariant": "bolsa-1kg",
     "variants": [
@@ -1075,7 +1075,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Grado Alimentario)",
         "packagingType": "bolsa",
         "sku": "BIO-CON-BOL-1K",
-        "image": "img/products/sulfato-de-condroitina-1kg.jpg"
+        "image": "img/products/sulfato-de-condroitina-bolsa-1kg.jpg"
       },
       {
         "id": "pote-1kg",
@@ -1085,15 +1085,15 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-CON-POT-1K",
-        "image": "img/products/sulfato-de-condroitina-1kg.jpg"
+        "image": "img/products/sulfato-de-condroitina-pote-1kg.jpg"
       },
       {
-        "id": "caja-25kg",
-        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
+        "id": "tambor-25kg",
+        "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
         "price": 3100,
         "weight": "25 kg",
-        "format": "Caja Corrugada Industrial con Doble Barrera",
-        "packagingType": "industrial-caja",
+        "format": "Tambor de Fibra Kraft con Aro Metálico",
+        "packagingType": "industrial-tambor",
         "sku": "BIO-CON-IND-25K",
         "image": "img/products/industrial/sulfato-de-condroitina-25kg.jpg",
         "isBulk": true
@@ -1128,7 +1128,7 @@ const BIONATIVA_PRODUCTS = [
     "badge": "Metabolismo & Energía",
     "rating": 4.8,
     "reviewsCount": 68,
-    "image": "img/products/l-carnitina-base-1kg.jpg",
+    "image": "img/products/l-carnitina-base-pote-1kg.jpg",
     "hasVariants": true,
     "defaultVariant": "bolsa-1kg",
     "variants": [
@@ -1140,7 +1140,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Grado Alimentario)",
         "packagingType": "bolsa",
         "sku": "BIO-CAR-BOL-1K",
-        "image": "img/products/l-carnitina-base-1kg.jpg"
+        "image": "img/products/l-carnitina-base-bolsa-1kg.jpg"
       },
       {
         "id": "pote-1kg",
@@ -1150,15 +1150,15 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-CAR-POT-1K",
-        "image": "img/products/l-carnitina-base-1kg.jpg"
+        "image": "img/products/l-carnitina-base-pote-1kg.jpg"
       },
       {
-        "id": "saco-25kg",
-        "name": "Saco Industrial 25 kg (Mayorista / Granel)",
+        "id": "tambor-25kg",
+        "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
         "price": 1650,
         "weight": "25 kg",
-        "format": "Saco Kraft Multicapa de Alta Resistencia",
-        "packagingType": "industrial-saco",
+        "format": "Tambor de Fibra Kraft con Aro Metálico",
+        "packagingType": "industrial-tambor",
         "sku": "BIO-CAR-IND-25K",
         "image": "img/products/industrial/l-carnitina-base-25kg.jpg",
         "isBulk": true
@@ -1193,7 +1193,7 @@ const BIONATIVA_PRODUCTS = [
     "badge": "Cero Azúcar & Kcal",
     "rating": 4.9,
     "reviewsCount": 84,
-    "image": "img/products/stevia-pura-1kg.jpg",
+    "image": "img/products/stevia-pura-pote-1kg.jpg",
     "hasVariants": true,
     "defaultVariant": "bolsa-1kg",
     "variants": [
@@ -1205,7 +1205,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Bolsa Polietileno Sellada (Grado Alimentario)",
         "packagingType": "bolsa",
         "sku": "BIO-STE-BOL-1K",
-        "image": "img/products/stevia-pura-1kg.jpg"
+        "image": "img/products/stevia-pura-bolsa-1kg.jpg"
       },
       {
         "id": "pote-1kg",
@@ -1215,7 +1215,7 @@ const BIONATIVA_PRODUCTS = [
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-STE-POT-1K",
-        "image": "img/products/stevia-pura-1kg.jpg"
+        "image": "img/products/stevia-pura-pote-1kg.jpg"
       },
       {
         "id": "tambor-25kg",
