@@ -3,6 +3,23 @@
  * Soporta persistencia en localStorage, drawer deslizante y Checkout multicanal
  */
 
+// Configuración global de soporte y contingencia
+window.BIONATIVA_CONFIG = window.BIONATIVA_CONFIG || {
+  whatsappNumber: "51981278458",
+  officialPhone: "+51 981 278 458",
+  email: "ventas@bionativalab.com",
+  domain: "bionativalab.com",
+  companyName: "Ecopride del Perú S.R.L.",
+  brandName: "BioNativa LAB",
+  shippingOptions: [
+    { id: "lima-express", name: "Delivery Lima Metropolitana (24 a 48 hrs)", price: 10 },
+    { id: "lima-recojo", name: "Retiro en Almacén Lima (Gratis)", price: 0 },
+    { id: "cusco-recojo", name: "Retiro en Tienda Cusco (Gratis)", price: 0 },
+    { id: "provincias-shalom", name: "Envío Nacional vía Agencia Shalom", price: 15 },
+    { id: "provincias-marvisur", name: "Envío Nacional vía Agencia Marvisur", price: 16 }
+  ]
+};
+
 class BionativaCart {
   constructor() {
     this.storageKey = "bionativa_cart_v1";
@@ -576,7 +593,14 @@ class BionativaCart {
     const payMethodRadio = document.querySelector('input[name="pay-method"]:checked');
     const payMethod = payMethodRadio ? payMethodRadio.value : "whatsapp";
 
-    const shipping = window.BIONATIVA_CONFIG.shippingOptions.find(o => o.id === this.selectedShipping);
+    const shippingList = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
+      { id: "lima-express", name: "Delivery Lima Metropolitana (24 a 48 hrs)", price: 10 },
+      { id: "lima-recojo", name: "Retiro en Almacén Lima (Gratis)", price: 0 },
+      { id: "cusco-recojo", name: "Retiro en Tienda Cusco (Gratis)", price: 0 },
+      { id: "provincias-shalom", name: "Envío Nacional vía Agencia Shalom", price: 15 },
+      { id: "provincias-marvisur", name: "Envío Nacional vía Agencia Marvisur", price: 16 }
+    ];
+    const shipping = shippingList.find(o => o.id === this.selectedShipping) || shippingList[0];
     const subtotal = this.getSubtotal().toFixed(2);
     const shippingCost = this.getShippingCost().toFixed(2);
     const total = this.getTotal().toFixed(2);
@@ -603,7 +627,8 @@ class BionativaCart {
         `-----------------------------------------\n` +
         `Por favor, indíquenme los pasos para concretar la entrega. ¡Muchas gracias!`;
 
-      const whatsappURL = `https://wa.me/${window.BIONATIVA_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+      const waNumber = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.whatsappNumber) || "51981278458";
+      const whatsappURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
 
       // Si seleccionó Yape / Transferencia, mostramos los datos bancarios y botón para enviar captura a WhatsApp
       if (payMethod === "yape") {

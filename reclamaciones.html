@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libro de Reclamaciones Virtual | BioNativa LAB Perú</title>
+  
+  <meta name="description" content="Libro de Reclamaciones Virtual de BioNativa LAB (Ecopride del Perú S.R.L.). Registra tu reclamo o queja conforme a la Ley N° 29571 del Código de Protección y Defensa del Consumidor." />
+  <link rel="canonical" href="https://bionativalab.com/reclamaciones" />
+
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-[#FAF9F6] text-[#1E2421] antialiased flex flex-col min-h-screen">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-[#1E3B2B] text-white text-xs py-2 px-4 border-b border-[#2A523C]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-2 truncate">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></span>
+        <span class="font-medium tracking-wide truncate">Materia Prima Americana con Certificado COA | Distribución en Lima y Cusco</span>
+      </div>
+      <div class="hidden md:flex items-center gap-4 lg:gap-5 text-stone-200 flex-shrink-0 text-xs">
+        <a href="mailto:ventas@bionativalab.com" class="hover:text-white flex items-center gap-1.5 transition text-stone-200" title="Correo oficial de ventas">
+          <svg class="w-3.5 h-3.5 text-[#CF926B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span class="font-medium">ventas@bionativalab.com</span>
+        </a>
+        <span class="h-3 border-r border-white/20"></span>
+        <a href="https://wa.me/51981278458" target="_blank" rel="noopener noreferrer" class="hover:text-white flex items-center gap-1 font-semibold text-[#CF926B] transition">
+          <span>WhatsApp: +51 981 278 458</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-[#E8E2D8]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <a href="/" class="flex-shrink-0">
+        <img src="img/logo.svg" alt="BioNativa LAB" class="h-12 w-auto" />
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#1E3B2B]">
+        <a href="/" class="hover:text-[#B67A52] transition">Inicio</a>
+        <a href="tienda" class="hover:text-[#B67A52] transition">Catálogo Completo</a>
+        <a href="nosotros" class="hover:text-[#B67A52] transition">Calidad COA</a>
+        <a href="blog" class="hover:text-[#B67A52] transition">Blog de Bienestar</a>
+        <a href="envios-y-cobertura" class="hover:text-[#B67A52] transition">Envíos Perú</a>
+        <a href="contacto" class="hover:text-[#B67A52] transition">Contacto</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button class="open-cart-btn relative bg-[#1E3B2B] hover:bg-[#284f3a] text-white p-2.5 sm:px-4 sm:py-2 rounded-full flex items-center gap-2 text-xs font-bold transition shadow-sm" aria-label="Abrir carrito de compras">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="hidden sm:inline">Mi Bolsa</span>
+          <span class="cart-count-badge bg-[#B67A52] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+        </button>
+
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 text-[#1E3B2B]" aria-label="Abrir menú">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="fixed inset-0 bg-[#FAF9F6] z-50 p-6 flex flex-col justify-between hidden opacity-0 -translate-y-4 transition-all duration-200">
+    <div class="flex items-center justify-between border-b border-[#E8E2D8] pb-4">
+      <img src="img/logo.svg" alt="BioNativa LAB" class="h-10 w-auto" />
+      <button id="mobile-menu-close" class="p-2 text-stone-500 hover:text-stone-900" aria-label="Cerrar menú">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <nav class="flex flex-col gap-4 py-8 text-base font-semibold text-[#1E3B2B]">
+      <a href="/" class="hover:text-[#B67A52]">Inicio</a>
+      <a href="tienda" class="hover:text-[#B67A52]">Catálogo Completo</a>
+      <a href="nosotros" class="hover:text-[#B67A52]">Calidad COA</a>
+      <a href="blog" class="hover:text-[#B67A52]">Blog de Bienestar</a>
+      <a href="envios-y-cobertura" class="hover:text-[#B67A52]">Envíos Perú</a>
+      <a href="contacto" class="hover:text-[#B67A52]">Contacto</a>
+    </nav>
+
+    <div class="border-t border-[#E8E2D8] pt-4 text-xs space-y-2 text-stone-500">
+      <p>Consultas y Ventas: +51 981 278 458</p>
+      <p>ventas@bionativalab.com</p>
+    </div>
+  </div>
+
+  <!-- Main Hero -->
+  <section class="py-10 sm:py-14 bg-gradient-to-b from-[#F5EFE6]/60 to-[#FAF9F6] border-b border-[#E8E2D8]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+      <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200 px-3.5 py-1 rounded-full text-xs font-semibold">
+        <svg class="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span>Conforme a la Ley N° 29571 - Código de Protección al Consumidor</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3B2B] tracking-tight">
+        Libro de Reclamaciones Virtual
+      </h1>
+      <p class="text-xs sm:text-sm text-stone-600 max-w-2xl mx-auto leading-relaxed">
+        En BioNativa LAB garantizamos la atención transparente de tus consultas, observaciones, reclamos o quejas. Completa el siguiente formulario para generar tu Hoja de Reclamación con código de seguimiento oficial.
+      </p>
+    </div>
+  </section>
+
+  <!-- Form Container -->
+  <main class="py-10 flex-1">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Ficha de Datos del Proveedor -->
+      <div class="bg-white rounded-2xl border border-[#E8E2D8] p-5 sm:p-6 mb-8 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200 pb-4">
+          <div>
+            <span class="text-[10px] font-bold text-[#B67A52] uppercase tracking-wider block">Identificación del Proveedor</span>
+            <h2 class="text-base sm:text-lg font-bold text-[#1E3B2B]">ECOPRIDE DEL PERÚ S.R.L.</h2>
+            <p class="text-xs text-stone-600">Nombre Comercial: <strong>BioNativa LAB</strong> (bionativalab.com)</p>
+          </div>
+          <div class="text-left sm:text-right text-xs text-stone-600 space-y-0.5">
+            <div>RUC: <strong class="text-stone-900 font-mono">20609384721</strong></div>
+            <div>Atención: <span class="font-medium">Lima Metropolitana y Cusco</span></div>
+            <div>Email: <span class="text-emerald-700 font-medium">ventas@bionativalab.com</span></div>
+          </div>
+        </div>
+
+        <div class="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-stone-500">
+          <div>
+            Fecha de Registro: <strong id="current-date-display" class="text-stone-800"></strong>
+          </div>
+          <div>
+            Código de Hoja: <strong id="generated-sheet-code" class="text-[#1E3B2B] font-mono font-bold"></strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario Oficial -->
+      <form id="reclamaciones-form" onsubmit="handleReclamoSubmit(event)" class="space-y-8 bg-white p-6 sm:p-8 rounded-3xl border border-[#E8E2D8] shadow-sm">
+
+        <!-- 1. IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE -->
+        <fieldset class="space-y-4">
+          <legend class="text-sm sm:text-base font-bold text-[#1E3B2B] flex items-center gap-2 border-b border-stone-200 pb-2 w-full">
+            <span class="w-6 h-6 rounded-full bg-[#1E3B2B] text-white flex items-center justify-center text-xs">1</span>
+            <span>Identificación del Consumidor Reclamante</span>
+          </legend>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Nombres y Apellidos Completos *</label>
+              <input type="text" id="rec-name" required placeholder="Ej. Juan Pérez Quispe" class="w-full border border-stone-300 rounded-xl p-3 focus:border-[#1E3B2B] focus:ring-0 text-sm" />
+            </div>
+
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Tipo y Número de Documento *</label>
+              <div class="grid grid-cols-3 gap-2">
+                <select id="rec-doc-type" class="border border-stone-300 rounded-xl p-3 focus:border-[#1E3B2B] text-xs">
+                  <option value="DNI">DNI</option>
+                  <option value="CE">C.E.</option>
+                  <option value="RUC">RUC</option>
+                  <option value="PAS">Pasaporte</option>
+                </select>
+                <input type="text" id="rec-doc-number" required placeholder="Número" class="col-span-2 border border-stone-300 rounded-xl p-3 focus:border-[#1E3B2B] focus:ring-0 text-sm" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Teléfono Móvil / WhatsApp *</label>
+              <input type="tel" id="rec-phone" required placeholder="Ej. 981278458" class="w-full border border-stone-300 rounded-xl p-3 focus:border-[#1E3B2B] focus:ring-0 text-sm" />
+            </div>
+
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Correo Electrónico *</label>
+              <input type="email" id="rec-email" required placeholder="tuemail@ejemplo.com" class="w-full border border-stone-300 rounded-xl p-3 focus:border-[#1E3B2B] focus:ring-0 text-sm" />
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="block font-semibold text-stone-700 mb-1">Domicilio (Dirección, Distrito y Ciudad) *</label>
+              <input type="text" id="rec-address" required placeholder="Ej. Av. El Sol 450, Cusco" class="w-full border border-stone-300 rounded-xl p-3 focus:border-[#1E3B2B] focus:ring-0 text-sm" />
+            </div>
+
+            <div class="sm:col-span-2 bg-stone-50 p-3 rounded-xl border border-stone-200">
+              <label class="block font-semibold text-stone-700 mb-1">Padre, Madre o Tutor (Obligatorio en caso el consumidor sea menor de edad)</label>
+              <input type="text" id="rec-tutor" placeholder="Nombre completo del padre o tutor (opcional)" class="w-full border border-stone-300 rounded-xl p-2.5 bg-white text-xs" />
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 2. IDENTIFICACIÓN DEL BIEN CONTRATADO -->
+        <fieldset class="space-y-4">
+          <legend class="text-sm sm:text-base font-bold text-[#1E3B2B] flex items-center gap-2 border-b border-stone-200 pb-2 w-full">
+            <span class="w-6 h-6 rounded-full bg-[#1E3B2B] text-white flex items-center justify-center text-xs">2</span>
+            <span>Identificación del Bien Contratado</span>
+          </legend>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Tipo de Bien *</label>
+              <div class="flex items-center gap-4 pt-1">
+                <label class="inline-flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="bien-tipo" value="Producto" checked class="text-[#1E3B2B] focus:ring-0" />
+                  <span class="font-medium text-stone-800">Producto</span>
+                </label>
+                <label class="inline-flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="bien-tipo" value="Servicio" class="text-[#1E3B2B] focus:ring-0" />
+                  <span class="font-medium text-stone-800">Servicio (Envío / Atención)</span>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Monto Reclamado (S/) *</label>
+              <input type="number" step="0.01" id="rec-amount" required placeholder="0.00" class="w-full border border-stone-300 rounded-xl p-3 focus:border-[#1E3B2B] focus:ring-0 text-sm font-mono" />
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="block font-semibold text-stone-700 mb-1">Descripción del Producto o Servicio Adquirido *</label>
+              <input type="text" id="rec-product-desc" required placeholder="Ej. Creatina Monohidratada Pote 1kg / Envío vía Agencia Shalom" class="w-full border border-stone-300 rounded-xl p-3 focus:border-[#1E3B2B] focus:ring-0 text-sm" />
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 3. DETALLE DE LA RECLAMACIÓN Y PEDIDO DEL CONSUMIDOR -->
+        <fieldset class="space-y-4">
+          <legend class="text-sm sm:text-base font-bold text-[#1E3B2B] flex items-center gap-2 border-b border-stone-200 pb-2 w-full">
+            <span class="w-6 h-6 rounded-full bg-[#1E3B2B] text-white flex items-center justify-center text-xs">3</span>
+            <span>Detalle de la Reclamación y Pedido</span>
+          </legend>
+
+          <div class="space-y-4 text-xs">
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1.5">Naturaleza de la Presentación *</label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label class="border border-stone-200 hover:border-[#1E3B2B] p-3 rounded-xl flex items-start gap-3 cursor-pointer bg-stone-50/50 has-[:checked]:bg-emerald-50/50 has-[:checked]:border-[#1E3B2B]">
+                  <input type="radio" name="rec-tipo" value="Reclamo" checked class="mt-0.5 text-[#1E3B2B] focus:ring-0" />
+                  <div>
+                    <strong class="text-stone-900 block text-xs">RECLAMO</strong>
+                    <span class="text-[11px] text-stone-500">Disconformidad relacionada directamente a los productos o servicios expendidos (ej. producto dañado, faltante, retraso).</span>
+                  </div>
+                </label>
+
+                <label class="border border-stone-200 hover:border-[#1E3B2B] p-3 rounded-xl flex items-start gap-3 cursor-pointer bg-stone-50/50 has-[:checked]:bg-emerald-50/50 has-[:checked]:border-[#1E3B2B]">
+                  <input type="radio" name="rec-tipo" value="Queja" class="mt-0.5 text-[#1E3B2B] focus:ring-0" />
+                  <div>
+                    <strong class="text-stone-900 block text-xs">QUEJA</strong>
+                    <span class="text-[11px] text-stone-500">Malestar o descontento respecto a la atención recibida al público, sin relación directa al producto adquirido.</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Detalle del Reclamo o Queja *</label>
+              <textarea id="rec-detail" required rows="4" placeholder="Describe de manera clara y detallada los hechos ocurridos..." class="w-full border border-stone-300 rounded-xl p-3 focus:border-[#1E3B2B] focus:ring-0 text-sm"></textarea>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Pedido Concreto del Consumidor *</label>
+              <textarea id="rec-request" required rows="3" placeholder="Indica concretamente qué solución solicitas (ej. reposición del producto, devolución de dinero, aclaración)..." class="w-full border border-stone-300 rounded-xl p-3 focus:border-[#1E3B2B] focus:ring-0 text-sm"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Descargo Legal y Advertencia INDECOPI -->
+        <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-4 text-[11px] text-amber-900 space-y-2 leading-relaxed">
+          <p>
+            <strong>Nota Legal (Ley N° 29571):</strong>
+          </p>
+          <ul class="list-disc pl-4 space-y-1">
+            <li>La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es condición previa para interponer una denuncia ante el INDECOPI.</li>
+            <li>El proveedor deberá dar respuesta al reclamo en un plazo no mayor a quince (15) días hábiles improrrogables, conforme a la normativa vigente.</li>
+            <li>Al enviar este formulario, recibirás una constancia en pantalla y podrás archivar o remitir copia fehaciente a través de WhatsApp o correo electrónico.</li>
+          </ul>
+        </div>
+
+        <button type="submit" id="rec-submit-btn" class="w-full bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-[0.99] text-white font-bold py-4 px-6 rounded-2xl text-sm shadow-md transition flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Registrar Hoja de Reclamación Oficial</span>
+        </button>
+
+      </form>
+
+      <!-- Pantalla de Éxito / Constancia -->
+      <div id="rec-success-screen" class="hidden mt-8 bg-white border-2 border-emerald-500 rounded-3xl p-6 sm:p-8 text-center space-y-5 shadow-lg">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <div class="space-y-1">
+          <span class="text-[11px] font-bold text-[#B67A52] uppercase tracking-wider">Constancia Registrada</span>
+          <h3 class="text-xl sm:text-2xl font-bold text-[#1E3B2B]">¡Hoja de Reclamación Generada con Éxito!</h3>
+          <p class="text-xs text-stone-600 max-w-lg mx-auto">
+            Tu presentación ha sido recibida formalmente. Te responderemos en un plazo máximo de 15 días hábiles conforme a ley.
+          </p>
+        </div>
+
+        <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 max-w-md mx-auto text-left text-xs space-y-1.5 font-mono">
+          <div><strong>Código de Hoja:</strong> <span id="confirmed-code" class="text-emerald-700 font-bold"></span></div>
+          <div><strong>Fecha y Hora:</strong> <span id="confirmed-date"></span></div>
+          <div><strong>Consumidor:</strong> <span id="confirmed-consumer"></span></div>
+          <div><strong>Tipo:</strong> <span id="confirmed-type"></span></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          <button type="button" onclick="window.print()" class="w-full sm:w-auto bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold px-6 py-3 rounded-xl text-xs border border-stone-300 transition">
+            🖨️ Imprimir / Guardar PDF
+          </button>
+          <a id="rec-whatsapp-forward-btn" href="#" target="_blank" class="w-full sm:w-auto bg-[#25D366] hover:bg-[#20ba59] text-white font-bold px-6 py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow transition">
+            <span>Enviar Constancia a WhatsApp Oficial</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto bg-[#14281D] text-white border-t border-[#2A523C] pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-stone-300 space-y-4">
+      <img src="img/logo.svg" alt="BioNativa LAB" class="h-10 w-auto mx-auto brightness-0 invert" />
+      <p class="max-w-2xl mx-auto leading-relaxed">
+        <strong>BioNativa LAB</strong> • Suplementos puros certificados con COA. Envíos diarios a todo el Perú desde Lima y Cusco vía Shalom y Marvisur.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs pt-2">
+        <a href="mailto:ventas@bionativalab.com" class="text-stone-300 hover:text-white flex items-center gap-1.5 transition">
+          <span>ventas@bionativalab.com</span>
+        </a>
+        <span class="text-white/20">•</span>
+        <a href="https://wa.me/51981278458" target="_blank" class="text-emerald-400 font-semibold hover:underline">
+          WhatsApp: +51 981 278 458
+        </a>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs pt-2 text-stone-400">
+        <a href="terminos-y-privacidad" class="hover:text-white transition">Términos y Privacidad</a>
+        <span>•</span>
+        <a href="envios-y-cobertura" class="hover:text-white transition">Políticas de Envío</a>
+        <span>•</span>
+        <a href="reclamaciones" class="text-emerald-400 font-bold hover:underline flex items-center gap-1">
+          <span>Libro de Reclamaciones</span>
+        </a>
+      </div>
+
+      <p class="text-[11px] pt-4 border-t border-white/10 text-stone-500">
+        © 2026 BioNativa LAB • ECOPRIDE DEL PERÚ S.R.L. RUC: 20609384721. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString("es-PE", { year: "numeric", month: "long", day: "numeric" });
+    const currentYear = now.getFullYear();
+    const randomSeq = Math.floor(1000 + Math.random() * 9000);
+    const sheetCode = `BN-REC-${currentYear}-${randomSeq}`;
+
+    document.getElementById("current-date-display").textContent = formattedDate;
+    document.getElementById("generated-sheet-code").textContent = sheetCode;
+
+    function handleReclamoSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("rec-name").value.trim();
+      const docType = document.getElementById("rec-doc-type").value;
+      const docNum = document.getElementById("rec-doc-number").value.trim();
+      const phone = document.getElementById("rec-phone").value.trim();
+      const email = document.getElementById("rec-email").value.trim();
+      const address = document.getElementById("rec-address").value.trim();
+      const tutor = document.getElementById("rec-tutor").value.trim();
+
+      const bienTipo = document.querySelector('input[name="bien-tipo"]:checked').value;
+      const amount = document.getElementById("rec-amount").value.trim();
+      const productDesc = document.getElementById("rec-product-desc").value.trim();
+
+      const recTipo = document.querySelector('input[name="rec-tipo"]:checked').value;
+      const detail = document.getElementById("rec-detail").value.trim();
+      const request = document.getElementById("rec-request").value.trim();
+
+      document.getElementById("confirmed-code").textContent = sheetCode;
+      document.getElementById("confirmed-date").textContent = `${formattedDate} ${now.toLocaleTimeString("es-PE")}`;
+      document.getElementById("confirmed-consumer").textContent = `${name} (${docType}: ${docNum})`;
+      document.getElementById("confirmed-type").textContent = `${recTipo.toUpperCase()} - ${bienTipo}`;
+
+      const waMsg = `📋 *HOJA DE RECLAMACIÓN VIRTUAL - BIONATIVA LAB*\n` +
+        `• Código: *${sheetCode}*\n` +
+        `• Fecha: *${formattedDate}*\n` +
+        `• Tipo: *${recTipo.toUpperCase()}*\n` +
+        `-----------------------------------------\n` +
+        `👤 *DATOS DEL CONSUMIDOR:*\n` +
+        `• Nombre: ${name}\n` +
+        `• Doc: ${docType} ${docNum}\n` +
+        `• Teléfono: ${phone}\n` +
+        `• Email: ${email}\n` +
+        `• Domicilio: ${address}\n` +
+        (tutor ? `• Tutor/Padre: ${tutor}\n` : '') +
+        `-----------------------------------------\n` +
+        `📦 *BIEN CONTRATADO:*\n` +
+        `• Tipo: ${bienTipo} (Monto: S/ ${amount})\n` +
+        `• Descripción: ${productDesc}\n` +
+        `-----------------------------------------\n` +
+        `📝 *DETALLE:*\n${detail}\n` +
+        `🎯 *PEDIDO DEL CLIENTE:*\n${request}\n` +
+        `-----------------------------------------\n` +
+        `Constancia registrada conforme a la Ley N° 29571.`;
+
+      const waNumber = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.whatsappNumber) || "51981278458";
+      const waURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMsg)}`;
+      document.getElementById("rec-whatsapp-forward-btn").href = waURL;
+
+      document.getElementById("reclamaciones-form").classList.add("hidden");
+      document.getElementById("rec-success-screen").classList.remove("hidden");
+      window.scrollTo({ top: document.getElementById("rec-success-screen").offsetTop - 100, behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>

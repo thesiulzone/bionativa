@@ -7,10 +7,10 @@ async function onRequestPost(context) {
     const { request, env } = context;
     const body = await request.json();
     const { items, payer, external_reference } = body;
-    const accessToken = env.MP_ACCESS_TOKEN || "APP_USR-3620548882453100-102722-d3ebb89315618083129c328c9987e307-272426257";
+    const accessToken = env.MP_ACCESS_TOKEN;
     if (!accessToken || accessToken === "TU_ACCESS_TOKEN_AQUI") {
       return new Response(JSON.stringify({
-        error: "Access Token de Mercado Pago no configurado en el servidor."
+        error: "Access Token de Mercado Pago no configurado en variables de entorno de Cloudflare (MP_ACCESS_TOKEN)."
       }), {
         status: 500,
         headers: { "Content-Type": "application/json" }
