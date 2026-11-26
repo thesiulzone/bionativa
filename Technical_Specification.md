@@ -27,7 +27,7 @@ A continuación se detalla la concordancia entre los 11 folios del catálogo y l
 | 9 | **Sal de Epsom** (Pág. 6) | `sal-de-epsom` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Solo unitario 1KG sin selector |
 | 10 | **Cloruro de Magnesio Hexahidratado** (Pág. 6) | `cloruro-de-magnesio` | Estrés y Descanso | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 25 kg** | Solo unitario 1KG sin selector |
 | 11 | **Té Verde** (Pág. 6) | `te-verde-extracto` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | Solo unitario 1KG sin selector |
-| 12 | **Colágeno Hidrolizado** (Pág. 7) | `colageno-hidrolizado` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 20 kg** | Imagen temporal incorrecta; sin selector |
+| 12 | **Péptidos Bioactivos de Colágeno Hidrolizado Puro (Tipo I & III)** (Pág. 7) | `colageno-hidrolizado` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Saco Industrial 20 kg** | Actualizado con imágenes reales (Bolsa 1kg y Saco 20kg) y selector completo |
 | 13 | **L - Arginina** (Pág. 7) | `arginina-pura` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | Solo unitario 1KG sin selector |
 | 14 | **L - Glutamina** (Pág. 7) | `glutamina-pura` | Fuerza y Deporte | Pote Plastificado / Bolsa Polietileno | **Tambor Industrial 25 kg** | Solo unitario 1KG sin selector |
 | 15 | **Ascorbato de Sodio** (Pág. 7) | `ascorbato-de-sodio` | Salud Articular | Pote Plastificado / Bolsa Polietileno | **Caja Industrial 25 kg** | Solo unitario 1KG sin selector |

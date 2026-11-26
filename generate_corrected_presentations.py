@@ -282,7 +282,7 @@ PRODUCTS_MAPPING = [
     {
         "id": "colageno-hidrolizado",
         "name_label": "COLÁGENO HIDROLIZADO",
-        "weight_ind": "20 KG – CAJA INDUSTRIAL",
+        "weight_ind": "20 KG – SACO INDUSTRIAL",
         "lote": "BNL240602A",
         "fvenc": "06/2026",
         "file_bolsa": "colageno-hidrolizado-bolsa-1kg.jpg",
