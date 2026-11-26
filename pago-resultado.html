@@ -37,72 +37,65 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const status = params.get('status') || params.get('collection_status');
-    const paymentId = params.get('payment_id') || params.get('collection_id');
+    const paymentId = params.get('payment_id') || params.get('collection_id') || '';
     const cardEl = document.getElementById('status-card');
+    const showStatus = (kind, title, message, verified = false) => {
+      const styles = kind === 'approved'
+        ? ['bg-emerald-100 text-emerald-700', 'text-[#B67A52]', 'Transacción confirmada']
+        : kind === 'pending'
+          ? ['bg-amber-100 text-amber-700', 'text-amber-600', 'Pago pendiente']
+          : ['bg-stone-100 text-stone-600', 'text-stone-500', 'Estado no confirmado'];
+      const icon = kind === 'approved'
+        ? '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>'
+        : `<span class="text-2xl">${kind === 'pending' ? '…' : '!'}</span>`;
+      cardEl.innerHTML = `
+        <div class="w-16 h-16 rounded-full ${styles[0]} flex items-center justify-center mx-auto">
+          ${icon}
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs font-bold ${styles[1]} uppercase tracking-wider">${styles[2]}</span>
+          <h1 class="text-2xl font-bold text-[#1E3B2B]">${title}</h1>
+          <p class="text-sm text-stone-600">${message}</p>
+        </div>
+        ${verified ? '<div class="bg-stone-50 p-3 rounded-lg text-xs font-mono text-stone-600">ID de Transacción: <strong id="verified-payment-id"></strong></div>' : ''}
+        <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">Volver a la Tienda</a>
+          ${verified ? '<a id="payment-whatsapp" href="https://wa.me/51981278458" class="inline-flex justify-center items-center px-6 py-3 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700 text-xs font-bold tracking-wide transition">Notificar por WhatsApp</a>' : ''}
+        </div>
+      `;
+      if (verified) {
+        document.getElementById('verified-payment-id').textContent = paymentId;
+        document.getElementById('payment-whatsapp').href = `https://wa.me/51981278458?text=${encodeURIComponent(`Hola BioNativa LAB, acabo de realizar mi pago. ID de Pago: ${paymentId}`)}`;
+      }
+    };
 
-    if (status === 'success' || status === 'approved') {
-      // Limpiar carrito si existía
+    async function verifyPayment() {
+      if (!/^\d{1,30}$/.test(paymentId)) {
+        showStatus('unknown', 'Aún no podemos confirmar tu pago', 'No encontramos un identificador de pago válido. Conserva tu carrito y vuelve a la tienda para consultar o reintentar.');
+        return;
+      }
+
       try {
-        localStorage.removeItem('bionativa_cart_v1');
-        localStorage.removeItem('bionativa_cart');
-      } catch (e) {}
-
-      cardEl.innerHTML = `
-        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto">
-          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        </div>
-        <div class="space-y-2">
-          <span class="text-xs font-bold text-[#B67A52] uppercase tracking-wider">Transacción Exitosa</span>
-          <h1 class="text-2xl font-bold text-[#1E3B2B]">¡Gracias por tu compra!</h1>
-          <p class="text-sm text-stone-600">Tu pago ha sido procesado de manera segura a través de Mercado Pago. Hemos recibido tu orden y comenzaremos a preparar tu despacho.</p>
-        </div>
-        ${paymentId ? `<div class="bg-stone-50 p-3 rounded-lg text-xs font-mono text-stone-600">ID de Transacción: <strong>${paymentId}</strong></div>` : ''}
-        <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="/" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">
-            Volver al Inicio
-          </a>
-          <a href="https://wa.me/51981278458?text=Hola%20BioNativa%20LAB,%20acabo%20de%20realizar%20mi%20pago%20en%20la%20web.%20ID%20de%20Pago:%20${paymentId || ''}" class="inline-flex justify-center items-center px-6 py-3 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700 text-xs font-bold tracking-wide transition">
-            Notificar por WhatsApp
-          </a>
-        </div>
-      `;
-    } else if (status === 'pending' || status === 'in_process') {
-      cardEl.innerHTML = `
-        <div class="w-16 h-16 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mx-auto">
-          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <div class="space-y-2">
-          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Pago Pendiente</span>
-          <h1 class="text-2xl font-bold text-[#1E3B2B]">Estamos validando tu pago</h1>
-          <p class="text-sm text-stone-600">Tu transacción está en proceso o pendiente de acreditación (ej. pago en agente/efectivo). En cuanto se confirme, despacharemos tus productos.</p>
-        </div>
-        <div class="pt-4">
-          <a href="/" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">
-            Volver a la Tienda
-          </a>
-        </div>
-      `;
-    } else {
-      cardEl.innerHTML = `
-        <div class="w-16 h-16 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center mx-auto">
-          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </div>
-        <div class="space-y-2">
-          <span class="text-xs font-bold text-rose-600 uppercase tracking-wider">Operación No Completada</span>
-          <h1 class="text-2xl font-bold text-[#1E3B2B]">No se pudo concretar el pago</h1>
-          <p class="text-sm text-stone-600">La transacción fue cancelada o rechazada por tu entidad bancaria. Ningún cargo ha sido realizado a tu cuenta.</p>
-        </div>
-        <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="/tienda" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">
-            Intentar Nuevamente
-          </a>
-          <a href="/" class="inline-flex justify-center items-center px-6 py-3 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700 text-xs font-bold tracking-wide transition">
-            Ir al Inicio
-          </a>
-        </div>
-      `;
+        const response = await fetch(`/api/payment-status?payment_id=${encodeURIComponent(paymentId)}`, { headers: { Accept: 'application/json' } });
+        if (!response.ok) throw new Error('No se pudo consultar el estado.');
+        const data = await response.json();
+        if (data.status === 'approved') {
+          try {
+            localStorage.removeItem('bionativa_cart_v1');
+            localStorage.removeItem('bionativa_cart');
+          } catch (error) {}
+          showStatus('approved', '¡Gracias por tu compra!', 'Mercado Pago confirmó tu pago. BioNativa LAB ya puede preparar tu pedido.', true);
+        } else if (data.status === 'pending' || data.status === 'in_process') {
+          showStatus('pending', 'Estamos validando tu pago', 'Mercado Pago aún muestra la transacción pendiente. El carrito se conserva mientras se confirma.');
+        } else {
+          showStatus('unknown', 'Tu pago no figura como aprobado', 'Mercado Pago no confirma un pago aprobado para esta operación. El carrito se conserva; puedes volver a la tienda para revisar el pedido.');
+        }
+      } catch (error) {
+        showStatus('unknown', 'No pudimos consultar el pago', 'La verificación con Mercado Pago no respondió. No hemos marcado la compra como pagada y conservamos tu carrito. Inténtalo nuevamente más tarde.');
+      }
     }
+
+    verifyPayment();
   </script>
 </body>
 </html>

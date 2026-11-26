@@ -1,88 +1,38 @@
-export async function onRequestPost(context) {
+import { buildCheckout } from "../_shared/checkout.js";
+
+export async function onRequestPost({ request, env }) {
+  const accessToken = env?.MP_ACCESS_TOKEN;
+  if (!accessToken || accessToken === "TU_ACCESS_TOKEN_AQUI") {
+    return Response.json({ error: "Mercado Pago no está configurado en el servidor." }, { status: 503 });
+  }
+
   try {
-    const { request, env } = context;
     const body = await request.json();
-    const { items, payer, external_reference } = body;
-
-    // Obtener Access Token de forma segura de las variables de entorno de Cloudflare
-    const accessToken = env.MP_ACCESS_TOKEN;
-
-    if (!accessToken || accessToken === "TU_ACCESS_TOKEN_AQUI") {
-      return new Response(JSON.stringify({ 
-        error: "Access Token de Mercado Pago no configurado en variables de entorno de Cloudflare (MP_ACCESS_TOKEN)." 
-      }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" }
-      });
-    }
-
-    const host = new URL(request.url).origin;
-
-    // Mercado Pago requiere URLs públicas válidas (http/https). En localhost o si no es HTTPS, omitir auto_return o usar dominio público
-    const isLocal = host.includes("localhost") || host.includes("127.0.0.1");
-    const baseUrl = isLocal ? "https://bionativa.pages.dev" : host;
-
-    // Construir la preferencia para Mercado Pago Checkout Pro
-    const preferencePayload = {
-      items: (items || []).map(item => ({
-        id: String(item.id || "item"),
-        title: item.name || "Producto BioNativa LAB",
-        description: item.category || "Suplemento Nutracéutico",
-        quantity: Number(item.quantity) || 1,
-        currency_id: "PEN",
-        unit_price: Number(item.price) || 0
-      })),
+    const checkout = buildCheckout(body);
+    const origin = new URL(request.url).origin;
+    const payload = {
+      items: checkout.items,
       payer: {
-        name: payer?.name || "Cliente",
-        email: payer?.email || "cliente@bionativalab.com",
-        phone: {
-          number: payer?.phone || ""
-        },
-        address: {
-          street_name: payer?.address || ""
-        }
+        name: String(body.payer?.name || "Cliente").slice(0, 100),
+        email: String(body.payer?.email || "cliente@bionativalab.com").slice(0, 120),
+        phone: { number: String(body.payer?.phone || "").slice(0, 30) },
+        address: { street_name: String(body.payer?.address || "").slice(0, 150) }
       },
-      back_urls: {
-        success: `${baseUrl}/pago-resultado.html?status=success`,
-        failure: `${baseUrl}/pago-resultado.html?status=failure`,
-        pending: `${baseUrl}/pago-resultado.html?status=pending`
-      },
+      back_urls: { success: `${origin}/pago-resultado.html`, failure: `${origin}/pago-resultado.html`, pending: `${origin}/pago-resultado.html` },
       auto_return: "approved",
       statement_descriptor: "BIONATIVA LAB",
-      external_reference: external_reference || `BN-${Date.now()}`
+      external_reference: checkout.externalReference
     };
 
     const mpResponse = await fetch("https://api.mercadopago.com/checkout/preferences", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${accessToken}`
-      },
-      body: JSON.stringify(preferencePayload)
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
+      body: JSON.stringify(payload)
     });
-
     const preferenceData = await mpResponse.json();
-
-    if (!mpResponse.ok) {
-      return new Response(JSON.stringify({ error: preferenceData }), {
-        status: mpResponse.status,
-        headers: { "Content-Type": "application/json" }
-      });
-    }
-
-    return new Response(JSON.stringify({
-      id: preferenceData.id,
-      init_point: preferenceData.init_point,
-      sandbox_init_point: preferenceData.sandbox_init_point
-    }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    });
-
-  } catch (err) {
-    return new Response(JSON.stringify({ error: err.message || "Error procesando orden." }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    });
+    if (!mpResponse.ok) return Response.json({ error: "Mercado Pago no pudo crear la preferencia." }, { status: 502 });
+    return Response.json({ id: preferenceData.id, init_point: preferenceData.init_point, total: checkout.total });
+  } catch (error) {
+    return Response.json({ error: error.message || "No se pudo validar el pedido." }, { status: 400 });
   }
 }

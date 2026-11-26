@@ -1,83 +1,8 @@
+import { onRequestPost as createPreference } from "./functions/api/create-preference.js";
+import { onRequestGet as getPaymentStatus } from "./functions/api/payment-status.js";
+
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
-
-// api/create-preference.js
-async function onRequestPost(context) {
-  try {
-    const { request, env } = context;
-    const body = await request.json();
-    const { items, payer, external_reference } = body;
-    const accessToken = env.MP_ACCESS_TOKEN;
-    if (!accessToken || accessToken === "TU_ACCESS_TOKEN_AQUI") {
-      return new Response(JSON.stringify({
-        error: "Access Token de Mercado Pago no configurado en variables de entorno de Cloudflare (MP_ACCESS_TOKEN)."
-      }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" }
-      });
-    }
-    const host = new URL(request.url).origin;
-    const isLocal = host.includes("localhost") || host.includes("127.0.0.1");
-    const baseUrl = isLocal ? "https://bionativa.pages.dev" : host;
-    const preferencePayload = {
-      items: (items || []).map((item) => ({
-        id: String(item.id || "item"),
-        title: item.name || "Producto BioNativa LAB",
-        description: item.category || "Suplemento Nutrac\xE9utico",
-        quantity: Number(item.quantity) || 1,
-        currency_id: "PEN",
-        unit_price: Number(item.price) || 0
-      })),
-      payer: {
-        name: payer?.name || "Cliente",
-        email: payer?.email || "cliente@bionativalab.com",
-        phone: {
-          number: payer?.phone || ""
-        },
-        address: {
-          street_name: payer?.address || ""
-        }
-      },
-      back_urls: {
-        success: `${baseUrl}/pago-resultado.html?status=success`,
-        failure: `${baseUrl}/pago-resultado.html?status=failure`,
-        pending: `${baseUrl}/pago-resultado.html?status=pending`
-      },
-      auto_return: "approved",
-      statement_descriptor: "BIONATIVA LAB",
-      external_reference: external_reference || `BN-${Date.now()}`
-    };
-    const mpResponse = await fetch("https://api.mercadopago.com/checkout/preferences", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${accessToken}`
-      },
-      body: JSON.stringify(preferencePayload)
-    });
-    const preferenceData = await mpResponse.json();
-    if (!mpResponse.ok) {
-      return new Response(JSON.stringify({ error: preferenceData }), {
-        status: mpResponse.status,
-        headers: { "Content-Type": "application/json" }
-      });
-    }
-    return new Response(JSON.stringify({
-      id: preferenceData.id,
-      init_point: preferenceData.init_point,
-      sandbox_init_point: preferenceData.sandbox_init_point
-    }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    });
-  } catch (err) {
-    return new Response(JSON.stringify({ error: err.message || "Error procesando orden." }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    });
-  }
-}
-__name(onRequestPost, "onRequestPost");
 
 // ../.wrangler/tmp/pages-mrGLFx/functionsRoutes-0.6901871082668577.mjs
 var routes = [
@@ -86,7 +11,14 @@ var routes = [
     mountPath: "/api",
     method: "POST",
     middlewares: [],
-    modules: [onRequestPost]
+    modules: [createPreference]
+  },
+  {
+    routePath: "/api/payment-status",
+    mountPath: "/api",
+    method: "GET",
+    middlewares: [],
+    modules: [getPaymentStatus]
   }
 ];
 

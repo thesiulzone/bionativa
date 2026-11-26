@@ -49,8 +49,8 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       targetId: "citrato-de-magnesio",
       targetName: "Citrato de Magnesio Grado USP (Bolsa 1 kg)",
       variantId: "bolsa-1kg",
-      regularPrice: 79.90,
-      promoPrice: 69.90,
+      regularPrice: 22.40,
+      promoPrice: 19.49,
       discountPercent: 13,
       badge: "13% OFF • Bienestar",
       enabled: true
@@ -103,13 +103,13 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       description: "Sinergia de alta biodisponibilidad para síntesis de ATP celular y reparación muscular acelerada.",
       items: [
         { productId: "creatina-monohidratada", variantId: "bolsa-1kg", name: "Creatina Monohidratada 1kg", regularPrice: 85.40 },
-        { productId: "proteina-whey-wpc80", variantId: "bolsa-1kg", name: "Proteína Whey WPC80 1kg", regularPrice: 109.00 }
+        { productId: "proteina-suero-leche-80", variantId: "bolsa-1kg", name: "Proteína Whey WPC80 1kg", regularPrice: 131.60 }
       ],
-      regularTotalPrice: 194.40,
-      comboPrice: 169.00,
-      savings: 25.40,
+      regularTotalPrice: 217.00,
+      comboPrice: 217.00,
+      savings: 0,
       image: "img/products/creatina-monohidratada-bolsa-1kg.jpg",
-      enabled: true
+      enabled: false
     },
     {
       id: "combo-sueno-profundo",
@@ -118,14 +118,14 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       shortDescription: "Glicinato de Magnesio 1kg + Citrato de Magnesio 1kg",
       description: "Doble modulación del sistema nervioso parasimpático y relajación neuromuscular antes del descanso.",
       items: [
-        { productId: "glicinato-de-magnesio", variantId: "bolsa-1kg", name: "Glicinato de Magnesio 1kg", regularPrice: 89.90 },
-        { productId: "citrato-de-magnesio", variantId: "bolsa-1kg", name: "Citrato de Magnesio 1kg", regularPrice: 79.90 }
+        { productId: "glicinato-de-magnesio", variantId: "bolsa-1kg", name: "Glicinato de Magnesio 1kg", regularPrice: 49.00 },
+        { productId: "citrato-de-magnesio", variantId: "bolsa-1kg", name: "Citrato de Magnesio 1kg", regularPrice: 22.40 }
       ],
-      regularTotalPrice: 169.80,
-      comboPrice: 145.00,
-      savings: 24.80,
+      regularTotalPrice: 71.40,
+      comboPrice: 71.40,
+      savings: 0,
       image: "img/products/citrato-de-magnesio-bolsa-1kg.jpg",
-      enabled: true
+      enabled: false
     },
     {
       id: "combo-articular-longevidad",
@@ -134,14 +134,14 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       shortDescription: "Colágeno Hidrolizado 1kg + Citrato de Magnesio 1kg",
       description: "Regeneración de cartílagos, tendones y absorción mineral óptima para movilidad sin dolor.",
       items: [
-        { productId: "colageno-hidrolizado-peptidos", variantId: "bolsa-1kg", name: "Colágeno Hidrolizado 1kg", regularPrice: 65.00 },
-        { productId: "citrato-de-magnesio", variantId: "bolsa-1kg", name: "Citrato de Magnesio 1kg", regularPrice: 79.90 }
+        { productId: "colageno-hidrolizado", variantId: "bolsa-1kg", name: "Colágeno Hidrolizado 1kg", regularPrice: 56.00 },
+        { productId: "citrato-de-magnesio", variantId: "bolsa-1kg", name: "Citrato de Magnesio 1kg", regularPrice: 22.40 }
       ],
-      regularTotalPrice: 144.90,
-      comboPrice: 122.00,
-      savings: 22.90,
+      regularTotalPrice: 78.40,
+      comboPrice: 78.40,
+      savings: 0,
       image: "img/products/colageno-hidrolizado-peptidos-bolsa-1kg.jpg",
-      enabled: true
+      enabled: false
     }
   ],
 

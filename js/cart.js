@@ -1094,75 +1094,38 @@ class BionativaCart {
 
     try {
       const cfg = window.PAYMENT_CONFIG?.mercadopago || {};
-      const promoEval = this.getPromotionEvaluation();
-      const evalItems = promoEval.items || this.items;
-      const netSubtotal = promoEval.finalSubtotal;
-      const baseSubtotal = evalItems.reduce((s, i) => s + (i.lineTotal !== undefined ? i.lineTotal : (i.price * i.quantity)), 0);
-      const ratio = baseSubtotal > 0 ? (netSubtotal / baseSubtotal) : 1;
-      
-      // Intentar crear la preferencia en el backend (/api/create-preference)
+      // El servidor reconstruye precios, promociones, envío y recargo desde datos confiables.
       if (cfg.preferenceEndpoint) {
-        const mpItems = [
-          ...evalItems.map(i => {
-            const originalLine = i.lineTotal !== undefined ? i.lineTotal : (i.price * i.quantity);
-            const effectiveLine = Number((originalLine * ratio).toFixed(2));
-            const effectiveUnit = Number((effectiveLine / i.quantity).toFixed(2));
-            return {
-              id: String(i.cartItemId || i.productId || "item"),
-              name: `${i.name} (${i.variantName})`,
-              price: effectiveUnit,
-              quantity: Number(i.quantity)
-            };
-          }),
-          ...(this.getShippingCost() > 0 ? [{
-            id: "costo-envio",
-            name: `Costo de Envío (${window.BIONATIVA_CONFIG?.shippingOptions?.find(o => o.id === this.selectedShipping)?.name || "Nacional"})`,
-            price: Number(this.getShippingCost().toFixed(2)),
-            quantity: 1
-          }] : []),
-          ...(cardFee > 0 ? [{
-            id: "recargo-tarjeta-mp",
-            name: `Recargo Pasarela Mercado Pago (${window.PAYMENT_CONFIG?.mercadopago?.cardFeePercentage || 4.71}%)`,
-            price: Number(cardFee.toFixed(2)),
-            quantity: 1
-          }] : [])
-        ];
-
         const response = await fetch(cfg.preferenceEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            items: mpItems,
+            items: this.items.map(item => ({
+              productId: item.productId,
+              variantId: item.variantId,
+              quantity: item.quantity
+            })),
+            shippingId: this.selectedShipping,
+            couponCode: this.appliedCoupon,
             payer: this.currentCustomerData || {}
           })
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          if (data.init_point) {
-            if (window.BionativaPromotions) {
-              window.BionativaPromotions.trackEvent("conversion", { amount: Number(total), couponCode: this.appliedCoupon });
-            }
-            window.location.href = data.init_point;
-            return;
-          }
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "No se pudo validar el pedido.");
+        if (Math.round(Number(data.total) * 100) !== Math.round(Number(total) * 100)) {
+          throw new Error("El total de tu carrito cambió al validarlo. Actualiza la página para revisar los precios y vuelve a intentarlo.");
         }
+        if (data.init_point) {
+          window.location.href = data.init_point;
+          return;
+        }
+        throw new Error("Mercado Pago no devolvió el enlace seguro de pago.");
       }
-
-      // Fallback a enlace directo si existe
-      if (cfg.directPaymentLink) {
-        window.location.href = cfg.directPaymentLink;
-        return;
-      }
-
-      alert("Mercado Pago requiere configurar tus credenciales en functions/api/create-preference.js o js/payment-config.js.");
-      if (btn) {
-        btn.disabled = false;
-        btn.innerHTML = `Continuar a Pasarela Mercado Pago (S/ ${total})`;
-      }
+      throw new Error("Mercado Pago no está disponible para este pedido.");
     } catch (err) {
       console.error("Error al iniciar Mercado Pago:", err);
-      alert("Hubo un problema al conectar con la pasarela. Puedes optar por Yape / Transferencia o escribirnos por WhatsApp.");
+      alert(err.message || "Hubo un problema al conectar con la pasarela. Puedes optar por Yape / Transferencia o escribirnos por WhatsApp.");
       if (btn) {
         btn.disabled = false;
         btn.innerHTML = `Continuar a Pasarela Mercado Pago (S/ ${total})`;
@@ -1174,16 +1137,8 @@ class BionativaCart {
     const content = document.getElementById("checkout-modal-content");
     content.innerHTML = `
       <div class="text-center py-8 space-y-4">
-        <div class="w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto animate-bounce">
-          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        </div>
-        <h3 class="text-xl font-bold text-[#1E3B2B]">¡Pago Procesado Exitosamente!</h3>
-        <p class="text-xs text-stone-600 max-w-sm mx-auto">Tu transacción ha sido aprobada. Hemos enviado el comprobante a tu correo y el equipo de BioNativa LAB ya está preparando tu despacho.</p>
-        <div class="pt-4">
-          <button onclick="window.cart.clearCart(); window.cart.closeCheckoutModal(); window.location.href='/';" class="bg-[#1E3B2B] text-white font-bold px-6 py-2.5 rounded-full text-xs hover:bg-[#284f3a] transition">
-            Volver al Inicio
-          </button>
-        </div>
+        <h3 class="text-xl font-bold text-[#1E3B2B]">Confirma tu pago en Mercado Pago</h3>
+        <p class="text-xs text-stone-600 max-w-sm mx-auto">Este sitio no puede confirmar un pago desde un formulario local. Inicia el pago mediante el botón seguro de Mercado Pago para validar la transacción en el servidor.</p>
       </div>
     `;
   }
