@@ -467,16 +467,16 @@ const BIONATIVA_PRODUCTS = [
         "weightGrams": 1000
       },
       {
-        "id": "saco-20kg",
-        "name": "Saco Industrial 20 kg (Mayorista / Granel)",
-        "price": 580,
-        "weight": "20 kg",
+        "id": "saco-25kg",
+        "name": "Saco Industrial 25 kg (Mayorista / Granel)",
+        "price": 900,
+        "weight": "25 kg",
         "format": "Saco Kraft Multicapa de Alta Resistencia",
         "packagingType": "industrial-saco",
-        "sku": "BIO-SOY-IND-20K",
+        "sku": "BIO-SOY-IND-25K",
         "image": "img/products/industrial/proteina-soya-vegetal-20kg.jpg",
         "isBulk": true,
-        "weightGrams": 20000
+        "weightGrams": 25000
       }
     ],
     "coaPdf": "docs/coa/coa-proteina-soya.pdf",
@@ -571,7 +571,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "saco-20kg",
         "name": "Saco Industrial 20 kg (Mayorista / Granel)",
-        "price": 920,
+        "price": 1050,
         "weight": "20 kg",
         "format": "Saco Industrial Kraft Multicapa Hermético",
         "packagingType": "industrial-saco",
@@ -874,7 +874,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "tambor-25kg",
         "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
-        "price": 1920,
+        "price": 2000,
         "weight": "25 kg",
         "format": "Tambor de Fibra Kraft con Aro Metálico",
         "packagingType": "industrial-tambor",
@@ -1180,7 +1180,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "caja-25kg",
         "name": "Caja Industrial 25 kg (Mayorista / Granel)",
-        "price": 1050,
+        "price": 1190,
         "weight": "25 kg",
         "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
         "packagingType": "industrial-caja",
@@ -1581,7 +1581,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "tambor-25kg",
         "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
-        "price": 2650,
+        "price": 2750,
         "weight": "25 kg",
         "format": "Tambor de Fibra Kraft con Aro Metálico",
         "packagingType": "industrial-tambor",
