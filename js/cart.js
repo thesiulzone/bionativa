@@ -500,7 +500,7 @@ class BionativaCart {
               </div>
               <div class="flex justify-between">
                 <span>Costo de envío:</span>
-                <span id="cart-drawer-shipping" class="font-bold text-[#B67A52]">S/ 10.00</span>
+                <span id="cart-drawer-shipping" class="font-bold text-[#B67A52]">S/ 12.00</span>
               </div>
             </div>
           </div>
@@ -993,6 +993,11 @@ class BionativaCart {
             </div>
             <button type="button" onclick="navigator.clipboard.writeText('92200300000342324790'); alert('¡CCI Lemon copiado!');" class="text-[10px] bg-stone-100 hover:bg-stone-200 text-stone-700 px-2 py-1 rounded border border-stone-300">Copiar</button>
           </div>
+        </div>
+
+        <div class="bg-[#FAF9F6] border border-[#E8E2D8] rounded-xl p-3 text-left space-y-1 text-[11px] text-stone-600">
+          <p class="font-bold text-[#1E3B2B]">Horario de despacho</p>
+          <p>Pedidos hasta las <strong>10:50 a.m.</strong> se atienden hoy (<strong>2:00 p.m. – 8:00 p.m.</strong> según ruta); posteriores pasan al día siguiente. Te llamaremos antes de entregar.</p>
         </div>
 
         <p class="text-[11px] text-stone-500 leading-tight">Al realizar tu pago, haz clic en el siguiente botón para enviar el comprobante y coordinar el despacho inmediato por WhatsApp:</p>

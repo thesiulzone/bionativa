@@ -58,6 +58,13 @@
           <p class="text-sm text-stone-600">${message}</p>
         </div>
         ${verified ? '<div class="bg-stone-50 p-3 rounded-lg text-xs font-mono text-stone-600">ID de Transacción: <strong id="verified-payment-id"></strong></div>' : ''}
+        ${verified ? `
+          <div class="bg-[#F8F6F0] border border-[#E8E2D8] rounded-xl p-4 text-left space-y-1.5 text-xs text-stone-700">
+            <p class="font-bold text-[#1E3B2B]">Horario de despacho y entrega</p>
+            <p>• Pedidos hasta las <strong>10:50 a.m.</strong> se atienden el mismo día (de <strong>2:00 p.m. a 8:00 p.m.</strong>, según ruta).</p>
+            <p>• Pedidos posteriores se atienden al <strong>día siguiente</strong>. Te llamaremos antes de dejar tu producto.</p>
+          </div>
+        ` : ''}
         <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
           <a href="/" class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold tracking-wide transition">Volver a la Tienda</a>
           ${verified ? '<a id="payment-whatsapp" href="https://wa.me/51981278458" class="inline-flex justify-center items-center px-6 py-3 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700 text-xs font-bold tracking-wide transition">Notificar por WhatsApp</a>' : ''}
