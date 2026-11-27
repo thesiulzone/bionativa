@@ -256,7 +256,9 @@ class BionativaCart {
     const totalEl = document.getElementById("cart-drawer-total");
     const shippingEl = document.getElementById("cart-drawer-shipping");
     const emptyMsg = document.getElementById("cart-drawer-empty");
+    const optionsEl = document.getElementById("cart-drawer-options");
     const footerEl = document.getElementById("cart-drawer-footer");
+    const clearBtn = document.getElementById("cart-clear-btn");
 
     // Elementos de cupón
     const couponInput = document.getElementById("cart-coupon-input");
@@ -268,12 +270,16 @@ class BionativaCart {
     if (this.items.length === 0) {
       container.innerHTML = "";
       if (emptyMsg) emptyMsg.classList.remove("hidden");
+      if (optionsEl) optionsEl.classList.add("hidden");
       if (footerEl) footerEl.classList.add("hidden");
+      if (clearBtn) clearBtn.classList.add("hidden");
       return;
     }
 
     if (emptyMsg) emptyMsg.classList.add("hidden");
+    if (optionsEl) optionsEl.classList.remove("hidden");
     if (footerEl) footerEl.classList.remove("hidden");
+    if (clearBtn) clearBtn.classList.remove("hidden");
 
     const promoEval = this.getPromotionEvaluation();
     const evaluatedItems = promoEval.items || this.items;
@@ -315,7 +321,7 @@ class BionativaCart {
             </div>
           </div>
         </div>
-        <button type="button" onclick="window.cart.removeItem('${item.cartItemId}')" title="Eliminar producto" class="text-stone-400 hover:text-red-500 active:text-red-700 transition-colors p-2 -mr-1 self-start" aria-label="Eliminar producto de la bolsa">
+        <button type="button" onclick="window.cart.removeItem('${item.cartItemId}')" title="Eliminar producto" class="text-stone-500 hover:text-red-600 hover:bg-red-50 active:text-red-700 rounded-lg transition-colors p-2 -mr-1 self-start flex-shrink-0 cursor-pointer" aria-label="Eliminar producto de la bolsa">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
         </button>
       </div>
@@ -411,18 +417,23 @@ class BionativaCart {
       <!-- Cart Drawer Panel -->
       <div id="cart-drawer-panel" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#FAF9F6] shadow-2xl z-[100] translate-x-full transition-transform duration-300 ease-in-out flex flex-col font-sans border-l border-[#E5DECF]">
         <!-- Header -->
-        <div class="p-4 sm:p-5 border-b border-[#E8E2D8] flex items-center justify-between bg-white">
+        <div class="p-4 sm:p-5 border-b border-[#E8E2D8] flex items-center justify-between bg-white flex-shrink-0">
           <div class="flex items-center gap-2">
             <svg class="w-6 h-6 text-[#1E3B2B]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
             <h3 class="font-bold text-lg text-[#1E3B2B]">Tu Bolsa de Bienestar</h3>
           </div>
-          <button id="cart-drawer-close" class="p-2 rounded-full hover:bg-stone-100 text-stone-500 hover:text-stone-800 transition" aria-label="Cerrar bolsa">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
+          <div class="flex items-center gap-1">
+            <button id="cart-clear-btn" type="button" onclick="window.cart.clearCart()" class="hidden text-[11px] font-semibold text-stone-500 hover:text-red-600 hover:bg-red-50 px-2.5 py-1.5 rounded-lg transition cursor-pointer" title="Vaciar toda la bolsa">
+              Vaciar
+            </button>
+            <button id="cart-drawer-close" class="p-2 rounded-full hover:bg-stone-100 text-stone-500 hover:text-stone-800 transition" aria-label="Cerrar bolsa">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
         </div>
 
         <!-- Banner de Garantía y Pureza -->
-        <div class="bg-[#1E3B2B]/5 px-4 py-2 text-xs text-[#1E3B2B] flex items-center justify-between border-b border-[#1E3B2B]/10">
+        <div class="bg-[#1E3B2B]/5 px-4 py-2 text-xs text-[#1E3B2B] flex items-center justify-between border-b border-[#1E3B2B]/10 flex-shrink-0">
           <span class="flex items-center gap-1.5 font-medium">
             <svg class="w-4 h-4 text-[#B67A52]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
             Materia Prima Americana con COA
@@ -430,8 +441,8 @@ class BionativaCart {
           <span class="font-semibold text-[#B67A52]">Envíos Todo el Perú</span>
         </div>
 
-        <!-- Cart Items List -->
-        <div class="flex-1 overflow-y-auto px-4 sm:px-5 py-3" style="-webkit-overflow-scrolling: touch;">
+        <!-- Cart Scrollable Body (Productos + Cupón + Envío + Desglose) -->
+        <div class="flex-1 min-h-0 overflow-y-auto px-4 sm:px-5 py-3 space-y-3" style="-webkit-overflow-scrolling: touch;">
           <div id="cart-drawer-empty" class="text-center py-16 hidden">
             <div class="w-20 h-20 mx-auto rounded-full bg-[#EFE9DF] flex items-center justify-center text-stone-400 mb-4">
               <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
@@ -442,79 +453,83 @@ class BionativaCart {
           </div>
 
           <div id="cart-drawer-items"></div>
+
+          <!-- Opciones de Cupón, Envío y Desglose -->
+          <div id="cart-drawer-options" class="hidden pt-3 border-t border-[#E8E2D8] space-y-3">
+            <!-- Cupones de Descuento Box -->
+            <div class="bg-[#FAF6F0] p-2.5 rounded-xl border border-[#E8E2D8]/80 space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-[#1E3B2B] flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-[#B67A52]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                  Código de Descuento
+                </span>
+              </div>
+              <div class="flex gap-1.5">
+                <input type="text" id="cart-coupon-input" placeholder="Ej: SEMANABIONATIVA" class="flex-1 bg-white border border-[#D5CDBD] text-xs uppercase font-bold text-[#1E3B2B] px-3 py-1.5 rounded-lg focus:border-[#1E3B2B] focus:ring-0 outline-none" />
+                <button type="button" onclick="window.cart.handleApplyCoupon()" class="bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition active:scale-95 shadow-sm">Aplicar</button>
+              </div>
+              <div id="cart-applied-coupon-pill" class="hidden items-center justify-between bg-emerald-50 text-emerald-800 text-[11px] px-2.5 py-1 rounded-lg border border-emerald-200">
+                <span id="cart-applied-coupon-label" class="font-bold"></span>
+                <button type="button" onclick="window.cart.removeCoupon()" class="text-stone-400 hover:text-red-500 font-bold ml-2 text-sm leading-none" title="Quitar cupón">×</button>
+              </div>
+            </div>
+
+            <!-- Shipping Selector -->
+            <div>
+              <label class="block text-xs font-bold text-stone-600 mb-1">Opciones de Entrega y Envío:</label>
+              <select id="cart-shipping-select" class="w-full bg-white border border-[#D5CDBD] text-xs text-[#1E3B2B] font-medium rounded-lg p-2 focus:border-[#1E3B2B] focus:ring-0 cursor-pointer">
+                ${shippingOptions.map(opt => `
+                  <option value="${opt.id}" ${opt.id === this.selectedShipping ? "selected" : ""}>
+                    ${opt.name} (${opt.price > 0 ? "S/ " + opt.price.toFixed(2) : "GRATIS"})
+                  </option>
+                `).join("")}
+              </select>
+            </div>
+
+            <!-- Banner de Ahorro Destacado -->
+            <div id="cart-drawer-savings-banner" class="hidden"></div>
+
+            <!-- Desglose de Subtotales -->
+            <div class="space-y-1 pt-1 text-xs text-stone-600">
+              <div id="cart-drawer-regular-row" class="hidden justify-between text-stone-400 line-through">
+                <span>Precio regular:</span>
+                <span id="cart-drawer-regular-subtotal">S/ 0.00</span>
+              </div>
+              <div id="cart-drawer-promo-discount-row" class="hidden justify-between text-emerald-700 font-bold">
+                <span>Descuento de Campaña / Volumen:</span>
+                <span id="cart-drawer-promo-discount">-S/ 0.00</span>
+              </div>
+              <div id="cart-drawer-coupon-discount-row" class="hidden justify-between text-emerald-700 font-bold">
+                <span>Descuento por Cupón:</span>
+                <span id="cart-drawer-coupon-discount">-S/ 0.00</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Subtotal neto:</span>
+                <span id="cart-drawer-subtotal" class="font-bold text-[#1E3B2B]">S/ 0.00</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Costo de envío:</span>
+                <span id="cart-drawer-shipping" class="font-bold text-[#B67A52]">S/ 10.00</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Footer / Checkout Section -->
-        <div id="cart-drawer-footer" class="p-4 sm:p-5 border-t border-[#E8E2D8] bg-white space-y-3">
-          <!-- Cupones de Descuento Box -->
-          <div class="bg-[#FAF6F0] p-2.5 rounded-xl border border-[#E8E2D8]/80 space-y-2">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-bold text-[#1E3B2B] flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-[#B67A52]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
-                Código de Descuento
-              </span>
-            </div>
-            <div class="flex gap-1.5">
-              <input type="text" id="cart-coupon-input" placeholder="Ej: SEMANABIONATIVA" class="flex-1 bg-white border border-[#D5CDBD] text-xs uppercase font-bold text-[#1E3B2B] px-3 py-1.5 rounded-lg focus:border-[#1E3B2B] focus:ring-0 outline-none" />
-              <button type="button" onclick="window.cart.handleApplyCoupon()" class="bg-[#1E3B2B] hover:bg-[#284f3a] text-white text-xs font-bold px-3 py-1.5 rounded-lg transition active:scale-95 shadow-sm">Aplicar</button>
-            </div>
-            <div id="cart-applied-coupon-pill" class="hidden items-center justify-between bg-emerald-50 text-emerald-800 text-[11px] px-2.5 py-1 rounded-lg border border-emerald-200">
-              <span id="cart-applied-coupon-label" class="font-bold"></span>
-              <button type="button" onclick="window.cart.removeCoupon()" class="text-stone-400 hover:text-red-500 font-bold ml-2 text-sm leading-none" title="Quitar cupón">×</button>
-            </div>
-          </div>
-
-          <!-- Shipping Selector -->
-          <div>
-            <label class="block text-xs font-bold text-stone-600 mb-1">Opciones de Entrega y Envío:</label>
-            <select id="cart-shipping-select" class="w-full bg-[#FAF9F6] border border-[#D5CDBD] text-xs text-[#1E3B2B] font-medium rounded-lg p-2 focus:border-[#1E3B2B] focus:ring-0 cursor-pointer">
-              ${shippingOptions.map(opt => `
-                <option value="${opt.id}" ${opt.id === this.selectedShipping ? "selected" : ""}>
-                  ${opt.name} (${opt.price > 0 ? "S/ " + opt.price.toFixed(2) : "GRATIS"})
-                </option>
-              `).join("")}
-            </select>
-          </div>
-
-          <!-- Banner de Ahorro Destacado -->
-          <div id="cart-drawer-savings-banner" class="hidden"></div>
-
-          <!-- Totales -->
-          <div class="space-y-1 pt-1 text-xs text-stone-600">
-            <div id="cart-drawer-regular-row" class="hidden justify-between text-stone-400 line-through">
-              <span>Precio regular:</span>
-              <span id="cart-drawer-regular-subtotal">S/ 0.00</span>
-            </div>
-            <div id="cart-drawer-promo-discount-row" class="hidden justify-between text-emerald-700 font-bold">
-              <span>Descuento de Campaña / Volumen:</span>
-              <span id="cart-drawer-promo-discount">-S/ 0.00</span>
-            </div>
-            <div id="cart-drawer-coupon-discount-row" class="hidden justify-between text-emerald-700 font-bold">
-              <span>Descuento por Cupón:</span>
-              <span id="cart-drawer-coupon-discount">-S/ 0.00</span>
-            </div>
-            <div class="flex justify-between">
-              <span>Subtotal neto:</span>
-              <span id="cart-drawer-subtotal" class="font-bold text-[#1E3B2B]">S/ 0.00</span>
-            </div>
-            <div class="flex justify-between">
-              <span>Costo de envío:</span>
-              <span id="cart-drawer-shipping" class="font-bold text-[#B67A52]">S/ 10.00</span>
-            </div>
-            <div class="flex justify-between text-base font-extrabold text-[#1E3B2B] pt-1.5 border-t border-dashed border-[#E8E2D8]">
-              <span>Total Estimado:</span>
-              <span id="cart-drawer-total" class="text-lg text-[#1E3B2B]">S/ 0.00</span>
-            </div>
+        <!-- Footer Fijo Compacto / Checkout Section -->
+        <div id="cart-drawer-footer" class="p-3.5 sm:p-4 border-t border-[#E8E2D8] bg-white space-y-2.5 flex-shrink-0 shadow-[0_-4px_16px_rgba(0,0,0,0.04)]">
+          <div class="flex justify-between items-center text-base font-extrabold text-[#1E3B2B]">
+            <span>Total Estimado:</span>
+            <span id="cart-drawer-total" class="text-lg text-[#1E3B2B]">S/ 0.00</span>
           </div>
 
           <!-- Checkout Buttons -->
-          <div class="space-y-2 pt-1">
-            <button onclick="window.cart.openCheckoutModal('whatsapp')" class="w-full bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.98] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md transition">
+          <div class="space-y-2">
+            <button onclick="window.cart.openCheckoutModal('whatsapp')" class="w-full bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.98] text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md transition">
               <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
               Comprar por WhatsApp (Rápido)
             </button>
 
-            <button onclick="window.cart.openCheckoutModal('pay-options')" class="w-full bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-[0.98] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow transition">
+            <button onclick="window.cart.openCheckoutModal('pay-options')" class="w-full bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-[0.98] text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow transition">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
               Pagar con Plin, Yape o Tarjeta
             </button>
@@ -592,6 +607,10 @@ class BionativaCart {
       panel.classList.remove("translate-x-full");
       document.body.style.overflow = "hidden";
     }
+  }
+
+  openCart() {
+    this.openDrawer();
   }
 
   closeDrawer() {
