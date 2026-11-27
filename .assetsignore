@@ -4,6 +4,11 @@
 agent/
 contenido-comercial-skill/
 skills-lock.json
+node_modules/
+package.json
+package-lock.json
+tailwind.config.js
+css/tailwind.input.css
 
 # Recursos internos, fichas técnicas y redes
 FICHAS TECNICAS/

@@ -1,0 +1,146 @@
+[
+  {
+    "lotId": "BN-CRE-2026-01",
+    "productId": "creatina-monohidratada",
+    "variantIds": [
+      "bolsa-1kg",
+      "pote-1kg",
+      "caja-25kg"
+    ],
+    "supplierLot": "SUP-CRE-2609",
+    "manufacturer": "Materia Prima Americana Grado Farmacéutico (USP)",
+    "manufactureDate": "2026-09-01",
+    "expiryDate": "2029-09-01",
+    "analysisDate": "2026-09-10",
+    "assayMethod": "HPLC / USP",
+    "purityResult": "99.8% Purity HPLC Tested",
+    "coaPdf": "docs/coa/coa-creatina-monohidratada.pdf",
+    "status": "active"
+  },
+  {
+    "lotId": "BN-WPC-2026-01",
+    "productId": "proteina-suero-leche-80",
+    "variantIds": [
+      "bolsa-1kg",
+      "pote-1kg",
+      "saco-20kg"
+    ],
+    "supplierLot": "SUP-WPC-2609",
+    "manufacturer": "Materia Prima Americana (Wisconsin, USA)",
+    "manufactureDate": "2026-09-01",
+    "expiryDate": "2029-09-01",
+    "analysisDate": "2026-09-10",
+    "assayMethod": "HPLC / USP",
+    "purityResult": "80.2% Proteína real por porción",
+    "coaPdf": "docs/coa/coa-whey-protein-80.pdf",
+    "status": "active"
+  },
+  {
+    "lotId": "BN-SOY-2026-01",
+    "productId": "proteina-soya-vegetal",
+    "variantIds": [
+      "bolsa-1kg",
+      "pote-1kg",
+      "saco-25kg"
+    ],
+    "supplierLot": "SUP-SOY-2609",
+    "manufacturer": "Materia Prima Americana No-GMO",
+    "manufactureDate": "2026-09-01",
+    "expiryDate": "2029-09-01",
+    "analysisDate": "2026-09-10",
+    "assayMethod": "HPLC / USP",
+    "purityResult": "90% Proteína Vegetal Aislada",
+    "coaPdf": "docs/coa/coa-proteina-soya.pdf",
+    "status": "active"
+  },
+  {
+    "lotId": "BN-COL-2026-01",
+    "productId": "colageno-hidrolizado",
+    "variantIds": [
+      "bolsa-1kg",
+      "pote-1kg",
+      "saco-20kg"
+    ],
+    "supplierLot": "SUP-COL-2609",
+    "manufacturer": "Materia Prima Americana (Bovino Pastoreo)",
+    "manufactureDate": "2026-09-01",
+    "expiryDate": "2029-09-01",
+    "analysisDate": "2026-09-10",
+    "assayMethod": "HPLC / USP",
+    "purityResult": "Péptidos bioactivos de bajo peso molecular (<3000 Da)",
+    "coaPdf": "docs/coa/coa-colageno-hidrolizado.pdf",
+    "status": "active"
+  },
+  {
+    "lotId": "BN-GLS-2026-01",
+    "productId": "glucosamina-sulfato",
+    "variantIds": [
+      "bolsa-1kg",
+      "pote-1kg",
+      "caja-25kg"
+    ],
+    "supplierLot": "SUP-GLS-2609",
+    "manufacturer": "Materia Prima Americana Certificada",
+    "manufactureDate": "2026-09-01",
+    "expiryDate": "2029-09-01",
+    "analysisDate": "2026-09-10",
+    "assayMethod": "HPLC / USP",
+    "purityResult": "99.2% Pureza HPLC",
+    "coaPdf": "docs/coa/coa-glucosamina-sulfato.pdf",
+    "status": "active"
+  },
+  {
+    "lotId": "BN-ESP-2026-01",
+    "productId": "espirulina-pura",
+    "variantIds": [
+      "bolsa-1kg",
+      "pote-1kg",
+      "tambor-25kg"
+    ],
+    "supplierLot": "SUP-ESP-2609",
+    "manufacturer": "Cultivo Certificado Grado Americano",
+    "manufactureDate": "2026-09-01",
+    "expiryDate": "2029-09-01",
+    "analysisDate": "2026-09-10",
+    "assayMethod": "HPLC / USP",
+    "purityResult": "100% Arthrospira platensis seca y micronizada",
+    "coaPdf": "docs/coa/coa-espirulina-pura.pdf",
+    "status": "active"
+  },
+  {
+    "lotId": "BN-CMG-2026-01",
+    "productId": "citrato-de-magnesio",
+    "variantIds": [
+      "bolsa-1kg",
+      "pote-1kg",
+      "caja-25kg"
+    ],
+    "supplierLot": "SUP-CMG-2609",
+    "manufacturer": "Materia Prima Americana Grado USP",
+    "manufactureDate": "2026-09-01",
+    "expiryDate": "2029-09-01",
+    "analysisDate": "2026-09-10",
+    "assayMethod": "HPLC / USP",
+    "purityResult": "15%-16% Magnesio elemental biodisponible",
+    "coaPdf": "docs/coa/coa-citrato-magnesio.pdf",
+    "status": "active"
+  },
+  {
+    "lotId": "BN-GMG-2026-01",
+    "productId": "glicinato-de-magnesio",
+    "variantIds": [
+      "bolsa-1kg",
+      "pote-1kg",
+      "caja-25kg"
+    ],
+    "supplierLot": "SUP-GMG-2609",
+    "manufacturer": "Materia Prima Americana Grado Quelado Puro",
+    "manufactureDate": "2026-09-01",
+    "expiryDate": "2029-09-01",
+    "analysisDate": "2026-09-10",
+    "assayMethod": "HPLC / USP",
+    "purityResult": "Bisglicinato 100% quelado grado terapéutico",
+    "coaPdf": "docs/coa/coa-bisglicinato-magnesio.pdf",
+    "status": "active"
+  }
+]

@@ -39,6 +39,12 @@ export function buildCheckout(body) {
     if (!product || !variant || !Number.isInteger(quantity) || quantity < 1 || quantity > 20) {
       throw new Error("Un producto o una cantidad del carrito no es válida. Actualiza la tienda e inténtalo otra vez.");
     }
+    if (typeof variant.stockAvailable === "number" && !variant.allowBackorder) {
+      const netStock = variant.stockAvailable - (variant.stockReserved || 0);
+      if (netStock < quantity) {
+        throw new Error(`Stock insuficiente para ${product.name} (${variant.name}). Disponible: ${Math.max(0, netStock)}.`);
+      }
+    }
     let unitPrice = Number(variant.price);
     if (campaignActive) {
       const discount = SERVER_PROMOTIONS.productDiscounts.find(rule => rule.productId === product.id && rule.variantId === variant.id);

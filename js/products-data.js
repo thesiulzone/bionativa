@@ -1,13 +1,15 @@
 /**
- * BIONATIVA LAB - Catálogo Oficial de Productos
- * Optimizado para SEO, AEO y GEO
- * Actualizado con Presentaciones Oficiales, Trazabilidad COA, Dosis Farmacopéicas y Especificaciones Técnicas
+ * BIONATIVA LAB - Catálogo Oficial de Productos (Generado desde Fuente Única SSOT)
+ * NO EDITAR MANUALMENTE: Editar data/catalog.master.json, data/inventory.master.json o data/coa-lots.master.json
+ * y ejecutar: node scripts/build-catalog.mjs
  * Moneda: Soles Peruanos (PEN - S/)
  */
 
 const BIONATIVA_PRODUCTS = [
   {
     "id": "creatina-monohidratada",
+    "skuMaster": "BIO-CRE",
+    "brand": "bionativa-lab",
     "name": "Creatina Monohidratada 100% Pura",
     "shortName": "Creatina Monohidratada",
     "category": "fuerza-deporte",
@@ -23,12 +25,15 @@ const BIONATIVA_PRODUCTS = [
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
         "price": 85.4,
+        "regularPrice": 98,
         "weight": "1 kg",
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
         "sku": "BIO-CRE-BOL-1K",
         "image": "img/products/creatina-monohidratada-bolsa-1kg.jpg",
-        "weightGrams": 1000
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-CRE-2026-01"
       },
       {
         "id": "pote-1kg",
@@ -39,7 +44,9 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "pote",
         "sku": "BIO-CRE-POT-1K",
         "image": "img/products/creatina-monohidratada-pote-1kg.jpg",
-        "weightGrams": 1000
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-CRE-2026-01"
       },
       {
         "id": "caja-25kg",
@@ -51,14 +58,29 @@ const BIONATIVA_PRODUCTS = [
         "sku": "BIO-CRE-IND-25K",
         "image": "img/products/industrial/creatina-monohidratada-25kg.jpg",
         "isBulk": true,
-        "weightGrams": 25000
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-CRE-2026-01"
       }
     ],
     "price": 85.4,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Farmacéutico (USP)",
+    "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "99.8% Purity HPLC Tested",
+    "coaPdf": "docs/coa/coa-creatina-monohidratada.pdf",
+    "activeLot": {
+      "lotId": "BN-CRE-2026-01",
+      "expiryDate": "2029-09-01",
+      "analysisDate": "2026-09-10",
+      "purityResult": "99.8% Purity HPLC Tested",
+      "assayMethod": "HPLC / USP",
+      "coaPdf": "docs/coa/coa-creatina-monohidratada.pdf"
+    },
+    "regularPrice": 98,
+    "discountBadge": "-13% WEB",
+    "highlightBadge": "🔥 MÁS VENDIDO",
     "description": "Creatina monohidratada micronizada de máxima solubilidad y pureza. Sin maltodextrina, sin saborizantes ni aditivos químicos. Optimiza la producción de ATP celular para incrementar la fuerza explosiva, potencia y regeneración muscular.",
     "benefits": [
       "Aumenta la fuerza explosiva y resistencia anaeróbica en entrenamientos intensos.",
@@ -77,12 +99,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "En personas sanas, la evidencia científica demuestra que la creatina es el suplemento más seguro del mundo. La retención hídrica es intracelular (dentro del miocito), lo cual favorece la síntesis proteica y el volumen celular, no es retención subcutánea ni hinchazón."
       }
     ],
-    "coaPdf": "docs/coa/coa-creatina-monohidratada.pdf",
-    "regularPrice": 98,
-    "discountBadge": "-13% WEB",
-    "highlightBadge": "🔥 MÁS VENDIDO",
     "dosage": {
-      "recommendedGrams": 5,
+      "administrationRoute": "oral",
+      "recommendedAmount": 5,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1 cucharadita dosificadora (5g)",
@@ -92,11 +111,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Creatina Monohidrato Micronizada",
-      "casNumber": "6020-87-7",
-      "mesh": "200 Mesh (Micronizado)",
+      "composition": "100% Creatina Monohidratada micronizada (200 mesh). Libre de gluten, libre de lactosa, vegano.",
       "grade": "USP Grade (Farmacopea EE.UU.)",
+      "appearance": "Polvo cristalino blanco ultra fino",
       "solubility": "Alta solubilidad en líquidos a temperatura ambiente",
-      "appearance": "Polvo cristalino blanco ultra fino"
+      "meshOrConcentration": "200 Mesh (Micronizado)",
+      "casNumber": "6020-87-7",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Disolver 5g en 250ml de agua o zumo. Mantener una hidratación adecuada (mínimo 2 litros de agua diarios).",
@@ -105,7 +129,8 @@ const BIONATIVA_PRODUCTS = [
         "No requiere fase de carga para ser efectiva.",
         "Consulte a su médico en caso de afección renal preexistente."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C) y seco con el envase herméticamente cerrado."
+      "storage": "Mantener en lugar fresco (< 25°C) y seco con el envase herméticamente cerrado.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "proteina-suero-leche-80",
@@ -115,6 +140,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "proteina-suero-leche-80",
+    "skuMaster": "BIO-WPC",
+    "brand": "bionativa-lab",
     "name": "Proteína de Suero de Leche 80% (Whey Protein WPC80)",
     "shortName": "Proteína de Suero 80%",
     "category": "fuerza-deporte",
@@ -124,11 +151,68 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 112,
     "image": "img/products/proteina-suero-leche-80-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 131.6,
+        "regularPrice": 149,
+        "weight": "1 kg",
+        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-WPC-BOL-1K",
+        "image": "img/products/proteina-suero-leche-80-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-WPC-2026-01"
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 155.1,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-WPC-POT-1K",
+        "image": "img/products/proteina-suero-leche-80-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-WPC-2026-01"
+      },
+      {
+        "id": "saco-20kg",
+        "name": "Saco Industrial 20 kg (Mayorista / Granel)",
+        "price": 2240,
+        "weight": "20 kg",
+        "format": "Saco Kraft Multicapa de Alta Resistencia",
+        "packagingType": "industrial-saco",
+        "sku": "BIO-WPC-IND-20K",
+        "image": "img/products/industrial/proteina-suero-leche-80-20kg.jpg",
+        "isBulk": true,
+        "weightGrams": 20000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-WPC-2026-01"
+      }
+    ],
     "price": 131.6,
     "unit": "1KG",
     "origin": "Materia Prima Americana (Wisconsin, USA)",
+    "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "80.2% Proteína real por porción",
+    "coaPdf": "docs/coa/coa-whey-protein-80.pdf",
+    "activeLot": {
+      "lotId": "BN-WPC-2026-01",
+      "expiryDate": "2029-09-01",
+      "analysisDate": "2026-09-10",
+      "purityResult": "80.2% Proteína real por porción",
+      "assayMethod": "HPLC / USP",
+      "coaPdf": "docs/coa/coa-whey-protein-80.pdf"
+    },
+    "regularPrice": 149,
+    "discountBadge": "-12% WEB",
+    "highlightBadge": "💪 80% PROTEÍNA REAL",
     "description": "Concentrado de proteína de suero de leche (WPC 80) obtenido por ultrafiltración a baja temperatura. Conserva todas las fracciones bioactivas (inmunoglobulinas, lactoferrina) con un perfil completo de aminoácidos esenciales y BCAAs naturales.",
     "benefits": [
       "Aumenta la masa muscular magra y repara el tejido muscular tras el ejercicio.",
@@ -143,49 +227,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Nuestra proteína WPC80 contiene 100% materia prima americana sin rellenos como gomas, maltodextrina o sucralosa. Obtienes más gramos de proteína neta por tu dinero y puedes mezclarla con frutas, café o avena sin sabores químicos artificiales."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 131.6,
-        "weight": "1 kg",
-        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-WPC-BOL-1K",
-        "image": "img/products/proteina-suero-leche-80-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 155.1,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-WPC-POT-1K",
-        "image": "img/products/proteina-suero-leche-80-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "saco-20kg",
-        "name": "Saco Industrial 20 kg (Mayorista / Granel)",
-        "price": 2240,
-        "weight": "20 kg",
-        "format": "Saco Kraft Multicapa de Alta Resistencia",
-        "packagingType": "industrial-saco",
-        "sku": "BIO-WPC-IND-20K",
-        "image": "img/products/industrial/proteina-suero-leche-80-20kg.jpg",
-        "isBulk": true,
-        "weightGrams": 20000
-      }
-    ],
-    "coaPdf": "docs/coa/coa-whey-protein-80.pdf",
-    "regularPrice": 149,
-    "discountBadge": "-12% WEB",
-    "highlightBadge": "💪 80% PROTEÍNA REAL",
     "dosage": {
-      "recommendedGrams": 30,
+      "administrationRoute": "oral",
+      "recommendedAmount": 30,
       "unit": "g",
       "frequencyText": "1 a 2 veces al día",
       "scoopEquivalent": "1 scoop colmado o 2 cucharadas soperas (30g)",
@@ -195,11 +239,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Concentrado de Proteína de Suero de Leche (WPC 80)",
-      "casNumber": "91079-57-1",
-      "mesh": "Instantáneo (Ultrafiltrado en frío)",
+      "composition": "Concentrado de proteína de suero de leche 80% instantáneo con lecitina de girasol no transgénica. Sin azúcar añadida, sin gomas espesantes.",
       "grade": "Grado Alimentario USP / FCC",
+      "appearance": "Polvo cremoso marfil claro, sabor lácteo neutro",
       "solubility": "Disolución rápida con agitador o shaker",
-      "appearance": "Polvo cremoso marfil claro, sabor lácteo neutro"
+      "meshOrConcentration": "Instantáneo (Ultrafiltrado en frío)",
+      "casNumber": "91079-57-1",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Batir 30g en 250ml de agua, leche vegetal o batido.",
@@ -208,7 +257,8 @@ const BIONATIVA_PRODUCTS = [
         "No utilizar como única fuente de nutrición.",
         "Acompañar de un estilo de vida activo y balanceado."
       ],
-      "storage": "Cerrar bien el cierre hermético / tapa tras cada uso para evitar humedad."
+      "storage": "Cerrar bien el cierre hermético / tapa tras cada uso para evitar humedad.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "creatina-monohidratada",
@@ -218,6 +268,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "glutamina-pura",
+    "skuMaster": "BIO-GLU",
+    "brand": "bionativa-lab",
     "name": "L-Glutamina Pura Micronizada",
     "shortName": "Glutamina 100% Pura",
     "category": "fuerza-deporte",
@@ -227,9 +279,53 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 76,
     "image": "img/products/glutamina-pura-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 68.6,
+        "weight": "1 kg",
+        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-GLU-BOL-1K",
+        "image": "img/products/glutamina-pura-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 80.85,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-GLU-POT-1K",
+        "image": "img/products/glutamina-pura-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "caja-25kg",
+        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
+        "price": 1450,
+        "weight": "25 kg",
+        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
+        "packagingType": "industrial-caja",
+        "sku": "BIO-GLU-IND-25K",
+        "image": "img/products/industrial/glutamina-pura-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      }
+    ],
     "price": 68.6,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Fermentación Vegetal",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.8% Grado USP",
     "description": "L-Glutamina pura de origen vegetal por fermentación natural. El aminoácido más abundante en el músculo y el combustible primordial de los enterocitos (células del intestino) y el sistema inmune.",
@@ -246,45 +342,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Sí. La glutamina es el nutriente preferido por la mucosa intestinal para regenerar las uniones estrechas celulares, aliviando síntomas de acidez, hinchazón y síndrome de intestino permeable."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 68.6,
-        "weight": "1 kg",
-        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-GLU-BOL-1K",
-        "image": "img/products/glutamina-pura-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 80.85,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-GLU-POT-1K",
-        "image": "img/products/glutamina-pura-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "caja-25kg",
-        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
-        "price": 1450,
-        "weight": "25 kg",
-        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
-        "packagingType": "industrial-caja",
-        "sku": "BIO-GLU-IND-25K",
-        "image": "img/products/industrial/glutamina-pura-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
     "dosage": {
-      "recommendedGrams": 5,
+      "administrationRoute": "oral",
+      "recommendedAmount": 5,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1 cucharadita dosificadora (5g)",
@@ -294,11 +354,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "L-Glutamina Fermentada Pura",
-      "casNumber": "56-85-9",
-      "mesh": "200 Mesh",
+      "composition": "100% L-Glutamina pura en polvo sin aditivos.",
       "grade": "Grado Farmacéutico USP",
+      "appearance": "Polvo cristalino blanco, inodoro",
       "solubility": "Excelente dispersión en agua templada o fría",
-      "appearance": "Polvo cristalino blanco, inodoro"
+      "meshOrConcentration": "200 Mesh",
+      "casNumber": "56-85-9",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Mezclar 5g en 200ml de agua en ayunas o post-entreno.",
@@ -306,7 +371,8 @@ const BIONATIVA_PRODUCTS = [
         "No combinar con bebidas hirviendo.",
         "Consultar con especialista si padece problemas hepáticos."
       ],
-      "storage": "Guardar en sitio fresco y seco protegido de la luz."
+      "storage": "Guardar en sitio fresco y seco protegido de la luz.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "creatina-monohidratada",
@@ -316,6 +382,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "arginina-pura",
+    "skuMaster": "BIO-ARG",
+    "brand": "bionativa-lab",
     "name": "L-Arginina Pura Grado USP",
     "shortName": "L-Arginina Pura",
     "category": "fuerza-deporte",
@@ -325,9 +393,53 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 64,
     "image": "img/products/arginina-pura-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 57.4,
+        "weight": "1 kg",
+        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-ARG-BOL-1K",
+        "image": "img/products/arginina-pura-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 67.65,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-ARG-POT-1K",
+        "image": "img/products/arginina-pura-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "tambor-25kg",
+        "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
+        "price": 1220,
+        "weight": "25 kg",
+        "format": "Tambor de Fibra Kraft con Aro Metálico",
+        "packagingType": "industrial-tambor",
+        "sku": "BIO-ARG-IND-25K",
+        "image": "img/products/industrial/arginina-pura-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      }
+    ],
     "price": 57.4,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Farmacéutico",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.5% Purity",
     "description": "Precursor natural directo del óxido nítrico (NO). Dilata los vasos sanguíneos, optimiza la llegada de nutrientes y oxígeno al tejido muscular y apoya la salud cardiovascular.",
@@ -344,45 +456,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Al convertirse en óxido nítrico en el endotelio, relaja las paredes arteriales, disminuye la presión y permite mayor flujo sanguíneo, traduciéndose en mayor congestión muscular y mejor oxigenación."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 57.4,
-        "weight": "1 kg",
-        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-ARG-BOL-1K",
-        "image": "img/products/arginina-pura-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 67.65,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-ARG-POT-1K",
-        "image": "img/products/arginina-pura-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "tambor-25kg",
-        "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
-        "price": 1220,
-        "weight": "25 kg",
-        "format": "Tambor de Fibra Kraft con Aro Metálico",
-        "packagingType": "industrial-tambor",
-        "sku": "BIO-ARG-IND-25K",
-        "image": "img/products/industrial/arginina-pura-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
     "dosage": {
-      "recommendedGrams": 3,
+      "administrationRoute": "oral",
+      "recommendedAmount": 3,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1/2 cucharadita dosificadora (3g)",
@@ -392,11 +468,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "L-Arginina Base Pura",
-      "casNumber": "74-79-3",
-      "mesh": "100-120 Mesh",
+      "composition": "100% L-Arginina Base Grado USP puro sin saborizantes.",
       "grade": "Grado Farmacéutico USP",
+      "appearance": "Polvo blanco cristalino",
       "solubility": "Soluble en agua (pH ligeramente alcalino)",
-      "appearance": "Polvo blanco cristalino"
+      "meshOrConcentration": "100-120 Mesh",
+      "casNumber": "74-79-3",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Disolver 3g en agua con unas gotas de limón para optimizar palatabilidad.",
@@ -404,7 +485,8 @@ const BIONATIVA_PRODUCTS = [
         "Personas con hipotensión arterial deben consultar a su médico.",
         "No superar la dosis sugerida."
       ],
-      "storage": "Conservar protegido de la humedad ambiental."
+      "storage": "Conservar protegido de la humedad ambiental.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "creatina-monohidratada",
@@ -414,6 +496,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "proteina-soya-vegetal",
+    "skuMaster": "BIO-SOY",
+    "brand": "bionativa-lab",
     "name": "Aislado de Proteína de Soya 90% No-GMO",
     "shortName": "Proteína de Soya 100% Vegetal",
     "category": "fuerza-deporte",
@@ -423,11 +507,68 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 89,
     "image": "img/products/proteina-soya-vegetal-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 35,
+        "regularPrice": 42,
+        "weight": "1 kg",
+        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-SOY-BOL-1K",
+        "image": "img/products/proteina-soya-vegetal-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-SOY-2026-01"
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 41.25,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-SOY-POT-1K",
+        "image": "img/products/proteina-soya-vegetal-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-SOY-2026-01"
+      },
+      {
+        "id": "saco-25kg",
+        "name": "Saco Industrial 25 kg (Mayorista / Granel)",
+        "price": 900,
+        "weight": "25 kg",
+        "format": "Saco Kraft Multicapa de Alta Resistencia",
+        "packagingType": "industrial-saco",
+        "sku": "BIO-SOY-IND-25K",
+        "image": "img/products/industrial/proteina-soya-vegetal-20kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-SOY-2026-01"
+      }
+    ],
     "price": 35,
     "unit": "1KG",
     "origin": "Materia Prima Americana No-GMO",
+    "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "90% Proteína Vegetal Aislada",
+    "coaPdf": "docs/coa/coa-proteina-soya.pdf",
+    "activeLot": {
+      "lotId": "BN-SOY-2026-01",
+      "expiryDate": "2029-09-01",
+      "analysisDate": "2026-09-10",
+      "purityResult": "90% Proteína Vegetal Aislada",
+      "assayMethod": "HPLC / USP",
+      "coaPdf": "docs/coa/coa-proteina-soya.pdf"
+    },
+    "regularPrice": 42,
+    "discountBadge": "-17% WEB",
+    "highlightBadge": "🌱 90% AISLADO VEGANO",
     "description": "Proteína vegetal pura extraída de soya no transgénica. Contiene todos los 9 aminoácidos esenciales, con altísimo contenido de glutamina y arginina natural. Textura suave ideal para batidos y repostería fitness.",
     "benefits": [
       "Proteína 100% vegetal de alto valor biológico y digestión limpia.",
@@ -442,49 +583,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Absolutamente, es 100% libre de lácteos, libre de lactosa y 100% vegetal, haciéndola muy suave para el estómago."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 35,
-        "weight": "1 kg",
-        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-SOY-BOL-1K",
-        "image": "img/products/proteina-soya-vegetal-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 41.25,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-SOY-POT-1K",
-        "image": "img/products/proteina-soya-vegetal-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "saco-25kg",
-        "name": "Saco Industrial 25 kg (Mayorista / Granel)",
-        "price": 900,
-        "weight": "25 kg",
-        "format": "Saco Kraft Multicapa de Alta Resistencia",
-        "packagingType": "industrial-saco",
-        "sku": "BIO-SOY-IND-25K",
-        "image": "img/products/industrial/proteina-soya-vegetal-20kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
-    "coaPdf": "docs/coa/coa-proteina-soya.pdf",
-    "regularPrice": 42,
-    "discountBadge": "-17% WEB",
-    "highlightBadge": "🌱 90% AISLADO VEGANO",
     "dosage": {
-      "recommendedGrams": 30,
+      "administrationRoute": "oral",
+      "recommendedAmount": 30,
       "unit": "g",
       "frequencyText": "1 a 2 tomas diarias",
       "scoopEquivalent": "2 cucharadas soperas colmadas (30g)",
@@ -494,11 +595,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Aislado de Proteína de Soya 90% (SPI 90)",
-      "casNumber": "9010-10-0",
-      "mesh": "100 Mesh",
+      "composition": "Aislado de proteína de soya 90% no transgénica sin aditivos.",
       "grade": "Grado Alimentario USP / FCC",
+      "appearance": "Polvo fino color beige natural, 100% vegetal",
       "solubility": "Dispersable en licuadora o shaker con líquido frío",
-      "appearance": "Polvo fino color beige natural, 100% vegetal"
+      "meshOrConcentration": "100 Mesh",
+      "casNumber": "9010-10-0",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Licuar o batir enérgicamente con 300ml de agua o bebida vegetal.",
@@ -506,7 +612,8 @@ const BIONATIVA_PRODUCTS = [
         "Contiene soya.",
         "Apto para dietas veganas y vegetarianas."
       ],
-      "storage": "Conservar en ambiente seco y fresco."
+      "storage": "Conservar en ambiente seco y fresco.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "creatina-monohidratada",
@@ -516,6 +623,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "colageno-hidrolizado",
+    "skuMaster": "BIO-COL",
+    "brand": "bionativa-lab",
     "name": "Péptidos Bioactivos de Colágeno Hidrolizado Puro (Tipo I & III)",
     "shortName": "Péptidos Bioactivos de Colágeno",
     "category": "salud-articular",
@@ -525,11 +634,68 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 165,
     "image": "img/products/colageno-hidrolizado-bolsa-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 56,
+        "regularPrice": 68,
+        "weight": "1 kg",
+        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-COL-BOL-1K",
+        "image": "img/products/colageno-hidrolizado-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-COL-2026-01"
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 66,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-COL-POT-1K",
+        "image": "img/products/colageno-hidrolizado-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-COL-2026-01"
+      },
+      {
+        "id": "saco-20kg",
+        "name": "Saco Industrial 20 kg (Mayorista / Granel)",
+        "price": 1050,
+        "weight": "20 kg",
+        "format": "Saco Industrial Kraft Multicapa Hermético",
+        "packagingType": "industrial-saco",
+        "sku": "BIO-COL-IND-20K",
+        "image": "img/products/industrial/colageno-hidrolizado-20kg.jpg",
+        "isBulk": true,
+        "weightGrams": 20000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-COL-2026-01"
+      }
+    ],
     "price": 56,
     "unit": "1KG",
     "origin": "Materia Prima Americana (Bovino Pastoreo)",
+    "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "Péptidos bioactivos de bajo peso molecular (<3000 Da)",
+    "coaPdf": "docs/coa/coa-colageno-hidrolizado.pdf",
+    "activeLot": {
+      "lotId": "BN-COL-2026-01",
+      "expiryDate": "2029-09-01",
+      "analysisDate": "2026-09-10",
+      "purityResult": "Péptidos bioactivos de bajo peso molecular (<3000 Da)",
+      "assayMethod": "HPLC / USP",
+      "coaPdf": "docs/coa/coa-colageno-hidrolizado.pdf"
+    },
+    "regularPrice": 68,
+    "discountBadge": "-18% WEB",
+    "highlightBadge": "✨ PÉPTIDOS BIOACTIVOS",
     "description": "Péptidos de colágeno bioactivos hidrolizados enzimáticamente. Al tener un peso molecular ultrabajo, se absorbe en más del 90% en el tracto digestivo estimulando la producción natural de colágeno en piel, cartílagos y ligamentos.",
     "benefits": [
       "Rejuvenece la elasticidad de la piel, hidrata y fortalece la hebra capilar.",
@@ -544,49 +710,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "A partir de los 25 a 30 años la producción endógena de colágeno decae a un ritmo de 1.5% anual. La suplementación diaria mantiene la turgencia cutánea y la salud de las articulaciones."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 56,
-        "weight": "1 kg",
-        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-COL-BOL-1K",
-        "image": "img/products/colageno-hidrolizado-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 66,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-COL-POT-1K",
-        "image": "img/products/colageno-hidrolizado-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "saco-20kg",
-        "name": "Saco Industrial 20 kg (Mayorista / Granel)",
-        "price": 1050,
-        "weight": "20 kg",
-        "format": "Saco Industrial Kraft Multicapa Hermético",
-        "packagingType": "industrial-saco",
-        "sku": "BIO-COL-IND-20K",
-        "image": "img/products/industrial/colageno-hidrolizado-20kg.jpg",
-        "isBulk": true,
-        "weightGrams": 20000
-      }
-    ],
-    "coaPdf": "docs/coa/coa-colageno-hidrolizado.pdf",
-    "regularPrice": 68,
-    "discountBadge": "-18% WEB",
-    "highlightBadge": "✨ PÉPTIDOS BIOACTIVOS",
     "dosage": {
-      "recommendedGrams": 10,
+      "administrationRoute": "oral",
+      "recommendedAmount": 10,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1 cucharada sopera colmada (10g)",
@@ -596,18 +722,25 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Péptidos Bioactivos de Colágeno Bovino Tipo I y III",
-      "casNumber": "9007-34-5",
-      "mesh": "Instantáneo aglomerado (< 3000 Daltons)",
+      "composition": "100% Péptidos de colágeno hidrolizado bovino tipo I y III. Sin azúcar, sin maltodextrina.",
       "grade": "Grado Farmacéutico y Nutracéutico USP",
+      "appearance": "Polvo blanco granular fino, sin olor residual",
       "solubility": "Disolución instantánea y transparente en frío o caliente",
-      "appearance": "Polvo blanco granular fino, sin olor residual"
+      "meshOrConcentration": "Instantáneo aglomerado (< 3000 Daltons)",
+      "casNumber": "9007-34-5",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Mezclar 10g en café, zumo, té o agua. Para máxima absorción, combinar con Vitamina C.",
       "warnings": [
-        "Uso continuado mínimo de 60 a 90 días para comprobar beneficios articulares y en la piel."
+        "No superar la dosis diaria recomendada.",
+        "Consulte a su médico en caso de embarazo, lactancia o condición clínica."
       ],
-      "storage": "Mantener en recipiente seco, cerrado contra la humedad."
+      "storage": "Mantener en recipiente seco, cerrado contra la humedad.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "ascorbato-de-sodio",
@@ -617,6 +750,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "glucosamina-sulfato",
+    "skuMaster": "BIO-GLS",
+    "brand": "bionativa-lab",
     "name": "Sulfato de Glucosamina Grado Farmacéutico",
     "shortName": "Sulfato de Glucosamina",
     "category": "salud-articular",
@@ -626,11 +761,68 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 94,
     "image": "img/products/glucosamina-sulfato-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 60.2,
+        "regularPrice": 72,
+        "weight": "1 kg",
+        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-GLS-BOL-1K",
+        "image": "img/products/glucosamina-sulfato-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-GLS-2026-01"
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 70.95,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-GLS-POT-1K",
+        "image": "img/products/glucosamina-sulfato-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-GLS-2026-01"
+      },
+      {
+        "id": "caja-25kg",
+        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
+        "price": 1280,
+        "weight": "25 kg",
+        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
+        "packagingType": "industrial-caja",
+        "sku": "BIO-GLS-IND-25K",
+        "image": "img/products/industrial/glucosamina-sulfato-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-GLS-2026-01"
+      }
+    ],
     "price": 60.2,
     "unit": "1KG",
     "origin": "Materia Prima Americana Certificada",
+    "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "99.2% Pureza HPLC",
+    "coaPdf": "docs/coa/coa-glucosamina-sulfato.pdf",
+    "activeLot": {
+      "lotId": "BN-GLS-2026-01",
+      "expiryDate": "2029-09-01",
+      "analysisDate": "2026-09-10",
+      "purityResult": "99.2% Pureza HPLC",
+      "assayMethod": "HPLC / USP",
+      "coaPdf": "docs/coa/coa-glucosamina-sulfato.pdf"
+    },
+    "regularPrice": 72,
+    "discountBadge": "-16% WEB",
+    "highlightBadge": "🦴 SALUD ARTICULAR",
     "description": "Componente esencial de los glucosaminoglicanos y proteoglicanos del cartílago articular y líquido sinovial. Ideal para deportistas con alto impacto articular y personas con osteoartritis o rigidez matutina.",
     "benefits": [
       "Protege y estimula la síntesis de cartílago articular nuevo.",
@@ -645,49 +837,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Sí, es la sinergia ideal. El colágeno aporta la estructura proteica del tejido conectivo y la glucosamina promueve la retención del líquido sinovial lubricante."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 60.2,
-        "weight": "1 kg",
-        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-GLS-BOL-1K",
-        "image": "img/products/glucosamina-sulfato-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 70.95,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-GLS-POT-1K",
-        "image": "img/products/glucosamina-sulfato-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "caja-25kg",
-        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
-        "price": 1280,
-        "weight": "25 kg",
-        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
-        "packagingType": "industrial-caja",
-        "sku": "BIO-GLS-IND-25K",
-        "image": "img/products/industrial/glucosamina-sulfato-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
-    "coaPdf": "docs/coa/coa-glucosamina-sulfato.pdf",
-    "regularPrice": 72,
-    "discountBadge": "-16% WEB",
-    "highlightBadge": "🦴 SALUD ARTICULAR",
     "dosage": {
-      "recommendedGrams": 1.5,
+      "administrationRoute": "oral",
+      "recommendedAmount": 1.5,
       "unit": "g",
       "frequencyText": "1 vez al día con alimento",
       "scoopEquivalent": "1/2 cucharadita dosificadora (1.5g)",
@@ -697,11 +849,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Sulfato de D-Glucosamina 2KCl",
-      "casNumber": "38899-05-7",
-      "mesh": "80-100 Mesh",
+      "composition": "Sulfato de glucosamina puro grado USP.",
       "grade": "Grado Farmacéutico USP",
+      "appearance": "Cristales blancos limpios y homogéneos",
       "solubility": "Completamente soluble en agua",
-      "appearance": "Cristales blancos limpios y homogéneos"
+      "meshOrConcentration": "80-100 Mesh",
+      "casNumber": "38899-05-7",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Tomar disuelto en agua durante las comidas.",
@@ -709,7 +866,8 @@ const BIONATIVA_PRODUCTS = [
         "Personas con alergia a mariscos y crustáceos deben consultar a su médico.",
         "Monitorear en pacientes diabéticos."
       ],
-      "storage": "Conservar cerrado en ambiente templado y seco."
+      "storage": "Conservar cerrado en ambiente templado y seco.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "sulfato-de-condroitina",
@@ -719,6 +877,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "ascorbato-de-sodio",
+    "skuMaster": "BIO-ASC",
+    "brand": "bionativa-lab",
     "name": "Ascorbato de Sodio Grado Farmacéutico (Vitamina C No Ácida)",
     "shortName": "Ascorbato de Sodio (Vitamina C)",
     "category": "salud-articular",
@@ -728,11 +888,59 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 132,
     "image": "img/products/ascorbato-de-sodio-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 98,
+        "regularPrice": 115,
+        "weight": "1 kg",
+        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-ASC-BOL-1K",
+        "image": "img/products/ascorbato-de-sodio-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 115.5,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-ASC-POT-1K",
+        "image": "img/products/ascorbato-de-sodio-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "caja-25kg",
+        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
+        "price": 2050,
+        "weight": "25 kg",
+        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
+        "packagingType": "industrial-caja",
+        "sku": "BIO-ASC-IND-25K",
+        "image": "img/products/industrial/ascorbato-de-sodio-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      }
+    ],
     "price": 98,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado USP / FCC",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.8% Grado Farmacéutico",
+    "regularPrice": 115,
+    "discountBadge": "-15% WEB",
+    "highlightBadge": "🍊 VITAMINA C ALCALINA",
     "description": "Forma amortiguada (tamponada) y no ácida de la Vitamina C. Con un pH neutro entre 7.0 y 8.0, permite megadosis de antioxidantes sin irritar el estómago, acidez gástrica ni reflujo.",
     "benefits": [
       "Refuerza potentemente el sistema inmunitario contra virus y patógenos.",
@@ -747,48 +955,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "El ácido ascórbico tiene un pH muy ácido (2.5) que puede provocar ardor en estómagos sensibles. El ascorbato de sodio tiene pH neutro (7.4), se asimila con mayor suavidad y permite mayor tolerancia digestiva."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 98,
-        "weight": "1 kg",
-        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-ASC-BOL-1K",
-        "image": "img/products/ascorbato-de-sodio-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 115.5,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-ASC-POT-1K",
-        "image": "img/products/ascorbato-de-sodio-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "caja-25kg",
-        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
-        "price": 2050,
-        "weight": "25 kg",
-        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
-        "packagingType": "industrial-caja",
-        "sku": "BIO-ASC-IND-25K",
-        "image": "img/products/industrial/ascorbato-de-sodio-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
-    "regularPrice": 115,
-    "discountBadge": "-15% WEB",
-    "highlightBadge": "🍊 VITAMINA C ALCALINA",
     "dosage": {
-      "recommendedGrams": 1,
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1/4 a 1/2 cucharadita (1000mg)",
@@ -798,18 +967,25 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "L-Ascorbato de Sodio (Vitamina C no ácida)",
-      "casNumber": "134-03-2",
-      "mesh": "100 Mesh cristalino",
+      "composition": "100% Ascorbato de Sodio puro grado USP. Sin excipientes.",
       "grade": "Grado Farmacéutico USP / FCC",
+      "appearance": "Polvo cristalino blanco a ligeramente amarillento",
       "solubility": "Muy soluble en agua (pH neutro 7.0 - 7.5)",
-      "appearance": "Polvo cristalino blanco a ligeramente amarillento"
+      "meshOrConcentration": "100 Mesh cristalino",
+      "casNumber": "134-03-2",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Disolver 1g en agua o zumo. No produce acidez estomacal.",
       "warnings": [
-        "Aporta aproximadamente 111mg de sodio por cada gramo."
+        "No superar la dosis diaria recomendada.",
+        "Consulte a su médico en caso de embarazo, lactancia o condición clínica."
       ],
-      "storage": "Proteger de la luz y el aire para prevenir oxidación."
+      "storage": "Proteger de la luz y el aire para prevenir oxidación.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "colageno-hidrolizado",
@@ -819,6 +995,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "espirulina-pura",
+    "skuMaster": "BIO-ESP",
+    "brand": "bionativa-lab",
     "name": "Espirulina Azul-Verde Orgánica en Polvo",
     "shortName": "Espirulina Pura 100%",
     "category": "salud-articular",
@@ -828,11 +1006,68 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 88,
     "image": "img/products/espirulina-pura-bolsa-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 91,
+        "regularPrice": 105,
+        "weight": "1 kg",
+        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-ESP-BOL-1K",
+        "image": "img/products/espirulina-pura-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-ESP-2026-01"
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 107.25,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-ESP-POT-1K",
+        "image": "img/products/espirulina-pura-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-ESP-2026-01"
+      },
+      {
+        "id": "tambor-25kg",
+        "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
+        "price": 2000,
+        "weight": "25 kg",
+        "format": "Tambor de Fibra Kraft con Aro Metálico",
+        "packagingType": "industrial-tambor",
+        "sku": "BIO-ESP-IND-25K",
+        "image": "img/products/industrial/espirulina-pura-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-ESP-2026-01"
+      }
+    ],
     "price": 91,
     "unit": "1KG",
     "origin": "Cultivo Certificado Grado Americano",
+    "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "100% Arthrospira platensis seca y micronizada",
+    "coaPdf": "docs/coa/coa-espirulina-pura.pdf",
+    "activeLot": {
+      "lotId": "BN-ESP-2026-01",
+      "expiryDate": "2029-09-01",
+      "analysisDate": "2026-09-10",
+      "purityResult": "100% Arthrospira platensis seca y micronizada",
+      "assayMethod": "HPLC / USP",
+      "coaPdf": "docs/coa/coa-espirulina-pura.pdf"
+    },
+    "regularPrice": 105,
+    "discountBadge": "-13% WEB",
+    "highlightBadge": "🌿 SUPERALIMENTO 100%",
     "description": "Microalga catalogada como uno de los alimentos más densos en nutrientes del planeta por la OMS y la NASA. Fuente excepcional de ficocianina, hierro de fácil asimilación, clorofila y aminoácidos.",
     "benefits": [
       "Súper concentrado de nutrientes, hierro y proteínas naturales.",
@@ -847,49 +1082,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Sí, es una de las fuentes naturales más biodisponibles de hierro quelado vegetal y ficocianina, que estimulan la producción de glóbulos rojos."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 91,
-        "weight": "1 kg",
-        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-ESP-BOL-1K",
-        "image": "img/products/espirulina-pura-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 107.25,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-ESP-POT-1K",
-        "image": "img/products/espirulina-pura-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "tambor-25kg",
-        "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
-        "price": 2000,
-        "weight": "25 kg",
-        "format": "Tambor de Fibra Kraft con Aro Metálico",
-        "packagingType": "industrial-tambor",
-        "sku": "BIO-ESP-IND-25K",
-        "image": "img/products/industrial/espirulina-pura-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
-    "coaPdf": "docs/coa/coa-espirulina-pura.pdf",
-    "regularPrice": 105,
-    "discountBadge": "-13% WEB",
-    "highlightBadge": "🌿 SUPERALIMENTO 100%",
     "dosage": {
-      "recommendedGrams": 3,
+      "administrationRoute": "oral",
+      "recommendedAmount": 3,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1 cucharadita de té (3g)",
@@ -899,11 +1094,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Arthrospira platensis 100% Pura",
-      "casNumber": "223749-75-5",
-      "mesh": "Micro-fino 120 Mesh",
+      "composition": "100% Espirulina pura deshidratada en frío sin conservantes.",
       "grade": "Grado Nutracéutico / Alimentario",
+      "appearance": "Polvo verde oscuro profundo con aroma vegetal marino suave",
       "solubility": "Dispersión uniforme en líquidos y batidos",
-      "appearance": "Polvo verde oscuro profundo con aroma vegetal marino suave"
+      "meshOrConcentration": "Micro-fino 120 Mesh",
+      "casNumber": "223749-75-5",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Incorporar a licuados, bowls o agua de piña.",
@@ -911,7 +1111,8 @@ const BIONATIVA_PRODUCTS = [
         "No apto para personas con fenilcetonuria.",
         "Consultar en caso de patologías tiroideas."
       ],
-      "storage": "Mantener herméticamente sellado en lugar oscuro."
+      "storage": "Mantener herméticamente sellado en lugar oscuro.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "ascorbato-de-sodio",
@@ -921,6 +1122,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "te-verde-extracto",
+    "skuMaster": "BIO-TEV",
+    "brand": "bionativa-lab",
     "name": "Té Verde Puro en Polvo Grado EGCG",
     "shortName": "Té Verde Concentrado",
     "category": "salud-articular",
@@ -930,9 +1133,53 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 57,
     "image": "img/products/te-verde-extracto-bolsa-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 194.6,
+        "weight": "1 kg",
+        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-TEV-BOL-1K",
+        "image": "img/products/te-verde-extracto-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 229.35,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-TEV-POT-1K",
+        "image": "img/products/te-verde-extracto-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "tambor-25kg",
+        "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
+        "price": 4100,
+        "weight": "25 kg",
+        "format": "Tambor de Fibra Kraft con Aro Metálico",
+        "packagingType": "industrial-tambor",
+        "sku": "BIO-TEV-IND-25K",
+        "image": "img/products/industrial/te-verde-extracto-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      }
+    ],
     "price": 194.6,
     "unit": "1KG",
     "origin": "Materia Prima Americana Estandarizada",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "Alto contenido de Polifenoles y Epigalocatequina (EGCG)",
     "description": "Extracto concentrado de Camellia sinensis con altísima concentración de catequinas y antioxidantes celulares. Estimula la termogénesis natural y protege las células contra el daño oxidativo y el envejecimiento prematuro.",
@@ -949,45 +1196,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Por las mañanas en ayunas o 30 minutos antes del ejercicio físico para optimizar la utilización de ácidos grasos como fuente de energía."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 194.6,
-        "weight": "1 kg",
-        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-TEV-BOL-1K",
-        "image": "img/products/te-verde-extracto-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 229.35,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-TEV-POT-1K",
-        "image": "img/products/te-verde-extracto-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "tambor-25kg",
-        "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
-        "price": 4100,
-        "weight": "25 kg",
-        "format": "Tambor de Fibra Kraft con Aro Metálico",
-        "packagingType": "industrial-tambor",
-        "sku": "BIO-TEV-IND-25K",
-        "image": "img/products/industrial/te-verde-extracto-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
     "dosage": {
-      "recommendedGrams": 1,
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1/4 cucharadita dosificadora (1g)",
@@ -997,11 +1208,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Extracto de Camellia sinensis estandarizado (>50% Polifenoles, >30% EGCG)",
-      "casNumber": "84650-60-2",
-      "mesh": "80 Mesh",
+      "composition": "100% Extracto de hojas de Camellia sinensis estandarizado en catequinas.",
       "grade": "Grado Alimentario / Nutracéutico",
+      "appearance": "Polvo fino marrón verdoso característico",
       "solubility": "Soluble en agua templada o caliente",
-      "appearance": "Polvo fino marrón verdoso característico"
+      "meshOrConcentration": "80 Mesh",
+      "casNumber": "84650-60-2",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Disolver en agua tibia o mezclar en bebidas pre-entreno.",
@@ -1009,7 +1225,8 @@ const BIONATIVA_PRODUCTS = [
         "Contiene cafeína / teína natural.",
         "Evitar tomar de noche."
       ],
-      "storage": "Conservar en lugar fresco protegido de la luz."
+      "storage": "Conservar en lugar fresco protegido de la luz.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "l-carnitina-base",
@@ -1019,6 +1236,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "citrato-de-magnesio",
+    "skuMaster": "BIO-CMG",
+    "brand": "bionativa-lab",
     "name": "Citrato de Magnesio Puro Grado USP (Alta Biodisponibilidad)",
     "shortName": "Citrato de Magnesio",
     "category": "estres-descanso",
@@ -1028,11 +1247,68 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 220,
     "image": "img/products/citrato-de-magnesio-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 22.4,
+        "regularPrice": 28,
+        "weight": "1 kg",
+        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-CMG-BOL-1K",
+        "image": "img/products/citrato-de-magnesio-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-CMG-2026-01"
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 26.4,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-CMG-POT-1K",
+        "image": "img/products/citrato-de-magnesio-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-CMG-2026-01"
+      },
+      {
+        "id": "caja-25kg",
+        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
+        "price": 470,
+        "weight": "25 kg",
+        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
+        "packagingType": "industrial-caja",
+        "sku": "BIO-CMG-IND-25K",
+        "image": "img/products/industrial/citrato-de-magnesio-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-CMG-2026-01"
+      }
+    ],
     "price": 22.4,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado USP",
+    "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "15%-16% Magnesio elemental biodisponible",
+    "coaPdf": "docs/coa/coa-citrato-magnesio.pdf",
+    "activeLot": {
+      "lotId": "BN-CMG-2026-01",
+      "expiryDate": "2029-09-01",
+      "analysisDate": "2026-09-10",
+      "purityResult": "15%-16% Magnesio elemental biodisponible",
+      "assayMethod": "HPLC / USP",
+      "coaPdf": "docs/coa/coa-citrato-magnesio.pdf"
+    },
+    "regularPrice": 28,
+    "discountBadge": "-20% WEB",
+    "highlightBadge": "🔥 MÁS VENDIDO",
     "description": "El magnesio más popular y efectivo para regular el tránsito intestinal, relajar los músculos y combatir calambres nocturnos. Su unión a ácido cítrico garantiza una excelente asimilación en el organismo.",
     "benefits": [
       "Mejora notablemente el tránsito digestivo combatiendo el estreñimiento de forma suave.",
@@ -1051,49 +1327,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Al importar directamente materia prima americana certificada a granel y eliminar intermediarios, ofrecemos máxima pureza grado farmacéutico a un costo accesible para toda la familia en Perú."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 22.4,
-        "weight": "1 kg",
-        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-CMG-BOL-1K",
-        "image": "img/products/citrato-de-magnesio-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 26.4,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-CMG-POT-1K",
-        "image": "img/products/citrato-de-magnesio-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "caja-25kg",
-        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
-        "price": 470,
-        "weight": "25 kg",
-        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
-        "packagingType": "industrial-caja",
-        "sku": "BIO-CMG-IND-25K",
-        "image": "img/products/industrial/citrato-de-magnesio-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
-    "coaPdf": "docs/coa/coa-citrato-magnesio.pdf",
-    "regularPrice": 28,
-    "discountBadge": "-20% WEB",
-    "highlightBadge": "🔥 MÁS VENDIDO",
     "dosage": {
-      "recommendedGrams": 2.5,
+      "administrationRoute": "oral",
+      "recommendedAmount": 2.5,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1/2 cucharadita dosificadora (2.5g = ~400mg Magnesio elemental)",
@@ -1103,11 +1339,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Citrato de Magnesio Tribásico Anhidro",
-      "casNumber": "3344-18-2",
-      "mesh": "80-100 Mesh",
+      "composition": "100% Citrato de Magnesio anhidro grado USP. Sin saborizantes ni rellenos.",
       "grade": "Grado Farmacéutico USP / FCC",
+      "appearance": "Polvo blanco fino de sabor cítrico suave",
       "solubility": "Excelente solubilidad en agua a temperatura ambiente",
-      "appearance": "Polvo blanco fino de sabor cítrico suave"
+      "meshOrConcentration": "80-100 Mesh",
+      "casNumber": "3344-18-2",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Disolver 2.5g en un vaso con 200ml de agua tibia o fría.",
@@ -1115,7 +1356,8 @@ const BIONATIVA_PRODUCTS = [
         "Ajustar a 1.5g si se presentan evacuaciones blandas.",
         "Consultar con médico en caso de insuficiencia renal."
       ],
-      "storage": "Cerrar inmediatamente para evitar que absorba humedad ambiental."
+      "storage": "Cerrar inmediatamente para evitar que absorba humedad ambiental.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "citrato-de-potasio",
@@ -1125,6 +1367,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "glicinato-de-magnesio",
+    "skuMaster": "BIO-GMG",
+    "brand": "bionativa-lab",
     "name": "Bisglicinato / Glicinato de Magnesio Quelado de Máxima Asimilación",
     "shortName": "Glicinato de Magnesio",
     "category": "estres-descanso",
@@ -1134,11 +1378,68 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 198,
     "image": "img/products/glicinato-de-magnesio-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 49,
+        "regularPrice": 58,
+        "weight": "1 kg",
+        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-GMG-BOL-1K",
+        "image": "img/products/glicinato-de-magnesio-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-GMG-2026-01"
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 57.75,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-GMG-POT-1K",
+        "image": "img/products/glicinato-de-magnesio-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-GMG-2026-01"
+      },
+      {
+        "id": "caja-25kg",
+        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
+        "price": 1190,
+        "weight": "25 kg",
+        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
+        "packagingType": "industrial-caja",
+        "sku": "BIO-GMG-IND-25K",
+        "image": "img/products/industrial/glicinato-de-magnesio-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": "BN-GMG-2026-01"
+      }
+    ],
     "price": 49,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Quelado Puro",
+    "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "Bisglicinato 100% quelado grado terapéutico",
+    "coaPdf": "docs/coa/coa-bisglicinato-magnesio.pdf",
+    "activeLot": {
+      "lotId": "BN-GMG-2026-01",
+      "expiryDate": "2029-09-01",
+      "analysisDate": "2026-09-10",
+      "purityResult": "Bisglicinato 100% quelado grado terapéutico",
+      "assayMethod": "HPLC / USP",
+      "coaPdf": "docs/coa/coa-bisglicinato-magnesio.pdf"
+    },
+    "regularPrice": 58,
+    "discountBadge": "-15% WEB",
+    "highlightBadge": "🌙 NOBLE & QUELADO",
     "description": "La forma más avanzada y delicada de magnesio. Al estar unido a dos moléculas de glicina, no causa efecto laxante ni malestar gástrico. Cruza con facilidad hacia el sistema nervioso central promoviendo relajación cerebral profunda y sueño REM.",
     "benefits": [
       "Máxima biodisponibilidad y absorción celular sin provocar diarrea o cólicos.",
@@ -1153,49 +1454,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "A diferencia de otras sales minerales que absorben agua en el colon, el enlace de quelación protege al magnesio para que se absorba por las vías de los dipéptidos, eliminando cualquier molestia digestiva."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 49,
-        "weight": "1 kg",
-        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-GMG-BOL-1K",
-        "image": "img/products/glicinato-de-magnesio-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 57.75,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-GMG-POT-1K",
-        "image": "img/products/glicinato-de-magnesio-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "caja-25kg",
-        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
-        "price": 1190,
-        "weight": "25 kg",
-        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
-        "packagingType": "industrial-caja",
-        "sku": "BIO-GMG-IND-25K",
-        "image": "img/products/industrial/glicinato-de-magnesio-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
-    "coaPdf": "docs/coa/coa-bisglicinato-magnesio.pdf",
-    "regularPrice": 58,
-    "discountBadge": "-15% WEB",
-    "highlightBadge": "🌙 NOBLE & QUELADO",
     "dosage": {
-      "recommendedGrams": 2.5,
+      "administrationRoute": "oral",
+      "recommendedAmount": 2.5,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1/2 cucharadita dosificadora (2.5g)",
@@ -1205,11 +1466,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Bisglicinato de Magnesio Quelado 100% Puro",
-      "casNumber": "14783-68-7",
-      "mesh": "80-100 Mesh",
+      "composition": "100% Bisglicinato de Magnesio quelado puro.",
       "grade": "Grado Farmacéutico USP",
+      "appearance": "Polvo blanco cristalino sin efecto laxante",
       "solubility": "Soluble en agua, alta tolerancia gastrointestinal",
-      "appearance": "Polvo blanco cristalino sin efecto laxante"
+      "meshOrConcentration": "80-100 Mesh",
+      "casNumber": "14783-68-7",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Tomar disuelto en agua antes de acostarse.",
@@ -1217,7 +1483,8 @@ const BIONATIVA_PRODUCTS = [
         "Ideal para personas con sensibilidad digestiva.",
         "No exceder la dosis diaria recomendada."
       ],
-      "storage": "Conservar en lugar seco a menos de 25°C."
+      "storage": "Conservar en lugar seco a menos de 25°C.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "ashwagandha-pura",
@@ -1227,6 +1494,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "cloruro-de-magnesio",
+    "skuMaster": "BIO-CLMG",
+    "brand": "bionativa-lab",
     "name": "Cloruro de Magnesio Hexahidratado Grado USP Cristalino",
     "shortName": "Cloruro de Magnesio",
     "category": "estres-descanso",
@@ -1236,11 +1505,59 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 140,
     "image": "img/products/cloruro-de-magnesio-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 20.3,
+        "regularPrice": 25,
+        "weight": "1 kg",
+        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-CLMG-BOL-1K",
+        "image": "img/products/cloruro-de-magnesio-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 23.93,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-CLMG-POT-1K",
+        "image": "img/products/cloruro-de-magnesio-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "caja-25kg",
+        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
+        "price": 425,
+        "weight": "25 kg",
+        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
+        "packagingType": "industrial-caja",
+        "sku": "BIO-CLMG-IND-25K",
+        "image": "img/products/industrial/cloruro-de-magnesio-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      }
+    ],
     "price": 20.3,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Farmacéutico",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.0% - 101.0% Grado USP",
+    "regularPrice": 25,
+    "discountBadge": "-19% WEB",
+    "highlightBadge": "⚡ SAL MINERAL PURA",
     "description": "La sal clásica de magnesio más tradicional en Perú. Altamente biodisponible y desintoxicante. Aporta iones de cloro y magnesio esenciales para el equilibrio electrolítico, la fijación de calcio en huesos y el alivio articular.",
     "benefits": [
       "Fortalece el sistema óseo y estimula la correcta fijación del calcio.",
@@ -1255,48 +1572,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Al ser una sal higroscópica (atrae humedad del ambiente), debe mantenerse en su envase bien sellado en un lugar seco y fresco, o preparar la solución líquida en refrigeración."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 20.3,
-        "weight": "1 kg",
-        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-CLMG-BOL-1K",
-        "image": "img/products/cloruro-de-magnesio-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 23.93,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-CLMG-POT-1K",
-        "image": "img/products/cloruro-de-magnesio-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "caja-25kg",
-        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
-        "price": 425,
-        "weight": "25 kg",
-        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
-        "packagingType": "industrial-caja",
-        "sku": "BIO-CLMG-IND-25K",
-        "image": "img/products/industrial/cloruro-de-magnesio-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
-    "regularPrice": 25,
-    "discountBadge": "-19% WEB",
-    "highlightBadge": "⚡ SAL MINERAL PURA",
     "dosage": {
-      "recommendedGrams": 2,
+      "administrationRoute": "oral",
+      "recommendedAmount": 2,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1/2 cucharadita rasa (2g) o para salmuera",
@@ -1306,11 +1584,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Cloruro de Magnesio Hexahidratado",
-      "casNumber": "7791-18-6",
-      "mesh": "Cristales / Escamas",
+      "composition": "100% Cloruro de Magnesio hexahidratado puro grado farmacéutico.",
       "grade": "Grado Farmacéutico USP / FCC",
+      "appearance": "Cristales blancos translúcidos o escamas incoloras",
       "solubility": "Extremadamente soluble en agua",
-      "appearance": "Cristales blancos translúcidos o escamas incoloras"
+      "meshOrConcentration": "Cristales / Escamas",
+      "casNumber": "7791-18-6",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Disolver 2g en un vaso de agua con unas gotas de limón para atenuar el sabor amargo.",
@@ -1318,7 +1601,8 @@ const BIONATIVA_PRODUCTS = [
         "Sabor amargo mineral natural.",
         "Contraindicado en caso de diarreas agudas o insuficiencia renal."
       ],
-      "storage": "Altamente delicuescente: mantener el envase hermético."
+      "storage": "Altamente delicuescente: mantener el envase hermético.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "citrato-de-potasio",
@@ -1328,6 +1612,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "citrato-de-potasio",
+    "skuMaster": "BIO-CPOT",
+    "brand": "bionativa-lab",
     "name": "Citrato de Potasio Puro Grado USP",
     "shortName": "Citrato de Potasio",
     "category": "estres-descanso",
@@ -1337,9 +1623,53 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 110,
     "image": "img/products/citrato-de-potasio-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 21,
+        "weight": "1 kg",
+        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-CPOT-BOL-1K",
+        "image": "img/products/citrato-de-potasio-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 24.75,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-CPOT-POT-1K",
+        "image": "img/products/citrato-de-potasio-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "caja-25kg",
+        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
+        "price": 440,
+        "weight": "25 kg",
+        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
+        "packagingType": "industrial-caja",
+        "sku": "BIO-CPOT-IND-25K",
+        "image": "img/products/industrial/citrato-de-potasio-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      }
+    ],
     "price": 21,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado USP / FCC",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.5% Purity",
     "description": "Sal potásica que alcaliniza la orina y equilibra el exceso de sodio en la dieta moderna. Mineral electrolítico indispensable para la regulación de la tensión arterial y la prevención de la formación de cristales renales.",
@@ -1356,45 +1686,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "El potasio y el magnesio trabajan juntos en la bomba sodio-potasio de todas las células del cuerpo. Juntos potencian la hidratación celular, previenen calambres y regulan el ritmo cardíaco."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 21,
-        "weight": "1 kg",
-        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-CPOT-BOL-1K",
-        "image": "img/products/citrato-de-potasio-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 24.75,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-CPOT-POT-1K",
-        "image": "img/products/citrato-de-potasio-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "caja-25kg",
-        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
-        "price": 440,
-        "weight": "25 kg",
-        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
-        "packagingType": "industrial-caja",
-        "sku": "BIO-CPOT-IND-25K",
-        "image": "img/products/industrial/citrato-de-potasio-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
     "dosage": {
-      "recommendedGrams": 2,
+      "administrationRoute": "oral",
+      "recommendedAmount": 2,
       "unit": "g",
       "frequencyText": "1 vez al día con alimento",
       "scoopEquivalent": "1/2 cucharadita dosificadora (2g = ~760mg Potasio elemental)",
@@ -1404,11 +1698,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Citrato de Potasio Monohidratado",
-      "casNumber": "6100-05-6",
-      "mesh": "Granular fino / 80 Mesh",
+      "composition": "100% Citrato de Potasio monohidratado puro grado USP.",
       "grade": "Grado Farmacéutico USP / FCC",
+      "appearance": "Polvo cristalino blanco o granular inodoro",
       "solubility": "Completamente soluble en agua",
-      "appearance": "Polvo cristalino blanco o granular inodoro"
+      "meshOrConcentration": "Granular fino / 80 Mesh",
+      "casNumber": "6100-05-6",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Disolver siempre en un vaso grande de agua (mínimo 250ml) y consumir junto con comidas.",
@@ -1416,7 +1715,8 @@ const BIONATIVA_PRODUCTS = [
         "Contraindicado en insuficiencia renal severa o hiperpotasemia.",
         "No tomar con el estómago completamente vacío."
       ],
-      "storage": "Guardar en envase cerrado en ambiente seco."
+      "storage": "Guardar en envase cerrado en ambiente seco.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "citrato-de-magnesio",
@@ -1426,6 +1726,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "sal-de-epsom",
+    "skuMaster": "BIO-EPS",
+    "brand": "bionativa-lab",
     "name": "Sal de Epsom (Sulfato de Magnesio Grado USP Puro)",
     "shortName": "Sal de Epsom",
     "category": "estres-descanso",
@@ -1435,11 +1737,59 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 175,
     "image": "img/products/sal-de-epsom-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 12.5,
+        "regularPrice": 16,
+        "weight": "1 kg",
+        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-EPS-BOL-1K",
+        "image": "img/products/sal-de-epsom-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 14.73,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-EPS-POT-1K",
+        "image": "img/products/sal-de-epsom-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "caja-25kg",
+        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
+        "price": 260,
+        "weight": "25 kg",
+        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
+        "packagingType": "industrial-caja",
+        "sku": "BIO-EPS-IND-25K",
+        "image": "img/products/industrial/sal-de-epsom-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      }
+    ],
     "price": 12.5,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado USP",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.9% Sulfato de Magnesio Heptahidratado USP",
+    "regularPrice": 16,
+    "discountBadge": "-22% WEB",
+    "highlightBadge": "🛁 PURIFICACIÓN PURA",
     "description": "Sulfato de magnesio puro para baños de inmersión relajantes, pediluvios y desintoxicación corporal. El magnesio se absorbe de forma transdérmica relajando los músculos sobrecargados y aliviando el estrés acumulado.",
     "benefits": [
       "Relaja profundamente músculos cansados tras entrenamientos intensos.",
@@ -1454,48 +1804,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Es el uso más recomendado y reconfortante. En solo 15 minutos relaja la musculatura plantar, reduce la hinchazón y mejora la circulación de retorno."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 12.5,
-        "weight": "1 kg",
-        "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-EPS-BOL-1K",
-        "image": "img/products/sal-de-epsom-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 14.73,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-EPS-POT-1K",
-        "image": "img/products/sal-de-epsom-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "caja-25kg",
-        "name": "Caja Industrial 25 kg (Mayorista / Granel)",
-        "price": 260,
-        "weight": "25 kg",
-        "format": "Caja Corrugada Industrial con Doble Barrera Hermética",
-        "packagingType": "industrial-caja",
-        "sku": "BIO-EPS-IND-25K",
-        "image": "img/products/industrial/sal-de-epsom-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
-    "regularPrice": 16,
-    "discountBadge": "-22% WEB",
-    "highlightBadge": "🛁 PURIFICACIÓN PURA",
     "dosage": {
-      "recommendedGrams": 5,
+      "administrationRoute": "oral",
+      "recommendedAmount": 5,
       "unit": "g",
       "frequencyText": "Uso oral esporádico o 100g-250g para baños",
       "scoopEquivalent": "1 cucharadita para consumo oral / 1 taza para tina",
@@ -1505,11 +1816,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Sulfato de Magnesio Heptahidratado (Sal de Epsom)",
-      "casNumber": "10034-99-8",
-      "mesh": "Cristalino homogéneo",
+      "composition": "100% Sulfato de Magnesio heptahidratado grado USP libre de fragancias o químicos sintéticos.",
       "grade": "Grado Farmacéutico USP",
+      "appearance": "Cristales blancos aciculares brillantes",
       "solubility": "Alta solubilidad en agua tibia o caliente",
-      "appearance": "Cristales blancos aciculares brillantes"
+      "meshOrConcentration": "Cristalino homogéneo",
+      "casNumber": "10034-99-8",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Disolver en agua caliente para baños de inmersión o pediluvios desinflamantes.",
@@ -1517,7 +1833,8 @@ const BIONATIVA_PRODUCTS = [
         "En uso oral en dosis elevadas tiene efecto laxante osmótico rápido.",
         "Uso oral únicamente bajo orientación médica."
       ],
-      "storage": "Conservar en recipiente sellado para evitar eflorescencia."
+      "storage": "Conservar en recipiente sellado para evitar eflorescencia.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "citrato-de-magnesio",
@@ -1526,6 +1843,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "ashwagandha-pura",
+    "skuMaster": "BIO-ASH",
+    "brand": "bionativa-lab",
     "name": "Ashwagandha KSM / Withania Somnifera Pura Estandarizada",
     "shortName": "Ashwagandha Pura",
     "category": "estres-descanso",
@@ -1535,11 +1854,59 @@ const BIONATIVA_PRODUCTS = [
     "reviewsCount": 153,
     "image": "img/products/ashwagandha-pura-pote-1kg.jpg",
     "hasVariants": true,
+    "defaultVariant": "bolsa-1kg",
+    "variants": [
+      {
+        "id": "bolsa-1kg",
+        "name": "Bolsa de Polietileno 1 kg",
+        "price": 124.6,
+        "regularPrice": 142,
+        "weight": "1 kg",
+        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
+        "packagingType": "bolsa",
+        "sku": "BIO-ASH-BOL-1K",
+        "image": "img/products/ashwagandha-pura-bolsa-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "pote-1kg",
+        "name": "Pote Plastificado 1 kg",
+        "price": 146.85,
+        "weight": "1 kg",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
+        "packagingType": "pote",
+        "sku": "BIO-ASH-POT-1K",
+        "image": "img/products/ashwagandha-pura-pote-1kg.jpg",
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      },
+      {
+        "id": "tambor-25kg",
+        "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
+        "price": 2750,
+        "weight": "25 kg",
+        "format": "Tambor de Fibra Kraft con Aro Metálico",
+        "packagingType": "industrial-tambor",
+        "sku": "BIO-ASH-IND-25K",
+        "image": "img/products/industrial/ashwagandha-pura-25kg.jpg",
+        "isBulk": true,
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
+      }
+    ],
     "price": 124.6,
     "unit": "1KG",
     "origin": "Materia Prima Americana Estandarizada",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "Alto porcentaje de Whitanólidos bioactivos",
+    "regularPrice": 142,
+    "discountBadge": "-12% WEB",
+    "highlightBadge": "🧘 ADAPTÓGENO PURO",
     "description": "El adaptógeno ayurvédico rey para regular el eje hipotálamo-hipófisis-adrenal (HHA). Disminuye los niveles de cortisol circulante, modula la respuesta ante situaciones de tensión, mejora la claridad mental y el sueño profundo.",
     "benefits": [
       "Reduce eficazmente el estrés crónico, la ansiedad y el agobio cotidiano.",
@@ -1554,48 +1921,9 @@ const BIONATIVA_PRODUCTS = [
         "a": "Como adaptógeno natural, sus efectos moduladores del cortisol y relajación se aprecian desde los primeros 7 a 14 días de uso continuo y constante."
       }
     ],
-    "defaultVariant": "bolsa-1kg",
-    "variants": [
-      {
-        "id": "bolsa-1kg",
-        "name": "Bolsa de Polietileno 1 kg",
-        "price": 124.6,
-        "weight": "1 kg",
-        "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
-        "packagingType": "bolsa",
-        "sku": "BIO-ASH-BOL-1K",
-        "image": "img/products/ashwagandha-pura-bolsa-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "pote-1kg",
-        "name": "Pote Plastificado 1 kg",
-        "price": 146.85,
-        "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario con Precinto",
-        "packagingType": "pote",
-        "sku": "BIO-ASH-POT-1K",
-        "image": "img/products/ashwagandha-pura-pote-1kg.jpg",
-        "weightGrams": 1000
-      },
-      {
-        "id": "tambor-25kg",
-        "name": "Tambor Industrial 25 kg (Mayorista / Granel)",
-        "price": 2750,
-        "weight": "25 kg",
-        "format": "Tambor de Fibra Kraft con Aro Metálico",
-        "packagingType": "industrial-tambor",
-        "sku": "BIO-ASH-IND-25K",
-        "image": "img/products/industrial/ashwagandha-pura-25kg.jpg",
-        "isBulk": true,
-        "weightGrams": 25000
-      }
-    ],
-    "regularPrice": 142,
-    "discountBadge": "-12% WEB",
-    "highlightBadge": "🧘 ADAPTÓGENO PURO",
     "dosage": {
-      "recommendedGrams": 1,
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1/4 cucharadita dosificadora (1000mg)",
@@ -1605,11 +1933,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Withania somnifera Raíz en Polvo Pura",
-      "casNumber": "90147-43-6",
-      "mesh": "100 Mesh boticario",
+      "composition": "100% Extracto de raíz de Withania Somnifera estandarizado. Libre de pesticidas y conservantes.",
       "grade": "Grado Nutracéutico Puro",
+      "appearance": "Polvo fino color arena con aroma terroso herbal",
       "solubility": "Dispersable en líquidos calientes o tibios",
-      "appearance": "Polvo fino color arena con aroma terroso herbal"
+      "meshOrConcentration": "100 Mesh boticario",
+      "casNumber": "90147-43-6",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Mezclar en leche tibia, té o batido nocturno.",
@@ -1617,7 +1950,8 @@ const BIONATIVA_PRODUCTS = [
         "No consumir durante el embarazo o lactancia.",
         "Consultar si se consumen sedantes o inmunosupresores."
       ],
-      "storage": "Mantener en lugar seco y fresco, protegido de la luz."
+      "storage": "Mantener en lugar seco y fresco, protegido de la luz.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "citrato-de-magnesio",
@@ -1626,6 +1960,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "sulfato-de-condroitina",
+    "skuMaster": "BIO-CON",
+    "brand": "bionativa-lab",
     "name": "Sulfato de Condroitina 100% Puro Grado Farmacéutico",
     "shortName": "Sulfato de Condroitina",
     "category": "salud-articular",
@@ -1646,7 +1982,9 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "bolsa",
         "sku": "BIO-CON-BOL-1K",
         "image": "img/products/sulfato-de-condroitina-bolsa-1kg.jpg",
-        "weightGrams": 1000
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-1kg",
@@ -1657,7 +1995,9 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "pote",
         "sku": "BIO-CON-POT-1K",
         "image": "img/products/sulfato-de-condroitina-pote-1kg.jpg",
-        "weightGrams": 1000
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "tambor-25kg",
@@ -1669,12 +2009,15 @@ const BIONATIVA_PRODUCTS = [
         "sku": "BIO-CON-IND-25K",
         "image": "img/products/industrial/sulfato-de-condroitina-25kg.jpg",
         "isBulk": true,
-        "weightGrams": 25000
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "price": 145,
     "unit": "1KG",
     "origin": "Materia Prima Importada Certificada (Bovina)",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.0% Pureza Titulada HPLC",
     "description": "Componente estructural clave de la matriz extracelular del cartílago. Aporta elasticidad, retiene agua en el tejido conectivo y actúa en sinergia con la glucosamina para frenar el desgaste articular y mejorar la movilidad.",
@@ -1692,7 +2035,8 @@ const BIONATIVA_PRODUCTS = [
       }
     ],
     "dosage": {
-      "recommendedGrams": 1.2,
+      "administrationRoute": "oral",
+      "recommendedAmount": 1.2,
       "unit": "g",
       "frequencyText": "1 vez al día con comidas",
       "scoopEquivalent": "1/2 cucharadita dosificadora (1200mg)",
@@ -1702,18 +2046,25 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Sulfato de Condroitina Sódica Bovina (>90%)",
-      "casNumber": "9007-28-7",
-      "mesh": "80 Mesh",
+      "composition": "100% Sulfato de Condroitina sódica pura grado farmacéutico.",
       "grade": "Grado Farmacéutico USP",
+      "appearance": "Polvo fino blanco a crema pálido",
       "solubility": "Soluble en agua formando una solución ligeramente viscosa",
-      "appearance": "Polvo fino blanco a crema pálido"
+      "meshOrConcentration": "80 Mesh",
+      "casNumber": "9007-28-7",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Disolver en agua o mezclar con zumo junto con Glucosamina.",
       "warnings": [
-        "Consultar con médico en caso de terapia con anticoagulantes."
+        "No superar la dosis diaria recomendada.",
+        "Consulte a su médico en caso de embarazo, lactancia o condición clínica."
       ],
-      "storage": "Almacenar bien cerrado en ambiente seco."
+      "storage": "Almacenar bien cerrado en ambiente seco.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "glucosamina-sulfato",
@@ -1723,6 +2074,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "l-carnitina-base",
+    "skuMaster": "BIO-CAR",
+    "brand": "bionativa-lab",
     "name": "L-Carnitina Base Pura Grado USP (Metabolismo y Definición)",
     "shortName": "L-Carnitina Base",
     "category": "fuerza-deporte",
@@ -1743,7 +2096,9 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "bolsa",
         "sku": "BIO-CAR-BOL-1K",
         "image": "img/products/l-carnitina-base-bolsa-1kg.jpg",
-        "weightGrams": 1000
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-1kg",
@@ -1754,7 +2109,9 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "pote",
         "sku": "BIO-CAR-POT-1K",
         "image": "img/products/l-carnitina-base-pote-1kg.jpg",
-        "weightGrams": 1000
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "tambor-25kg",
@@ -1766,12 +2123,15 @@ const BIONATIVA_PRODUCTS = [
         "sku": "BIO-CAR-IND-25K",
         "image": "img/products/industrial/l-carnitina-base-25kg.jpg",
         "isBulk": true,
-        "weightGrams": 25000
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "price": 78,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Farmacéutico",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.5% Purity HPLC Tested",
     "description": "Aminoácido transportador fundamental que moviliza los ácidos grasos de cadena larga hacia el interior de las mitocondrias celulares, donde son oxidados para transformarse en ATP y energía biológica.",
@@ -1789,7 +2149,8 @@ const BIONATIVA_PRODUCTS = [
       }
     ],
     "dosage": {
-      "recommendedGrams": 2,
+      "administrationRoute": "oral",
+      "recommendedAmount": 2,
       "unit": "g",
       "frequencyText": "1 vez al día",
       "scoopEquivalent": "1/2 cucharadita dosificadora (2000mg)",
@@ -1799,11 +2160,16 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "L-Carnitina Base Pura (Levocarnitina)",
-      "casNumber": "541-15-1",
-      "mesh": "80 Mesh",
+      "composition": "100% L-Carnitina Base pura grado USP sin saborizantes ni aditivos.",
       "grade": "Grado Farmacéutico USP",
+      "appearance": "Polvo cristalino blanco higroscópico",
       "solubility": "Altamente soluble en agua",
-      "appearance": "Polvo cristalino blanco higroscópico"
+      "meshOrConcentration": "80 Mesh",
+      "casNumber": "541-15-1",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Disolver en agua antes del entrenamiento.",
@@ -1811,7 +2177,8 @@ const BIONATIVA_PRODUCTS = [
         "Materia prima muy higroscópica: cerrar la tapa inmediatamente tras usar.",
         "No tomar tarde en la noche si causa activación."
       ],
-      "storage": "Mantener con desecante y cerrado herméticamente."
+      "storage": "Mantener con desecante y cerrado herméticamente.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "te-verde-extracto",
@@ -1821,6 +2188,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "stevia-pura",
+    "skuMaster": "BIO-STE",
+    "brand": "bionativa-lab",
     "name": "Extracto de Stevia Pura Rebaudiana (Glucósidos de Esteviol)",
     "shortName": "Stevia Pura en Polvo",
     "category": "salud-articular",
@@ -1841,7 +2210,9 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "bolsa",
         "sku": "BIO-STE-BOL-1K",
         "image": "img/products/stevia-pura-bolsa-1kg.jpg",
-        "weightGrams": 1000
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-1kg",
@@ -1852,7 +2223,9 @@ const BIONATIVA_PRODUCTS = [
         "packagingType": "pote",
         "sku": "BIO-STE-POT-1K",
         "image": "img/products/stevia-pura-pote-1kg.jpg",
-        "weightGrams": 1000
+        "weightGrams": 1000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "tambor-25kg",
@@ -1864,12 +2237,15 @@ const BIONATIVA_PRODUCTS = [
         "sku": "BIO-STE-IND-25K",
         "image": "img/products/industrial/stevia-pura-25kg.jpg",
         "isBulk": true,
-        "weightGrams": 25000
+        "weightGrams": 25000,
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "price": 160,
     "unit": "1KG",
     "origin": "Materia Prima Natural Estandarizada",
+    "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "98% Glucósidos de Esteviol Totales",
     "description": "Edulcorante natural de altísima potencia extraído de hojas de Stevia Rebaudiana. Con un poder endulzante hasta 300 veces superior a la sacarosa tradicional, sin calorías, sin impacto en el índice glucémico ni sabor residual amargo.",
@@ -1887,7 +2263,8 @@ const BIONATIVA_PRODUCTS = [
       }
     ],
     "dosage": {
-      "recommendedGrams": 0.1,
+      "administrationRoute": "oral",
+      "recommendedAmount": 0.1,
       "unit": "g",
       "frequencyText": "A gusto como endulzante",
       "scoopEquivalent": "Una pizca minúscula (punta de un cuchillo = 100mg)",
@@ -1897,18 +2274,25 @@ const BIONATIVA_PRODUCTS = [
     },
     "technicalSpecs": {
       "chemicalForm": "Glucósidos de Esteviol Puros (Rebaudioside A >98%)",
-      "casNumber": "57817-89-7",
-      "mesh": "100 Mesh ultra fino",
+      "composition": "100% Extracto de Stevia rebaudiana estandarizado en glucósidos de esteviol purificados.",
       "grade": "Grado Alimentario USP / FCC",
+      "appearance": "Polvo blanco fino de dulzor puro sin amargor",
       "solubility": "Instantáneamente soluble en líquidos fríos o calientes",
-      "appearance": "Polvo blanco fino de dulzor puro sin amargor"
+      "meshOrConcentration": "100 Mesh ultra fino",
+      "casNumber": "57817-89-7",
+      "allergens": [
+        "Libre de gluten",
+        "Libre de lactosa"
+      ]
     },
     "responsibleUse": {
       "instructions": "Usar cantidades mínimas: su poder endulzante es 300 veces superior al azúcar común.",
       "warnings": [
-        "0 calorías, 0 índice glucémico. Apto para diabéticos y dietas keto."
+        "No superar la dosis diaria recomendada.",
+        "Consulte a su médico en caso de embarazo, lactancia o condición clínica."
       ],
-      "storage": "Conservar en frasco hermético en lugar seco."
+      "storage": "Conservar en frasco hermético en lugar seco.",
+      "shelfLifeMonths": 36
     },
     "complementaryProductIds": [
       "proteina-suero-leche-80",
@@ -1918,6 +2302,8 @@ const BIONATIVA_PRODUCTS = [
   },
   {
     "id": "profit-cocktail-energix",
+    "skuMaster": "PF-01",
+    "brand": "profit-pharma",
     "name": "COCKTAIL ENERGIX — Profit Pharma",
     "shortName": "COCKTAIL ENERGIX",
     "category": "distribuidor-autorizado",
@@ -1940,13 +2326,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 15g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-01-01",
-        "image": "img/products/profit-pharma/01_ORTO_Cocktail_Energix.png"
+        "image": "img/products/profit-pharma/01_ORTO_Cocktail_Energix.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 50ml",
     "price": 93.5,
     "unit": "Solución inyectable - Vial x 50ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Integra la coenzima NAD+ para la restauración del ADN, con los antioxidantes Glutatión, Ácido Alfa Lipoico y Vitamina C.",
@@ -1967,12 +2356,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 50ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 15g",
-      "Presentaciones": "Solución inyectable - Vial x 50ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 15g",
+      "composition": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 15g",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 15g",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -1981,12 +2383,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-cocktail-energix-pro",
+    "skuMaster": "PF-02",
+    "brand": "profit-pharma",
     "name": "COCKTAIL ENERGIX PRO — Profit Pharma",
     "shortName": "COCKTAIL ENERGIX PRO",
     "category": "distribuidor-autorizado",
@@ -2009,13 +2414,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 25g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-02-01",
-        "image": "img/products/profit-pharma/02_ORTO_Cocktail_Energix_Pro.png"
+        "image": "img/products/profit-pharma/02_ORTO_Cocktail_Energix_Pro.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 50ml",
     "price": 120.5,
     "unit": "Solución inyectable - Vial x 50ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Integra la coenzima NAD+ para la restauración del ADN, con los antioxidantes Glutatión, Ácido Alfa Lipoico y Vitamina C de 25g.",
@@ -2036,12 +2444,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 50ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 25g",
-      "Presentaciones": "Solución inyectable - Vial x 50ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 25g",
+      "composition": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 25g",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 25g",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2050,12 +2471,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-cocktail-nadmax",
+    "skuMaster": "PF-03",
+    "brand": "profit-pharma",
     "name": "COCKTAIL NADMAX — Profit Pharma",
     "shortName": "COCKTAIL NADMAX",
     "category": "distribuidor-autorizado",
@@ -2078,13 +2502,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Nad+ 250mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-03-01",
-        "image": "img/products/profit-pharma/03_ORTO_Cocktail_Nadmax.png"
+        "image": "img/products/profit-pharma/03_ORTO_Cocktail_Nadmax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 10ml",
     "price": 47.5,
     "unit": "Solución inyectable - Vial x 10ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Solución parenteral de NAD+ en alta concentración, diseñada para la reprogramación metabólica y la reparación integral del ADN.",
@@ -2105,12 +2532,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 10ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "Nad+ 250mg",
-      "Presentaciones": "Solución inyectable - Vial x 10ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Nad+ 250mg",
+      "composition": "Nad+ 250mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Nad+ 250mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2119,12 +2559,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-cocktail-vitamax",
+    "skuMaster": "PF-04",
+    "brand": "profit-pharma",
     "name": "COCKTAIL VITAMAX — Profit Pharma",
     "shortName": "COCKTAIL VITAMAX",
     "category": "distribuidor-autorizado",
@@ -2147,13 +2590,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Alfa Lipoico 100mg, Glutatión 60mg, Biotina 20mg, Vitamina C 15g, Coenzima Q10 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-04-01",
-        "image": "img/products/profit-pharma/04_ORTO_Cocktail_Vitamax.png"
+        "image": "img/products/profit-pharma/04_ORTO_Cocktail_Vitamax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 50ml",
     "price": 93.5,
     "unit": "Solución inyectable - Vial x 50ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Orientado a favorecer la vitalidad y el metabolismo energético, proporcionando soporte antioxidante y contribuyendo al mantenimiento saludable de la piel y el cabello.",
@@ -2174,12 +2620,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 50ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "Alfa Lipoico 100mg, Glutatión 60mg, Biotina 20mg, Vitamina C 15g, Coenzima Q10 10mg",
-      "Presentaciones": "Solución inyectable - Vial x 50ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Alfa Lipoico 100mg, Glutatión 60mg, Biotina 20mg, Vitamina C 15g, Coenzima Q10 10mg",
+      "composition": "Alfa Lipoico 100mg, Glutatión 60mg, Biotina 20mg, Vitamina C 15g, Coenzima Q10 10mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Alfa Lipoico 100mg, Glutatión 60mg, Biotina 20mg, Vitamina C 15g, Coenzima Q10 10mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2188,12 +2647,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-cocktail-multimax",
+    "skuMaster": "PF-05",
+    "brand": "profit-pharma",
     "name": "COCKTAIL MULTIMAX — Profit Pharma",
     "shortName": "COCKTAIL MULTIMAX",
     "category": "distribuidor-autorizado",
@@ -2216,13 +2678,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Vitamina A 10000 ui, Vitamina D 1000 ui, Vitamina C 50mg, Complejo B 30mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-05-01",
-        "image": "img/products/profit-pharma/05_ORTO_Cocktail_Multimax.png"
+        "image": "img/products/profit-pharma/05_ORTO_Cocktail_Multimax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 10ml",
     "price": 52.9,
     "unit": "Solución inyectable - Vial x 10ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Diseñado para complementar las necesidades nutricionales del organismo y contribuir al mantenimiento de las funciones metabólicas, físicas y fisiológicas normales.",
@@ -2243,12 +2708,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 10ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "Vitamina A 10000 ui, Vitamina D 1000 ui, Vitamina C 50mg, Complejo B 30mg",
-      "Presentaciones": "Solución inyectable - Vial x 10ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Vitamina A 10000 ui, Vitamina D 1000 ui, Vitamina C 50mg, Complejo B 30mg",
+      "composition": "Vitamina A 10000 ui, Vitamina D 1000 ui, Vitamina C 50mg, Complejo B 30mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Vitamina A 10000 ui, Vitamina D 1000 ui, Vitamina C 50mg, Complejo B 30mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2257,12 +2735,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-for-men",
+    "skuMaster": "PF-06",
+    "brand": "profit-pharma",
     "name": "FOR MEN — Profit Pharma",
     "shortName": "FOR MEN",
     "category": "distribuidor-autorizado",
@@ -2285,13 +2766,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Arginina 100mg, Vitamina C 10% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-06-01",
-        "image": "img/products/profit-pharma/06_ORTO_For_Men.png"
+        "image": "img/products/profit-pharma/06_ORTO_For_Men.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 50ml",
     "price": 93.5,
     "unit": "Solución inyectable - Vial x 50ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Orientado al bienestar integral del hombre adulto, brindando soporte para el metabolismo, la vitalidad y el adecuado funcionamiento del organismo.",
@@ -2312,12 +2796,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 50ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "Arginina 100mg, Vitamina C 10%",
-      "Presentaciones": "Solución inyectable - Vial x 50ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Arginina 100mg, Vitamina C 10%",
+      "composition": "Arginina 100mg, Vitamina C 10%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Arginina 100mg, Vitamina C 10%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2326,12 +2823,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-glutamax",
+    "skuMaster": "PF-07",
+    "brand": "profit-pharma",
     "name": "GLUTAMAX — Profit Pharma",
     "shortName": "GLUTAMAX",
     "category": "distribuidor-autorizado",
@@ -2354,7 +2854,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Glutatión 100mg, Carnosina 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-07-01",
-        "image": "img/products/profit-pharma/07_ORTO_Glutamax.png"
+        "image": "img/products/profit-pharma/07_ORTO_Glutamax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "solucion-inyectable-vial-x-10ml-glutation-300mg",
@@ -2364,13 +2866,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Glutatión 300mg, Carnosina 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-07-02",
-        "image": "img/products/profit-pharma/07_ORTO_Glutamax.png"
+        "image": "img/products/profit-pharma/07_ORTO_Glutamax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 10ml (Glutatión 100mg) • Solución inyectable - Vial x 10ml (Glutatión 300mg)",
     "price": 82.5,
     "unit": "Solución inyectable - Vial x 10ml (Glutatión 100mg)",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Enfocado en el soporte de las defensas antioxidantes del organismo y la protección de las células frente al estrés oxidativo.",
@@ -2391,12 +2896,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 10ml (Glutatión 100mg) • Solución inyectable - Vial x 10ml (Glutatión 300mg)."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "Glutatión 100mg, Carnosina 10mg | Glutatión 300mg, Carnosina 10mg",
-      "Presentaciones": "Solución inyectable - Vial x 10ml (Glutatión 100mg) • Solución inyectable - Vial x 10ml (Glutatión 300mg)",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Glutatión 100mg, Carnosina 10mg | Glutatión 300mg, Carnosina 10mg",
+      "composition": "Glutatión 100mg, Carnosina 10mg | Glutatión 300mg, Carnosina 10mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Glutatión 100mg, Carnosina 10mg | Glutatión 300mg, Carnosina 10mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2405,12 +2923,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-profit-c-ala",
+    "skuMaster": "PF-08",
+    "brand": "profit-pharma",
     "name": "PROFIT C + ALA — Profit Pharma",
     "shortName": "PROFIT C + ALA",
     "category": "distribuidor-autorizado",
@@ -2433,7 +2954,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "ALA 60mg, Vitamina C 7.5g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-08-01",
-        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png"
+        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "solucion-inyectable-vial-x-50ml-vit-c-10g-ala-60mg",
@@ -2443,7 +2966,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "ALA 60mg, Vitamina C 10g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-08-02",
-        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png"
+        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "solucion-inyectable-vial-x-50ml-vit-c-15g-ala-60mg",
@@ -2453,7 +2978,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "ALA 60mg, Vitamina C 15g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-08-03",
-        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png"
+        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "solucion-inyectable-vial-x-50ml-vit-c-25g-ala-60mg",
@@ -2463,13 +2990,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "ALA 60mg, Vitamina C 25g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-08-04",
-        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png"
+        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 10g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 15g + ALA 60mg) (+1)",
     "price": 50.9,
     "unit": "Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg)",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Solución parenteral de alta potencia que combina la acción inmunoprotectora de la Vitamina C con la capacidad regenerativa del Ácido Alfa Lipoico.",
@@ -2490,12 +3020,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 10g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 15g + ALA 60mg) (+1)."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "ALA 60mg, Vitamina C 7.5g | ALA 60mg, Vitamina C 10g | ALA 60mg, Vitamina C 15g | ALA 60mg, Vitamina C 25g",
-      "Presentaciones": "Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 10g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 15g + ALA 60mg) (+1)",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "ALA 60mg, Vitamina C 7.5g | ALA 60mg, Vitamina C 10g | ALA 60mg, Vitamina C 15g | ALA 60mg, Vitamina C 25g",
+      "composition": "ALA 60mg, Vitamina C 7.5g | ALA 60mg, Vitamina C 10g | ALA 60mg, Vitamina C 15g | ALA 60mg, Vitamina C 25g",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "ALA 60mg, Vitamina C 7.5g | ALA 60mg, Vitamina C 10g | ALA 60mg, Vitamina C 15g | ALA 60mg, Vitamina C 25g",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2504,12 +3047,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-profit-c",
+    "skuMaster": "PF-09",
+    "brand": "profit-pharma",
     "name": "PROFIT C — Profit Pharma",
     "shortName": "PROFIT C",
     "category": "distribuidor-autorizado",
@@ -2532,7 +3078,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Vitamina C 7.5g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-09-01",
-        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png"
+        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "solucion-inyectable-vial-x-50ml-vit-c-10g",
@@ -2542,7 +3090,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Vitamina C 10g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-09-02",
-        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png"
+        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "solucion-inyectable-vial-x-50ml-vit-c-15g",
@@ -2552,7 +3102,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Vitamina C 15g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-09-03",
-        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png"
+        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "solucion-inyectable-vial-x-50ml-vit-c-25g",
@@ -2562,13 +3114,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Vitamina C 25g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-09-04",
-        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png"
+        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 50ml (Vit. C 7.5g) • Solución inyectable - Vial x 50ml (Vit. C 10g) • Solución inyectable - Vial x 50ml (Vit. C 15g) (+1)",
     "price": 48.9,
     "unit": "Solución inyectable - Vial x 50ml (Vit. C 7.5g)",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Acción inmunoprotectora de la Vitamina C para mejor recuperación corporal.",
@@ -2589,12 +3144,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 50ml (Vit. C 7.5g) • Solución inyectable - Vial x 50ml (Vit. C 10g) • Solución inyectable - Vial x 50ml (Vit. C 15g) (+1)."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "Vitamina C 7.5g | Vitamina C 10g | Vitamina C 15g | Vitamina C 25g",
-      "Presentaciones": "Solución inyectable - Vial x 50ml (Vit. C 7.5g) • Solución inyectable - Vial x 50ml (Vit. C 10g) • Solución inyectable - Vial x 50ml (Vit. C 15g) (+1)",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Vitamina C 7.5g | Vitamina C 10g | Vitamina C 15g | Vitamina C 25g",
+      "composition": "Vitamina C 7.5g | Vitamina C 10g | Vitamina C 15g | Vitamina C 25g",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Vitamina C 7.5g | Vitamina C 10g | Vitamina C 15g | Vitamina C 25g",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2603,12 +3171,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-cocktail-lipomax",
+    "skuMaster": "PF-10",
+    "brand": "profit-pharma",
     "name": "COCKTAIL LIPOMAX — Profit Pharma",
     "shortName": "COCKTAIL LIPOMAX",
     "category": "distribuidor-autorizado",
@@ -2631,13 +3202,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 100mg, Alfa Lipoico 100mg, Vitamina C 100mg, Glutatión 60mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-10-01",
-        "image": "img/products/profit-pharma/10_ORTO_Cocktail_Lipomax.png"
+        "image": "img/products/profit-pharma/10_ORTO_Cocktail_Lipomax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 50ml",
     "price": 93.5,
     "unit": "Solución inyectable - Vial x 50ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Fusiona el transporte energético de la L-Carnitina con la potencia regenerativa del Glutatión, el Ácido Alfa Lipoico y la Vitamina C.",
@@ -2658,12 +3232,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 50ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "L-Carnitina 100mg, Alfa Lipoico 100mg, Vitamina C 100mg, Glutatión 60mg",
-      "Presentaciones": "Solución inyectable - Vial x 50ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "L-Carnitina 100mg, Alfa Lipoico 100mg, Vitamina C 100mg, Glutatión 60mg",
+      "composition": "L-Carnitina 100mg, Alfa Lipoico 100mg, Vitamina C 100mg, Glutatión 60mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "L-Carnitina 100mg, Alfa Lipoico 100mg, Vitamina C 100mg, Glutatión 60mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2672,12 +3259,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-dolomax",
+    "skuMaster": "PF-11",
+    "brand": "profit-pharma",
     "name": "DOLOMAX — Profit Pharma",
     "shortName": "DOLOMAX",
     "category": "distribuidor-autorizado",
@@ -2700,13 +3290,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Procaína 500mg, Vitamina C 10g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-11-01",
-        "image": "img/products/profit-pharma/11_ORTO_Dolomax.png"
+        "image": "img/products/profit-pharma/11_ORTO_Dolomax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 50ml",
     "price": 95.9,
     "unit": "Solución inyectable - Vial x 50ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Potente analgésico y desinflamatorio sistémico, donde la procaína ayuda a repolarizar las células para estabilizar el sistema nervioso y reducir el dolor crónico.",
@@ -2727,12 +3320,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 50ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "Procaína 500mg, Vitamina C 10g",
-      "Presentaciones": "Solución inyectable - Vial x 50ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Procaína 500mg, Vitamina C 10g",
+      "composition": "Procaína 500mg, Vitamina C 10g",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Procaína 500mg, Vitamina C 10g",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2741,12 +3347,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-ultra-b12",
+    "skuMaster": "PF-12",
+    "brand": "profit-pharma",
     "name": "ULTRA B12 — Profit Pharma",
     "shortName": "ULTRA B12",
     "category": "distribuidor-autorizado",
@@ -2769,13 +3378,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Cianocobalamina 500 ui • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-12-01",
-        "image": "img/products/profit-pharma/12_ORTO_Ultra_B12.png"
+        "image": "img/products/profit-pharma/12_ORTO_Ultra_B12.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 10ml",
     "price": 50.9,
     "unit": "Solución inyectable - Vial x 10ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Diseñada para realizar una restauración crítica de la función neurológica y la optimización de la síntesis de glóbulos rojos.",
@@ -2796,12 +3408,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 10ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "Cianocobalamina 500 ui",
-      "Presentaciones": "Solución inyectable - Vial x 10ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Cianocobalamina 500 ui",
+      "composition": "Cianocobalamina 500 ui",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Cianocobalamina 500 ui",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2810,12 +3435,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-cocktail-max-b",
+    "skuMaster": "PF-13",
+    "brand": "profit-pharma",
     "name": "COCKTAIL MAX B — Profit Pharma",
     "shortName": "COCKTAIL MAX B",
     "category": "distribuidor-autorizado",
@@ -2838,13 +3466,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "B3 Nicotinamida 40mg, B1 Tiamina HCL 10mg, B5 Dex Pantenol 6mg, B2 Riboflavina 5.53mg, B6 Piridoxina HCL 4mg, B8 Biotina 500ug, B12 Cianocobalamina 8ug • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-13-01",
-        "image": "img/products/profit-pharma/13_ORTO_Cocktail_Max_B.png"
+        "image": "img/products/profit-pharma/13_ORTO_Cocktail_Max_B.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Solución inyectable - Vial x 10ml",
     "price": 50.9,
     "unit": "Solución inyectable - Vial x 10ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Solución que integra vitaminas para la restauración integral del sistema nervioso y la optimización del ciclo energético.",
@@ -2865,12 +3496,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Solución inyectable - Vial x 10ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Ortomolecular",
-      "Composición": "B3 Nicotinamida 40mg, B1 Tiamina HCL 10mg, B5 Dex Pantenol 6mg, B2 Riboflavina 5.53mg, B6 Piridoxina HCL 4mg, B8 Biotina 500ug, B12 Cianocobalamina 8ug",
-      "Presentaciones": "Solución inyectable - Vial x 10ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "B3 Nicotinamida 40mg, B1 Tiamina HCL 10mg, B5 Dex Pantenol 6mg, B2 Riboflavina 5.53mg, B6 Piridoxina HCL 4mg, B8 Biotina 500ug, B12 Cianocobalamina 8ug",
+      "composition": "B3 Nicotinamida 40mg, B1 Tiamina HCL 10mg, B5 Dex Pantenol 6mg, B2 Riboflavina 5.53mg, B6 Piridoxina HCL 4mg, B8 Biotina 500ug, B12 Cianocobalamina 8ug",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "B3 Nicotinamida 40mg, B1 Tiamina HCL 10mg, B5 Dex Pantenol 6mg, B2 Riboflavina 5.53mg, B6 Piridoxina HCL 4mg, B8 Biotina 500ug, B12 Cianocobalamina 8ug",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2879,12 +3523,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-enzifit-individual",
+    "skuMaster": "PF-14",
+    "brand": "profit-pharma",
     "name": "ENZIFIT (Individual: Lipasa / Hialuronidasa / Colagenasa) — Profit Pharma",
     "shortName": "ENZIFIT (Individual: Lipasa / Hialuronidasa / Colagenasa)",
     "category": "distribuidor-autorizado",
@@ -2907,7 +3554,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-14-01",
-        "image": "img/products/profit-pharma/14_MESO_Enzifit_Individuales.png"
+        "image": "img/products/profit-pharma/14_MESO_Enzifit_Individuales.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "kit-03-viales-inyectables",
@@ -2917,13 +3566,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-14-02",
-        "image": "img/products/profit-pharma/14_MESO_Enzifit_Individuales.png"
+        "image": "img/products/profit-pharma/14_MESO_Enzifit_Individuales.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Vial inyectable individual • Kit 03 viales inyectables",
     "price": 66.5,
     "unit": "Vial inyectable individual",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Enzimas individuales: Lipasa (grasa localizada), Hialuronidasa (degrada ácido hialurónico) o Colagenasa (flacidez, cicatrices y arrugas).",
@@ -2944,12 +3596,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Vial inyectable individual • Kit 03 viales inyectables."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Mesoterapia",
-      "Composición": "Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui",
-      "Presentaciones": "Vial inyectable individual • Kit 03 viales inyectables",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui",
+      "composition": "Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -2958,12 +3623,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-cocktail-enzifit",
+    "skuMaster": "PF-15",
+    "brand": "profit-pharma",
     "name": "COCKTAIL ENZIFIT — Profit Pharma",
     "shortName": "COCKTAIL ENZIFIT",
     "category": "distribuidor-autorizado",
@@ -2986,7 +3654,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-15-01",
-        "image": "img/products/profit-pharma/15_MESO_Cocktail_Enzifit.png"
+        "image": "img/products/profit-pharma/15_MESO_Cocktail_Enzifit.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "kit-3-viales-x-10ml",
@@ -2996,13 +3666,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-15-02",
-        "image": "img/products/profit-pharma/15_MESO_Cocktail_Enzifit.png"
+        "image": "img/products/profit-pharma/15_MESO_Cocktail_Enzifit.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "1 vial x 10ml • Kit 3 viales x 10ml",
     "price": 79.9,
     "unit": "1 vial x 10ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Actúa de forma sinérgica para descomponer grasa, reducir la retención de líquidos y eliminar fibrosis o mejorar la firmeza de la piel.",
@@ -3023,12 +3696,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: 1 vial x 10ml • Kit 3 viales x 10ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Mesoterapia",
-      "Composición": "Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui",
-      "Presentaciones": "1 vial x 10ml • Kit 3 viales x 10ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui",
+      "composition": "Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -3037,12 +3723,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-tricarnifit",
+    "skuMaster": "PF-16",
+    "brand": "profit-pharma",
     "name": "TRICARNIFIT — Profit Pharma",
     "shortName": "TRICARNIFIT",
     "category": "distribuidor-autorizado",
@@ -3065,7 +3754,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-16-01",
-        "image": "img/products/profit-pharma/16_MESO_Tricarnifit.png"
+        "image": "img/products/profit-pharma/16_MESO_Tricarnifit.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "kit-3-viales-x-10ml",
@@ -3075,13 +3766,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-16-02",
-        "image": "img/products/profit-pharma/16_MESO_Tricarnifit.png"
+        "image": "img/products/profit-pharma/16_MESO_Tricarnifit.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "1 vial x 10ml • Kit 3 viales x 10ml",
     "price": 52.9,
     "unit": "1 vial x 10ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Cóctel lipolítico y reafirmante de alta concentración con silicio orgánico, diseñado para su uso en medicina estética y mesoterapia corporal.",
@@ -3102,12 +3796,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: 1 vial x 10ml • Kit 3 viales x 10ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Mesoterapia",
-      "Composición": "L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2%",
-      "Presentaciones": "1 vial x 10ml • Kit 3 viales x 10ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2%",
+      "composition": "L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -3116,12 +3823,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-dicarnetin",
+    "skuMaster": "PF-17",
+    "brand": "profit-pharma",
     "name": "DICARNETIN — Profit Pharma",
     "shortName": "DICARNETIN",
     "category": "distribuidor-autorizado",
@@ -3144,7 +3854,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 20%, Cafeína 2% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-17-01",
-        "image": "img/products/profit-pharma/17_MESO_Dicarnetin.png"
+        "image": "img/products/profit-pharma/17_MESO_Dicarnetin.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "kit-3-viales-x-10ml",
@@ -3154,13 +3866,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 20%, Cafeína 2% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-17-02",
-        "image": "img/products/profit-pharma/17_MESO_Dicarnetin.png"
+        "image": "img/products/profit-pharma/17_MESO_Dicarnetin.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "1 vial x 10ml • Kit 3 viales x 10ml",
     "price": 39.5,
     "unit": "1 vial x 10ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Cóctel lipolítico y reafirmante de alta concentración, diseñado para su uso en medicina estética y mesoterapia corporal.",
@@ -3181,12 +3896,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: 1 vial x 10ml • Kit 3 viales x 10ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Mesoterapia",
-      "Composición": "L-Carnitina 20%, Cafeína 2%",
-      "Presentaciones": "1 vial x 10ml • Kit 3 viales x 10ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "L-Carnitina 20%, Cafeína 2%",
+      "composition": "L-Carnitina 20%, Cafeína 2%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "L-Carnitina 20%, Cafeína 2%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -3195,12 +3923,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-adipox",
+    "skuMaster": "PF-18",
+    "brand": "profit-pharma",
     "name": "ADIPOX — Profit Pharma",
     "shortName": "ADIPOX",
     "category": "distribuidor-autorizado",
@@ -3223,7 +3954,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 10% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-18-01",
-        "image": "img/products/profit-pharma/18_MESO_Adipox.png"
+        "image": "img/products/profit-pharma/18_MESO_Adipox.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "kit-3-viales-10",
@@ -3233,7 +3966,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 10% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-18-02",
-        "image": "img/products/profit-pharma/18_MESO_Adipox.png"
+        "image": "img/products/profit-pharma/18_MESO_Adipox.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "1-vial-20",
@@ -3243,7 +3978,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 20% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-18-03",
-        "image": "img/products/profit-pharma/18_MESO_Adipox.png"
+        "image": "img/products/profit-pharma/18_MESO_Adipox.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "kit-3-viales-20",
@@ -3253,13 +3990,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 20% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-18-04",
-        "image": "img/products/profit-pharma/18_MESO_Adipox.png"
+        "image": "img/products/profit-pharma/18_MESO_Adipox.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "1 vial (10%) • Kit 3 viales (10%) • 1 vial (20%) (+1)",
     "price": 25.9,
     "unit": "1 vial (10%)",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Mayor actividad con potente activador celular que combate la flacidez y transporta ácidos grasos.",
@@ -3280,12 +4020,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: 1 vial (10%) • Kit 3 viales (10%) • 1 vial (20%) (+1)."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Mesoterapia",
-      "Composición": "L-Carnitina 10% | L-Carnitina 20%",
-      "Presentaciones": "1 vial (10%) • Kit 3 viales (10%) • 1 vial (20%) (+1)",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "L-Carnitina 10% | L-Carnitina 20%",
+      "composition": "L-Carnitina 10% | L-Carnitina 20%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "L-Carnitina 10% | L-Carnitina 20%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -3294,12 +4047,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-silifit",
+    "skuMaster": "PF-19",
+    "brand": "profit-pharma",
     "name": "SILIFIT — Profit Pharma",
     "shortName": "SILIFIT",
     "category": "distribuidor-autorizado",
@@ -3322,7 +4078,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Silicio orgánico 5% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-19-01",
-        "image": "img/products/profit-pharma/19_MESO_Silifit.png"
+        "image": "img/products/profit-pharma/19_MESO_Silifit.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "kit-3-viales-5",
@@ -3332,7 +4090,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Silicio orgánico 5% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-19-02",
-        "image": "img/products/profit-pharma/19_MESO_Silifit.png"
+        "image": "img/products/profit-pharma/19_MESO_Silifit.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "1-vial-10",
@@ -3342,7 +4102,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Silicio orgánico 10% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-19-03",
-        "image": "img/products/profit-pharma/19_MESO_Silifit.png"
+        "image": "img/products/profit-pharma/19_MESO_Silifit.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "kit-3-viales-10",
@@ -3352,13 +4114,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Silicio orgánico 10% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-19-04",
-        "image": "img/products/profit-pharma/19_MESO_Silifit.png"
+        "image": "img/products/profit-pharma/19_MESO_Silifit.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "1 vial (5%) • Kit 3 viales (5%) • 1 vial (10%) (+1)",
     "price": 25.9,
     "unit": "1 vial (5%)",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Favorece la firmeza y elasticidad de la piel, complementando protocolos estéticos orientados al cuidado y mantenimiento de una piel más tersa y saludable.",
@@ -3379,12 +4144,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: 1 vial (5%) • Kit 3 viales (5%) • 1 vial (10%) (+1)."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Mesoterapia",
-      "Composición": "Silicio orgánico 5% | Silicio orgánico 10%",
-      "Presentaciones": "1 vial (5%) • Kit 3 viales (5%) • 1 vial (10%) (+1)",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Silicio orgánico 5% | Silicio orgánico 10%",
+      "composition": "Silicio orgánico 5% | Silicio orgánico 10%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Silicio orgánico 5% | Silicio orgánico 10%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -3393,12 +4171,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-lipofit",
+    "skuMaster": "PF-20",
+    "brand": "profit-pharma",
     "name": "LIPOFIT — Profit Pharma",
     "shortName": "LIPOFIT",
     "category": "distribuidor-autorizado",
@@ -3421,13 +4202,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Ampelopsina 7% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-20-01",
-        "image": "img/products/profit-pharma/20_MESO_Lipofit.png"
+        "image": "img/products/profit-pharma/20_MESO_Lipofit.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Kit 3 viales x 10ml",
     "price": 79.9,
     "unit": "Kit 3 viales x 10ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Reductor activo de grasa localizada + Anticelulítico. Solución profesional de alto modelado corporal.",
@@ -3448,12 +4232,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Kit 3 viales x 10ml."
       }
     ],
+    "dosage": {
+      "administrationRoute": "parenteral",
+      "recommendedAmount": 1,
+      "unit": "vial",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 vial / dosis indicada",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Mesoterapia",
-      "Composición": "Ampelopsina 7%",
-      "Presentaciones": "Kit 3 viales x 10ml",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Ampelopsina 7%",
+      "composition": "Ampelopsina 7%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Solución estéril homogénea",
+      "solubility": "N/A (Solución lista para uso)",
+      "meshOrConcentration": "Ampelopsina 7%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
@@ -3462,12 +4259,15 @@ const BIONATIVA_PRODUCTS = [
         "No administrar en embarazo o lactancia sin autorización médica.",
         "Conservar en lugar fresco y protegido de la luz (< 25°C)."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-creatina",
+    "skuMaster": "PF-21",
+    "brand": "profit-pharma",
     "name": "CREATINA — Profit Pharma",
     "shortName": "CREATINA",
     "category": "distribuidor-autorizado",
@@ -3490,7 +4290,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Creatina monohidratada 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-21-01",
-        "image": "img/products/profit-pharma/21_SUP_Creatina.png"
+        "image": "img/products/profit-pharma/21_SUP_Creatina.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-500gr",
@@ -3500,7 +4302,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Creatina monohidratada 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-21-02",
-        "image": "img/products/profit-pharma/21_SUP_Creatina.png"
+        "image": "img/products/profit-pharma/21_SUP_Creatina.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-1kg",
@@ -3510,13 +4314,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Creatina monohidratada 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-21-03",
-        "image": "img/products/profit-pharma/21_SUP_Creatina.png"
+        "image": "img/products/profit-pharma/21_SUP_Creatina.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
     "price": 74.9,
     "unit": "Pote x 300gr",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Contribuye al rendimiento físico y al desarrollo de la fuerza y masa muscular. Ideal para complementar la recuperación y el entrenamiento deportivo.",
@@ -3537,12 +4344,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Pote x 300gr • Pote x 500gr • Pote x 1kg."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Suplementos",
-      "Composición": "Creatina monohidratada 100%",
-      "Presentaciones": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Creatina monohidratada 100%",
+      "composition": "Creatina monohidratada 100%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Creatina monohidratada 100%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -3551,12 +4371,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-queen-protein",
+    "skuMaster": "PF-22",
+    "brand": "profit-pharma",
     "name": "QUEEN PROTEIN — Profit Pharma",
     "shortName": "QUEEN PROTEIN",
     "category": "distribuidor-autorizado",
@@ -3579,7 +4402,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Colágeno HDR 80%, Aguaje 20% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-22-01",
-        "image": "img/products/profit-pharma/22_SUP_Queen_Protein.png"
+        "image": "img/products/profit-pharma/22_SUP_Queen_Protein.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-500gr",
@@ -3589,7 +4414,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Colágeno HDR 80%, Aguaje 20% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-22-02",
-        "image": "img/products/profit-pharma/22_SUP_Queen_Protein.png"
+        "image": "img/products/profit-pharma/22_SUP_Queen_Protein.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-1kg",
@@ -3599,13 +4426,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Colágeno HDR 80%, Aguaje 20% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-22-03",
-        "image": "img/products/profit-pharma/22_SUP_Queen_Protein.png"
+        "image": "img/products/profit-pharma/22_SUP_Queen_Protein.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
     "price": 66.5,
     "unit": "Pote x 300gr",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Aporta colágeno y proteínas que contribuyen al cuidado de la piel, ayudando a mantener su firmeza y elasticidad.",
@@ -3626,12 +4456,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Pote x 300gr • Pote x 500gr • Pote x 1kg."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Suplementos",
-      "Composición": "Colágeno HDR 80%, Aguaje 20%",
-      "Presentaciones": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Colágeno HDR 80%, Aguaje 20%",
+      "composition": "Colágeno HDR 80%, Aguaje 20%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Colágeno HDR 80%, Aguaje 20%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -3640,12 +4483,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-whey-protein",
+    "skuMaster": "PF-23",
+    "brand": "profit-pharma",
     "name": "WHEY PROTEIN — Profit Pharma",
     "shortName": "WHEY PROTEIN",
     "category": "distribuidor-autorizado",
@@ -3668,7 +4514,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Proteína de Suero de leche 80% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-23-01",
-        "image": "img/products/profit-pharma/23_SUP_Whey_Protein.png"
+        "image": "img/products/profit-pharma/23_SUP_Whey_Protein.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-1kg",
@@ -3678,13 +4526,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Proteína de Suero de leche 80% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-23-02",
-        "image": "img/products/profit-pharma/23_SUP_Whey_Protein.png"
+        "image": "img/products/profit-pharma/23_SUP_Whey_Protein.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Pote x 500gr • Pote x 1kg",
     "price": 84.9,
     "unit": "Pote x 500gr",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Fuente de proteína de alta calidad que contribuye al mantenimiento y desarrollo de la masa muscular, ideal para complementar la alimentación y el entrenamiento.",
@@ -3705,12 +4556,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Pote x 500gr • Pote x 1kg."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Suplementos",
-      "Composición": "Proteína de Suero de leche 80%",
-      "Presentaciones": "Pote x 500gr • Pote x 1kg",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Proteína de Suero de leche 80%",
+      "composition": "Proteína de Suero de leche 80%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Proteína de Suero de leche 80%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -3719,12 +4583,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-vegan-protein",
+    "skuMaster": "PF-24",
+    "brand": "profit-pharma",
     "name": "VEGAN PROTEIN — Profit Pharma",
     "shortName": "VEGAN PROTEIN",
     "category": "distribuidor-autorizado",
@@ -3747,7 +4614,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Proteína de Soya Vegetal 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-24-01",
-        "image": "img/products/profit-pharma/24_SUP_Vegan_Protein.png"
+        "image": "img/products/profit-pharma/24_SUP_Vegan_Protein.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-1kg",
@@ -3757,13 +4626,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Proteína de Soya Vegetal 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-24-02",
-        "image": "img/products/profit-pharma/24_SUP_Vegan_Protein.png"
+        "image": "img/products/profit-pharma/24_SUP_Vegan_Protein.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Pote x 500gr • Pote x 1kg",
     "price": 66.5,
     "unit": "Pote x 500gr",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Fuente de proteína vegetal que contribuye al mantenimiento y desarrollo de la masa muscular. Ideal para complementar la alimentación y los requerimientos proteicos diarios.",
@@ -3784,12 +4656,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Pote x 500gr • Pote x 1kg."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Suplementos",
-      "Composición": "Proteína de Soya Vegetal 100%",
-      "Presentaciones": "Pote x 500gr • Pote x 1kg",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Proteína de Soya Vegetal 100%",
+      "composition": "Proteína de Soya Vegetal 100%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Proteína de Soya Vegetal 100%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -3798,12 +4683,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-lipolageno",
+    "skuMaster": "PF-25",
+    "brand": "profit-pharma",
     "name": "LIPOLÁGENO — Profit Pharma",
     "shortName": "LIPOLÁGENO",
     "category": "distribuidor-autorizado",
@@ -3826,7 +4714,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-25-01",
-        "image": "img/products/profit-pharma/25_SUP_Lipolageno.png"
+        "image": "img/products/profit-pharma/25_SUP_Lipolageno.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-500gr",
@@ -3836,7 +4726,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-25-02",
-        "image": "img/products/profit-pharma/25_SUP_Lipolageno.png"
+        "image": "img/products/profit-pharma/25_SUP_Lipolageno.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-1kg",
@@ -3846,13 +4738,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-25-03",
-        "image": "img/products/profit-pharma/25_SUP_Lipolageno.png"
+        "image": "img/products/profit-pharma/25_SUP_Lipolageno.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
     "price": 93.5,
     "unit": "Pote x 300gr",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Fórmula que contribuye al cuidado de la piel y el tejido conectivo, al mantenimiento de las articulaciones y al metabolismo energético.",
@@ -3873,12 +4768,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Pote x 300gr • Pote x 500gr • Pote x 1kg."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Suplementos",
-      "Composición": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g",
-      "Presentaciones": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g",
+      "composition": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -3887,12 +4795,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-colagemax",
+    "skuMaster": "PF-26",
+    "brand": "profit-pharma",
     "name": "COLAGEMAX — Profit Pharma",
     "shortName": "COLAGEMAX",
     "category": "distribuidor-autorizado",
@@ -3915,7 +4826,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-26-01",
-        "image": "img/products/profit-pharma/26_SUP_Colagemax.png"
+        "image": "img/products/profit-pharma/26_SUP_Colagemax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-500gr",
@@ -3925,7 +4838,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-26-02",
-        "image": "img/products/profit-pharma/26_SUP_Colagemax.png"
+        "image": "img/products/profit-pharma/26_SUP_Colagemax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-1kg",
@@ -3935,13 +4850,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-26-03",
-        "image": "img/products/profit-pharma/26_SUP_Colagemax.png"
+        "image": "img/products/profit-pharma/26_SUP_Colagemax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
     "price": 60.9,
     "unit": "Pote x 300gr",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Favorece el mantenimiento del tejido conectivo y cartílago.",
@@ -3962,12 +4880,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Pote x 300gr • Pote x 500gr • Pote x 1kg."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Suplementos",
-      "Composición": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g",
-      "Presentaciones": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g",
+      "composition": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -3976,12 +4907,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-colagen-pro",
+    "skuMaster": "PF-27",
+    "brand": "profit-pharma",
     "name": "COLAGEN PRO — Profit Pharma",
     "shortName": "COLAGEN PRO",
     "category": "distribuidor-autorizado",
@@ -4004,7 +4938,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Colágeno hidrolizado 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-27-01",
-        "image": "img/products/profit-pharma/27_SUP_Colagen_Pro.png"
+        "image": "img/products/profit-pharma/27_SUP_Colagen_Pro.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-500gr",
@@ -4014,7 +4950,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Colágeno hidrolizado 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-27-02",
-        "image": "img/products/profit-pharma/27_SUP_Colagen_Pro.png"
+        "image": "img/products/profit-pharma/27_SUP_Colagen_Pro.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "pote-x-1kg",
@@ -4024,13 +4962,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Colágeno hidrolizado 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-27-03",
-        "image": "img/products/profit-pharma/27_SUP_Colagen_Pro.png"
+        "image": "img/products/profit-pharma/27_SUP_Colagen_Pro.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
     "price": 52.9,
     "unit": "Pote x 300gr",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Estimula el colágeno en la piel y cabello. Fortalece huesos y articulaciones.",
@@ -4051,12 +4992,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Pote x 300gr • Pote x 500gr • Pote x 1kg."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Suplementos",
-      "Composición": "Colágeno hidrolizado 100%",
-      "Presentaciones": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Colágeno hidrolizado 100%",
+      "composition": "Colágeno hidrolizado 100%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Colágeno hidrolizado 100%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -4065,12 +5019,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-pack-profit-flex",
+    "skuMaster": "PF-28",
+    "brand": "profit-pharma",
     "name": "PACK PROFIT FLEX — Profit Pharma",
     "shortName": "PACK PROFIT FLEX",
     "category": "distribuidor-autorizado",
@@ -4093,13 +5050,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Colágeno HDR 100% + Creatina 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-28-01",
-        "image": "img/products/profit-pharma/28_SUP_Pack_Profit_Flex.png"
+        "image": "img/products/profit-pharma/28_SUP_Pack_Profit_Flex.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "2 potes: 1 de 1kg + 1 de 300g",
     "price": 133.9,
     "unit": "2 potes: 1 de 1kg + 1 de 300g",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Colágeno para el cuidado de la piel y articulaciones, creatina para potenciar tu energía y rendimiento físico.",
@@ -4120,12 +5080,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: 2 potes: 1 de 1kg + 1 de 300g."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Suplementos",
-      "Composición": "Colágeno HDR 100% + Creatina 100%",
-      "Presentaciones": "2 potes: 1 de 1kg + 1 de 300g",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Colágeno HDR 100% + Creatina 100%",
+      "composition": "Colágeno HDR 100% + Creatina 100%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Colágeno HDR 100% + Creatina 100%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -4134,12 +5107,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-pack-profit-pro",
+    "skuMaster": "PF-29",
+    "brand": "profit-pharma",
     "name": "PACK PROFIT PRO — Profit Pharma",
     "shortName": "PACK PROFIT PRO",
     "category": "distribuidor-autorizado",
@@ -4162,13 +5138,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Whey Protein 80% + Creatina 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-29-01",
-        "image": "img/products/profit-pharma/29_SUP_Pack_Profit_Pro.png"
+        "image": "img/products/profit-pharma/29_SUP_Pack_Profit_Pro.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "2 potes: 1 de 1kg + 1 de 300g",
     "price": 174.5,
     "unit": "2 potes: 1 de 1kg + 1 de 300g",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Combina proteína de alta calidad con creatina para apoyar el crecimiento muscular.",
@@ -4189,12 +5168,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: 2 potes: 1 de 1kg + 1 de 300g."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Suplementos",
-      "Composición": "Whey Protein 80% + Creatina 100%",
-      "Presentaciones": "2 potes: 1 de 1kg + 1 de 300g",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Whey Protein 80% + Creatina 100%",
+      "composition": "Whey Protein 80% + Creatina 100%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Whey Protein 80% + Creatina 100%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -4203,12 +5195,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-pack-profit-green",
+    "skuMaster": "PF-30",
+    "brand": "profit-pharma",
     "name": "PACK PROFIT GREEN — Profit Pharma",
     "shortName": "PACK PROFIT GREEN",
     "category": "distribuidor-autorizado",
@@ -4231,13 +5226,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Proteína vegetal 100% + Creatina 100% • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-30-01",
-        "image": "img/products/profit-pharma/30_SUP_Pack_Profit_Green.png"
+        "image": "img/products/profit-pharma/30_SUP_Pack_Profit_Green.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "2 potes: 1 de 1kg + 1 de 300g",
     "price": 133.9,
     "unit": "2 potes: 1 de 1kg + 1 de 300g",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Apoya tu rendimiento, recuperación y objetivos fitness de manera equilibrada.",
@@ -4258,12 +5256,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: 2 potes: 1 de 1kg + 1 de 300g."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Suplementos",
-      "Composición": "Proteína vegetal 100% + Creatina 100%",
-      "Presentaciones": "2 potes: 1 de 1kg + 1 de 300g",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Proteína vegetal 100% + Creatina 100%",
+      "composition": "Proteína vegetal 100% + Creatina 100%",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Proteína vegetal 100% + Creatina 100%",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -4272,12 +5283,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-alfamax",
+    "skuMaster": "PF-31",
+    "brand": "profit-pharma",
     "name": "ALFAMAX — Profit Pharma",
     "shortName": "ALFAMAX",
     "category": "distribuidor-autorizado",
@@ -4300,7 +5314,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Tadalafilo 5mg, Arginina 250mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-31-01",
-        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png"
+        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-60-capsulas-5mg-250mg",
@@ -4310,7 +5326,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Tadalafilo 5mg, Arginina 250mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-31-02",
-        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png"
+        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-30-capsulas-10mg-400mg",
@@ -4320,7 +5338,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Tadalafilo 10mg, Arginina 400mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-31-03",
-        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png"
+        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-60-capsulas-10mg-400mg",
@@ -4330,13 +5350,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Tadalafilo 10mg, Arginina 400mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-31-04",
-        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png"
+        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Frasco x 30 cápsulas (5mg / 250mg) • Frasco x 60 cápsulas (5mg / 250mg) • Frasco x 30 cápsulas (10mg / 400mg) (+1)",
     "price": 79.9,
     "unit": "Frasco x 30 cápsulas (5mg / 250mg)",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Suplemento con potente refuerzo para el sistema circulatorio, enfocándose en la salud sexual y el rendimiento físico.",
@@ -4357,12 +5380,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Frasco x 30 cápsulas (5mg / 250mg) • Frasco x 60 cápsulas (5mg / 250mg) • Frasco x 30 cápsulas (10mg / 400mg) (+1)."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Cápsulas",
-      "Composición": "Tadalafilo 5mg, Arginina 250mg | Tadalafilo 10mg, Arginina 400mg",
-      "Presentaciones": "Frasco x 30 cápsulas (5mg / 250mg) • Frasco x 60 cápsulas (5mg / 250mg) • Frasco x 30 cápsulas (10mg / 400mg) (+1)",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Tadalafilo 5mg, Arginina 250mg | Tadalafilo 10mg, Arginina 400mg",
+      "composition": "Tadalafilo 5mg, Arginina 250mg | Tadalafilo 10mg, Arginina 400mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Tadalafilo 5mg, Arginina 250mg | Tadalafilo 10mg, Arginina 400mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -4371,12 +5407,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-citrato-de-magnesio",
+    "skuMaster": "PF-32",
+    "brand": "profit-pharma",
     "name": "CITRATO DE MAGNESIO — Profit Pharma",
     "shortName": "CITRATO DE MAGNESIO",
     "category": "distribuidor-autorizado",
@@ -4399,13 +5438,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Citrato de Magnesio 500mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-32-01",
-        "image": "img/products/profit-pharma/32_CAPS_Citrato_Magnesio.png"
+        "image": "img/products/profit-pharma/32_CAPS_Citrato_Magnesio.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Frasco x 60 cápsulas",
     "price": 81.5,
     "unit": "Frasco x 60 cápsulas",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Ayuda a mantener el equilibrio electrolítico. Favorece la función muscular y nerviosa normal. Además contribuye a la salud ósea y al metabolismo energético.",
@@ -4426,12 +5468,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Frasco x 60 cápsulas."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Cápsulas",
-      "Composición": "Citrato de Magnesio 500mg",
-      "Presentaciones": "Frasco x 60 cápsulas",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Citrato de Magnesio 500mg",
+      "composition": "Citrato de Magnesio 500mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Citrato de Magnesio 500mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -4440,12 +5495,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-omega-3",
+    "skuMaster": "PF-33",
+    "brand": "profit-pharma",
     "name": "OMEGA 3 — Profit Pharma",
     "shortName": "OMEGA 3",
     "category": "distribuidor-autorizado",
@@ -4468,13 +5526,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Ác. Eicosapentaenoico 1050mg, Ác. Docosahexaenoico 750mg, Vitamina E 15.09mg, Aceite de pescado 3000mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-33-01",
-        "image": "img/products/profit-pharma/33_CAPS_Omega_3.png"
+        "image": "img/products/profit-pharma/33_CAPS_Omega_3.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Frasco x 60 cápsulas",
     "price": 66.5,
     "unit": "Frasco x 60 cápsulas",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Ayuda a mantener la salud cardiovascular, la función cerebral y la visión.",
@@ -4495,12 +5556,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Frasco x 60 cápsulas."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Cápsulas",
-      "Composición": "Ác. Eicosapentaenoico 1050mg, Ác. Docosahexaenoico 750mg, Vitamina E 15.09mg, Aceite de pescado 3000mg",
-      "Presentaciones": "Frasco x 60 cápsulas",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Ác. Eicosapentaenoico 1050mg, Ác. Docosahexaenoico 750mg, Vitamina E 15.09mg, Aceite de pescado 3000mg",
+      "composition": "Ác. Eicosapentaenoico 1050mg, Ác. Docosahexaenoico 750mg, Vitamina E 15.09mg, Aceite de pescado 3000mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Ác. Eicosapentaenoico 1050mg, Ác. Docosahexaenoico 750mg, Vitamina E 15.09mg, Aceite de pescado 3000mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -4509,12 +5583,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-vigormax",
+    "skuMaster": "PF-34",
+    "brand": "profit-pharma",
     "name": "VIGORMAX — Profit Pharma",
     "shortName": "VIGORMAX",
     "category": "distribuidor-autorizado",
@@ -4537,7 +5614,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Maca negra 500mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-34-01",
-        "image": "img/products/profit-pharma/34_CAPS_Vigormax.png"
+        "image": "img/products/profit-pharma/34_CAPS_Vigormax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-60-capsulas",
@@ -4547,13 +5626,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Maca negra 500mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-34-02",
-        "image": "img/products/profit-pharma/34_CAPS_Vigormax.png"
+        "image": "img/products/profit-pharma/34_CAPS_Vigormax.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Frasco x 30 cápsulas • Frasco x 60 cápsulas",
     "price": 79.9,
     "unit": "Frasco x 30 cápsulas",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Suplemento de potente energizante natural y adaptógeno que ayuda al cuerpo a manejar el estrés físico y mental.",
@@ -4574,12 +5656,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Frasco x 30 cápsulas • Frasco x 60 cápsulas."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Cápsulas",
-      "Composición": "Maca negra 500mg",
-      "Presentaciones": "Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Maca negra 500mg",
+      "composition": "Maca negra 500mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Maca negra 500mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
@@ -4588,12 +5683,15 @@ const BIONATIVA_PRODUCTS = [
         "Complemento nutricional; no sustituye una alimentación equilibrada.",
         "Conservar en lugar fresco y seco con el envase bien cerrado."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-clembuterolmax-drops",
+    "skuMaster": "PF-35",
+    "brand": "profit-pharma",
     "name": "CLEMBUTEROLMAX DROPS — Profit Pharma",
     "shortName": "CLEMBUTEROLMAX DROPS",
     "category": "distribuidor-autorizado",
@@ -4616,7 +5714,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Clembuterol 20mcg (*por cada 20 gotas*) • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-35-01",
-        "image": "img/products/profit-pharma/35_ANAB_Clembuterolmax_Drops.png"
+        "image": "img/products/profit-pharma/35_ANAB_Clembuterolmax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-30-capsulas",
@@ -4626,7 +5726,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Clembuterol (Cápsulas) • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-35-02",
-        "image": "img/products/profit-pharma/35_ANAB_Clembuterolmax_Drops.png"
+        "image": "img/products/profit-pharma/35_ANAB_Clembuterolmax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-60-capsulas",
@@ -4636,13 +5738,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Clembuterol (Cápsulas) • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-35-03",
-        "image": "img/products/profit-pharma/35_ANAB_Clembuterolmax_Drops.png"
+        "image": "img/products/profit-pharma/35_ANAB_Clembuterolmax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-    "price": 93.5,
+    "price": 133.9,
     "unit": "Drops x 30ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Ayuda a disminuir la retención de líquidos en el cuerpo.",
@@ -4663,12 +5768,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Anabólicos",
-      "Composición": "Clembuterol 20mcg (*por cada 20 gotas*) | Clembuterol (Cápsulas)",
-      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Clembuterol 20mcg (*por cada 20 gotas*) | Clembuterol (Cápsulas)",
+      "composition": "Clembuterol 20mcg (*por cada 20 gotas*) | Clembuterol (Cápsulas)",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Clembuterol 20mcg (*por cada 20 gotas*) | Clembuterol (Cápsulas)",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
@@ -4677,12 +5795,15 @@ const BIONATIVA_PRODUCTS = [
         "Se recomienda seguimiento profesional y control médico periódico.",
         "Mantener fuera del alcance de los niños."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-cardarinemax-drops",
+    "skuMaster": "PF-36",
+    "brand": "profit-pharma",
     "name": "CARDARINEMAX DROPS — Profit Pharma",
     "shortName": "CARDARINEMAX DROPS",
     "category": "distribuidor-autorizado",
@@ -4705,7 +5826,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Cardarine 20mg (*por cada 20 gotas*) • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-36-01",
-        "image": "img/products/profit-pharma/36_ANAB_Cardarinemax_Drops.png"
+        "image": "img/products/profit-pharma/36_ANAB_Cardarinemax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-30-capsulas",
@@ -4715,7 +5838,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Cardarine 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-36-02",
-        "image": "img/products/profit-pharma/36_ANAB_Cardarinemax_Drops.png"
+        "image": "img/products/profit-pharma/36_ANAB_Cardarinemax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-60-capsulas",
@@ -4725,13 +5850,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Cardarine 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-36-03",
-        "image": "img/products/profit-pharma/36_ANAB_Cardarinemax_Drops.png"
+        "image": "img/products/profit-pharma/36_ANAB_Cardarinemax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-    "price": 160.9,
+    "price": 268.9,
     "unit": "Drops x 30ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Potencia la energía y la resistencia, optimizando el rendimiento.",
@@ -4752,12 +5880,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Anabólicos",
-      "Composición": "Cardarine 20mg (*por cada 20 gotas*) | Cardarine 10mg",
-      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Cardarine 20mg (*por cada 20 gotas*) | Cardarine 10mg",
+      "composition": "Cardarine 20mg (*por cada 20 gotas*) | Cardarine 10mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Cardarine 20mg (*por cada 20 gotas*) | Cardarine 10mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
@@ -4766,12 +5907,15 @@ const BIONATIVA_PRODUCTS = [
         "Se recomienda seguimiento profesional y control médico periódico.",
         "Mantener fuera del alcance de los niños."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-ostarinemax-drops",
+    "skuMaster": "PF-37",
+    "brand": "profit-pharma",
     "name": "OSTARINEMAX DROPS — Profit Pharma",
     "shortName": "OSTARINEMAX DROPS",
     "category": "distribuidor-autorizado",
@@ -4794,7 +5938,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Ostarine 20mg (*por cada 20 gotas*) • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-37-01",
-        "image": "img/products/profit-pharma/37_ANAB_Ostarinemax_Drops.png"
+        "image": "img/products/profit-pharma/37_ANAB_Ostarinemax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-30-capsulas",
@@ -4804,7 +5950,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Ostarine 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-37-02",
-        "image": "img/products/profit-pharma/37_ANAB_Ostarinemax_Drops.png"
+        "image": "img/products/profit-pharma/37_ANAB_Ostarinemax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-60-capsulas",
@@ -4814,13 +5962,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Ostarine 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-37-03",
-        "image": "img/products/profit-pharma/37_ANAB_Ostarinemax_Drops.png"
+        "image": "img/products/profit-pharma/37_ANAB_Ostarinemax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-    "price": 160.9,
+    "price": 268.9,
     "unit": "Drops x 30ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Favorece el aumento de la masa muscular y al rendimiento.",
@@ -4841,12 +5992,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Anabólicos",
-      "Composición": "Ostarine 20mg (*por cada 20 gotas*) | Ostarine 10mg",
-      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Ostarine 20mg (*por cada 20 gotas*) | Ostarine 10mg",
+      "composition": "Ostarine 20mg (*por cada 20 gotas*) | Ostarine 10mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Ostarine 20mg (*por cada 20 gotas*) | Ostarine 10mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
@@ -4855,12 +6019,15 @@ const BIONATIVA_PRODUCTS = [
         "Se recomienda seguimiento profesional y control médico periódico.",
         "Mantener fuera del alcance de los niños."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-stanabolmax-drops",
+    "skuMaster": "PF-38",
+    "brand": "profit-pharma",
     "name": "STANABOLMAX DROPS — Profit Pharma",
     "shortName": "STANABOLMAX DROPS",
     "category": "distribuidor-autorizado",
@@ -4883,7 +6050,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Estanozolol 20mg (*por cada 20 gotas*) • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-38-01",
-        "image": "img/products/profit-pharma/38_ANAB_Stanabolmax_Drops.png"
+        "image": "img/products/profit-pharma/38_ANAB_Stanabolmax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-30-capsulas",
@@ -4893,7 +6062,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Estanozolol 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-38-02",
-        "image": "img/products/profit-pharma/38_ANAB_Stanabolmax_Drops.png"
+        "image": "img/products/profit-pharma/38_ANAB_Stanabolmax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-60-capsulas",
@@ -4903,13 +6074,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Estanozolol 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-38-03",
-        "image": "img/products/profit-pharma/38_ANAB_Stanabolmax_Drops.png"
+        "image": "img/products/profit-pharma/38_ANAB_Stanabolmax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-    "price": 160.9,
+    "price": 268.9,
     "unit": "Drops x 30ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Contribuye a mantener masa muscular y mejorar el desempeño deportivo.",
@@ -4930,12 +6104,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Anabólicos",
-      "Composición": "Estanozolol 20mg (*por cada 20 gotas*) | Estanozolol 10mg",
-      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Estanozolol 20mg (*por cada 20 gotas*) | Estanozolol 10mg",
+      "composition": "Estanozolol 20mg (*por cada 20 gotas*) | Estanozolol 10mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Estanozolol 20mg (*por cada 20 gotas*) | Estanozolol 10mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
@@ -4944,12 +6131,15 @@ const BIONATIVA_PRODUCTS = [
         "Se recomienda seguimiento profesional y control médico periódico.",
         "Mantener fuera del alcance de los niños."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-musclemax-drops",
+    "skuMaster": "PF-39",
+    "brand": "profit-pharma",
     "name": "MUSCLEMAX DROPS — Profit Pharma",
     "shortName": "MUSCLEMAX DROPS",
     "category": "distribuidor-autorizado",
@@ -4972,7 +6162,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Tribulus Terrestris 20mg (*por cada 20 gotas*) • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-39-01",
-        "image": "img/products/profit-pharma/39_ANAB_Musclemax_Drops.png"
+        "image": "img/products/profit-pharma/39_ANAB_Musclemax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-30-capsulas",
@@ -4982,7 +6174,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Tribulus Terrestris 700mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-39-02",
-        "image": "img/products/profit-pharma/39_ANAB_Musclemax_Drops.png"
+        "image": "img/products/profit-pharma/39_ANAB_Musclemax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-60-capsulas",
@@ -4992,13 +6186,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Tribulus Terrestris 700mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-39-03",
-        "image": "img/products/profit-pharma/39_ANAB_Musclemax_Drops.png"
+        "image": "img/products/profit-pharma/39_ANAB_Musclemax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-    "price": 66.5,
+    "price": 93.5,
     "unit": "Drops x 30ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Potencia la energía y la resistencia, optimizando el rendimiento.",
@@ -5019,12 +6216,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Anabólicos",
-      "Composición": "Tribulus Terrestris 20mg (*por cada 20 gotas*) | Tribulus Terrestris 700mg",
-      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Tribulus Terrestris 20mg (*por cada 20 gotas*) | Tribulus Terrestris 700mg",
+      "composition": "Tribulus Terrestris 20mg (*por cada 20 gotas*) | Tribulus Terrestris 700mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Tribulus Terrestris 20mg (*por cada 20 gotas*) | Tribulus Terrestris 700mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
@@ -5033,12 +6243,15 @@ const BIONATIVA_PRODUCTS = [
         "Se recomienda seguimiento profesional y control médico periódico.",
         "Mantener fuera del alcance de los niños."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   },
   {
     "id": "profit-oxandrolonomax-drops",
+    "skuMaster": "PF-40",
+    "brand": "profit-pharma",
     "name": "OXANDROLONOMAX DROPS — Profit Pharma",
     "shortName": "OXANDROLONOMAX DROPS",
     "category": "distribuidor-autorizado",
@@ -5061,7 +6274,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Oxandrolona 20mg (*por cada 20 gotas*) • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-40-01",
-        "image": "img/products/profit-pharma/40_ANAB_Oxandrolonomax_Drops.png"
+        "image": "img/products/profit-pharma/40_ANAB_Oxandrolonomax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-30-capsulas",
@@ -5071,7 +6286,9 @@ const BIONATIVA_PRODUCTS = [
         "format": "Oxandrolona 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-40-02",
-        "image": "img/products/profit-pharma/40_ANAB_Oxandrolonomax_Drops.png"
+        "image": "img/products/profit-pharma/40_ANAB_Oxandrolonomax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       },
       {
         "id": "frasco-x-60-capsulas",
@@ -5081,13 +6298,16 @@ const BIONATIVA_PRODUCTS = [
         "format": "Oxandrolona 10mg • Profit Pharma",
         "packagingType": "profit-pharma",
         "sku": "PF-40-03",
-        "image": "img/products/profit-pharma/40_ANAB_Oxandrolonomax_Drops.png"
+        "image": "img/products/profit-pharma/40_ANAB_Oxandrolonomax_Drops.png",
+        "stockStatus": "in_stock",
+        "activeLotId": null
       }
     ],
     "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-    "price": 160.9,
+    "price": 268.9,
     "unit": "Drops x 30ml",
     "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaRequired": false,
     "coaCertified": false,
     "coaPurity": "Distribuidor Autorizado Profit Pharma",
     "description": "Ayuda a preservar masa muscular en etapas de definición.",
@@ -5108,12 +6328,25 @@ const BIONATIVA_PRODUCTS = [
         "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
       }
     ],
+    "dosage": {
+      "administrationRoute": "oral",
+      "recommendedAmount": 1,
+      "unit": "g",
+      "frequencyText": "Según protocolo profesional",
+      "scoopEquivalent": "1 cucharadita dosificadora",
+      "timingText": "Bajo evaluación y protocolo médico"
+    },
     "technicalSpecs": {
-      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
-      "Línea": "Línea Anabólicos",
-      "Composición": "Oxandrolona 20mg (*por cada 20 gotas*) | Oxandrolona 10mg",
-      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
-      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+      "chemicalForm": "Oxandrolona 20mg (*por cada 20 gotas*) | Oxandrolona 10mg",
+      "composition": "Oxandrolona 20mg (*por cada 20 gotas*) | Oxandrolona 10mg",
+      "grade": "Estándar Farmacéutico Profit Pharma",
+      "appearance": "Polvo fino homogéneo",
+      "solubility": "Soluble en líquidos a temperatura ambiente",
+      "meshOrConcentration": "Oxandrolona 20mg (*por cada 20 gotas*) | Oxandrolona 10mg",
+      "casNumber": null,
+      "allergens": [
+        "Uso profesional / revisar excipientes de fórmula"
+      ]
     },
     "responsibleUse": {
       "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
@@ -5122,16 +6355,13 @@ const BIONATIVA_PRODUCTS = [
         "Se recomienda seguimiento profesional y control médico periódico.",
         "Mantener fuera del alcance de los niños."
       ],
-      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa.",
+      "shelfLifeMonths": 24
     },
     "complementaryProductIds": []
   }
 ];
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   window.BIONATIVA_PRODUCTS = BIONATIVA_PRODUCTS;
-}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { BIONATIVA_PRODUCTS };
 }

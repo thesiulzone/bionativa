@@ -7,6 +7,7 @@ import { CATALOG } from "../functions/_shared/catalog.js";
 import { onRequestPost } from "../functions/api/create-preference.js";
 import { onRequestGet } from "../functions/api/payment-status.js";
 import worker from "../_worker.js";
+import { validateCatalog } from "../scripts/validate-catalog.mjs";
 
 function loadBrowserData() {
   const context = { window: {} };
@@ -18,13 +19,31 @@ function loadBrowserData() {
 
 test("server catalog matches browser product ids, variants, and prices", () => {
   const products = loadBrowserData().BIONATIVA_PRODUCTS;
-  assert.deepEqual(JSON.parse(JSON.stringify(CATALOG)), JSON.parse(JSON.stringify(products.map(product => ({
+  const serverNormalized = CATALOG.map(product => ({
     id: product.id,
     name: product.name,
     category: product.category,
     variants: product.variants?.map(variant => ({ id: variant.id, name: variant.name, price: variant.price })) || null,
     price: product.price
-  })))));
+  }));
+  const browserNormalized = products.map(product => ({
+    id: product.id,
+    name: product.name,
+    category: product.category,
+    variants: product.variants?.map(variant => ({ id: variant.id, name: variant.name, price: variant.price })) || null,
+    price: product.price
+  }));
+  assert.deepEqual(JSON.parse(JSON.stringify(serverNormalized)), JSON.parse(JSON.stringify(browserNormalized)));
+});
+
+test("SSOT master catalog, inventory, and COA lots pass mandatory validation", () => {
+  const catalog = JSON.parse(fs.readFileSync("data/catalog.master.json", "utf8"));
+  const inventory = JSON.parse(fs.readFileSync("data/inventory.master.json", "utf8"));
+  const coaLots = JSON.parse(fs.readFileSync("data/coa-lots.master.json", "utf8"));
+  const summary = validateCatalog({ catalog, inventory, coaLots, rootDir: process.cwd() });
+  assert.equal(summary.productsCount, catalog.length);
+  assert.ok(summary.skusCount >= catalog.length);
+  assert.ok(summary.lotsCount >= 8);
 });
 
 test("enabled product promotions match the catalog and lower its regular price", () => {

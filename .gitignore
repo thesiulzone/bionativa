@@ -8,6 +8,9 @@ desktop.ini
 .idea/
 .antigravity-context.json
 
+# Dependencias Node
+node_modules/
+
 # Logs y temporales
 *.log
 .wrangler/
