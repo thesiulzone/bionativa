@@ -6,6 +6,12 @@
   "observability": {
     "enabled": true
   },
+  "kv_namespaces": [
+    {
+      "binding": "PROMOTIONS_KV",
+      "id": "988a01e1bda74c57b3d27d22aff1cfa8"
+    }
+  ],
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
