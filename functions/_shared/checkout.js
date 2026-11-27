@@ -1,11 +1,8 @@
 import { CATALOG } from "./catalog.js";
 
 const SHIPPING = {
-  "lima-express": { name: "Delivery Lima Metropolitana (24 a 48 hrs)", price: 10 },
-  "lima-recojo": { name: "Retiro en Almacén Lima (Gratis)", price: 0 },
-  "cusco-recojo": { name: "Retiro en Tienda Cusco (Gratis)", price: 0 },
-  "provincias-shalom": { name: "Envío Nacional vía Agencia Shalom", price: 15 },
-  "provincias-marvisur": { name: "Envío Nacional vía Agencia Marvisur", price: 16 }
+  "lima-express": { name: "Envío Lima Metropolitana Urbano", price: 12 },
+  "lima-semiurbano-provincias": { name: "Envío Lima Metropolitana Semiurbano o Agencia de Transporte (Provincias)", price: 14 }
 };
 
 export const SERVER_PROMOTIONS = {

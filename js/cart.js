@@ -12,11 +12,8 @@ window.BIONATIVA_CONFIG = window.BIONATIVA_CONFIG || {
   companyName: "Ecopride del Perú S.R.L.",
   brandName: "BioNativa LAB",
   shippingOptions: [
-    { id: "lima-express", name: "Delivery Lima Metropolitana (24 a 48 hrs)", price: 10 },
-    { id: "lima-recojo", name: "Retiro en Almacén Lima (Gratis)", price: 0 },
-    { id: "cusco-recojo", name: "Retiro en Tienda Cusco (Gratis)", price: 0 },
-    { id: "provincias-shalom", name: "Envío Nacional vía Agencia Shalom", price: 15 },
-    { id: "provincias-marvisur", name: "Envío Nacional vía Agencia Marvisur", price: 16 }
+    { id: "lima-express", name: "Envío Lima Metropolitana Urbano", price: 12 },
+    { id: "lima-semiurbano-provincias", name: "Envío Lima Metropolitana Semiurbano o Agencia de Transporte (Provincias)", price: 14 }
   ]
 };
 
@@ -220,11 +217,8 @@ class BionativaCart {
 
   getShippingCost() {
     const shippingOptions = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
-      { id: "lima-express", name: "Delivery Lima Metropolitana (24 a 48 hrs)", price: 10 },
-      { id: "lima-recojo", name: "Retiro en Almacén Lima (Gratis)", price: 0 },
-      { id: "cusco-recojo", name: "Retiro en Tienda Cusco (Gratis)", price: 0 },
-      { id: "provincias-shalom", name: "Envío Nacional vía Agencia Shalom", price: 15 },
-      { id: "provincias-marvisur", name: "Envío Nacional vía Agencia Marvisur", price: 16 }
+      { id: "lima-express", name: "Envío Lima Metropolitana Urbano", price: 12 },
+      { id: "lima-semiurbano-provincias", name: "Envío Lima Metropolitana Semiurbano o Agencia de Transporte (Provincias)", price: 14 }
     ];
     const option = shippingOptions.find(o => o.id === this.selectedShipping);
     return option ? Number(option.price) : 0;
@@ -403,11 +397,8 @@ class BionativaCart {
     if (document.getElementById("cart-drawer-overlay")) return;
 
     const shippingOptions = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
-      { id: "lima-express", name: "Delivery Lima Metropolitana (24 a 48 hrs)", price: 10 },
-      { id: "lima-recojo", name: "Retiro en Almacén Lima (Gratis)", price: 0 },
-      { id: "cusco-recojo", name: "Retiro en Tienda Cusco (Gratis)", price: 0 },
-      { id: "provincias-shalom", name: "Envío Nacional vía Agencia Shalom", price: 15 },
-      { id: "provincias-marvisur", name: "Envío Nacional vía Agencia Marvisur", price: 16 }
+      { id: "lima-express", name: "Envío Lima Metropolitana Urbano", price: 12 },
+      { id: "lima-semiurbano-provincias", name: "Envío Lima Metropolitana Semiurbano o Agencia de Transporte (Provincias)", price: 14 }
     ];
 
     const drawerHTML = `
@@ -524,11 +515,6 @@ class BionativaCart {
 
           <!-- Checkout Buttons -->
           <div class="space-y-2">
-            <button onclick="window.cart.openCheckoutModal('whatsapp')" class="w-full bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.98] text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md transition">
-              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
-              Comprar por WhatsApp (Rápido)
-            </button>
-
             <button onclick="window.cart.openCheckoutModal('pay-options')" class="w-full bg-[#1E3B2B] hover:bg-[#284f3a] active:scale-[0.98] text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow transition">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
               Pagar con Plin, Yape o Tarjeta
@@ -653,7 +639,7 @@ class BionativaCart {
     }
 
     const shippingOptions = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [];
-    const shipping = shippingOptions.find(o => o.id === this.selectedShipping) || { name: "Lima Metropolitana", price: 10 };
+    const shipping = shippingOptions.find(o => o.id === this.selectedShipping) || { name: "Envío Lima Metropolitana Urbano", price: 12 };
     const promoEval = this.getPromotionEvaluation();
     const regularSubtotal = promoEval.subtotalRegular;
     const subtotal = promoEval.finalSubtotal;
@@ -693,7 +679,7 @@ class BionativaCart {
           </div>
 
           <div>
-            <label class="block font-semibold text-stone-700 mb-1">Dirección exacta o Agencia de recojo (Shalom / Marvisur) *</label>
+            <label class="block font-semibold text-stone-700 mb-1">Dirección exacta o Agencia de transporte *</label>
             <input type="text" id="cust-address" required placeholder="Calle / Av. / Referencia o Nombre de Agencia" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
           </div>
 
@@ -827,11 +813,8 @@ class BionativaCart {
     const payMethod = payMethodRadio ? payMethodRadio.value : "yape";
 
     const shippingList = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
-      { id: "lima-express", name: "Delivery Lima Metropolitana (24 a 48 hrs)", price: 10 },
-      { id: "lima-recojo", name: "Retiro en Almacén Lima (Gratis)", price: 0 },
-      { id: "cusco-recojo", name: "Retiro en Tienda Cusco (Gratis)", price: 0 },
-      { id: "provincias-shalom", name: "Envío Nacional vía Agencia Shalom", price: 15 },
-      { id: "provincias-marvisur", name: "Envío Nacional vía Agencia Marvisur", price: 16 }
+      { id: "lima-express", name: "Envío Lima Metropolitana Urbano", price: 12 },
+      { id: "lima-semiurbano-provincias", name: "Envío Lima Metropolitana Semiurbano o Agencia de Transporte (Provincias)", price: 14 }
     ];
     const shipping = shippingList.find(o => o.id === this.selectedShipping) || shippingList[0];
     const promoEval = this.getPromotionEvaluation();
