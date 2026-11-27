@@ -300,7 +300,10 @@
 
       const breadcrumbCat = document.getElementById("breadcrumb-category");
       if (breadcrumbCat) {
-        breadcrumbCat.innerHTML = `<a href="tienda?cat=${currentProduct.category}" class="hover:underline">${currentProduct.categoryName}</a>`;
+        const subPart = currentProduct.subCategoryName
+          ? ` <span class="text-stone-300 mx-1">/</span> <a href="tienda?cat=${currentProduct.category}&sub=${currentProduct.subCategory}" class="hover:underline">${currentProduct.subCategoryName}</a>`
+          : "";
+        breadcrumbCat.innerHTML = `<a href="tienda?cat=${currentProduct.category}" class="hover:underline">${currentProduct.categoryName}</a>${subPart}`;
       }
       const breadcrumbProd = document.getElementById("breadcrumb-product");
       if (breadcrumbProd) breadcrumbProd.textContent = currentProduct.shortName;
@@ -480,8 +483,8 @@
           <!-- Trust Cards Row (Garantías de pureza boticaria) -->
           <div class="grid grid-cols-3 gap-3 text-center text-xs">
             <div class="bg-white p-3.5 rounded-2xl border border-[#E8E2D8] shadow-sm">
-              <span class="font-bold text-[#1E3B2B] block text-xs sm:text-sm">Pureza 99.9%</span>
-              <span class="text-[10px] text-stone-500 mt-0.5 block">Certificado COA USP</span>
+              <span class="font-bold text-[#1E3B2B] block text-xs sm:text-sm">${currentProduct.coaCertified === false ? 'Distribuidor Oficial' : 'Pureza 99.9%'}</span>
+              <span class="text-[10px] text-stone-500 mt-0.5 block">${currentProduct.coaCertified === false ? 'Profit Pharma 2026' : 'Certificado COA USP'}</span>
             </div>
             <div class="bg-white p-3.5 rounded-2xl border border-[#E8E2D8] shadow-sm">
               <span class="font-bold text-[#1E3B2B] block text-xs sm:text-sm">Despacho Exprés</span>
@@ -841,14 +844,21 @@
               <div class="bg-white p-6 rounded-3xl border border-[#E8E2D8] space-y-5">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
-                    <h4 class="font-bold text-base text-[#1E3B2B]">Certificado de Análisis (COA) Oficial</h4>
-                    <p class="text-xs text-stone-500">Verificación analítica del lote actual con parámetros de HPLC</p>
+                    <h4 class="font-bold text-base text-[#1E3B2B]">${currentProduct.coaCertified === false ? 'Respaldo de Distribuidor Autorizado' : 'Certificado de Análisis (COA) Oficial'}</h4>
+                    <p class="text-xs text-stone-500">${currentProduct.coaCertified === false ? 'Producto sellado de fábrica — Catálogo Oficial Profit Pharma 2026' : 'Verificación analítica del lote actual con parámetros de HPLC'}</p>
                   </div>
                   <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-300 self-start sm:self-auto flex items-center gap-1.5">
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <span>COA Vigente & Aprobado</span>
+                    <span>${currentProduct.coaCertified === false ? 'Distribuidor Autorizado' : 'COA Vigente & Aprobado'}</span>
                   </span>
                 </div>
+
+                ${currentProduct.presentationSheet ? `
+                  <div class="rounded-2xl overflow-hidden border border-[#E8E2D8] bg-[#FAF6F0] p-3">
+                    <p class="text-[11px] font-bold text-[#1E3B2B] mb-2">Ficha Visual del Catálogo Oficial Profit Pharma:</p>
+                    <img src="${currentProduct.presentationSheet}" alt="Presentación oficial ${currentProduct.shortName}" class="w-full h-auto rounded-xl border border-[#E8E2D8]" />
+                  </div>
+                ` : ''}
 
                 <!-- COA Actions: Direct Download & WhatsApp Batch Verification -->
                 <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">

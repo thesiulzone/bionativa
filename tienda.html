@@ -191,7 +191,7 @@
         <!-- Category Buttons -->
         <div class="flex flex-wrap gap-2 text-xs font-semibold">
           <button onclick="filterCategory('all')" id="tab-all" class="cat-tab px-4 py-2.5 rounded-full border border-[#1E3B2B] bg-[#1E3B2B] text-white transition shadow-sm">
-            Todos (19)
+            Todos (59)
           </button>
           <button onclick="filterCategory('fuerza-deporte')" id="tab-fuerza-deporte" class="cat-tab px-4 py-2.5 rounded-full border border-[#D5CDBD] bg-white text-[#1E3B2B] hover:border-[#1E3B2B] transition">
             Fuerza & Deporte (6)
@@ -201,6 +201,9 @@
           </button>
           <button onclick="filterCategory('estres-descanso')" id="tab-estres-descanso" class="cat-tab px-4 py-2.5 rounded-full border border-[#D5CDBD] bg-white text-[#1E3B2B] hover:border-[#1E3B2B] transition">
             Estrés, Sueño & Minerales (6)
+          </button>
+          <button onclick="filterCategory('distribuidor-autorizado')" id="tab-distribuidor-autorizado" class="cat-tab px-4 py-2.5 rounded-full border border-[#D5CDBD] bg-white text-[#1E3B2B] hover:border-[#1E3B2B] transition">
+            Distribuidor Autorizado: Profit Pharma (40)
           </button>
         </div>
 
@@ -221,6 +224,36 @@
           </select>
         </div>
 
+      </div>
+
+      <!-- Subcategorías de Distribuidor Autorizado (Líneas Profit Pharma) -->
+      <div id="subcat-bar" class="hidden mb-6 p-4 rounded-2xl bg-[#FAF6F0] border border-[#E8E2D8]">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#B67A52] block">Distribuidor Autorizado • Profit Pharma</span>
+            <p class="text-xs text-stone-600">Filtra por línea especializada:</p>
+          </div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <button onclick="filterSubCategory('all')" id="subtab-all" class="subcat-tab px-3.5 py-1.5 rounded-full border border-[#1E3B2B] bg-[#1E3B2B] text-white transition">
+              Todas las Líneas (40)
+            </button>
+            <button onclick="filterSubCategory('ortomolecular')" id="subtab-ortomolecular" class="subcat-tab px-3.5 py-1.5 rounded-full border border-[#D5CDBD] bg-white text-[#1E3B2B] hover:border-[#1E3B2B] transition">
+              Línea Ortomolecular (13)
+            </button>
+            <button onclick="filterSubCategory('mesoterapia')" id="subtab-mesoterapia" class="subcat-tab px-3.5 py-1.5 rounded-full border border-[#D5CDBD] bg-white text-[#1E3B2B] hover:border-[#1E3B2B] transition">
+              Línea Mesoterapia (7)
+            </button>
+            <button onclick="filterSubCategory('suplementos')" id="subtab-suplementos" class="subcat-tab px-3.5 py-1.5 rounded-full border border-[#D5CDBD] bg-white text-[#1E3B2B] hover:border-[#1E3B2B] transition">
+              Línea Suplementos (10)
+            </button>
+            <button onclick="filterSubCategory('capsulas')" id="subtab-capsulas" class="subcat-tab px-3.5 py-1.5 rounded-full border border-[#D5CDBD] bg-white text-[#1E3B2B] hover:border-[#1E3B2B] transition">
+              Línea Cápsulas (4)
+            </button>
+            <button onclick="filterSubCategory('anabolicos')" id="subtab-anabolicos" class="subcat-tab px-3.5 py-1.5 rounded-full border border-[#D5CDBD] bg-white text-[#1E3B2B] hover:border-[#1E3B2B] transition">
+              Línea Anabólicos (6)
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Products Grid -->
@@ -1230,16 +1263,22 @@
   <script src="/js/main.js"></script>
   <script>
     let activeCat = "all";
+    let activeSubCat = "all";
     let searchQuery = "";
     let sortMode = "featured";
 
     function initCatalog() {
-      // Leer parámetros URL si existen (ej. ?cat=fuerza-deporte o ?q=magnesio)
+      // Leer parámetros URL si existen (ej. ?cat=distribuidor-autorizado&sub=ortomolecular o ?q=magnesio)
       const params = new URLSearchParams(window.location.search);
       if (params.has("cat")) {
         const catVal = params.get("cat");
-        const validCats = ["all", "fuerza-deporte", "salud-articular", "estres-descanso"];
+        const validCats = ["all", "fuerza-deporte", "salud-articular", "estres-descanso", "distribuidor-autorizado"];
         activeCat = validCats.includes(catVal) ? catVal : "all";
+      }
+      if (params.has("sub")) {
+        const subVal = params.get("sub");
+        const validSubs = ["all", "ortomolecular", "mesoterapia", "suplementos", "capsulas", "anabolicos"];
+        activeSubCat = validSubs.includes(subVal) ? subVal : "all";
       }
       if (params.has("q")) {
         searchQuery = params.get("q").toLowerCase();
@@ -1248,6 +1287,7 @@
       }
 
       updateTabUI();
+      updateSubTabUI();
       renderCatalog();
 
       // Listeners de búsqueda y orden
@@ -1276,7 +1316,15 @@
 
     function filterCategory(cat) {
       activeCat = cat;
+      activeSubCat = "all";
       updateTabUI();
+      updateSubTabUI();
+      renderCatalog();
+    }
+
+    function filterSubCategory(sub) {
+      activeSubCat = sub;
+      updateSubTabUI();
       renderCatalog();
     }
 
@@ -1290,13 +1338,35 @@
         activeBtn.classList.add("bg-[#1E3B2B]", "text-white", "border-[#1E3B2B]");
         activeBtn.classList.remove("bg-white", "text-[#1E3B2B]", "border-[#D5CDBD]");
       }
+      const subBar = document.getElementById("subcat-bar");
+      if (subBar) {
+        if (activeCat === "distribuidor-autorizado") {
+          subBar.classList.remove("hidden");
+        } else {
+          subBar.classList.add("hidden");
+        }
+      }
+    }
+
+    function updateSubTabUI() {
+      document.querySelectorAll(".subcat-tab").forEach(tab => {
+        tab.classList.remove("bg-[#1E3B2B]", "text-white", "border-[#1E3B2B]");
+        tab.classList.add("bg-white", "text-[#1E3B2B]", "border-[#D5CDBD]");
+      });
+      const activeSubBtn = document.getElementById("subtab-" + activeSubCat);
+      if (activeSubBtn) {
+        activeSubBtn.classList.add("bg-[#1E3B2B]", "text-white", "border-[#1E3B2B]");
+        activeSubBtn.classList.remove("bg-white", "text-[#1E3B2B]", "border-[#D5CDBD]");
+      }
     }
 
     function resetFilters() {
       activeCat = "all";
+      activeSubCat = "all";
       searchQuery = "";
       document.getElementById("catalog-search").value = "";
       updateTabUI();
+      updateSubTabUI();
       renderCatalog();
     }
 
@@ -1310,6 +1380,11 @@
       // Filtro por Categoría
       if (activeCat !== "all") {
         list = list.filter(p => p.category === activeCat);
+      }
+
+      // Filtro por Sub-línea (Distribuidor Autorizado)
+      if (activeCat === "distribuidor-autorizado" && activeSubCat !== "all") {
+        list = list.filter(p => p.subCategory === activeSubCat);
       }
 
       // Filtro por Búsqueda
@@ -1355,7 +1430,7 @@
               <img src="${prod.image}" alt="${prod.name}" class="h-40 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
             </a>
 
-            <span class="text-[10px] font-bold text-[#B67A52] uppercase tracking-wider">${prod.categoryName}</span>
+            <span class="text-[10px] font-bold text-[#B67A52] uppercase tracking-wider">${prod.subCategoryName ? `Profit Pharma • ${prod.subCategoryName}` : prod.categoryName}</span>
             <h3 class="font-bold text-sm text-[#1E3B2B] mt-1 line-clamp-2 leading-tight">
               <a href="producto?id=${prod.id}" class="hover:text-[#B67A52] transition">${prod.shortName}</a>
             </h3>
@@ -1363,9 +1438,9 @@
             <p class="text-xs text-stone-500 mt-1 line-clamp-2">${prod.description}</p>
 
             ${prod.hasVariants ? `
-              <div class="mt-2 text-[10px] text-stone-600 font-medium bg-[#FAF6F0] px-2.5 py-1 rounded-lg border border-[#E8E2D8]/60 flex items-center justify-between">
-                <span class="text-[#1E3B2B] font-bold">Presentaciones:</span>
-                <span class="text-[#B67A52] font-semibold">Bolsa • Pote • Granel</span>
+              <div class="mt-2 text-[10px] text-stone-600 font-medium bg-[#FAF6F0] px-2.5 py-1 rounded-lg border border-[#E8E2D8]/60 flex items-center justify-between gap-2">
+                <span class="text-[#1E3B2B] font-bold shrink-0">Presentaciones:</span>
+                <span class="text-[#B67A52] font-semibold truncate">${prod.presentationsSummary || 'Bolsa • Pote • Granel'}</span>
               </div>
             ` : ''}
 

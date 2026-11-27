@@ -33,9 +33,9 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 89.9,
+        "price": 100.65,
         "weight": "1 kg",
-        "format": "Pote HDPE Blanco Boticario (+S/ 4.50)",
+        "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
         "sku": "BIO-CRE-POT-1K",
         "image": "img/products/creatina-monohidratada-pote-1kg.jpg",
@@ -159,7 +159,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 136.5,
+        "price": 155.1,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -262,7 +262,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 73.5,
+        "price": 80.85,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -360,7 +360,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 62,
+        "price": 67.65,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -458,7 +458,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 39.5,
+        "price": 41.25,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -560,7 +560,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 60.5,
+        "price": 66,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -661,7 +661,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 64.9,
+        "price": 70.95,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -763,7 +763,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 103,
+        "price": 115.5,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -863,7 +863,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 96,
+        "price": 107.25,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -965,7 +965,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 199.5,
+        "price": 229.35,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1067,7 +1067,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 26.9,
+        "price": 26.4,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1169,7 +1169,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 53.5,
+        "price": 57.75,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1271,7 +1271,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 24.8,
+        "price": 23.93,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1372,7 +1372,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 25.5,
+        "price": 24.75,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1470,7 +1470,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 16.9,
+        "price": 14.73,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1570,7 +1570,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 129.5,
+        "price": 146.85,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1651,7 +1651,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 149.9,
+        "price": 170.89,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1748,7 +1748,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 82.5,
+        "price": 91.93,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1846,7 +1846,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 165,
+        "price": 188.57,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1915,6 +1915,3216 @@ const BIONATIVA_PRODUCTS = [
       "proteina-soya-vegetal",
       "te-verde-extracto"
     ]
+  },
+  {
+    "id": "profit-cocktail-energix",
+    "name": "COCKTAIL ENERGIX — Profit Pharma",
+    "shortName": "COCKTAIL ENERGIX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 25,
+    "image": "img/products/profit-pharma/01_ORTO_Cocktail_Energix.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/01_ORTO_Cocktail_Energix.png",
+    "hasVariants": false,
+    "defaultVariant": "solucion-inyectable-vial-x-50ml",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-50ml",
+        "name": "Solución inyectable - Vial x 50ml",
+        "price": 93.5,
+        "weight": "Solución inyectable - Vial x 50ml",
+        "format": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 15g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-01-01",
+        "image": "img/products/profit-pharma/01_ORTO_Cocktail_Energix.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 50ml",
+    "price": 93.5,
+    "unit": "Solución inyectable - Vial x 50ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Integra la coenzima NAD+ para la restauración del ADN, con los antioxidantes Glutatión, Ácido Alfa Lipoico y Vitamina C.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 15g.",
+      "Presentación disponible: Solución inyectable - Vial x 50ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 15g",
+    "faqs": [
+      {
+        "q": "¿El producto COCKTAIL ENERGIX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 50ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 15g",
+      "Presentaciones": "Solución inyectable - Vial x 50ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-cocktail-energix-pro",
+    "name": "COCKTAIL ENERGIX PRO — Profit Pharma",
+    "shortName": "COCKTAIL ENERGIX PRO",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 26,
+    "image": "img/products/profit-pharma/02_ORTO_Cocktail_Energix_Pro.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/02_ORTO_Cocktail_Energix_Pro.png",
+    "hasVariants": false,
+    "defaultVariant": "solucion-inyectable-vial-x-50ml",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-50ml",
+        "name": "Solución inyectable - Vial x 50ml",
+        "price": 120.5,
+        "weight": "Solución inyectable - Vial x 50ml",
+        "format": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 25g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-02-01",
+        "image": "img/products/profit-pharma/02_ORTO_Cocktail_Energix_Pro.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 50ml",
+    "price": 120.5,
+    "unit": "Solución inyectable - Vial x 50ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Integra la coenzima NAD+ para la restauración del ADN, con los antioxidantes Glutatión, Ácido Alfa Lipoico y Vitamina C de 25g.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 25g.",
+      "Presentación disponible: Solución inyectable - Vial x 50ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 25g",
+    "faqs": [
+      {
+        "q": "¿El producto COCKTAIL ENERGIX PRO es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 50ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "Glutatión 100mg, Nad+ 100mg, Alfa Lipoico 100mg, Vitamina C 25g",
+      "Presentaciones": "Solución inyectable - Vial x 50ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-cocktail-nadmax",
+    "name": "COCKTAIL NADMAX — Profit Pharma",
+    "shortName": "COCKTAIL NADMAX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 27,
+    "image": "img/products/profit-pharma/03_ORTO_Cocktail_Nadmax.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/03_ORTO_Cocktail_Nadmax.png",
+    "hasVariants": false,
+    "defaultVariant": "solucion-inyectable-vial-x-10ml",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-10ml",
+        "name": "Solución inyectable - Vial x 10ml",
+        "price": 47.5,
+        "weight": "Solución inyectable - Vial x 10ml",
+        "format": "Nad+ 250mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-03-01",
+        "image": "img/products/profit-pharma/03_ORTO_Cocktail_Nadmax.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 10ml",
+    "price": 47.5,
+    "unit": "Solución inyectable - Vial x 10ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Solución parenteral de NAD+ en alta concentración, diseñada para la reprogramación metabólica y la reparación integral del ADN.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Nad+ 250mg.",
+      "Presentación disponible: Solución inyectable - Vial x 10ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Nad+ 250mg",
+    "faqs": [
+      {
+        "q": "¿El producto COCKTAIL NADMAX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 10ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "Nad+ 250mg",
+      "Presentaciones": "Solución inyectable - Vial x 10ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-cocktail-vitamax",
+    "name": "COCKTAIL VITAMAX — Profit Pharma",
+    "shortName": "COCKTAIL VITAMAX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 28,
+    "image": "img/products/profit-pharma/04_ORTO_Cocktail_Vitamax.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/04_ORTO_Cocktail_Vitamax.png",
+    "hasVariants": false,
+    "defaultVariant": "solucion-inyectable-vial-x-50ml",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-50ml",
+        "name": "Solución inyectable - Vial x 50ml",
+        "price": 93.5,
+        "weight": "Solución inyectable - Vial x 50ml",
+        "format": "Alfa Lipoico 100mg, Glutatión 60mg, Biotina 20mg, Vitamina C 15g, Coenzima Q10 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-04-01",
+        "image": "img/products/profit-pharma/04_ORTO_Cocktail_Vitamax.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 50ml",
+    "price": 93.5,
+    "unit": "Solución inyectable - Vial x 50ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Orientado a favorecer la vitalidad y el metabolismo energético, proporcionando soporte antioxidante y contribuyendo al mantenimiento saludable de la piel y el cabello.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Alfa Lipoico 100mg, Glutatión 60mg, Biotina 20mg, Vitamina C 15g, Coenzima Q10 10mg.",
+      "Presentación disponible: Solución inyectable - Vial x 50ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Alfa Lipoico 100mg, Glutatión 60mg, Biotina 20mg, Vitamina C 15g, Coenzima Q10 10mg",
+    "faqs": [
+      {
+        "q": "¿El producto COCKTAIL VITAMAX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 50ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "Alfa Lipoico 100mg, Glutatión 60mg, Biotina 20mg, Vitamina C 15g, Coenzima Q10 10mg",
+      "Presentaciones": "Solución inyectable - Vial x 50ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-cocktail-multimax",
+    "name": "COCKTAIL MULTIMAX — Profit Pharma",
+    "shortName": "COCKTAIL MULTIMAX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 29,
+    "image": "img/products/profit-pharma/05_ORTO_Cocktail_Multimax.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/05_ORTO_Cocktail_Multimax.png",
+    "hasVariants": false,
+    "defaultVariant": "solucion-inyectable-vial-x-10ml",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-10ml",
+        "name": "Solución inyectable - Vial x 10ml",
+        "price": 52.9,
+        "weight": "Solución inyectable - Vial x 10ml",
+        "format": "Vitamina A 10000 ui, Vitamina D 1000 ui, Vitamina C 50mg, Complejo B 30mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-05-01",
+        "image": "img/products/profit-pharma/05_ORTO_Cocktail_Multimax.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 10ml",
+    "price": 52.9,
+    "unit": "Solución inyectable - Vial x 10ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Diseñado para complementar las necesidades nutricionales del organismo y contribuir al mantenimiento de las funciones metabólicas, físicas y fisiológicas normales.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Vitamina A 10000 ui, Vitamina D 1000 ui, Vitamina C 50mg, Complejo B 30mg.",
+      "Presentación disponible: Solución inyectable - Vial x 10ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Vitamina A 10000 ui, Vitamina D 1000 ui, Vitamina C 50mg, Complejo B 30mg",
+    "faqs": [
+      {
+        "q": "¿El producto COCKTAIL MULTIMAX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 10ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "Vitamina A 10000 ui, Vitamina D 1000 ui, Vitamina C 50mg, Complejo B 30mg",
+      "Presentaciones": "Solución inyectable - Vial x 10ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-for-men",
+    "name": "FOR MEN — Profit Pharma",
+    "shortName": "FOR MEN",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 30,
+    "image": "img/products/profit-pharma/06_ORTO_For_Men.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/06_ORTO_For_Men.png",
+    "hasVariants": false,
+    "defaultVariant": "solucion-inyectable-vial-x-50ml",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-50ml",
+        "name": "Solución inyectable - Vial x 50ml",
+        "price": 93.5,
+        "weight": "Solución inyectable - Vial x 50ml",
+        "format": "Arginina 100mg, Vitamina C 10% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-06-01",
+        "image": "img/products/profit-pharma/06_ORTO_For_Men.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 50ml",
+    "price": 93.5,
+    "unit": "Solución inyectable - Vial x 50ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Orientado al bienestar integral del hombre adulto, brindando soporte para el metabolismo, la vitalidad y el adecuado funcionamiento del organismo.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Arginina 100mg, Vitamina C 10%.",
+      "Presentación disponible: Solución inyectable - Vial x 50ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Arginina 100mg, Vitamina C 10%",
+    "faqs": [
+      {
+        "q": "¿El producto FOR MEN es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 50ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "Arginina 100mg, Vitamina C 10%",
+      "Presentaciones": "Solución inyectable - Vial x 50ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-glutamax",
+    "name": "GLUTAMAX — Profit Pharma",
+    "shortName": "GLUTAMAX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 31,
+    "image": "img/products/profit-pharma/07_ORTO_Glutamax.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/07_ORTO_Glutamax.png",
+    "hasVariants": true,
+    "defaultVariant": "solucion-inyectable-vial-x-10ml-glutation-100mg",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-10ml-glutation-100mg",
+        "name": "Solución inyectable - Vial x 10ml (Glutatión 100mg)",
+        "price": 82.5,
+        "weight": "Solución inyectable - Vial x 10ml (Glutatión 100mg)",
+        "format": "Glutatión 100mg, Carnosina 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-07-01",
+        "image": "img/products/profit-pharma/07_ORTO_Glutamax.png"
+      },
+      {
+        "id": "solucion-inyectable-vial-x-10ml-glutation-300mg",
+        "name": "Solución inyectable - Vial x 10ml (Glutatión 300mg)",
+        "price": 95.9,
+        "weight": "Solución inyectable - Vial x 10ml (Glutatión 300mg)",
+        "format": "Glutatión 300mg, Carnosina 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-07-02",
+        "image": "img/products/profit-pharma/07_ORTO_Glutamax.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 10ml (Glutatión 100mg) • Solución inyectable - Vial x 10ml (Glutatión 300mg)",
+    "price": 82.5,
+    "unit": "Solución inyectable - Vial x 10ml (Glutatión 100mg)",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Enfocado en el soporte de las defensas antioxidantes del organismo y la protección de las células frente al estrés oxidativo.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Glutatión 100mg, Carnosina 10mg | Glutatión 300mg, Carnosina 10mg.",
+      "Presentación disponible: Solución inyectable - Vial x 10ml (Glutatión 100mg) • Solución inyectable - Vial x 10ml (Glutatión 300mg)."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Glutatión 100mg, Carnosina 10mg | Glutatión 300mg, Carnosina 10mg",
+    "faqs": [
+      {
+        "q": "¿El producto GLUTAMAX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 10ml (Glutatión 100mg) • Solución inyectable - Vial x 10ml (Glutatión 300mg)."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "Glutatión 100mg, Carnosina 10mg | Glutatión 300mg, Carnosina 10mg",
+      "Presentaciones": "Solución inyectable - Vial x 10ml (Glutatión 100mg) • Solución inyectable - Vial x 10ml (Glutatión 300mg)",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-profit-c-ala",
+    "name": "PROFIT C + ALA — Profit Pharma",
+    "shortName": "PROFIT C + ALA",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 32,
+    "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/08_ORTO_Profit_C_ALA.png",
+    "hasVariants": true,
+    "defaultVariant": "solucion-inyectable-vial-x-50ml-vit-c-7-5g-ala-60mg",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-50ml-vit-c-7-5g-ala-60mg",
+        "name": "Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg)",
+        "price": 50.9,
+        "weight": "Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg)",
+        "format": "ALA 60mg, Vitamina C 7.5g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-08-01",
+        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png"
+      },
+      {
+        "id": "solucion-inyectable-vial-x-50ml-vit-c-10g-ala-60mg",
+        "name": "Solución inyectable - Vial x 50ml (Vit. C 10g + ALA 60mg)",
+        "price": 51.5,
+        "weight": "Solución inyectable - Vial x 50ml (Vit. C 10g + ALA 60mg)",
+        "format": "ALA 60mg, Vitamina C 10g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-08-02",
+        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png"
+      },
+      {
+        "id": "solucion-inyectable-vial-x-50ml-vit-c-15g-ala-60mg",
+        "name": "Solución inyectable - Vial x 50ml (Vit. C 15g + ALA 60mg)",
+        "price": 64.9,
+        "weight": "Solución inyectable - Vial x 50ml (Vit. C 15g + ALA 60mg)",
+        "format": "ALA 60mg, Vitamina C 15g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-08-03",
+        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png"
+      },
+      {
+        "id": "solucion-inyectable-vial-x-50ml-vit-c-25g-ala-60mg",
+        "name": "Solución inyectable - Vial x 50ml (Vit. C 25g + ALA 60mg)",
+        "price": 81.5,
+        "weight": "Solución inyectable - Vial x 50ml (Vit. C 25g + ALA 60mg)",
+        "format": "ALA 60mg, Vitamina C 25g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-08-04",
+        "image": "img/products/profit-pharma/08_ORTO_Profit_C_ALA.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 10g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 15g + ALA 60mg) (+1)",
+    "price": 50.9,
+    "unit": "Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg)",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Solución parenteral de alta potencia que combina la acción inmunoprotectora de la Vitamina C con la capacidad regenerativa del Ácido Alfa Lipoico.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: ALA 60mg, Vitamina C 7.5g | ALA 60mg, Vitamina C 10g | ALA 60mg, Vitamina C 15g | ALA 60mg, Vitamina C 25g.",
+      "Presentación disponible: Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 10g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 15g + ALA 60mg) (+1)."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "ALA 60mg, Vitamina C 7.5g | ALA 60mg, Vitamina C 10g | ALA 60mg, Vitamina C 15g | ALA 60mg, Vitamina C 25g",
+    "faqs": [
+      {
+        "q": "¿El producto PROFIT C + ALA es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 10g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 15g + ALA 60mg) (+1)."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "ALA 60mg, Vitamina C 7.5g | ALA 60mg, Vitamina C 10g | ALA 60mg, Vitamina C 15g | ALA 60mg, Vitamina C 25g",
+      "Presentaciones": "Solución inyectable - Vial x 50ml (Vit. C 7.5g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 10g + ALA 60mg) • Solución inyectable - Vial x 50ml (Vit. C 15g + ALA 60mg) (+1)",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-profit-c",
+    "name": "PROFIT C — Profit Pharma",
+    "shortName": "PROFIT C",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 33,
+    "image": "img/products/profit-pharma/09_ORTO_Profit_C.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/09_ORTO_Profit_C.png",
+    "hasVariants": true,
+    "defaultVariant": "solucion-inyectable-vial-x-50ml-vit-c-7-5g",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-50ml-vit-c-7-5g",
+        "name": "Solución inyectable - Vial x 50ml (Vit. C 7.5g)",
+        "price": 48.9,
+        "weight": "Solución inyectable - Vial x 50ml (Vit. C 7.5g)",
+        "format": "Vitamina C 7.5g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-09-01",
+        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png"
+      },
+      {
+        "id": "solucion-inyectable-vial-x-50ml-vit-c-10g",
+        "name": "Solución inyectable - Vial x 50ml (Vit. C 10g)",
+        "price": 50.9,
+        "weight": "Solución inyectable - Vial x 50ml (Vit. C 10g)",
+        "format": "Vitamina C 10g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-09-02",
+        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png"
+      },
+      {
+        "id": "solucion-inyectable-vial-x-50ml-vit-c-15g",
+        "name": "Solución inyectable - Vial x 50ml (Vit. C 15g)",
+        "price": 63.5,
+        "weight": "Solución inyectable - Vial x 50ml (Vit. C 15g)",
+        "format": "Vitamina C 15g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-09-03",
+        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png"
+      },
+      {
+        "id": "solucion-inyectable-vial-x-50ml-vit-c-25g",
+        "name": "Solución inyectable - Vial x 50ml (Vit. C 25g)",
+        "price": 79.9,
+        "weight": "Solución inyectable - Vial x 50ml (Vit. C 25g)",
+        "format": "Vitamina C 25g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-09-04",
+        "image": "img/products/profit-pharma/09_ORTO_Profit_C.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 50ml (Vit. C 7.5g) • Solución inyectable - Vial x 50ml (Vit. C 10g) • Solución inyectable - Vial x 50ml (Vit. C 15g) (+1)",
+    "price": 48.9,
+    "unit": "Solución inyectable - Vial x 50ml (Vit. C 7.5g)",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Acción inmunoprotectora de la Vitamina C para mejor recuperación corporal.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Vitamina C 7.5g | Vitamina C 10g | Vitamina C 15g | Vitamina C 25g.",
+      "Presentación disponible: Solución inyectable - Vial x 50ml (Vit. C 7.5g) • Solución inyectable - Vial x 50ml (Vit. C 10g) • Solución inyectable - Vial x 50ml (Vit. C 15g) (+1)."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Vitamina C 7.5g | Vitamina C 10g | Vitamina C 15g | Vitamina C 25g",
+    "faqs": [
+      {
+        "q": "¿El producto PROFIT C es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 50ml (Vit. C 7.5g) • Solución inyectable - Vial x 50ml (Vit. C 10g) • Solución inyectable - Vial x 50ml (Vit. C 15g) (+1)."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "Vitamina C 7.5g | Vitamina C 10g | Vitamina C 15g | Vitamina C 25g",
+      "Presentaciones": "Solución inyectable - Vial x 50ml (Vit. C 7.5g) • Solución inyectable - Vial x 50ml (Vit. C 10g) • Solución inyectable - Vial x 50ml (Vit. C 15g) (+1)",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-cocktail-lipomax",
+    "name": "COCKTAIL LIPOMAX — Profit Pharma",
+    "shortName": "COCKTAIL LIPOMAX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 34,
+    "image": "img/products/profit-pharma/10_ORTO_Cocktail_Lipomax.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/10_ORTO_Cocktail_Lipomax.png",
+    "hasVariants": false,
+    "defaultVariant": "solucion-inyectable-vial-x-50ml",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-50ml",
+        "name": "Solución inyectable - Vial x 50ml",
+        "price": 93.5,
+        "weight": "Solución inyectable - Vial x 50ml",
+        "format": "L-Carnitina 100mg, Alfa Lipoico 100mg, Vitamina C 100mg, Glutatión 60mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-10-01",
+        "image": "img/products/profit-pharma/10_ORTO_Cocktail_Lipomax.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 50ml",
+    "price": 93.5,
+    "unit": "Solución inyectable - Vial x 50ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Fusiona el transporte energético de la L-Carnitina con la potencia regenerativa del Glutatión, el Ácido Alfa Lipoico y la Vitamina C.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: L-Carnitina 100mg, Alfa Lipoico 100mg, Vitamina C 100mg, Glutatión 60mg.",
+      "Presentación disponible: Solución inyectable - Vial x 50ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "L-Carnitina 100mg, Alfa Lipoico 100mg, Vitamina C 100mg, Glutatión 60mg",
+    "faqs": [
+      {
+        "q": "¿El producto COCKTAIL LIPOMAX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 50ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "L-Carnitina 100mg, Alfa Lipoico 100mg, Vitamina C 100mg, Glutatión 60mg",
+      "Presentaciones": "Solución inyectable - Vial x 50ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-dolomax",
+    "name": "DOLOMAX — Profit Pharma",
+    "shortName": "DOLOMAX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 35,
+    "image": "img/products/profit-pharma/11_ORTO_Dolomax.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/11_ORTO_Dolomax.png",
+    "hasVariants": false,
+    "defaultVariant": "solucion-inyectable-vial-x-50ml",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-50ml",
+        "name": "Solución inyectable - Vial x 50ml",
+        "price": 95.9,
+        "weight": "Solución inyectable - Vial x 50ml",
+        "format": "Procaína 500mg, Vitamina C 10g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-11-01",
+        "image": "img/products/profit-pharma/11_ORTO_Dolomax.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 50ml",
+    "price": 95.9,
+    "unit": "Solución inyectable - Vial x 50ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Potente analgésico y desinflamatorio sistémico, donde la procaína ayuda a repolarizar las células para estabilizar el sistema nervioso y reducir el dolor crónico.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Procaína 500mg, Vitamina C 10g.",
+      "Presentación disponible: Solución inyectable - Vial x 50ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Procaína 500mg, Vitamina C 10g",
+    "faqs": [
+      {
+        "q": "¿El producto DOLOMAX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 50ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "Procaína 500mg, Vitamina C 10g",
+      "Presentaciones": "Solución inyectable - Vial x 50ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-ultra-b12",
+    "name": "ULTRA B12 — Profit Pharma",
+    "shortName": "ULTRA B12",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 36,
+    "image": "img/products/profit-pharma/12_ORTO_Ultra_B12.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/12_ORTO_Ultra_B12.png",
+    "hasVariants": false,
+    "defaultVariant": "solucion-inyectable-vial-x-10ml",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-10ml",
+        "name": "Solución inyectable - Vial x 10ml",
+        "price": 50.9,
+        "weight": "Solución inyectable - Vial x 10ml",
+        "format": "Cianocobalamina 500 ui • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-12-01",
+        "image": "img/products/profit-pharma/12_ORTO_Ultra_B12.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 10ml",
+    "price": 50.9,
+    "unit": "Solución inyectable - Vial x 10ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Diseñada para realizar una restauración crítica de la función neurológica y la optimización de la síntesis de glóbulos rojos.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Cianocobalamina 500 ui.",
+      "Presentación disponible: Solución inyectable - Vial x 10ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Cianocobalamina 500 ui",
+    "faqs": [
+      {
+        "q": "¿El producto ULTRA B12 es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 10ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "Cianocobalamina 500 ui",
+      "Presentaciones": "Solución inyectable - Vial x 10ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-cocktail-max-b",
+    "name": "COCKTAIL MAX B — Profit Pharma",
+    "shortName": "COCKTAIL MAX B",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "ortomolecular",
+    "subCategoryName": "Línea Ortomolecular",
+    "badge": "Ortomolecular",
+    "rating": 4.9,
+    "reviewsCount": 37,
+    "image": "img/products/profit-pharma/13_ORTO_Cocktail_Max_B.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/13_ORTO_Cocktail_Max_B.png",
+    "hasVariants": false,
+    "defaultVariant": "solucion-inyectable-vial-x-10ml",
+    "variants": [
+      {
+        "id": "solucion-inyectable-vial-x-10ml",
+        "name": "Solución inyectable - Vial x 10ml",
+        "price": 50.9,
+        "weight": "Solución inyectable - Vial x 10ml",
+        "format": "B3 Nicotinamida 40mg, B1 Tiamina HCL 10mg, B5 Dex Pantenol 6mg, B2 Riboflavina 5.53mg, B6 Piridoxina HCL 4mg, B8 Biotina 500ug, B12 Cianocobalamina 8ug • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-13-01",
+        "image": "img/products/profit-pharma/13_ORTO_Cocktail_Max_B.png"
+      }
+    ],
+    "presentationsSummary": "Solución inyectable - Vial x 10ml",
+    "price": 50.9,
+    "unit": "Solución inyectable - Vial x 10ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Solución que integra vitaminas para la restauración integral del sistema nervioso y la optimización del ciclo energético.",
+    "benefits": [
+      "Línea Ortomolecular Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: B3 Nicotinamida 40mg, B1 Tiamina HCL 10mg, B5 Dex Pantenol 6mg, B2 Riboflavina 5.53mg, B6 Piridoxina HCL 4mg, B8 Biotina 500ug, B12 Cianocobalamina 8ug.",
+      "Presentación disponible: Solución inyectable - Vial x 10ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "B3 Nicotinamida 40mg, B1 Tiamina HCL 10mg, B5 Dex Pantenol 6mg, B2 Riboflavina 5.53mg, B6 Piridoxina HCL 4mg, B8 Biotina 500ug, B12 Cianocobalamina 8ug",
+    "faqs": [
+      {
+        "q": "¿El producto COCKTAIL MAX B es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Solución inyectable - Vial x 10ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Ortomolecular",
+      "Composición": "B3 Nicotinamida 40mg, B1 Tiamina HCL 10mg, B5 Dex Pantenol 6mg, B2 Riboflavina 5.53mg, B6 Piridoxina HCL 4mg, B8 Biotina 500ug, B12 Cianocobalamina 8ug",
+      "Presentaciones": "Solución inyectable - Vial x 10ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-enzifit-individual",
+    "name": "ENZIFIT (Individual: Lipasa / Hialuronidasa / Colagenasa) — Profit Pharma",
+    "shortName": "ENZIFIT (Individual: Lipasa / Hialuronidasa / Colagenasa)",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "mesoterapia",
+    "subCategoryName": "Línea Mesoterapia",
+    "badge": "Mesoterapia",
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "image": "img/products/profit-pharma/14_MESO_Enzifit_Individuales.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/14_MESO_Enzifit_Individuales.png",
+    "hasVariants": true,
+    "defaultVariant": "vial-inyectable-individual",
+    "variants": [
+      {
+        "id": "vial-inyectable-individual",
+        "name": "Vial inyectable individual",
+        "price": 66.5,
+        "weight": "Vial inyectable individual",
+        "format": "Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-14-01",
+        "image": "img/products/profit-pharma/14_MESO_Enzifit_Individuales.png"
+      },
+      {
+        "id": "kit-03-viales-inyectables",
+        "name": "Kit 03 viales inyectables",
+        "price": 174.5,
+        "weight": "Kit 03 viales inyectables",
+        "format": "Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-14-02",
+        "image": "img/products/profit-pharma/14_MESO_Enzifit_Individuales.png"
+      }
+    ],
+    "presentationsSummary": "Vial inyectable individual • Kit 03 viales inyectables",
+    "price": 66.5,
+    "unit": "Vial inyectable individual",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Enzimas individuales: Lipasa (grasa localizada), Hialuronidasa (degrada ácido hialurónico) o Colagenasa (flacidez, cicatrices y arrugas).",
+    "benefits": [
+      "Línea Mesoterapia Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui.",
+      "Presentación disponible: Vial inyectable individual • Kit 03 viales inyectables."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui",
+    "faqs": [
+      {
+        "q": "¿El producto ENZIFIT (Individual: Lipasa / Hialuronidasa / Colagenasa) es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Vial inyectable individual • Kit 03 viales inyectables."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Mesoterapia",
+      "Composición": "Lipasa 2000ui / Hialuronidasa 2000ui / Colagenasa 2000ui",
+      "Presentaciones": "Vial inyectable individual • Kit 03 viales inyectables",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-cocktail-enzifit",
+    "name": "COCKTAIL ENZIFIT — Profit Pharma",
+    "shortName": "COCKTAIL ENZIFIT",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "mesoterapia",
+    "subCategoryName": "Línea Mesoterapia",
+    "badge": "Mesoterapia",
+    "rating": 4.9,
+    "reviewsCount": 39,
+    "image": "img/products/profit-pharma/15_MESO_Cocktail_Enzifit.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/15_MESO_Cocktail_Enzifit.png",
+    "hasVariants": true,
+    "defaultVariant": "1-vial-x-10ml",
+    "variants": [
+      {
+        "id": "1-vial-x-10ml",
+        "name": "1 vial x 10ml",
+        "price": 79.9,
+        "weight": "1 vial x 10ml",
+        "format": "Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-15-01",
+        "image": "img/products/profit-pharma/15_MESO_Cocktail_Enzifit.png"
+      },
+      {
+        "id": "kit-3-viales-x-10ml",
+        "name": "Kit 3 viales x 10ml",
+        "price": 214.9,
+        "weight": "Kit 3 viales x 10ml",
+        "format": "Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-15-02",
+        "image": "img/products/profit-pharma/15_MESO_Cocktail_Enzifit.png"
+      }
+    ],
+    "presentationsSummary": "1 vial x 10ml • Kit 3 viales x 10ml",
+    "price": 79.9,
+    "unit": "1 vial x 10ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Actúa de forma sinérgica para descomponer grasa, reducir la retención de líquidos y eliminar fibrosis o mejorar la firmeza de la piel.",
+    "benefits": [
+      "Línea Mesoterapia Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui.",
+      "Presentación disponible: 1 vial x 10ml • Kit 3 viales x 10ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui",
+    "faqs": [
+      {
+        "q": "¿El producto COCKTAIL ENZIFIT es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: 1 vial x 10ml • Kit 3 viales x 10ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Mesoterapia",
+      "Composición": "Hialuronidasa 2000ui, Colagenasa 2000ui, Lipasa 2000ui",
+      "Presentaciones": "1 vial x 10ml • Kit 3 viales x 10ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-tricarnifit",
+    "name": "TRICARNIFIT — Profit Pharma",
+    "shortName": "TRICARNIFIT",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "mesoterapia",
+    "subCategoryName": "Línea Mesoterapia",
+    "badge": "Mesoterapia",
+    "rating": 4.9,
+    "reviewsCount": 40,
+    "image": "img/products/profit-pharma/16_MESO_Tricarnifit.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/16_MESO_Tricarnifit.png",
+    "hasVariants": true,
+    "defaultVariant": "1-vial-x-10ml",
+    "variants": [
+      {
+        "id": "1-vial-x-10ml",
+        "name": "1 vial x 10ml",
+        "price": 52.9,
+        "weight": "1 vial x 10ml",
+        "format": "L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-16-01",
+        "image": "img/products/profit-pharma/16_MESO_Tricarnifit.png"
+      },
+      {
+        "id": "kit-3-viales-x-10ml",
+        "name": "Kit 3 viales x 10ml",
+        "price": 79.9,
+        "weight": "Kit 3 viales x 10ml",
+        "format": "L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-16-02",
+        "image": "img/products/profit-pharma/16_MESO_Tricarnifit.png"
+      }
+    ],
+    "presentationsSummary": "1 vial x 10ml • Kit 3 viales x 10ml",
+    "price": 52.9,
+    "unit": "1 vial x 10ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Cóctel lipolítico y reafirmante de alta concentración con silicio orgánico, diseñado para su uso en medicina estética y mesoterapia corporal.",
+    "benefits": [
+      "Línea Mesoterapia Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2%.",
+      "Presentación disponible: 1 vial x 10ml • Kit 3 viales x 10ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2%",
+    "faqs": [
+      {
+        "q": "¿El producto TRICARNIFIT es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: 1 vial x 10ml • Kit 3 viales x 10ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Mesoterapia",
+      "Composición": "L-Carnitina 10%, Cafeína 2%, Silicio orgánico 2%",
+      "Presentaciones": "1 vial x 10ml • Kit 3 viales x 10ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-dicarnetin",
+    "name": "DICARNETIN — Profit Pharma",
+    "shortName": "DICARNETIN",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "mesoterapia",
+    "subCategoryName": "Línea Mesoterapia",
+    "badge": "Mesoterapia",
+    "rating": 4.9,
+    "reviewsCount": 41,
+    "image": "img/products/profit-pharma/17_MESO_Dicarnetin.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/17_MESO_Dicarnetin.png",
+    "hasVariants": true,
+    "defaultVariant": "1-vial-x-10ml",
+    "variants": [
+      {
+        "id": "1-vial-x-10ml",
+        "name": "1 vial x 10ml",
+        "price": 39.5,
+        "weight": "1 vial x 10ml",
+        "format": "L-Carnitina 20%, Cafeína 2% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-17-01",
+        "image": "img/products/profit-pharma/17_MESO_Dicarnetin.png"
+      },
+      {
+        "id": "kit-3-viales-x-10ml",
+        "name": "Kit 3 viales x 10ml",
+        "price": 66.5,
+        "weight": "Kit 3 viales x 10ml",
+        "format": "L-Carnitina 20%, Cafeína 2% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-17-02",
+        "image": "img/products/profit-pharma/17_MESO_Dicarnetin.png"
+      }
+    ],
+    "presentationsSummary": "1 vial x 10ml • Kit 3 viales x 10ml",
+    "price": 39.5,
+    "unit": "1 vial x 10ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Cóctel lipolítico y reafirmante de alta concentración, diseñado para su uso en medicina estética y mesoterapia corporal.",
+    "benefits": [
+      "Línea Mesoterapia Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: L-Carnitina 20%, Cafeína 2%.",
+      "Presentación disponible: 1 vial x 10ml • Kit 3 viales x 10ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "L-Carnitina 20%, Cafeína 2%",
+    "faqs": [
+      {
+        "q": "¿El producto DICARNETIN es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: 1 vial x 10ml • Kit 3 viales x 10ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Mesoterapia",
+      "Composición": "L-Carnitina 20%, Cafeína 2%",
+      "Presentaciones": "1 vial x 10ml • Kit 3 viales x 10ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-adipox",
+    "name": "ADIPOX — Profit Pharma",
+    "shortName": "ADIPOX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "mesoterapia",
+    "subCategoryName": "Línea Mesoterapia",
+    "badge": "Mesoterapia",
+    "rating": 4.9,
+    "reviewsCount": 42,
+    "image": "img/products/profit-pharma/18_MESO_Adipox.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/18_MESO_Adipox.png",
+    "hasVariants": true,
+    "defaultVariant": "1-vial-10",
+    "variants": [
+      {
+        "id": "1-vial-10",
+        "name": "1 vial (10%)",
+        "price": 25.9,
+        "weight": "1 vial (10%)",
+        "format": "L-Carnitina 10% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-18-01",
+        "image": "img/products/profit-pharma/18_MESO_Adipox.png"
+      },
+      {
+        "id": "kit-3-viales-10",
+        "name": "Kit 3 viales (10%)",
+        "price": 52.9,
+        "weight": "Kit 3 viales (10%)",
+        "format": "L-Carnitina 10% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-18-02",
+        "image": "img/products/profit-pharma/18_MESO_Adipox.png"
+      },
+      {
+        "id": "1-vial-20",
+        "name": "1 vial (20%)",
+        "price": 39.5,
+        "weight": "1 vial (20%)",
+        "format": "L-Carnitina 20% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-18-03",
+        "image": "img/products/profit-pharma/18_MESO_Adipox.png"
+      },
+      {
+        "id": "kit-3-viales-20",
+        "name": "Kit 3 viales (20%)",
+        "price": 66.5,
+        "weight": "Kit 3 viales (20%)",
+        "format": "L-Carnitina 20% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-18-04",
+        "image": "img/products/profit-pharma/18_MESO_Adipox.png"
+      }
+    ],
+    "presentationsSummary": "1 vial (10%) • Kit 3 viales (10%) • 1 vial (20%) (+1)",
+    "price": 25.9,
+    "unit": "1 vial (10%)",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Mayor actividad con potente activador celular que combate la flacidez y transporta ácidos grasos.",
+    "benefits": [
+      "Línea Mesoterapia Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: L-Carnitina 10% | L-Carnitina 20%.",
+      "Presentación disponible: 1 vial (10%) • Kit 3 viales (10%) • 1 vial (20%) (+1)."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "L-Carnitina 10% | L-Carnitina 20%",
+    "faqs": [
+      {
+        "q": "¿El producto ADIPOX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: 1 vial (10%) • Kit 3 viales (10%) • 1 vial (20%) (+1)."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Mesoterapia",
+      "Composición": "L-Carnitina 10% | L-Carnitina 20%",
+      "Presentaciones": "1 vial (10%) • Kit 3 viales (10%) • 1 vial (20%) (+1)",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-silifit",
+    "name": "SILIFIT — Profit Pharma",
+    "shortName": "SILIFIT",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "mesoterapia",
+    "subCategoryName": "Línea Mesoterapia",
+    "badge": "Mesoterapia",
+    "rating": 4.9,
+    "reviewsCount": 24,
+    "image": "img/products/profit-pharma/19_MESO_Silifit.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/19_MESO_Silifit.png",
+    "hasVariants": true,
+    "defaultVariant": "1-vial-5",
+    "variants": [
+      {
+        "id": "1-vial-5",
+        "name": "1 vial (5%)",
+        "price": 25.9,
+        "weight": "1 vial (5%)",
+        "format": "Silicio orgánico 5% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-19-01",
+        "image": "img/products/profit-pharma/19_MESO_Silifit.png"
+      },
+      {
+        "id": "kit-3-viales-5",
+        "name": "Kit 3 viales (5%)",
+        "price": 52.9,
+        "weight": "Kit 3 viales (5%)",
+        "format": "Silicio orgánico 5% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-19-02",
+        "image": "img/products/profit-pharma/19_MESO_Silifit.png"
+      },
+      {
+        "id": "1-vial-10",
+        "name": "1 vial (10%)",
+        "price": 52.9,
+        "weight": "1 vial (10%)",
+        "format": "Silicio orgánico 10% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-19-03",
+        "image": "img/products/profit-pharma/19_MESO_Silifit.png"
+      },
+      {
+        "id": "kit-3-viales-10",
+        "name": "Kit 3 viales (10%)",
+        "price": 79.9,
+        "weight": "Kit 3 viales (10%)",
+        "format": "Silicio orgánico 10% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-19-04",
+        "image": "img/products/profit-pharma/19_MESO_Silifit.png"
+      }
+    ],
+    "presentationsSummary": "1 vial (5%) • Kit 3 viales (5%) • 1 vial (10%) (+1)",
+    "price": 25.9,
+    "unit": "1 vial (5%)",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Favorece la firmeza y elasticidad de la piel, complementando protocolos estéticos orientados al cuidado y mantenimiento de una piel más tersa y saludable.",
+    "benefits": [
+      "Línea Mesoterapia Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Silicio orgánico 5% | Silicio orgánico 10%.",
+      "Presentación disponible: 1 vial (5%) • Kit 3 viales (5%) • 1 vial (10%) (+1)."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Silicio orgánico 5% | Silicio orgánico 10%",
+    "faqs": [
+      {
+        "q": "¿El producto SILIFIT es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: 1 vial (5%) • Kit 3 viales (5%) • 1 vial (10%) (+1)."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Mesoterapia",
+      "Composición": "Silicio orgánico 5% | Silicio orgánico 10%",
+      "Presentaciones": "1 vial (5%) • Kit 3 viales (5%) • 1 vial (10%) (+1)",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-lipofit",
+    "name": "LIPOFIT — Profit Pharma",
+    "shortName": "LIPOFIT",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "mesoterapia",
+    "subCategoryName": "Línea Mesoterapia",
+    "badge": "Mesoterapia",
+    "rating": 4.9,
+    "reviewsCount": 25,
+    "image": "img/products/profit-pharma/20_MESO_Lipofit.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/20_MESO_Lipofit.png",
+    "hasVariants": false,
+    "defaultVariant": "kit-3-viales-x-10ml",
+    "variants": [
+      {
+        "id": "kit-3-viales-x-10ml",
+        "name": "Kit 3 viales x 10ml",
+        "price": 79.9,
+        "weight": "Kit 3 viales x 10ml",
+        "format": "Ampelopsina 7% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-20-01",
+        "image": "img/products/profit-pharma/20_MESO_Lipofit.png"
+      }
+    ],
+    "presentationsSummary": "Kit 3 viales x 10ml",
+    "price": 79.9,
+    "unit": "Kit 3 viales x 10ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Reductor activo de grasa localizada + Anticelulítico. Solución profesional de alto modelado corporal.",
+    "benefits": [
+      "Línea Mesoterapia Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Ampelopsina 7%.",
+      "Presentación disponible: Kit 3 viales x 10ml."
+    ],
+    "howToUse": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+    "composition": "Ampelopsina 7%",
+    "faqs": [
+      {
+        "q": "¿El producto LIPOFIT es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Kit 3 viales x 10ml."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Mesoterapia",
+      "Composición": "Ampelopsina 7%",
+      "Presentaciones": "Kit 3 viales x 10ml",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Uso profesional bajo protocolo de sueroterapia o medicina estética. Administrar según evaluación médica.",
+      "warnings": [
+        "Producto de uso profesional / supervisión médica especializada.",
+        "No administrar en embarazo o lactancia sin autorización médica.",
+        "Conservar en lugar fresco y protegido de la luz (< 25°C)."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-creatina",
+    "name": "CREATINA — Profit Pharma",
+    "shortName": "CREATINA",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "suplementos",
+    "subCategoryName": "Línea Suplementos",
+    "badge": "Suplementos",
+    "rating": 4.9,
+    "reviewsCount": 26,
+    "image": "img/products/profit-pharma/21_SUP_Creatina.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/21_SUP_Creatina.png",
+    "hasVariants": true,
+    "defaultVariant": "pote-x-300gr",
+    "variants": [
+      {
+        "id": "pote-x-300gr",
+        "name": "Pote x 300gr",
+        "price": 74.9,
+        "weight": "Pote x 300gr",
+        "format": "Creatina monohidratada 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-21-01",
+        "image": "img/products/profit-pharma/21_SUP_Creatina.png"
+      },
+      {
+        "id": "pote-x-500gr",
+        "name": "Pote x 500gr",
+        "price": 87.9,
+        "weight": "Pote x 500gr",
+        "format": "Creatina monohidratada 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-21-02",
+        "image": "img/products/profit-pharma/21_SUP_Creatina.png"
+      },
+      {
+        "id": "pote-x-1kg",
+        "name": "Pote x 1kg",
+        "price": 109.9,
+        "weight": "Pote x 1kg",
+        "format": "Creatina monohidratada 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-21-03",
+        "image": "img/products/profit-pharma/21_SUP_Creatina.png"
+      }
+    ],
+    "presentationsSummary": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
+    "price": 74.9,
+    "unit": "Pote x 300gr",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Contribuye al rendimiento físico y al desarrollo de la fuerza y masa muscular. Ideal para complementar la recuperación y el entrenamiento deportivo.",
+    "benefits": [
+      "Línea Suplementos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Creatina monohidratada 100%.",
+      "Presentación disponible: Pote x 300gr • Pote x 500gr • Pote x 1kg."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Creatina monohidratada 100%",
+    "faqs": [
+      {
+        "q": "¿El producto CREATINA es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Pote x 300gr • Pote x 500gr • Pote x 1kg."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Suplementos",
+      "Composición": "Creatina monohidratada 100%",
+      "Presentaciones": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-queen-protein",
+    "name": "QUEEN PROTEIN — Profit Pharma",
+    "shortName": "QUEEN PROTEIN",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "suplementos",
+    "subCategoryName": "Línea Suplementos",
+    "badge": "Suplementos",
+    "rating": 4.9,
+    "reviewsCount": 27,
+    "image": "img/products/profit-pharma/22_SUP_Queen_Protein.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/22_SUP_Queen_Protein.png",
+    "hasVariants": true,
+    "defaultVariant": "pote-x-300gr",
+    "variants": [
+      {
+        "id": "pote-x-300gr",
+        "name": "Pote x 300gr",
+        "price": 66.5,
+        "weight": "Pote x 300gr",
+        "format": "Colágeno HDR 80%, Aguaje 20% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-22-01",
+        "image": "img/products/profit-pharma/22_SUP_Queen_Protein.png"
+      },
+      {
+        "id": "pote-x-500gr",
+        "name": "Pote x 500gr",
+        "price": 93.5,
+        "weight": "Pote x 500gr",
+        "format": "Colágeno HDR 80%, Aguaje 20% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-22-02",
+        "image": "img/products/profit-pharma/22_SUP_Queen_Protein.png"
+      },
+      {
+        "id": "pote-x-1kg",
+        "name": "Pote x 1kg",
+        "price": 120.5,
+        "weight": "Pote x 1kg",
+        "format": "Colágeno HDR 80%, Aguaje 20% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-22-03",
+        "image": "img/products/profit-pharma/22_SUP_Queen_Protein.png"
+      }
+    ],
+    "presentationsSummary": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
+    "price": 66.5,
+    "unit": "Pote x 300gr",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Aporta colágeno y proteínas que contribuyen al cuidado de la piel, ayudando a mantener su firmeza y elasticidad.",
+    "benefits": [
+      "Línea Suplementos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Colágeno HDR 80%, Aguaje 20%.",
+      "Presentación disponible: Pote x 300gr • Pote x 500gr • Pote x 1kg."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Colágeno HDR 80%, Aguaje 20%",
+    "faqs": [
+      {
+        "q": "¿El producto QUEEN PROTEIN es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Pote x 300gr • Pote x 500gr • Pote x 1kg."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Suplementos",
+      "Composición": "Colágeno HDR 80%, Aguaje 20%",
+      "Presentaciones": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-whey-protein",
+    "name": "WHEY PROTEIN — Profit Pharma",
+    "shortName": "WHEY PROTEIN",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "suplementos",
+    "subCategoryName": "Línea Suplementos",
+    "badge": "Suplementos",
+    "rating": 4.9,
+    "reviewsCount": 28,
+    "image": "img/products/profit-pharma/23_SUP_Whey_Protein.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/23_SUP_Whey_Protein.png",
+    "hasVariants": true,
+    "defaultVariant": "pote-x-500gr",
+    "variants": [
+      {
+        "id": "pote-x-500gr",
+        "name": "Pote x 500gr",
+        "price": 84.9,
+        "weight": "Pote x 500gr",
+        "format": "Proteína de Suero de leche 80% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-23-01",
+        "image": "img/products/profit-pharma/23_SUP_Whey_Protein.png"
+      },
+      {
+        "id": "pote-x-1kg",
+        "name": "Pote x 1kg",
+        "price": 149.9,
+        "weight": "Pote x 1kg",
+        "format": "Proteína de Suero de leche 80% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-23-02",
+        "image": "img/products/profit-pharma/23_SUP_Whey_Protein.png"
+      }
+    ],
+    "presentationsSummary": "Pote x 500gr • Pote x 1kg",
+    "price": 84.9,
+    "unit": "Pote x 500gr",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Fuente de proteína de alta calidad que contribuye al mantenimiento y desarrollo de la masa muscular, ideal para complementar la alimentación y el entrenamiento.",
+    "benefits": [
+      "Línea Suplementos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Proteína de Suero de leche 80%.",
+      "Presentación disponible: Pote x 500gr • Pote x 1kg."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Proteína de Suero de leche 80%",
+    "faqs": [
+      {
+        "q": "¿El producto WHEY PROTEIN es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Pote x 500gr • Pote x 1kg."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Suplementos",
+      "Composición": "Proteína de Suero de leche 80%",
+      "Presentaciones": "Pote x 500gr • Pote x 1kg",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-vegan-protein",
+    "name": "VEGAN PROTEIN — Profit Pharma",
+    "shortName": "VEGAN PROTEIN",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "suplementos",
+    "subCategoryName": "Línea Suplementos",
+    "badge": "Suplementos",
+    "rating": 4.9,
+    "reviewsCount": 29,
+    "image": "img/products/profit-pharma/24_SUP_Vegan_Protein.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/24_SUP_Vegan_Protein.png",
+    "hasVariants": true,
+    "defaultVariant": "pote-x-500gr",
+    "variants": [
+      {
+        "id": "pote-x-500gr",
+        "name": "Pote x 500gr",
+        "price": 66.5,
+        "weight": "Pote x 500gr",
+        "format": "Proteína de Soya Vegetal 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-24-01",
+        "image": "img/products/profit-pharma/24_SUP_Vegan_Protein.png"
+      },
+      {
+        "id": "pote-x-1kg",
+        "name": "Pote x 1kg",
+        "price": 79.9,
+        "weight": "Pote x 1kg",
+        "format": "Proteína de Soya Vegetal 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-24-02",
+        "image": "img/products/profit-pharma/24_SUP_Vegan_Protein.png"
+      }
+    ],
+    "presentationsSummary": "Pote x 500gr • Pote x 1kg",
+    "price": 66.5,
+    "unit": "Pote x 500gr",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Fuente de proteína vegetal que contribuye al mantenimiento y desarrollo de la masa muscular. Ideal para complementar la alimentación y los requerimientos proteicos diarios.",
+    "benefits": [
+      "Línea Suplementos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Proteína de Soya Vegetal 100%.",
+      "Presentación disponible: Pote x 500gr • Pote x 1kg."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Proteína de Soya Vegetal 100%",
+    "faqs": [
+      {
+        "q": "¿El producto VEGAN PROTEIN es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Pote x 500gr • Pote x 1kg."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Suplementos",
+      "Composición": "Proteína de Soya Vegetal 100%",
+      "Presentaciones": "Pote x 500gr • Pote x 1kg",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-lipolageno",
+    "name": "LIPOLÁGENO — Profit Pharma",
+    "shortName": "LIPOLÁGENO",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "suplementos",
+    "subCategoryName": "Línea Suplementos",
+    "badge": "Suplementos",
+    "rating": 4.9,
+    "reviewsCount": 30,
+    "image": "img/products/profit-pharma/25_SUP_Lipolageno.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/25_SUP_Lipolageno.png",
+    "hasVariants": true,
+    "defaultVariant": "pote-x-300gr",
+    "variants": [
+      {
+        "id": "pote-x-300gr",
+        "name": "Pote x 300gr",
+        "price": 93.5,
+        "weight": "Pote x 300gr",
+        "format": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-25-01",
+        "image": "img/products/profit-pharma/25_SUP_Lipolageno.png"
+      },
+      {
+        "id": "pote-x-500gr",
+        "name": "Pote x 500gr",
+        "price": 120.5,
+        "weight": "Pote x 500gr",
+        "format": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-25-02",
+        "image": "img/products/profit-pharma/25_SUP_Lipolageno.png"
+      },
+      {
+        "id": "pote-x-1kg",
+        "name": "Pote x 1kg",
+        "price": 174.5,
+        "weight": "Pote x 1kg",
+        "format": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-25-03",
+        "image": "img/products/profit-pharma/25_SUP_Lipolageno.png"
+      }
+    ],
+    "presentationsSummary": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
+    "price": 93.5,
+    "unit": "Pote x 300gr",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Fórmula que contribuye al cuidado de la piel y el tejido conectivo, al mantenimiento de las articulaciones y al metabolismo energético.",
+    "benefits": [
+      "Línea Suplementos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g.",
+      "Presentación disponible: Pote x 300gr • Pote x 500gr • Pote x 1kg."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g",
+    "faqs": [
+      {
+        "q": "¿El producto LIPOLÁGENO es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Pote x 300gr • Pote x 500gr • Pote x 1kg."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Suplementos",
+      "Composición": "L-Carnitina 5g, Colágeno 235g, Alfa Lipoico 5g, Vitamina C 5g",
+      "Presentaciones": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-colagemax",
+    "name": "COLAGEMAX — Profit Pharma",
+    "shortName": "COLAGEMAX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "suplementos",
+    "subCategoryName": "Línea Suplementos",
+    "badge": "Suplementos",
+    "rating": 4.9,
+    "reviewsCount": 31,
+    "image": "img/products/profit-pharma/26_SUP_Colagemax.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/26_SUP_Colagemax.png",
+    "hasVariants": true,
+    "defaultVariant": "pote-x-300gr",
+    "variants": [
+      {
+        "id": "pote-x-300gr",
+        "name": "Pote x 300gr",
+        "price": 60.9,
+        "weight": "Pote x 300gr",
+        "format": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-26-01",
+        "image": "img/products/profit-pharma/26_SUP_Colagemax.png"
+      },
+      {
+        "id": "pote-x-500gr",
+        "name": "Pote x 500gr",
+        "price": 79.9,
+        "weight": "Pote x 500gr",
+        "format": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-26-02",
+        "image": "img/products/profit-pharma/26_SUP_Colagemax.png"
+      },
+      {
+        "id": "pote-x-1kg",
+        "name": "Pote x 1kg",
+        "price": 106.9,
+        "weight": "Pote x 1kg",
+        "format": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-26-03",
+        "image": "img/products/profit-pharma/26_SUP_Colagemax.png"
+      }
+    ],
+    "presentationsSummary": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
+    "price": 60.9,
+    "unit": "Pote x 300gr",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Favorece el mantenimiento del tejido conectivo y cartílago.",
+    "benefits": [
+      "Línea Suplementos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g.",
+      "Presentación disponible: Pote x 300gr • Pote x 500gr • Pote x 1kg."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g",
+    "faqs": [
+      {
+        "q": "¿El producto COLAGEMAX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Pote x 300gr • Pote x 500gr • Pote x 1kg."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Suplementos",
+      "Composición": "Condroitina 285g, Glucosamina 6g, Colágeno HDR 6g",
+      "Presentaciones": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-colagen-pro",
+    "name": "COLAGEN PRO — Profit Pharma",
+    "shortName": "COLAGEN PRO",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "suplementos",
+    "subCategoryName": "Línea Suplementos",
+    "badge": "Suplementos",
+    "rating": 4.9,
+    "reviewsCount": 32,
+    "image": "img/products/profit-pharma/27_SUP_Colagen_Pro.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/27_SUP_Colagen_Pro.png",
+    "hasVariants": true,
+    "defaultVariant": "pote-x-300gr",
+    "variants": [
+      {
+        "id": "pote-x-300gr",
+        "name": "Pote x 300gr",
+        "price": 52.9,
+        "weight": "Pote x 300gr",
+        "format": "Colágeno hidrolizado 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-27-01",
+        "image": "img/products/profit-pharma/27_SUP_Colagen_Pro.png"
+      },
+      {
+        "id": "pote-x-500gr",
+        "name": "Pote x 500gr",
+        "price": 66.5,
+        "weight": "Pote x 500gr",
+        "format": "Colágeno hidrolizado 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-27-02",
+        "image": "img/products/profit-pharma/27_SUP_Colagen_Pro.png"
+      },
+      {
+        "id": "pote-x-1kg",
+        "name": "Pote x 1kg",
+        "price": 94.9,
+        "weight": "Pote x 1kg",
+        "format": "Colágeno hidrolizado 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-27-03",
+        "image": "img/products/profit-pharma/27_SUP_Colagen_Pro.png"
+      }
+    ],
+    "presentationsSummary": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
+    "price": 52.9,
+    "unit": "Pote x 300gr",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Estimula el colágeno en la piel y cabello. Fortalece huesos y articulaciones.",
+    "benefits": [
+      "Línea Suplementos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Colágeno hidrolizado 100%.",
+      "Presentación disponible: Pote x 300gr • Pote x 500gr • Pote x 1kg."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Colágeno hidrolizado 100%",
+    "faqs": [
+      {
+        "q": "¿El producto COLAGEN PRO es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Pote x 300gr • Pote x 500gr • Pote x 1kg."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Suplementos",
+      "Composición": "Colágeno hidrolizado 100%",
+      "Presentaciones": "Pote x 300gr • Pote x 500gr • Pote x 1kg",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-pack-profit-flex",
+    "name": "PACK PROFIT FLEX — Profit Pharma",
+    "shortName": "PACK PROFIT FLEX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "suplementos",
+    "subCategoryName": "Línea Suplementos",
+    "badge": "Suplementos",
+    "rating": 4.9,
+    "reviewsCount": 33,
+    "image": "img/products/profit-pharma/28_SUP_Pack_Profit_Flex.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/28_SUP_Pack_Profit_Flex.png",
+    "hasVariants": false,
+    "defaultVariant": "2-potes-1-de-1kg-1-de-300g",
+    "variants": [
+      {
+        "id": "2-potes-1-de-1kg-1-de-300g",
+        "name": "2 potes: 1 de 1kg + 1 de 300g",
+        "price": 133.9,
+        "weight": "2 potes: 1 de 1kg + 1 de 300g",
+        "format": "Colágeno HDR 100% + Creatina 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-28-01",
+        "image": "img/products/profit-pharma/28_SUP_Pack_Profit_Flex.png"
+      }
+    ],
+    "presentationsSummary": "2 potes: 1 de 1kg + 1 de 300g",
+    "price": 133.9,
+    "unit": "2 potes: 1 de 1kg + 1 de 300g",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Colágeno para el cuidado de la piel y articulaciones, creatina para potenciar tu energía y rendimiento físico.",
+    "benefits": [
+      "Línea Suplementos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Colágeno HDR 100% + Creatina 100%.",
+      "Presentación disponible: 2 potes: 1 de 1kg + 1 de 300g."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Colágeno HDR 100% + Creatina 100%",
+    "faqs": [
+      {
+        "q": "¿El producto PACK PROFIT FLEX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: 2 potes: 1 de 1kg + 1 de 300g."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Suplementos",
+      "Composición": "Colágeno HDR 100% + Creatina 100%",
+      "Presentaciones": "2 potes: 1 de 1kg + 1 de 300g",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-pack-profit-pro",
+    "name": "PACK PROFIT PRO — Profit Pharma",
+    "shortName": "PACK PROFIT PRO",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "suplementos",
+    "subCategoryName": "Línea Suplementos",
+    "badge": "Suplementos",
+    "rating": 4.9,
+    "reviewsCount": 34,
+    "image": "img/products/profit-pharma/29_SUP_Pack_Profit_Pro.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/29_SUP_Pack_Profit_Pro.png",
+    "hasVariants": false,
+    "defaultVariant": "2-potes-1-de-1kg-1-de-300g",
+    "variants": [
+      {
+        "id": "2-potes-1-de-1kg-1-de-300g",
+        "name": "2 potes: 1 de 1kg + 1 de 300g",
+        "price": 174.5,
+        "weight": "2 potes: 1 de 1kg + 1 de 300g",
+        "format": "Whey Protein 80% + Creatina 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-29-01",
+        "image": "img/products/profit-pharma/29_SUP_Pack_Profit_Pro.png"
+      }
+    ],
+    "presentationsSummary": "2 potes: 1 de 1kg + 1 de 300g",
+    "price": 174.5,
+    "unit": "2 potes: 1 de 1kg + 1 de 300g",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Combina proteína de alta calidad con creatina para apoyar el crecimiento muscular.",
+    "benefits": [
+      "Línea Suplementos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Whey Protein 80% + Creatina 100%.",
+      "Presentación disponible: 2 potes: 1 de 1kg + 1 de 300g."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Whey Protein 80% + Creatina 100%",
+    "faqs": [
+      {
+        "q": "¿El producto PACK PROFIT PRO es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: 2 potes: 1 de 1kg + 1 de 300g."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Suplementos",
+      "Composición": "Whey Protein 80% + Creatina 100%",
+      "Presentaciones": "2 potes: 1 de 1kg + 1 de 300g",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-pack-profit-green",
+    "name": "PACK PROFIT GREEN — Profit Pharma",
+    "shortName": "PACK PROFIT GREEN",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "suplementos",
+    "subCategoryName": "Línea Suplementos",
+    "badge": "Suplementos",
+    "rating": 4.9,
+    "reviewsCount": 35,
+    "image": "img/products/profit-pharma/30_SUP_Pack_Profit_Green.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/30_SUP_Pack_Profit_Green.png",
+    "hasVariants": false,
+    "defaultVariant": "2-potes-1-de-1kg-1-de-300g",
+    "variants": [
+      {
+        "id": "2-potes-1-de-1kg-1-de-300g",
+        "name": "2 potes: 1 de 1kg + 1 de 300g",
+        "price": 133.9,
+        "weight": "2 potes: 1 de 1kg + 1 de 300g",
+        "format": "Proteína vegetal 100% + Creatina 100% • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-30-01",
+        "image": "img/products/profit-pharma/30_SUP_Pack_Profit_Green.png"
+      }
+    ],
+    "presentationsSummary": "2 potes: 1 de 1kg + 1 de 300g",
+    "price": 133.9,
+    "unit": "2 potes: 1 de 1kg + 1 de 300g",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Apoya tu rendimiento, recuperación y objetivos fitness de manera equilibrada.",
+    "benefits": [
+      "Línea Suplementos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Proteína vegetal 100% + Creatina 100%.",
+      "Presentación disponible: 2 potes: 1 de 1kg + 1 de 300g."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Proteína vegetal 100% + Creatina 100%",
+    "faqs": [
+      {
+        "q": "¿El producto PACK PROFIT GREEN es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: 2 potes: 1 de 1kg + 1 de 300g."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Suplementos",
+      "Composición": "Proteína vegetal 100% + Creatina 100%",
+      "Presentaciones": "2 potes: 1 de 1kg + 1 de 300g",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-alfamax",
+    "name": "ALFAMAX — Profit Pharma",
+    "shortName": "ALFAMAX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "capsulas",
+    "subCategoryName": "Línea Cápsulas",
+    "badge": "Cápsulas",
+    "rating": 4.9,
+    "reviewsCount": 36,
+    "image": "img/products/profit-pharma/31_CAPS_Alfamax.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/31_CAPS_Alfamax.png",
+    "hasVariants": true,
+    "defaultVariant": "frasco-x-30-capsulas-5mg-250mg",
+    "variants": [
+      {
+        "id": "frasco-x-30-capsulas-5mg-250mg",
+        "name": "Frasco x 30 cápsulas (5mg / 250mg)",
+        "price": 79.9,
+        "weight": "Frasco x 30 cápsulas (5mg / 250mg)",
+        "format": "Tadalafilo 5mg, Arginina 250mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-31-01",
+        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png"
+      },
+      {
+        "id": "frasco-x-60-capsulas-5mg-250mg",
+        "name": "Frasco x 60 cápsulas (5mg / 250mg)",
+        "price": 106.9,
+        "weight": "Frasco x 60 cápsulas (5mg / 250mg)",
+        "format": "Tadalafilo 5mg, Arginina 250mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-31-02",
+        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png"
+      },
+      {
+        "id": "frasco-x-30-capsulas-10mg-400mg",
+        "name": "Frasco x 30 cápsulas (10mg / 400mg)",
+        "price": 93.5,
+        "weight": "Frasco x 30 cápsulas (10mg / 400mg)",
+        "format": "Tadalafilo 10mg, Arginina 400mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-31-03",
+        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png"
+      },
+      {
+        "id": "frasco-x-60-capsulas-10mg-400mg",
+        "name": "Frasco x 60 cápsulas (10mg / 400mg)",
+        "price": 120.5,
+        "weight": "Frasco x 60 cápsulas (10mg / 400mg)",
+        "format": "Tadalafilo 10mg, Arginina 400mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-31-04",
+        "image": "img/products/profit-pharma/31_CAPS_Alfamax.png"
+      }
+    ],
+    "presentationsSummary": "Frasco x 30 cápsulas (5mg / 250mg) • Frasco x 60 cápsulas (5mg / 250mg) • Frasco x 30 cápsulas (10mg / 400mg) (+1)",
+    "price": 79.9,
+    "unit": "Frasco x 30 cápsulas (5mg / 250mg)",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Suplemento con potente refuerzo para el sistema circulatorio, enfocándose en la salud sexual y el rendimiento físico.",
+    "benefits": [
+      "Línea Cápsulas Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Tadalafilo 5mg, Arginina 250mg | Tadalafilo 10mg, Arginina 400mg.",
+      "Presentación disponible: Frasco x 30 cápsulas (5mg / 250mg) • Frasco x 60 cápsulas (5mg / 250mg) • Frasco x 30 cápsulas (10mg / 400mg) (+1)."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Tadalafilo 5mg, Arginina 250mg | Tadalafilo 10mg, Arginina 400mg",
+    "faqs": [
+      {
+        "q": "¿El producto ALFAMAX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Frasco x 30 cápsulas (5mg / 250mg) • Frasco x 60 cápsulas (5mg / 250mg) • Frasco x 30 cápsulas (10mg / 400mg) (+1)."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Cápsulas",
+      "Composición": "Tadalafilo 5mg, Arginina 250mg | Tadalafilo 10mg, Arginina 400mg",
+      "Presentaciones": "Frasco x 30 cápsulas (5mg / 250mg) • Frasco x 60 cápsulas (5mg / 250mg) • Frasco x 30 cápsulas (10mg / 400mg) (+1)",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-citrato-de-magnesio",
+    "name": "CITRATO DE MAGNESIO — Profit Pharma",
+    "shortName": "CITRATO DE MAGNESIO",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "capsulas",
+    "subCategoryName": "Línea Cápsulas",
+    "badge": "Cápsulas",
+    "rating": 4.9,
+    "reviewsCount": 37,
+    "image": "img/products/profit-pharma/32_CAPS_Citrato_Magnesio.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/32_CAPS_Citrato_Magnesio.png",
+    "hasVariants": false,
+    "defaultVariant": "frasco-x-60-capsulas",
+    "variants": [
+      {
+        "id": "frasco-x-60-capsulas",
+        "name": "Frasco x 60 cápsulas",
+        "price": 81.5,
+        "weight": "Frasco x 60 cápsulas",
+        "format": "Citrato de Magnesio 500mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-32-01",
+        "image": "img/products/profit-pharma/32_CAPS_Citrato_Magnesio.png"
+      }
+    ],
+    "presentationsSummary": "Frasco x 60 cápsulas",
+    "price": 81.5,
+    "unit": "Frasco x 60 cápsulas",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Ayuda a mantener el equilibrio electrolítico. Favorece la función muscular y nerviosa normal. Además contribuye a la salud ósea y al metabolismo energético.",
+    "benefits": [
+      "Línea Cápsulas Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Citrato de Magnesio 500mg.",
+      "Presentación disponible: Frasco x 60 cápsulas."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Citrato de Magnesio 500mg",
+    "faqs": [
+      {
+        "q": "¿El producto CITRATO DE MAGNESIO es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Frasco x 60 cápsulas."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Cápsulas",
+      "Composición": "Citrato de Magnesio 500mg",
+      "Presentaciones": "Frasco x 60 cápsulas",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-omega-3",
+    "name": "OMEGA 3 — Profit Pharma",
+    "shortName": "OMEGA 3",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "capsulas",
+    "subCategoryName": "Línea Cápsulas",
+    "badge": "Cápsulas",
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "image": "img/products/profit-pharma/33_CAPS_Omega_3.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/33_CAPS_Omega_3.png",
+    "hasVariants": false,
+    "defaultVariant": "frasco-x-60-capsulas",
+    "variants": [
+      {
+        "id": "frasco-x-60-capsulas",
+        "name": "Frasco x 60 cápsulas",
+        "price": 66.5,
+        "weight": "Frasco x 60 cápsulas",
+        "format": "Ác. Eicosapentaenoico 1050mg, Ác. Docosahexaenoico 750mg, Vitamina E 15.09mg, Aceite de pescado 3000mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-33-01",
+        "image": "img/products/profit-pharma/33_CAPS_Omega_3.png"
+      }
+    ],
+    "presentationsSummary": "Frasco x 60 cápsulas",
+    "price": 66.5,
+    "unit": "Frasco x 60 cápsulas",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Ayuda a mantener la salud cardiovascular, la función cerebral y la visión.",
+    "benefits": [
+      "Línea Cápsulas Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Ác. Eicosapentaenoico 1050mg, Ác. Docosahexaenoico 750mg, Vitamina E 15.09mg, Aceite de pescado 3000mg.",
+      "Presentación disponible: Frasco x 60 cápsulas."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Ác. Eicosapentaenoico 1050mg, Ác. Docosahexaenoico 750mg, Vitamina E 15.09mg, Aceite de pescado 3000mg",
+    "faqs": [
+      {
+        "q": "¿El producto OMEGA 3 es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Frasco x 60 cápsulas."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Cápsulas",
+      "Composición": "Ác. Eicosapentaenoico 1050mg, Ác. Docosahexaenoico 750mg, Vitamina E 15.09mg, Aceite de pescado 3000mg",
+      "Presentaciones": "Frasco x 60 cápsulas",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-vigormax",
+    "name": "VIGORMAX — Profit Pharma",
+    "shortName": "VIGORMAX",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "capsulas",
+    "subCategoryName": "Línea Cápsulas",
+    "badge": "Cápsulas",
+    "rating": 4.9,
+    "reviewsCount": 39,
+    "image": "img/products/profit-pharma/34_CAPS_Vigormax.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/34_CAPS_Vigormax.png",
+    "hasVariants": true,
+    "defaultVariant": "frasco-x-30-capsulas",
+    "variants": [
+      {
+        "id": "frasco-x-30-capsulas",
+        "name": "Frasco x 30 cápsulas",
+        "price": 79.9,
+        "weight": "Frasco x 30 cápsulas",
+        "format": "Maca negra 500mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-34-01",
+        "image": "img/products/profit-pharma/34_CAPS_Vigormax.png"
+      },
+      {
+        "id": "frasco-x-60-capsulas",
+        "name": "Frasco x 60 cápsulas",
+        "price": 106.9,
+        "weight": "Frasco x 60 cápsulas",
+        "format": "Maca negra 500mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-34-02",
+        "image": "img/products/profit-pharma/34_CAPS_Vigormax.png"
+      }
+    ],
+    "presentationsSummary": "Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+    "price": 79.9,
+    "unit": "Frasco x 30 cápsulas",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Suplemento de potente energizante natural y adaptógeno que ayuda al cuerpo a manejar el estrés físico y mental.",
+    "benefits": [
+      "Línea Cápsulas Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Maca negra 500mg.",
+      "Presentación disponible: Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+    ],
+    "howToUse": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+    "composition": "Maca negra 500mg",
+    "faqs": [
+      {
+        "q": "¿El producto VIGORMAX es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Cápsulas",
+      "Composición": "Maca negra 500mg",
+      "Presentaciones": "Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Consumir según la porción recomendada en el envase, acompañado de agua o bebida de preferencia.",
+      "warnings": [
+        "No superar la dosis diaria recomendada.",
+        "Complemento nutricional; no sustituye una alimentación equilibrada.",
+        "Conservar en lugar fresco y seco con el envase bien cerrado."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-clembuterolmax-drops",
+    "name": "CLEMBUTEROLMAX DROPS — Profit Pharma",
+    "shortName": "CLEMBUTEROLMAX DROPS",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "anabolicos",
+    "subCategoryName": "Línea Anabólicos",
+    "badge": "Anabólicos",
+    "rating": 4.9,
+    "reviewsCount": 40,
+    "image": "img/products/profit-pharma/35_ANAB_Clembuterolmax_Drops.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/35_ANAB_Clembuterolmax_Drops.png",
+    "hasVariants": true,
+    "defaultVariant": "drops-x-30ml",
+    "variants": [
+      {
+        "id": "drops-x-30ml",
+        "name": "Drops x 30ml",
+        "price": 133.9,
+        "weight": "Drops x 30ml",
+        "format": "Clembuterol 20mcg (*por cada 20 gotas*) • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-35-01",
+        "image": "img/products/profit-pharma/35_ANAB_Clembuterolmax_Drops.png"
+      },
+      {
+        "id": "frasco-x-30-capsulas",
+        "name": "Frasco x 30 cápsulas",
+        "price": 93.5,
+        "weight": "Frasco x 30 cápsulas",
+        "format": "Clembuterol (Cápsulas) • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-35-02",
+        "image": "img/products/profit-pharma/35_ANAB_Clembuterolmax_Drops.png"
+      },
+      {
+        "id": "frasco-x-60-capsulas",
+        "name": "Frasco x 60 cápsulas",
+        "price": 133.9,
+        "weight": "Frasco x 60 cápsulas",
+        "format": "Clembuterol (Cápsulas) • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-35-03",
+        "image": "img/products/profit-pharma/35_ANAB_Clembuterolmax_Drops.png"
+      }
+    ],
+    "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+    "price": 93.5,
+    "unit": "Drops x 30ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Ayuda a disminuir la retención de líquidos en el cuerpo.",
+    "benefits": [
+      "Línea Anabólicos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Clembuterol 20mcg (*por cada 20 gotas*) | Clembuterol (Cápsulas).",
+      "Presentación disponible: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+    ],
+    "howToUse": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+    "composition": "Clembuterol 20mcg (*por cada 20 gotas*) | Clembuterol (Cápsulas)",
+    "faqs": [
+      {
+        "q": "¿El producto CLEMBUTEROLMAX DROPS es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Anabólicos",
+      "Composición": "Clembuterol 20mcg (*por cada 20 gotas*) | Clembuterol (Cápsulas)",
+      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+      "warnings": [
+        "Producto dirigido exclusivamente a adultos mayores de 18 años.",
+        "Se recomienda seguimiento profesional y control médico periódico.",
+        "Mantener fuera del alcance de los niños."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-cardarinemax-drops",
+    "name": "CARDARINEMAX DROPS — Profit Pharma",
+    "shortName": "CARDARINEMAX DROPS",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "anabolicos",
+    "subCategoryName": "Línea Anabólicos",
+    "badge": "Anabólicos",
+    "rating": 4.9,
+    "reviewsCount": 41,
+    "image": "img/products/profit-pharma/36_ANAB_Cardarinemax_Drops.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/36_ANAB_Cardarinemax_Drops.png",
+    "hasVariants": true,
+    "defaultVariant": "drops-x-30ml",
+    "variants": [
+      {
+        "id": "drops-x-30ml",
+        "name": "Drops x 30ml",
+        "price": 268.9,
+        "weight": "Drops x 30ml",
+        "format": "Cardarine 20mg (*por cada 20 gotas*) • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-36-01",
+        "image": "img/products/profit-pharma/36_ANAB_Cardarinemax_Drops.png"
+      },
+      {
+        "id": "frasco-x-30-capsulas",
+        "name": "Frasco x 30 cápsulas",
+        "price": 160.9,
+        "weight": "Frasco x 30 cápsulas",
+        "format": "Cardarine 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-36-02",
+        "image": "img/products/profit-pharma/36_ANAB_Cardarinemax_Drops.png"
+      },
+      {
+        "id": "frasco-x-60-capsulas",
+        "name": "Frasco x 60 cápsulas",
+        "price": 268.9,
+        "weight": "Frasco x 60 cápsulas",
+        "format": "Cardarine 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-36-03",
+        "image": "img/products/profit-pharma/36_ANAB_Cardarinemax_Drops.png"
+      }
+    ],
+    "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+    "price": 160.9,
+    "unit": "Drops x 30ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Potencia la energía y la resistencia, optimizando el rendimiento.",
+    "benefits": [
+      "Línea Anabólicos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Cardarine 20mg (*por cada 20 gotas*) | Cardarine 10mg.",
+      "Presentación disponible: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+    ],
+    "howToUse": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+    "composition": "Cardarine 20mg (*por cada 20 gotas*) | Cardarine 10mg",
+    "faqs": [
+      {
+        "q": "¿El producto CARDARINEMAX DROPS es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Anabólicos",
+      "Composición": "Cardarine 20mg (*por cada 20 gotas*) | Cardarine 10mg",
+      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+      "warnings": [
+        "Producto dirigido exclusivamente a adultos mayores de 18 años.",
+        "Se recomienda seguimiento profesional y control médico periódico.",
+        "Mantener fuera del alcance de los niños."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-ostarinemax-drops",
+    "name": "OSTARINEMAX DROPS — Profit Pharma",
+    "shortName": "OSTARINEMAX DROPS",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "anabolicos",
+    "subCategoryName": "Línea Anabólicos",
+    "badge": "Anabólicos",
+    "rating": 4.9,
+    "reviewsCount": 42,
+    "image": "img/products/profit-pharma/37_ANAB_Ostarinemax_Drops.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/37_ANAB_Ostarinemax_Drops.png",
+    "hasVariants": true,
+    "defaultVariant": "drops-x-30ml",
+    "variants": [
+      {
+        "id": "drops-x-30ml",
+        "name": "Drops x 30ml",
+        "price": 268.9,
+        "weight": "Drops x 30ml",
+        "format": "Ostarine 20mg (*por cada 20 gotas*) • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-37-01",
+        "image": "img/products/profit-pharma/37_ANAB_Ostarinemax_Drops.png"
+      },
+      {
+        "id": "frasco-x-30-capsulas",
+        "name": "Frasco x 30 cápsulas",
+        "price": 160.9,
+        "weight": "Frasco x 30 cápsulas",
+        "format": "Ostarine 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-37-02",
+        "image": "img/products/profit-pharma/37_ANAB_Ostarinemax_Drops.png"
+      },
+      {
+        "id": "frasco-x-60-capsulas",
+        "name": "Frasco x 60 cápsulas",
+        "price": 268.9,
+        "weight": "Frasco x 60 cápsulas",
+        "format": "Ostarine 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-37-03",
+        "image": "img/products/profit-pharma/37_ANAB_Ostarinemax_Drops.png"
+      }
+    ],
+    "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+    "price": 160.9,
+    "unit": "Drops x 30ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Favorece el aumento de la masa muscular y al rendimiento.",
+    "benefits": [
+      "Línea Anabólicos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Ostarine 20mg (*por cada 20 gotas*) | Ostarine 10mg.",
+      "Presentación disponible: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+    ],
+    "howToUse": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+    "composition": "Ostarine 20mg (*por cada 20 gotas*) | Ostarine 10mg",
+    "faqs": [
+      {
+        "q": "¿El producto OSTARINEMAX DROPS es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Anabólicos",
+      "Composición": "Ostarine 20mg (*por cada 20 gotas*) | Ostarine 10mg",
+      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+      "warnings": [
+        "Producto dirigido exclusivamente a adultos mayores de 18 años.",
+        "Se recomienda seguimiento profesional y control médico periódico.",
+        "Mantener fuera del alcance de los niños."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-stanabolmax-drops",
+    "name": "STANABOLMAX DROPS — Profit Pharma",
+    "shortName": "STANABOLMAX DROPS",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "anabolicos",
+    "subCategoryName": "Línea Anabólicos",
+    "badge": "Anabólicos",
+    "rating": 4.9,
+    "reviewsCount": 24,
+    "image": "img/products/profit-pharma/38_ANAB_Stanabolmax_Drops.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/38_ANAB_Stanabolmax_Drops.png",
+    "hasVariants": true,
+    "defaultVariant": "drops-x-30ml",
+    "variants": [
+      {
+        "id": "drops-x-30ml",
+        "name": "Drops x 30ml",
+        "price": 268.9,
+        "weight": "Drops x 30ml",
+        "format": "Estanozolol 20mg (*por cada 20 gotas*) • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-38-01",
+        "image": "img/products/profit-pharma/38_ANAB_Stanabolmax_Drops.png"
+      },
+      {
+        "id": "frasco-x-30-capsulas",
+        "name": "Frasco x 30 cápsulas",
+        "price": 160.9,
+        "weight": "Frasco x 30 cápsulas",
+        "format": "Estanozolol 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-38-02",
+        "image": "img/products/profit-pharma/38_ANAB_Stanabolmax_Drops.png"
+      },
+      {
+        "id": "frasco-x-60-capsulas",
+        "name": "Frasco x 60 cápsulas",
+        "price": 268.9,
+        "weight": "Frasco x 60 cápsulas",
+        "format": "Estanozolol 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-38-03",
+        "image": "img/products/profit-pharma/38_ANAB_Stanabolmax_Drops.png"
+      }
+    ],
+    "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+    "price": 160.9,
+    "unit": "Drops x 30ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Contribuye a mantener masa muscular y mejorar el desempeño deportivo.",
+    "benefits": [
+      "Línea Anabólicos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Estanozolol 20mg (*por cada 20 gotas*) | Estanozolol 10mg.",
+      "Presentación disponible: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+    ],
+    "howToUse": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+    "composition": "Estanozolol 20mg (*por cada 20 gotas*) | Estanozolol 10mg",
+    "faqs": [
+      {
+        "q": "¿El producto STANABOLMAX DROPS es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Anabólicos",
+      "Composición": "Estanozolol 20mg (*por cada 20 gotas*) | Estanozolol 10mg",
+      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+      "warnings": [
+        "Producto dirigido exclusivamente a adultos mayores de 18 años.",
+        "Se recomienda seguimiento profesional y control médico periódico.",
+        "Mantener fuera del alcance de los niños."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-musclemax-drops",
+    "name": "MUSCLEMAX DROPS — Profit Pharma",
+    "shortName": "MUSCLEMAX DROPS",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "anabolicos",
+    "subCategoryName": "Línea Anabólicos",
+    "badge": "Anabólicos",
+    "rating": 4.9,
+    "reviewsCount": 25,
+    "image": "img/products/profit-pharma/39_ANAB_Musclemax_Drops.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/39_ANAB_Musclemax_Drops.png",
+    "hasVariants": true,
+    "defaultVariant": "drops-x-30ml",
+    "variants": [
+      {
+        "id": "drops-x-30ml",
+        "name": "Drops x 30ml",
+        "price": 93.5,
+        "weight": "Drops x 30ml",
+        "format": "Tribulus Terrestris 20mg (*por cada 20 gotas*) • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-39-01",
+        "image": "img/products/profit-pharma/39_ANAB_Musclemax_Drops.png"
+      },
+      {
+        "id": "frasco-x-30-capsulas",
+        "name": "Frasco x 30 cápsulas",
+        "price": 66.5,
+        "weight": "Frasco x 30 cápsulas",
+        "format": "Tribulus Terrestris 700mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-39-02",
+        "image": "img/products/profit-pharma/39_ANAB_Musclemax_Drops.png"
+      },
+      {
+        "id": "frasco-x-60-capsulas",
+        "name": "Frasco x 60 cápsulas",
+        "price": 93.5,
+        "weight": "Frasco x 60 cápsulas",
+        "format": "Tribulus Terrestris 700mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-39-03",
+        "image": "img/products/profit-pharma/39_ANAB_Musclemax_Drops.png"
+      }
+    ],
+    "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+    "price": 66.5,
+    "unit": "Drops x 30ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Potencia la energía y la resistencia, optimizando el rendimiento.",
+    "benefits": [
+      "Línea Anabólicos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Tribulus Terrestris 20mg (*por cada 20 gotas*) | Tribulus Terrestris 700mg.",
+      "Presentación disponible: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+    ],
+    "howToUse": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+    "composition": "Tribulus Terrestris 20mg (*por cada 20 gotas*) | Tribulus Terrestris 700mg",
+    "faqs": [
+      {
+        "q": "¿El producto MUSCLEMAX DROPS es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Anabólicos",
+      "Composición": "Tribulus Terrestris 20mg (*por cada 20 gotas*) | Tribulus Terrestris 700mg",
+      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+      "warnings": [
+        "Producto dirigido exclusivamente a adultos mayores de 18 años.",
+        "Se recomienda seguimiento profesional y control médico periódico.",
+        "Mantener fuera del alcance de los niños."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
+  },
+  {
+    "id": "profit-oxandrolonomax-drops",
+    "name": "OXANDROLONOMAX DROPS — Profit Pharma",
+    "shortName": "OXANDROLONOMAX DROPS",
+    "category": "distribuidor-autorizado",
+    "categoryName": "Distribuidor Autorizado • Profit Pharma",
+    "subCategory": "anabolicos",
+    "subCategoryName": "Línea Anabólicos",
+    "badge": "Anabólicos",
+    "rating": 4.9,
+    "reviewsCount": 26,
+    "image": "img/products/profit-pharma/40_ANAB_Oxandrolonomax_Drops.png",
+    "presentationSheet": "img/products/profit-pharma/presentaciones/40_ANAB_Oxandrolonomax_Drops.png",
+    "hasVariants": true,
+    "defaultVariant": "drops-x-30ml",
+    "variants": [
+      {
+        "id": "drops-x-30ml",
+        "name": "Drops x 30ml",
+        "price": 268.9,
+        "weight": "Drops x 30ml",
+        "format": "Oxandrolona 20mg (*por cada 20 gotas*) • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-40-01",
+        "image": "img/products/profit-pharma/40_ANAB_Oxandrolonomax_Drops.png"
+      },
+      {
+        "id": "frasco-x-30-capsulas",
+        "name": "Frasco x 30 cápsulas",
+        "price": 160.9,
+        "weight": "Frasco x 30 cápsulas",
+        "format": "Oxandrolona 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-40-02",
+        "image": "img/products/profit-pharma/40_ANAB_Oxandrolonomax_Drops.png"
+      },
+      {
+        "id": "frasco-x-60-capsulas",
+        "name": "Frasco x 60 cápsulas",
+        "price": 268.9,
+        "weight": "Frasco x 60 cápsulas",
+        "format": "Oxandrolona 10mg • Profit Pharma",
+        "packagingType": "profit-pharma",
+        "sku": "PF-40-03",
+        "image": "img/products/profit-pharma/40_ANAB_Oxandrolonomax_Drops.png"
+      }
+    ],
+    "presentationsSummary": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+    "price": 160.9,
+    "unit": "Drops x 30ml",
+    "origin": "Profit Pharma — Distribuidor Autorizado (Catálogo Oficial 2026)",
+    "coaCertified": false,
+    "coaPurity": "Distribuidor Autorizado Profit Pharma",
+    "description": "Ayuda a preservar masa muscular en etapas de definición.",
+    "benefits": [
+      "Línea Anabólicos Profit Pharma — Distribuidor Autorizado.",
+      "Principio activo: Oxandrolona 20mg (*por cada 20 gotas*) | Oxandrolona 10mg.",
+      "Presentación disponible: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+    ],
+    "howToUse": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+    "composition": "Oxandrolona 20mg (*por cada 20 gotas*) | Oxandrolona 10mg",
+    "faqs": [
+      {
+        "q": "¿El producto OXANDROLONOMAX DROPS es original de Profit Pharma?",
+        "a": "Sí. BioNativa LAB opera como distribuidor autorizado de la línea oficial Profit Pharma Catálogo 2026, entregando envases sellados de fábrica."
+      },
+      {
+        "q": "¿Qué presentaciones están disponibles?",
+        "a": "Disponible en: Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas."
+      }
+    ],
+    "technicalSpecs": {
+      "Marca": "Profit Pharma (Catálogo Oficial 2026)",
+      "Línea": "Línea Anabólicos",
+      "Composición": "Oxandrolona 20mg (*por cada 20 gotas*) | Oxandrolona 10mg",
+      "Presentaciones": "Drops x 30ml • Frasco x 30 cápsulas • Frasco x 60 cápsulas",
+      "Distribución": "Distribuidor Autorizado BioNativa LAB"
+    },
+    "responsibleUse": {
+      "instructions": "Dosificación según protocolo deportivo avanzado. Consultar guía de uso responsable y asesoría especializada.",
+      "warnings": [
+        "Producto dirigido exclusivamente a adultos mayores de 18 años.",
+        "Se recomienda seguimiento profesional y control médico periódico.",
+        "Mantener fuera del alcance de los niños."
+      ],
+      "storage": "Mantener en lugar fresco (< 25°C), seco y protegido de la luz solar directa."
+    },
+    "complementaryProductIds": []
   }
 ];
 
