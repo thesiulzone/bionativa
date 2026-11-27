@@ -58,7 +58,7 @@ flowchart TD
 - Consulta **invariablemente** el archivo [catalogo_verificado.md](./references/catalogo_verificado.md).
 - Confirma:
   - Concentración elemental y forma química exacta (ej. Citrato de Magnesio tiene 15%-16% magnesio elemental; el Bisglicinato está 100% quelado con glicina).
-  - Pureza respaldada por COA (ej. Creatina 99.9% HPLC Tested; Whey Protein 80.2% proteína real).
+  - Pureza respaldada por COA (ej. Creatina 99.8% HPLC Tested; Whey Protein 80.2% proteína real).
   - Dosificación diaria recomendada y momento del día para el consumo.
   - Precio vigente en Soles Peruanos (PEN - S/) y SKU.
 

@@ -446,7 +446,7 @@
             <!-- Badges -->
             <div class="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
               <span class="bg-[#1E3B2B] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm tracking-wide">
-                ${currentProduct.badge || 'Pureza 99.9% COA'}
+                ${currentProduct.badge || 'Pureza 99.8% COA'}
               </span>
               <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
@@ -483,7 +483,7 @@
           <!-- Trust Cards Row (Garantías de pureza boticaria) -->
           <div class="grid grid-cols-3 gap-3 text-center text-xs">
             <div class="bg-white p-3.5 rounded-2xl border border-[#E8E2D8] shadow-sm">
-              <span class="font-bold text-[#1E3B2B] block text-xs sm:text-sm">${currentProduct.coaCertified === false ? 'Distribuidor Oficial' : 'Pureza 99.9%'}</span>
+              <span class="font-bold text-[#1E3B2B] block text-xs sm:text-sm">${currentProduct.coaCertified === false ? 'Distribuidor Oficial' : 'Pureza 99.8%'}</span>
               <span class="text-[10px] text-stone-500 mt-0.5 block">${currentProduct.coaCertified === false ? 'Profit Pharma 2026' : 'Certificado COA USP'}</span>
             </div>
             <div class="bg-white p-3.5 rounded-2xl border border-[#E8E2D8] shadow-sm">
@@ -961,7 +961,7 @@
                 <div>
                   <div class="relative bg-[#FAF6F0] rounded-2xl p-4 flex items-center justify-center mb-4">
                     <span class="absolute top-2 left-2 text-[10px] font-bold bg-[#1E3B2B] text-white px-2 py-0.5 rounded-full">
-                      ${item.badge || 'COA 99.9%'}
+                      ${item.badge || 'COA 99.8%'}
                     </span>
                     <img src="${item.image}" alt="${item.name}" class="h-32 object-contain drop-shadow" />
                   </div>

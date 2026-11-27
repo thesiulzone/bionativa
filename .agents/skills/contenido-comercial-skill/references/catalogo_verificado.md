@@ -12,7 +12,7 @@
   - `BIO-CRE-POT-1K`: Pote Plastificado 1kg (Envase Rígido HDPE Boticario con precinto, +S/ 4.50) — **S/ 89.90**
   - `BIO-CRE-IND-25K`: Caja Industrial 25kg (Venta Mayorista / Granel a S/ 70.00/kg) — **S/ 1,749.90**
 - **Origen:** Materia Prima Americana Grado Farmacéutico (USP).
-- **Pureza COA:** 99.9% Pureza probada por HPLC. Malla 200 Mesh ultrafina para máxima solubilidad.
+- **Pureza COA:** 99.8% Pureza probada por HPLC. Malla 200 Mesh ultrafina para máxima solubilidad.
 - **Composición:** 100% Creatina Monohidratada micronizada. Libre de gluten, libre de lactosa, vegano, 0% aditivos, sin saborizantes ni maltodextrina.
 - **Mecanismo & Beneficios:**
   - Incrementa las reservas de fosfocreatina intracelular facilitando la regeneración inmediata de ATP.

@@ -58,7 +58,7 @@ const BIONATIVA_PRODUCTS = [
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Farmacéutico (USP)",
     "coaCertified": true,
-    "coaPurity": "99.9% Purity HPLC Tested",
+    "coaPurity": "99.8% Purity HPLC Tested",
     "description": "Creatina monohidratada micronizada de máxima solubilidad y pureza. Sin maltodextrina, sin saborizantes ni aditivos químicos. Optimiza la producción de ATP celular para incrementar la fuerza explosiva, potencia y regeneración muscular.",
     "benefits": [
       "Aumenta la fuerza explosiva y resistencia anaeróbica en entrenamientos intensos.",
