@@ -221,6 +221,11 @@
           <span>🎟️ Códigos de Descuento (Cupones)</span>
           <span id="tab-count-coupons" class="bg-slate-800 text-slate-300 text-[10px] px-1.5 py-0.5 rounded-full">0</span>
         </button>
+
+        <button onclick="switchTab('tab-hero-slider')" id="tab-btn-hero-slider" class="tab-btn px-3.5 py-2 rounded-xl bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-white border border-transparent transition flex items-center gap-2 whitespace-nowrap">
+          <span>🖼️ Slider Principal (Hero)</span>
+          <span id="tab-count-hero" class="bg-slate-800 text-slate-300 text-[10px] px-1.5 py-0.5 rounded-full">0</span>
+        </button>
       </nav>
     </div>
 
@@ -345,6 +350,35 @@
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
+
+    <!-- PESTAÑA 5: SLIDER PRINCIPAL (HERO · OFERTA DIRECTA) -->
+    <div id="tab-hero-slider" class="tab-content hidden space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h2 class="text-base font-bold text-white">Slider Principal de Portada (Oferta Directa)</h2>
+          <p class="text-xs text-slate-400">Administra las promociones, textos, precios e imágenes que rotan en el carrusel principal de la web.</p>
+        </div>
+        <button onclick="openHeroSlideModal()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow transition flex items-center gap-1.5 self-start">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span>Nuevo Slide</span>
+        </button>
+      </div>
+
+      <!-- Guía rápida de dimensiones en píxeles -->
+      <div class="rounded-xl bg-amber-950/30 border border-amber-500/30 p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+        <div class="flex items-start gap-2.5">
+          <span class="text-amber-400 text-base leading-none mt-0.5">📐</span>
+          <div class="text-slate-300">
+            <strong class="text-amber-300">Medidas exactas para que la imagen entre completa en el espacio derecho:</strong>
+            <span> Imagen principal: <strong class="text-white">1280 × 800 px</strong> (proporción <strong class="text-white">16:10</strong> horizontal, mín. 960 × 600 px; deja <strong class="text-white">80 px</strong> de margen libre sin texto en los bordes). Segundo envase opcional: <strong class="text-white">600 × 750 px</strong> (4:5). Formato <strong class="text-white">JPG, PNG o WebP</strong> (≤ 400 KB).</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="hero-slides-grid">
+        <!-- Tarjetas dinámicas de slides -->
       </div>
     </div>
 
@@ -642,6 +676,130 @@
     </div>
   </div>
 
+  <!-- MODAL 6: CREAR / EDITAR SLIDE DEL HERO PRINCIPAL -->
+  <div id="modal-hero-slide" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[92vh] overflow-y-auto custom-scrollbar">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-white" id="modal-hero-slide-title">Configurar Slide del Slider Principal</h3>
+        <button type="button" onclick="closeModal('modal-hero-slide')" class="text-slate-400 hover:text-white">✕</button>
+      </div>
+      <form id="form-hero-slide" onsubmit="saveHeroSlide(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="hero-slide-id" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Insignia pequeña (opcional)</label>
+            <input type="text" id="hero-slide-badge" placeholder="Ej: Pack más pedido" oninput="updateHeroSlidePreview()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block font-semibold text-slate-300 mb-1">Titular principal *</label>
+            <input type="text" id="hero-slide-title" required placeholder="Ej: Tu rutina, mejor equipada" oninput="updateHeroSlidePreview()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Descripción corta del pack o producto *</label>
+          <textarea id="hero-slide-desc" rows="2" required placeholder="Ej: Pack de Creatina Monohidratada 100% Pura (1 kg) + Proteína de Suero WPC80 (1 kg)." oninput="updateHeroSlidePreview()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Precio actual (S/) *</label>
+            <input type="number" step="0.01" min="0" id="hero-slide-price" required oninput="recalculateHeroSavings(); updateHeroSlidePreview();" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-400 font-bold focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Precio anterior tachado (S/)</label>
+            <input type="number" step="0.01" min="0" id="hero-slide-reg-price" placeholder="Opcional (ej: 217.00)" oninput="recalculateHeroSavings(); updateHeroSlidePreview();" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-300 focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Texto de ahorro</label>
+            <input type="text" id="hero-slide-savings" placeholder="Auto (ej: Ahorra S/ 10.50)" oninput="updateHeroSlidePreview()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-400 font-semibold focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Texto del botón *</label>
+            <input type="text" id="hero-slide-btn-text" required placeholder="Comprar pack" oninput="updateHeroSlidePreview()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Acción al hacer clic</label>
+            <select id="hero-slide-action-type" onchange="updateHeroActionFields()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none">
+              <option value="bundle">Agregar Pack (Bundle)</option>
+              <option value="product">Agregar Producto al carrito</option>
+              <option value="url">Abrir enlace (URL)</option>
+            </select>
+          </div>
+          <div id="hero-action-target-wrapper">
+            <label class="block font-semibold text-slate-300 mb-1" id="hero-action-target-label">Pack / Producto / URL</label>
+            <select id="hero-slide-bundle-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none">
+              <option value="fuerza">Pack Fuerza (Creatina + WPC80)</option>
+              <option value="sueno">Pack Sueño (Glicinato + Citrato)</option>
+              <option value="articular">Pack Articular (Colágeno + Citrato)</option>
+            </select>
+            <select id="hero-slide-product-select" class="hidden w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none"></select>
+            <input type="text" id="hero-slide-url-input" placeholder="Ej: tienda?cat=fuerza-deporte" class="hidden w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <!-- CARGA DE IMÁGENES DEL SLIDER + INDICACIÓN DE PÍXELES -->
+        <div class="rounded-xl bg-slate-950/70 border border-slate-800 p-4 space-y-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+            <div>
+              <h4 class="font-bold text-white text-xs">Imágenes del Slide</h4>
+              <p class="text-[11px] text-amber-300 font-medium">
+                📐 Medida ideal: <strong>1280 × 800 px</strong> (16:10 horizontal, mín. 960 × 600 px; margen seguro de 80 px) · 2do envase: <strong>600 × 750 px</strong>
+              </p>
+            </div>
+            <span class="text-[10px] text-slate-400 bg-slate-900 px-2 py-1 rounded border border-slate-800 self-start">JPG / PNG / WebP · ≤ 400 KB</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Imagen Principal -->
+            <div class="space-y-2">
+              <label class="block font-semibold text-slate-300">Imagen Principal * <span class="text-[10px] text-slate-400 font-normal">(1280×800 px · 16:10)</span></label>
+              <input type="text" id="hero-slide-img" required placeholder="img/products/creatina-monohidratada-bolsa-1kg.jpg" oninput="updateHeroSlidePreview()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white text-[11px] focus:border-emerald-500 focus:outline-none" />
+              <div class="flex items-center gap-2">
+                <label class="cursor-pointer px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-[11px] border border-slate-700 transition inline-flex items-center gap-1.5">
+                  <span>📤 Subir imagen</span>
+                  <input type="file" accept="image/png,image/jpeg,image/webp" class="hidden" onchange="handleHeroImageUpload(event, 'hero-slide-img', 'hero-img1-meta')" />
+                </label>
+                <span id="hero-img1-meta" class="text-[10px] text-slate-400"></span>
+              </div>
+            </div>
+
+            <!-- Imagen Secundaria (Opcional para Packs) -->
+            <div class="space-y-2">
+              <label class="block font-semibold text-slate-300">Segundo Envase (opcional) <span class="text-[10px] text-slate-400 font-normal">(600×750 px)</span></label>
+              <input type="text" id="hero-slide-img2" placeholder="Opcional (ej: img/products/proteina-suero-leche-80-pote-1kg.jpg)" oninput="updateHeroSlidePreview()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white text-[11px] focus:border-emerald-500 focus:outline-none" />
+              <div class="flex items-center gap-2">
+                <label class="cursor-pointer px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-[11px] border border-slate-700 transition inline-flex items-center gap-1.5">
+                  <span>📤 Subir 2da imagen</span>
+                  <input type="file" accept="image/png,image/jpeg,image/webp" class="hidden" onchange="handleHeroImageUpload(event, 'hero-slide-img2', 'hero-img2-meta')" />
+                </label>
+                <button type="button" onclick="document.getElementById('hero-slide-img2').value=''; document.getElementById('hero-img2-meta').textContent=''; updateHeroSlidePreview();" class="text-[10px] text-slate-400 hover:text-red-400">Quitar</button>
+                <span id="hero-img2-meta" class="text-[10px] text-slate-400"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vista previa rápida -->
+          <div class="pt-2">
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Vista previa del slide (estilo Oferta Directa)</span>
+            <div id="hero-slide-live-preview" class="rounded-xl bg-[#FAF6F0] border border-[#E8E2D8] p-4 grid grid-cols-1 sm:grid-cols-12 gap-4 items-center text-[#1E2421]">
+              <!-- Render dinámico -->
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-3 border-t border-slate-800">
+          <button type="button" onclick="closeModal('modal-hero-slide')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-lg">Guardar Slide</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div id="admin-toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
@@ -669,6 +827,7 @@
       renderVolumeOffersTable();
       renderCombosGrid();
       renderCouponsTable();
+      renderHeroSlidesGrid();
       updateTabBadges();
     }
 
@@ -929,6 +1088,8 @@
       document.getElementById("tab-count-volume").textContent = (currentConfig.volumeOffers || []).length;
       document.getElementById("tab-count-combos").textContent = (currentConfig.combos || []).length;
       document.getElementById("tab-count-coupons").textContent = (currentConfig.coupons || []).length;
+      const heroCountEl = document.getElementById("tab-count-hero");
+      if (heroCountEl) heroCountEl.textContent = (currentConfig.heroSlides || []).length;
     }
 
     // Navegación de pestañas
@@ -1008,6 +1169,8 @@
 
       if (prodSelect) prodSelect.innerHTML = optionsHTML;
       if (volSelect) volSelect.innerHTML = optionsHTML;
+      const heroProdSelect = document.getElementById("hero-slide-product-select");
+      if (heroProdSelect) heroProdSelect.innerHTML = optionsHTML;
 
       if (comboChecklist) {
         comboChecklist.innerHTML = prods.map(p => `
@@ -1422,6 +1585,328 @@
       renderCouponsTable();
       updateTabBadges();
       showToast("Cupón eliminado.");
+    }
+
+    // ==========================================
+    // MÓDULO: SLIDER PRINCIPAL (HERO · OFERTA DIRECTA)
+    // ==========================================
+    function getHeroSlidesList() {
+      if (!Array.isArray(currentConfig.heroSlides)) {
+        const defaults = (window.BIONATIVA_PROMOTIONS_DEFAULT && window.BIONATIVA_PROMOTIONS_DEFAULT.heroSlides) || [];
+        currentConfig.heroSlides = JSON.parse(JSON.stringify(defaults));
+      }
+      return currentConfig.heroSlides;
+    }
+
+    function renderHeroSlidesGrid() {
+      const grid = document.getElementById("hero-slides-grid");
+      if (!grid) return;
+      const slides = getHeroSlidesList();
+
+      if (!slides.length) {
+        grid.innerHTML = `<div class="col-span-full glass-panel rounded-2xl p-8 text-center text-slate-400">No hay slides configurados. Haz clic en "+ Nuevo Slide" para crear uno.</div>`;
+        return;
+      }
+
+      grid.innerHTML = slides.map((s, idx) => {
+        const cur = Number(s.currentPrice || 0);
+        const reg = Number(s.regularPrice || 0);
+        const hasDisc = reg > cur && cur > 0;
+        return `
+          <div class="glass-panel rounded-2xl p-4 border border-slate-800 flex flex-col justify-between space-y-3">
+            <div class="space-y-2.5">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                  Slide ${idx + 1} ${s.badge ? '· ' + s.badge : ''}
+                </span>
+                <button onclick="toggleHeroSlideStatus('${s.id}')" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${s.enabled !== false ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-slate-800 text-slate-500 border border-slate-700'}">
+                  ${s.enabled !== false ? '✓ Activo' : '✕ Pausado'}
+                </button>
+              </div>
+
+              <div class="rounded-xl bg-[#F5EFE6] p-3 h-36 flex items-center justify-center overflow-hidden border border-[#E8E2D8]">
+                <img src="${s.image}" alt="${s.title}" class="h-28 w-auto object-contain drop-shadow" />
+                ${s.secondaryImage ? `<img src="${s.secondaryImage}" alt="${s.title}" class="h-32 w-auto object-contain -ml-3 drop-shadow" />` : ''}
+              </div>
+
+              <div>
+                <h3 class="font-bold text-white text-sm leading-snug">${s.title}</h3>
+                <p class="text-[11px] text-slate-400 mt-1 line-clamp-2">${s.description}</p>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800 space-y-2.5">
+              <div class="flex items-baseline gap-2">
+                <span class="text-lg font-black text-amber-400 font-mono">S/ ${cur.toFixed(2)}</span>
+                ${hasDisc ? `<span class="text-xs text-slate-500 line-through font-mono">S/ ${reg.toFixed(2)}</span>` : ''}
+                ${hasDisc && s.savingsLabel ? `<span class="text-[10px] text-emerald-400 font-bold">${s.savingsLabel}</span>` : ''}
+              </div>
+
+              <div class="flex items-center justify-between gap-2 text-xs">
+                <div class="flex items-center gap-1">
+                  <button onclick="moveHeroSlide(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-30 text-slate-300" title="Subir orden">↑</button>
+                  <button onclick="moveHeroSlide(${idx}, 1)" ${idx === slides.length - 1 ? 'disabled' : ''} class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-30 text-slate-300" title="Bajar orden">↓</button>
+                </div>
+                <div class="flex items-center gap-3">
+                  <button onclick="editHeroSlide('${s.id}')" class="text-blue-400 hover:text-blue-300 font-semibold">Editar</button>
+                  <button onclick="deleteHeroSlide('${s.id}')" class="text-red-400 hover:text-red-300 font-semibold">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function openHeroSlideModal() {
+      document.getElementById("modal-hero-slide-title").textContent = "Nuevo Slide del Slider Principal";
+      document.getElementById("hero-slide-id").value = "";
+      document.getElementById("hero-slide-badge").value = "";
+      document.getElementById("hero-slide-title").value = "";
+      document.getElementById("hero-slide-desc").value = "";
+      document.getElementById("hero-slide-price").value = "";
+      document.getElementById("hero-slide-reg-price").value = "";
+      document.getElementById("hero-slide-savings").value = "";
+      document.getElementById("hero-slide-btn-text").value = "Comprar pack";
+      document.getElementById("hero-slide-action-type").value = "bundle";
+      document.getElementById("hero-slide-bundle-select").value = "fuerza";
+      document.getElementById("hero-slide-url-input").value = "";
+      document.getElementById("hero-slide-img").value = "img/products/creatina-monohidratada-bolsa-1kg.jpg";
+      document.getElementById("hero-slide-img2").value = "";
+      document.getElementById("hero-img1-meta").textContent = "";
+      document.getElementById("hero-img2-meta").textContent = "";
+      updateHeroActionFields();
+      updateHeroSlidePreview();
+      openModal("modal-hero-slide");
+    }
+
+    function editHeroSlide(id) {
+      const s = getHeroSlidesList().find(item => item.id === id);
+      if (!s) return;
+
+      document.getElementById("modal-hero-slide-title").textContent = "Editar Slide del Slider Principal";
+      document.getElementById("hero-slide-id").value = s.id;
+      document.getElementById("hero-slide-badge").value = s.badge || "";
+      document.getElementById("hero-slide-title").value = s.title || "";
+      document.getElementById("hero-slide-desc").value = s.description || "";
+      document.getElementById("hero-slide-price").value = s.currentPrice || "";
+      document.getElementById("hero-slide-reg-price").value = s.regularPrice > 0 ? s.regularPrice : "";
+      document.getElementById("hero-slide-savings").value = s.savingsLabel || "";
+      document.getElementById("hero-slide-btn-text").value = s.buttonText || "Comprar pack";
+      document.getElementById("hero-slide-action-type").value = s.actionType || "bundle";
+
+      if (s.actionType === "bundle") {
+        document.getElementById("hero-slide-bundle-select").value = s.actionValue || "fuerza";
+      } else if (s.actionType === "product") {
+        document.getElementById("hero-slide-product-select").value = s.actionValue || "creatina-monohidratada";
+      } else {
+        document.getElementById("hero-slide-url-input").value = s.actionValue || "";
+      }
+
+      document.getElementById("hero-slide-img").value = s.image || "";
+      document.getElementById("hero-slide-img2").value = s.secondaryImage || "";
+      document.getElementById("hero-img1-meta").textContent = "";
+      document.getElementById("hero-img2-meta").textContent = "";
+      updateHeroActionFields();
+      updateHeroSlidePreview();
+      openModal("modal-hero-slide");
+    }
+
+    function updateHeroActionFields() {
+      const type = document.getElementById("hero-slide-action-type").value;
+      const bundleSel = document.getElementById("hero-slide-bundle-select");
+      const prodSel = document.getElementById("hero-slide-product-select");
+      const urlInput = document.getElementById("hero-slide-url-input");
+      const label = document.getElementById("hero-action-target-label");
+
+      bundleSel.classList.add("hidden");
+      prodSel.classList.add("hidden");
+      urlInput.classList.add("hidden");
+
+      if (type === "bundle") {
+        bundleSel.classList.remove("hidden");
+        label.textContent = "Pack destino";
+      } else if (type === "product") {
+        prodSel.classList.remove("hidden");
+        label.textContent = "Producto (Bolsa 1 kg)";
+      } else {
+        urlInput.classList.remove("hidden");
+        label.textContent = "URL de destino";
+      }
+    }
+
+    function recalculateHeroSavings() {
+      const cur = Number(document.getElementById("hero-slide-price").value) || 0;
+      const reg = Number(document.getElementById("hero-slide-reg-price").value) || 0;
+      const savingsEl = document.getElementById("hero-slide-savings");
+      if (reg > cur && cur > 0) {
+        savingsEl.value = `Ahorra S/ ${(reg - cur).toFixed(2)}`;
+      } else {
+        savingsEl.value = "";
+      }
+    }
+
+    function handleHeroImageUpload(event, targetInputId, metaSpanId) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const metaSpan = document.getElementById(metaSpanId);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const origW = img.naturalWidth;
+          const origH = img.naturalHeight;
+          const isMainImg = targetInputId === "hero-slide-img";
+          const maxSide = 1280;
+          let targetW = origW;
+          let targetH = origH;
+
+          if (origW > maxSide || origH > maxSide) {
+            const ratio = Math.min(maxSide / origW, maxSide / origH);
+            targetW = Math.round(origW * ratio);
+            targetH = Math.round(origH * ratio);
+          }
+
+          const canvas = document.createElement("canvas");
+          canvas.width = targetW;
+          canvas.height = targetH;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, targetW, targetH);
+
+          // Usar WebP para conservar transparencia y mantener tamaño ligero en localStorage
+          const dataUrl = canvas.toDataURL("image/webp", 0.90);
+          document.getElementById(targetInputId).value = dataUrl;
+
+          const isLowRes = isMainImg ? (origW < 960 || origH < 600) : (origW < 500 || origH < 500);
+          const warnLowRes = isLowRes
+            ? (isMainImg ? " ⚠️ Recomendado ≥ 1280×800 px" : " ⚠️ Baja resolución (<500px)")
+            : " ✓";
+          if (metaSpan) {
+            metaSpan.textContent = `${origW}×${origH} px${warnLowRes}`;
+            metaSpan.className = isLowRes ? "text-[10px] text-amber-400 font-semibold" : "text-[10px] text-emerald-400 font-semibold";
+          }
+          updateHeroSlidePreview();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updateHeroSlidePreview() {
+      const preview = document.getElementById("hero-slide-live-preview");
+      if (!preview) return;
+
+      const badge = document.getElementById("hero-slide-badge").value.trim();
+      const title = document.getElementById("hero-slide-title").value.trim() || "Tu rutina, mejor equipada";
+      const desc = document.getElementById("hero-slide-desc").value.trim() || "Descripción corta del pack o producto.";
+      const cur = Number(document.getElementById("hero-slide-price").value) || 0;
+      const reg = Number(document.getElementById("hero-slide-reg-price").value) || 0;
+      const savings = document.getElementById("hero-slide-savings").value.trim();
+      const btnText = document.getElementById("hero-slide-btn-text").value.trim() || "Comprar pack";
+      const img1 = document.getElementById("hero-slide-img").value.trim() || "img/products/creatina-monohidratada-bolsa-1kg.jpg";
+      const img2 = document.getElementById("hero-slide-img2").value.trim();
+      const hasDisc = reg > cur && cur > 0;
+
+      preview.innerHTML = `
+        <div class="sm:col-span-6 space-y-2">
+          ${badge ? `<span class="inline-block bg-[#1E3B2B]/10 text-[#1E3B2B] px-2.5 py-0.5 text-[10px] font-bold">${badge}</span>` : ''}
+          <div class="text-lg font-extrabold text-[#1E3B2B] leading-tight">${title}</div>
+          <p class="text-[11px] text-[#5C665F] line-clamp-2">${desc}</p>
+          <div class="flex flex-wrap items-center gap-2 pt-0.5">
+            <span class="text-lg font-black text-[#B67A52]">S/ ${cur.toFixed(2)}</span>
+            ${hasDisc ? `<span class="text-xs text-stone-400 line-through">S/ ${reg.toFixed(2)}</span>` : ''}
+            ${hasDisc && savings ? `<span class="text-[10px] font-bold text-[#1E3B2B] bg-emerald-100 px-2 py-0.5">${savings}</span>` : ''}
+          </div>
+          <span class="inline-block bg-[#1E3B2B] text-white text-[11px] font-bold px-4 py-1.5">${btnText}</span>
+        </div>
+        <div class="sm:col-span-6 bg-[#F5EFE6] overflow-hidden h-36 ${img2 ? 'p-3 flex items-center justify-center' : ''}">
+          ${img2
+            ? `<img src="${img1}" alt="Preview" class="h-24 w-auto object-contain drop-shadow" /><img src="${img2}" alt="Preview 2" class="h-28 w-auto object-contain -ml-3 drop-shadow" />`
+            : `<img src="${img1}" alt="Preview" class="w-full h-full object-cover object-center block" />`
+          }
+        </div>
+      `;
+    }
+
+    function saveHeroSlide(e) {
+      e.preventDefault();
+      const id = document.getElementById("hero-slide-id").value || `hero-slide-${Date.now()}`;
+      const actionType = document.getElementById("hero-slide-action-type").value;
+      let actionValue = "";
+      if (actionType === "bundle") actionValue = document.getElementById("hero-slide-bundle-select").value;
+      else if (actionType === "product") actionValue = document.getElementById("hero-slide-product-select").value;
+      else actionValue = document.getElementById("hero-slide-url-input").value.trim();
+
+      const cur = Number(document.getElementById("hero-slide-price").value) || 0;
+      const reg = Number(document.getElementById("hero-slide-reg-price").value) || 0;
+
+      const obj = {
+        id,
+        badge: document.getElementById("hero-slide-badge").value.trim(),
+        title: document.getElementById("hero-slide-title").value.trim(),
+        description: document.getElementById("hero-slide-desc").value.trim(),
+        currentPrice: cur,
+        regularPrice: reg > cur ? reg : 0,
+        savingsLabel: reg > cur ? document.getElementById("hero-slide-savings").value.trim() : "",
+        buttonText: document.getElementById("hero-slide-btn-text").value.trim() || "Comprar pack",
+        actionType,
+        actionValue,
+        variantId: "bolsa-1kg",
+        image: document.getElementById("hero-slide-img").value.trim(),
+        imageAlt: document.getElementById("hero-slide-title").value.trim(),
+        secondaryImage: document.getElementById("hero-slide-img2").value.trim(),
+        secondaryImageAlt: document.getElementById("hero-slide-title").value.trim(),
+        enabled: true
+      };
+
+      const list = getHeroSlidesList();
+      const existingIdx = list.findIndex(item => item.id === id);
+      if (existingIdx >= 0) {
+        obj.enabled = list[existingIdx].enabled !== false;
+        list[existingIdx] = obj;
+      } else {
+        list.push(obj);
+      }
+
+      currentConfig.heroSlides = list;
+      saveAndNotify();
+      closeModal("modal-hero-slide");
+      renderHeroSlidesGrid();
+      updateTabBadges();
+      showToast("Slide del slider principal guardado y sincronizado.");
+    }
+
+    function toggleHeroSlideStatus(id) {
+      const list = getHeroSlidesList();
+      const item = list.find(s => s.id === id);
+      if (item) {
+        item.enabled = item.enabled === false;
+        currentConfig.heroSlides = list;
+        saveAndNotify();
+        renderHeroSlidesGrid();
+      }
+    }
+
+    function moveHeroSlide(index, delta) {
+      const list = getHeroSlidesList();
+      const target = index + delta;
+      if (target < 0 || target >= list.length) return;
+      const [moved] = list.splice(index, 1);
+      list.splice(target, 0, moved);
+      currentConfig.heroSlides = list;
+      saveAndNotify();
+      renderHeroSlidesGrid();
+      showToast("Orden del slider actualizado.");
+    }
+
+    function deleteHeroSlide(id) {
+      if (!confirm("¿Eliminar este slide del carrusel principal?")) return;
+      currentConfig.heroSlides = getHeroSlidesList().filter(s => s.id !== id);
+      saveAndNotify();
+      renderHeroSlidesGrid();
+      updateTabBadges();
+      showToast("Slide eliminado.");
     }
 
     // Exportar e Importar JSON

@@ -183,5 +183,63 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       usedCount: 153,
       enabled: true
     }
+  ],
+
+  // Slides del Carrusel Principal (Hero · Propuesta "03 · Oferta directa")
+  heroSlides: [
+    {
+      id: "hero-slide-pack-rutina",
+      badge: "Pack más pedido",
+      title: "Tu rutina, mejor equipada",
+      description: "Pack de Creatina Monohidratada 100% Pura (1 kg) + Proteína de Suero de Leche 80% WPC80 (1 kg), grado USP.",
+      currentPrice: 206.50,
+      regularPrice: 217.00,
+      savingsLabel: "Ahorra S/ 10.50",
+      buttonText: "Comprar pack",
+      actionType: "bundle",
+      actionValue: "fuerza",
+      variantId: "bolsa-1kg",
+      image: "img/products/creatina-monohidratada-bolsa-1kg.jpg",
+      imageAlt: "Creatina Monohidratada 100% Pura 1 kg BioNativa LAB",
+      secondaryImage: "img/products/proteina-suero-leche-80-pote-1kg.jpg",
+      secondaryImageAlt: "Proteína de Suero WPC80 1 kg BioNativa LAB",
+      enabled: true
+    },
+    {
+      id: "hero-slide-creatina-1kg",
+      badge: "12% OFF · Semana BioNativa",
+      title: "Creatina 100% Pura",
+      description: "Creatina monohidratada micronizada 200 Mesh en bolsa de 1 kg, con certificado COA por lote.",
+      currentPrice: 74.90,
+      regularPrice: 85.40,
+      savingsLabel: "Ahorra S/ 10.50",
+      buttonText: "Comprar creatina",
+      actionType: "product",
+      actionValue: "creatina-monohidratada",
+      variantId: "bolsa-1kg",
+      image: "img/products/creatina-monohidratada-pote-1kg.jpg",
+      imageAlt: "Creatina Monohidratada 100% Pura BioNativa LAB",
+      secondaryImage: "",
+      secondaryImageAlt: "",
+      enabled: true
+    },
+    {
+      id: "hero-slide-magnesio-1kg",
+      badge: "Alta absorción",
+      title: "Descanso sin molestias",
+      description: "Bisglicinato de Magnesio quelado en bolsa de 1 kg, fórmula de alta asimilación sin efecto laxante.",
+      currentPrice: 49.00,
+      regularPrice: 0,
+      savingsLabel: "",
+      buttonText: "Comprar magnesio",
+      actionType: "product",
+      actionValue: "glicinato-de-magnesio",
+      variantId: "bolsa-1kg",
+      image: "img/products/glicinato-de-magnesio-bolsa-1kg.jpg",
+      imageAlt: "Bisglicinato de Magnesio 1 kg BioNativa LAB",
+      secondaryImage: "",
+      secondaryImageAlt: "",
+      enabled: true
+    }
   ]
 };
