@@ -1,5 +1,6 @@
 import { onRequestPost as createPreference } from "./functions/api/create-preference.js";
 import { onRequestGet as getPaymentStatus } from "./functions/api/payment-status.js";
+import { onRequestGet as getPromotions, onRequestPost as savePromotions } from "./functions/api/promotions.js";
 
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
@@ -19,6 +20,20 @@ var routes = [
     method: "GET",
     middlewares: [],
     modules: [getPaymentStatus]
+  },
+  {
+    routePath: "/api/promotions",
+    mountPath: "/api",
+    method: "GET",
+    middlewares: [],
+    modules: [getPromotions]
+  },
+  {
+    routePath: "/api/promotions",
+    mountPath: "/api",
+    method: "POST",
+    middlewares: [],
+    modules: [savePromotions]
   }
 ];
 

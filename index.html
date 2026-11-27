@@ -2151,6 +2151,13 @@
         initIndexFeatured();
         initIndexPromotions();
       });
+
+      window.addEventListener("pageshow", (event) => {
+        if (event.persisted && window.BionativaPromotions) {
+          window.BionativaPromotions.config = window.BionativaPromotions.loadConfig();
+          initIndexPromotions();
+        }
+      });
     };
 
     if (document.readyState === "loading") {

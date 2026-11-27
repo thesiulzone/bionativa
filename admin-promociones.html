@@ -77,6 +77,10 @@
           <span>Motor Activo en Tienda</span>
         </div>
 
+        <button id="btn-publish-cloud" onclick="publishToCloud(true)" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow transition flex items-center gap-1.5" title="Guardar y publicar en Cloudflare KV para todos los visitantes">
+          <span>☁️ Publicar en la Nube</span>
+        </button>
+
         <button onclick="exportConfigJSON()" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition flex items-center gap-1.5" title="Exportar configuración de respaldo">
           <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           <span class="hidden sm:inline">Exportar JSON</span>
@@ -817,6 +821,16 @@
       loadAndRenderAll();
       initRealtimeTimers();
       populateProductSelects();
+      window.addEventListener("bionativa:promotions_updated", () => {
+        currentConfig = window.BionativaPromotions.config;
+        renderActiveCampaignCard();
+        renderProductDiscountsTable();
+        renderVolumeOffersTable();
+        renderCombosGrid();
+        renderCouponsTable();
+        renderHeroSlidesGrid();
+        updateTabBadges();
+      });
     });
 
     function loadAndRenderAll() {
@@ -1112,7 +1126,56 @@
 
     // Guardado y emisión
     function saveAndNotify() {
-      window.BionativaPromotions.saveConfig(currentConfig);
+      const ok = window.BionativaPromotions.saveConfig(currentConfig);
+      if (!ok) {
+        alert("No se pudo guardar en el navegador (espacio de almacenamiento local lleno). Reduce el peso de las imágenes o usa una ruta del servidor (ej: img/products/...).");
+        return false;
+      }
+      const cachedKey = sessionStorage.getItem("bionativa_admin_promo_key");
+      if (cachedKey) {
+        publishToCloud(false);
+      }
+      return ok;
+    }
+
+    async function publishToCloud(interactive = true) {
+      if (!window.BionativaPromotions) return false;
+      let adminKey = sessionStorage.getItem("bionativa_admin_promo_key") || "";
+
+      if (!adminKey && interactive) {
+        adminKey = prompt("Ingresa tu clave de administrador (ADMIN_PROMO_KEY) para publicar en la nube:") || "";
+        adminKey = adminKey.trim();
+        if (!adminKey) return false;
+      }
+      if (!adminKey) return false;
+
+      const btn = document.getElementById("btn-publish-cloud");
+      const originalText = btn ? btn.innerHTML : "";
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>⏳ Publicando...</span>`;
+      }
+
+      const result = await window.BionativaPromotions.saveToCloud(currentConfig, adminKey);
+
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+
+      if (result.ok) {
+        sessionStorage.setItem("bionativa_admin_promo_key", adminKey);
+        showToast("☁️ ¡Publicado en la nube! Visible para todos los clientes.");
+        return true;
+      }
+
+      if (result.status === 401) {
+        sessionStorage.removeItem("bionativa_admin_promo_key");
+        alert("Clave de administrador incorrecta. Intenta nuevamente.");
+      } else if (interactive) {
+        alert(result.error || "No se pudo publicar en la nube.");
+      }
+      return false;
     }
 
     // Modal Helpers
@@ -1774,16 +1837,20 @@
           const ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, targetW, targetH);
 
-          // Usar WebP para conservar transparencia y mantener tamaño ligero en localStorage
-          const dataUrl = canvas.toDataURL("image/webp", 0.90);
+          // Usar WebP optimizado (<= ~250 KB) para no saturar el límite de 5 MB de localStorage
+          let dataUrl = canvas.toDataURL("image/webp", 0.80);
+          if (dataUrl.length > 350000) {
+            dataUrl = canvas.toDataURL("image/webp", 0.65);
+          }
           document.getElementById(targetInputId).value = dataUrl;
 
+          const approxKB = Math.round((dataUrl.length * 3) / 4 / 1024);
           const isLowRes = isMainImg ? (origW < 960 || origH < 600) : (origW < 500 || origH < 500);
           const warnLowRes = isLowRes
             ? (isMainImg ? " ⚠️ Recomendado ≥ 1280×800 px" : " ⚠️ Baja resolución (<500px)")
             : " ✓";
           if (metaSpan) {
-            metaSpan.textContent = `${origW}×${origH} px${warnLowRes}`;
+            metaSpan.textContent = `${origW}×${origH} px · ${approxKB} KB${warnLowRes}`;
             metaSpan.className = isLowRes ? "text-[10px] text-amber-400 font-semibold" : "text-[10px] text-emerald-400 font-semibold";
           }
           updateHeroSlidePreview();
@@ -1870,11 +1937,12 @@
       }
 
       currentConfig.heroSlides = list;
-      saveAndNotify();
-      closeModal("modal-hero-slide");
-      renderHeroSlidesGrid();
-      updateTabBadges();
-      showToast("Slide del slider principal guardado y sincronizado.");
+      if (saveAndNotify()) {
+        closeModal("modal-hero-slide");
+        renderHeroSlidesGrid();
+        updateTabBadges();
+        showToast("Slide del slider principal guardado y sincronizado.");
+      }
     }
 
     function toggleHeroSlideStatus(id) {

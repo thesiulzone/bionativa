@@ -7,8 +7,59 @@
 class BionativaPromotionsEngine {
   constructor() {
     this.storageKey = "bionativa_promotions_config_v1";
+    this.apiEndpoint = "/api/promotions";
+    this.cloudConfigured = false;
     this.config = this.loadConfig();
     this.initCrossTabSync();
+    this.syncFromCloud();
+  }
+
+  /**
+   * Sincroniza la configuración publicada en la nube (Cloudflare KV).
+   */
+  async syncFromCloud() {
+    try {
+      const res = await fetch(this.apiEndpoint, { cache: "no-store" });
+      if (!res.ok) return null;
+      const data = await res.json();
+      this.cloudConfigured = Boolean(data && data.configured);
+
+      if (data && data.configured && data.config && typeof data.config === "object") {
+        this.config = data.config;
+        try {
+          localStorage.setItem(this.storageKey, JSON.stringify(this.config));
+        } catch (e) {}
+        window.dispatchEvent(new CustomEvent("bionativa:promotions_updated", { detail: this.config }));
+        return this.config;
+      }
+    } catch (err) {
+      // Silencioso en entornos sin worker/red (ej: apertura local file://)
+    }
+    return null;
+  }
+
+  /**
+   * Publica la configuración actual en Cloudflare KV para todos los visitantes.
+   */
+  async saveToCloud(newConfig, adminKey) {
+    try {
+      const res = await fetch(this.apiEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Admin-Key": String(adminKey || "")
+        },
+        body: JSON.stringify({ config: newConfig })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        return { ok: false, status: res.status, error: data.error || "No se pudo publicar en la nube." };
+      }
+      this.cloudConfigured = true;
+      return { ok: true, lastUpdated: data.lastUpdated };
+    } catch (err) {
+      return { ok: false, status: 0, error: "Error de conexión al publicar en la nube." };
+    }
   }
 
   /**
