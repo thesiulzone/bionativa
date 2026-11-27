@@ -71,26 +71,26 @@ test("server promotion rules match the browser defaults", () => {
 test("checkout ignores client prices and calculates verified total", () => {
   const checkout = buildCheckout({
     items: [{ productId: "creatina-monohidratada", variantId: "bolsa-1kg", quantity: 1, price: 0, name: "Free" }],
-    shippingId: "lima-recojo",
+    shippingId: "lima-express",
     payer: {}
   });
-  assert.equal(checkout.total, 78.43);
-  assert.equal(checkout.items.reduce((sum, item) => sum + item.unit_price * item.quantity, 0), checkout.total);
+  assert.equal(checkout.total, 90.99);
+  assert.equal(Number(checkout.items.reduce((sum, item) => sum + item.unit_price * item.quantity, 0).toFixed(2)), checkout.total);
   assert.match(checkout.externalReference, /^BN-/);
 });
 
 test("checkout applies the configured product, volume, and coupon discounts", () => {
   const checkout = buildCheckout({
     items: [{ productId: "creatina-monohidratada", variantId: "bolsa-1kg", quantity: 2 }],
-    shippingId: "lima-recojo",
+    shippingId: "lima-express",
     couponCode: "semanabionativa"
   });
-  assert.equal(checkout.total, 127.06);
+  assert.equal(checkout.total, 139.62);
 });
 
 test("checkout rejects invalid products, quantities, and shipping options", () => {
-  assert.throws(() => buildCheckout({ items: [{ productId: "made-up", variantId: "x", quantity: 1 }], shippingId: "lima-recojo" }));
-  assert.throws(() => buildCheckout({ items: [{ productId: "creatina-monohidratada", variantId: "bolsa-1kg", quantity: 21 }], shippingId: "lima-recojo" }));
+  assert.throws(() => buildCheckout({ items: [{ productId: "made-up", variantId: "x", quantity: 1 }], shippingId: "lima-express" }));
+  assert.throws(() => buildCheckout({ items: [{ productId: "creatina-monohidratada", variantId: "bolsa-1kg", quantity: 21 }], shippingId: "lima-express" }));
   assert.throws(() => buildCheckout({ items: [{ productId: "creatina-monohidratada", variantId: "bolsa-1kg", quantity: 1 }], shippingId: "free-shipping" }));
 });
 
@@ -108,15 +108,28 @@ test("preference endpoint validates server pricing before calling Mercado Pago",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items: [{ productId: "creatina-monohidratada", variantId: "bolsa-1kg", quantity: 1, price: 0 }],
-          shippingId: "lima-recojo",
-          payer: { name: "Cliente" }
+          shippingId: "provincia-agencia",
+          payer: {
+            name: "Cliente",
+            doc: "12345678",
+            shippingDetails: {
+              mode: "provincia",
+              agency: "Shalom",
+              destination: "Arequipa / Arequipa / Yanahuara",
+              originOffice: "Agencia de Origen Lima (Despacho desde Almacén BioNativa Lima)",
+              destinationOffice: "Terminal Shalom Av. Parra 123"
+            }
+          }
         })
       }),
       env: { MP_ACCESS_TOKEN: "server-secret" }
     });
     const data = await response.json();
     assert.equal(response.status, 200);
-    assert.equal(data.total, 78.43);
+    assert.equal(data.total, 93.09);
+    assert.equal(preference.metadata.shipping_mode, "provincia");
+    assert.equal(preference.metadata.agency, "Shalom");
+    assert.equal(preference.metadata.destination, "Arequipa / Arequipa / Yanahuara");
     assert.equal(preference.items.reduce((sum, item) => sum + item.unit_price * item.quantity, 0), data.total);
     assert.match(preference.external_reference, /^BN-/);
   } finally {

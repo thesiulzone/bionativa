@@ -2,7 +2,8 @@ import { CATALOG } from "./catalog.js";
 
 const SHIPPING = {
   "lima-express": { name: "Envío Lima Metropolitana Urbano", price: 12 },
-  "lima-semiurbano-provincias": { name: "Envío Lima Metropolitana Semiurbano o Agencia de Transporte (Provincias)", price: 14 }
+  "lima-semiurbano": { name: "Envío Lima Metropolitana Semiurbano", price: 14 },
+  "provincia-agencia": { name: "Envío a Provincia (Agencia de Transportes)", price: 14 }
 };
 
 export const SERVER_PROMOTIONS = {

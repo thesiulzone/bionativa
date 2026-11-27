@@ -13,7 +13,8 @@ window.BIONATIVA_CONFIG = window.BIONATIVA_CONFIG || {
   brandName: "BioNativa LAB",
   shippingOptions: [
     { id: "lima-express", name: "Envío Lima Metropolitana Urbano", price: 12 },
-    { id: "lima-semiurbano-provincias", name: "Envío Lima Metropolitana Semiurbano o Agencia de Transporte (Provincias)", price: 14 }
+    { id: "lima-semiurbano", name: "Envío Lima Metropolitana Semiurbano", price: 14 },
+    { id: "provincia-agencia", name: "Envío a Provincia (Agencia de Transportes)", price: 14 }
   ]
 };
 
@@ -215,11 +216,20 @@ class BionativaCart {
     return this.items.reduce((sum, item) => sum + item.quantity, 0);
   }
 
-  getShippingCost() {
-    const shippingOptions = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
+  getShippingOptions() {
+    return (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
       { id: "lima-express", name: "Envío Lima Metropolitana Urbano", price: 12 },
-      { id: "lima-semiurbano-provincias", name: "Envío Lima Metropolitana Semiurbano o Agencia de Transporte (Provincias)", price: 14 }
+      { id: "lima-semiurbano", name: "Envío Lima Metropolitana Semiurbano", price: 14 },
+      { id: "provincia-agencia", name: "Envío a Provincia (Agencia de Transportes)", price: 14 }
     ];
+  }
+
+  isProvinceShipping() {
+    return this.selectedShipping === "provincia-agencia";
+  }
+
+  getShippingCost() {
+    const shippingOptions = this.getShippingOptions();
     const option = shippingOptions.find(o => o.id === this.selectedShipping);
     return option ? Number(option.price) : 0;
   }
@@ -396,10 +406,7 @@ class BionativaCart {
   injectCartDrawer() {
     if (document.getElementById("cart-drawer-overlay")) return;
 
-    const shippingOptions = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
-      { id: "lima-express", name: "Envío Lima Metropolitana Urbano", price: 12 },
-      { id: "lima-semiurbano-provincias", name: "Envío Lima Metropolitana Semiurbano o Agencia de Transporte (Provincias)", price: 14 }
-    ];
+    const shippingOptions = this.getShippingOptions();
 
     const drawerHTML = `
       <!-- Cart Drawer Overlay -->
@@ -638,8 +645,9 @@ class BionativaCart {
       return;
     }
 
-    const shippingOptions = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [];
-    const shipping = shippingOptions.find(o => o.id === this.selectedShipping) || { name: "Envío Lima Metropolitana Urbano", price: 12 };
+    const shippingOptions = this.getShippingOptions();
+    const shipping = shippingOptions.find(o => o.id === this.selectedShipping) || shippingOptions[0];
+    const isProvince = this.isProvinceShipping();
     const promoEval = this.getPromotionEvaluation();
     const regularSubtotal = promoEval.subtotalRegular;
     const subtotal = promoEval.finalSubtotal;
@@ -652,35 +660,100 @@ class BionativaCart {
         <div class="border-b border-stone-200 pb-3">
           <span class="text-xs font-bold text-[#B67A52] uppercase tracking-wider">Finalizar Compra</span>
           <h3 class="text-xl font-bold text-[#1E3B2B] mt-0.5">Datos para tu Envío</h3>
-          <p class="text-xs text-stone-500">Completa tus datos para coordinar la entrega en Lima, Cusco o todo el Perú.</p>
+          <p class="text-xs text-stone-500">Completa tus datos para coordinar la entrega en Lima o el despacho por agencia a provincia.</p>
         </div>
 
         <form id="checkout-form" onsubmit="window.cart.submitOrder(event)" class="space-y-4 text-xs">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">Nombre y Apellidos *</label>
-              <input type="text" id="cust-name" required placeholder="Ej: Juan Pérez" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
-            </div>
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">DNI o RUC *</label>
-              <input type="text" id="cust-doc" required placeholder="8 u 11 dígitos" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
-            </div>
+          <!-- Selector de Modalidad de Envío -->
+          <div id="checkout-shipping-selector-box" class="bg-[#FAF6F0] p-3 rounded-xl border border-[#E8E2D8]">
+            <label for="checkout-shipping-select" class="block font-bold text-[#1E3B2B] mb-1.5">Modalidad de Envío *</label>
+            <select id="checkout-shipping-select" class="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm font-medium text-[#1E3B2B] focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]">
+              ${shippingOptions.map(opt => `
+                <option value="${opt.id}" ${opt.id === this.selectedShipping ? "selected" : ""}>
+                  ${opt.name} (S/ ${opt.price.toFixed(2)})
+                </option>
+              `).join("")}
+            </select>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Bloque Común: Datos del Destinatario / Consignatario -->
+          <div id="checkout-customer-fields" class="space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="cust-name" class="block font-semibold text-stone-700 mb-1">Nombre y Apellidos *</label>
+                <input type="text" id="cust-name" required placeholder="Ej: Juan Pérez" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
+              </div>
+              <div>
+                <label for="cust-doc" class="block font-semibold text-stone-700 mb-1">DNI o RUC *</label>
+                <input type="text" id="cust-doc" required placeholder="8 u 11 dígitos (recojo en agencia)" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
+              </div>
+            </div>
+
             <div>
-              <label class="block font-semibold text-stone-700 mb-1">Teléfono Móvil / WhatsApp *</label>
+              <label for="cust-phone" class="block font-semibold text-stone-700 mb-1">Teléfono Móvil / WhatsApp *</label>
               <input type="tel" id="cust-phone" required placeholder="Ej: 987654321" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
             </div>
+          </div>
+
+          <!-- Bloque Lima: Dirección Domiciliaria -->
+          <div id="checkout-lima-fields" class="space-y-3 ${isProvince ? "hidden" : ""}">
             <div>
-              <label class="block font-semibold text-stone-700 mb-1">Ciudad / Departamento *</label>
-              <input type="text" id="cust-city" required placeholder="Ej: Lima / Cusco / Arequipa" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
+              <label for="cust-city" class="block font-semibold text-stone-700 mb-1">Distrito de Entrega (Lima) *</label>
+              <input type="text" id="cust-city" ${isProvince ? "" : "required"} placeholder="Ej: Miraflores, Santiago de Surco, San Borja..." class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
+            </div>
+            <div>
+              <label for="cust-address" class="block font-semibold text-stone-700 mb-1">Dirección Exacta y Referencia *</label>
+              <input type="text" id="cust-address" ${isProvince ? "" : "required"} placeholder="Calle / Av. / Nro / Dpto / Referencia" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
             </div>
           </div>
 
-          <div>
-            <label class="block font-semibold text-stone-700 mb-1">Dirección exacta o Agencia de transporte *</label>
-            <input type="text" id="cust-address" required placeholder="Calle / Av. / Referencia o Nombre de Agencia" class="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
+          <!-- Bloque Provincia: Agencia de Transportes -->
+          <div id="checkout-provincia-fields" class="space-y-3 bg-[#FAF6F0]/60 p-3.5 rounded-xl border border-[#E8E2D8] ${isProvince ? "" : "hidden"}">
+            <div class="flex items-center justify-between border-b border-[#E8E2D8] pb-2">
+              <span class="font-bold text-[#1E3B2B] text-xs uppercase tracking-wide">Datos de Despacho a Provincia</span>
+              <span class="text-[10px] font-semibold text-[#B67A52] bg-white px-2 py-0.5 rounded-full border border-[#E8E2D8]">Recojo con DNI</span>
+            </div>
+
+            <div>
+              <label for="prov-agency" class="block font-semibold text-stone-700 mb-1">Empresa o Agencia de Transportes *</label>
+              <select id="prov-agency" ${isProvince ? "required" : ""} class="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]">
+                <option value="Shalom">Shalom</option>
+                <option value="Marvisur">Marvisur</option>
+                <option value="Olva Courier">Olva Courier</option>
+                <option value="Móvil Bus">Móvil Bus</option>
+                <option value="Flores">Flores</option>
+                <option value="Otra">Otra agencia (especificar)</option>
+              </select>
+            </div>
+
+            <div id="prov-agency-other-wrap" class="hidden">
+              <label for="prov-agency-other" class="block font-semibold text-stone-700 mb-1">Nombre de la Agencia de Transportes *</label>
+              <input type="text" id="prov-agency-other" placeholder="Ej: Cruz del Sur, Cavassa, Palomino..." class="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
+            </div>
+
+            <div>
+              <label for="prov-destination" class="block font-semibold text-stone-700 mb-1">Lugar de Destino (Departamento / Provincia / Distrito) *</label>
+              <input type="text" id="prov-destination" ${isProvince ? "required" : ""} placeholder="Ej: Arequipa / Arequipa / Yanahuara" class="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
+            </div>
+
+            <div>
+              <label for="prov-origin-office" class="block font-semibold text-stone-700 mb-1">Dirección de la Oficina de Despacho de Origen *</label>
+              <select id="prov-origin-office" ${isProvince ? "required" : ""} class="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]">
+                <option value="Agencia de Origen Lima (Despacho desde Almacén BioNativa Lima)">Agencia de Origen Lima (Despacho desde Almacén BioNativa Lima)</option>
+                <option value="Agencia de Origen Cusco (Despacho desde Sede BioNativa Cusco)">Agencia de Origen Cusco (Despacho desde Sede BioNativa Cusco)</option>
+                <option value="Otra">Especificar otra oficina de origen</option>
+              </select>
+            </div>
+
+            <div id="prov-origin-other-wrap" class="hidden">
+              <label for="prov-origin-other" class="block font-semibold text-stone-700 mb-1">Dirección de Oficina de Origen *</label>
+              <input type="text" id="prov-origin-other" placeholder="Ej: Terminal Shalom La Victoria - Av. México..." class="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
+            </div>
+
+            <div>
+              <label for="prov-dest-office" class="block font-semibold text-stone-700 mb-1">Dirección de la Oficina de Destino (donde recoges) *</label>
+              <input type="text" id="prov-dest-office" ${isProvince ? "required" : ""} placeholder="Ej: Terminal Shalom Av. Parra 123 / Sede Marvisur Centro" class="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm focus:border-[#1E3B2B] focus:ring-1 focus:ring-[#1E3B2B]" />
+            </div>
           </div>
 
           <!-- Selección de Forma de Pago -->
@@ -712,7 +785,7 @@ class BionativaCart {
           <div class="bg-[#FAF6F0] p-3.5 rounded-xl border border-[#E8E2D8] space-y-1">
             <div class="flex justify-between text-stone-600">
               <span>Método de envío seleccionado:</span>
-              <span class="font-semibold text-[#1E3B2B]">${shipping ? shipping.name : "Lima"}</span>
+              <span id="checkout-shipping-name-display" class="font-semibold text-[#1E3B2B]">${shipping ? shipping.name : "Lima"}</span>
             </div>
             ${promoEval.totalSavings > 0 ? `
               <div class="flex justify-between text-stone-400 line-through">
@@ -730,7 +803,7 @@ class BionativaCart {
             </div>
             <div class="flex justify-between text-stone-600">
               <span>Costo de Envío:</span>
-              <span>S/ ${shippingPrice.toFixed(2)}</span>
+              <span id="checkout-shipping-cost-display">S/ ${shippingPrice.toFixed(2)}</span>
             </div>
             <div id="checkout-card-fee-row" class="hidden justify-between text-amber-800 font-medium">
               <span>Comisión Mercado Pago (3.99% + IGV):</span>
@@ -792,6 +865,70 @@ class BionativaCart {
     };
 
     payRadios.forEach(r => r.addEventListener('change', updateTotalsDisplay));
+
+    // Sincronizar cambio de modalidad de envío y alternar campos Lima vs Provincia
+    const checkoutShippingSelect = content.querySelector('#checkout-shipping-select');
+    const limaFields = content.querySelector('#checkout-lima-fields');
+    const provinciaFields = content.querySelector('#checkout-provincia-fields');
+    const provAgencySelect = content.querySelector('#prov-agency');
+    const provAgencyOtherWrap = content.querySelector('#prov-agency-other-wrap');
+    const provAgencyOtherInput = content.querySelector('#prov-agency-other');
+    const provOriginSelect = content.querySelector('#prov-origin-office');
+    const provOriginOtherWrap = content.querySelector('#prov-origin-other-wrap');
+    const provOriginOtherInput = content.querySelector('#prov-origin-other');
+    const shippingNameDisplay = content.querySelector('#checkout-shipping-name-display');
+    const shippingCostDisplay = content.querySelector('#checkout-shipping-cost-display');
+
+    const syncProvinciaSubfields = () => {
+      const provActive = this.isProvinceShipping();
+      const customAgency = provActive && provAgencySelect?.value === "Otra";
+      const customOrigin = provActive && provOriginSelect?.value === "Otra";
+      if (provAgencyOtherWrap) provAgencyOtherWrap.classList.toggle("hidden", !customAgency);
+      if (provAgencyOtherInput) provAgencyOtherInput.required = Boolean(customAgency);
+      if (provOriginOtherWrap) provOriginOtherWrap.classList.toggle("hidden", !customOrigin);
+      if (provOriginOtherInput) provOriginOtherInput.required = Boolean(customOrigin);
+    };
+
+    const syncShippingFields = () => {
+      const provActive = this.isProvinceShipping();
+      if (limaFields) limaFields.classList.toggle("hidden", provActive);
+      if (provinciaFields) provinciaFields.classList.toggle("hidden", !provActive);
+
+      const custCity = content.querySelector('#cust-city');
+      const custAddress = content.querySelector('#cust-address');
+      const provDest = content.querySelector('#prov-destination');
+      const provDestOffice = content.querySelector('#prov-dest-office');
+
+      if (custCity) custCity.required = !provActive;
+      if (custAddress) custAddress.required = !provActive;
+      if (provAgencySelect) provAgencySelect.required = provActive;
+      if (provDest) provDest.required = provActive;
+      if (provOriginSelect) provOriginSelect.required = provActive;
+      if (provDestOffice) provDestOffice.required = provActive;
+
+      syncProvinciaSubfields();
+    };
+
+    if (checkoutShippingSelect) {
+      checkoutShippingSelect.addEventListener('change', (e) => {
+        this.selectedShipping = e.target.value;
+        const drawerSelect = document.getElementById('cart-shipping-select');
+        if (drawerSelect) drawerSelect.value = this.selectedShipping;
+        this.updateUI();
+
+        const currentOption = this.getShippingOptions().find(o => o.id === this.selectedShipping);
+        if (shippingNameDisplay && currentOption) shippingNameDisplay.textContent = currentOption.name;
+        if (shippingCostDisplay && currentOption) shippingCostDisplay.textContent = `S/ ${Number(currentOption.price).toFixed(2)}`;
+
+        syncShippingFields();
+        updateTotalsDisplay();
+      });
+    }
+
+    if (provAgencySelect) provAgencySelect.addEventListener('change', syncProvinciaSubfields);
+    if (provOriginSelect) provOriginSelect.addEventListener('change', syncProvinciaSubfields);
+
+    syncShippingFields();
     updateTotalsDisplay();
 
     modal.classList.remove("hidden");
@@ -807,15 +944,48 @@ class BionativaCart {
     const name = document.getElementById("cust-name").value.trim();
     const doc = document.getElementById("cust-doc").value.trim();
     const phone = document.getElementById("cust-phone").value.trim();
-    const city = document.getElementById("cust-city").value.trim();
-    const address = document.getElementById("cust-address").value.trim();
+    const isProvince = this.isProvinceShipping();
+
+    let city = "";
+    let address = "";
+    let shippingDetails = {};
+
+    if (isProvince) {
+      const agencySelect = document.getElementById("prov-agency").value;
+      const agencyOther = document.getElementById("prov-agency-other")?.value.trim() || "";
+      const agency = agencySelect === "Otra" ? agencyOther : agencySelect;
+
+      const destination = document.getElementById("prov-destination").value.trim();
+
+      const originSelect = document.getElementById("prov-origin-office").value;
+      const originOther = document.getElementById("prov-origin-other")?.value.trim() || "";
+      const originOffice = originSelect === "Otra" ? originOther : originSelect;
+
+      const destinationOffice = document.getElementById("prov-dest-office").value.trim();
+
+      city = destination;
+      address = `Agencia: ${agency} | Origen: ${originOffice} | Oficina Destino: ${destinationOffice}`;
+      shippingDetails = {
+        mode: "provincia",
+        agency,
+        destination,
+        originOffice,
+        destinationOffice
+      };
+    } else {
+      city = document.getElementById("cust-city").value.trim();
+      address = document.getElementById("cust-address").value.trim();
+      shippingDetails = {
+        mode: "lima",
+        city,
+        address
+      };
+    }
+
     const payMethodRadio = document.querySelector('input[name="pay-method"]:checked');
     const payMethod = payMethodRadio ? payMethodRadio.value : "yape";
 
-    const shippingList = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
-      { id: "lima-express", name: "Envío Lima Metropolitana Urbano", price: 12 },
-      { id: "lima-semiurbano-provincias", name: "Envío Lima Metropolitana Semiurbano o Agencia de Transporte (Provincias)", price: 14 }
-    ];
+    const shippingList = this.getShippingOptions();
     const shipping = shippingList.find(o => o.id === this.selectedShipping) || shippingList[0];
     const promoEval = this.getPromotionEvaluation();
     const regularSubtotal = promoEval.subtotalRegular.toFixed(2);
@@ -844,6 +1014,15 @@ class BionativaCart {
         discountText = `🎉 *AHORRO PROMOCIONAL TOTAL:* -S/ ${totalSavings} ${appliedCoupon ? `(Cupón: ${appliedCoupon})` : ""}\n`;
       }
 
+      const shippingBlockText = isProvince
+        ? `🚚 *DATOS DE ENVÍO A PROVINCIA:*\n` +
+          `• *Empresa / Agencia:* ${shippingDetails.agency}\n` +
+          `• *Lugar de Destino:* ${shippingDetails.destination}\n` +
+          `• *Oficina de Despacho (Origen):* ${shippingDetails.originOffice}\n` +
+          `• *Oficina de Destino (Recojo):* ${shippingDetails.destinationOffice}\n`
+        : `• *Distrito / Ciudad:* ${city}\n` +
+          `• *Dirección de Entrega:* ${address}\n`;
+
       let message = `🌿 *NUEVO PEDIDO - BIONATIVA LAB*\n` +
         `🌐 *Dominio:* bionativalab.com\n` +
         `-----------------------------------------\n` +
@@ -858,8 +1037,7 @@ class BionativaCart {
         `• *Nombre:* ${name}\n` +
         `• *DNI/RUC:* ${doc}\n` +
         `• *Teléfono:* ${phone}\n` +
-        `• *Ciudad/Destino:* ${city}\n` +
-        `• *Dirección/Agencia:* ${address}\n` +
+        shippingBlockText +
         `• *Forma de Pago:* Yape / Transferencia\n` +
         `-----------------------------------------\n` +
         `Por favor, indíquenme los pasos para concretar la entrega. ¡Muchas gracias!`;
@@ -871,7 +1049,7 @@ class BionativaCart {
       this.renderBankTransferDetails(total, whatsappURL);
       return;
     } else if (payMethod === "card") {
-      this.currentCustomerData = { name, doc, phone, city, address };
+      this.currentCustomerData = { name, doc, phone, city, address, shippingDetails };
       const cfg = window.PAYMENT_CONFIG?.mercadopago || {};
       const feePercent = (cfg.cardFeeEnabled ? cfg.cardFeePercentage : 0) || 0;
       const baseNum = Number(total);
