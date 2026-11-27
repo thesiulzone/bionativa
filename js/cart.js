@@ -25,7 +25,7 @@ class BionativaCart {
     this.storageKey = "bionativa_cart_v1";
     this.items = this.loadCart();
     this.selectedShipping = "lima-express";
-    this.selectedPayment = "whatsapp";
+    this.selectedPayment = "yape";
     this.appliedCoupon = null;
     try {
       this.appliedCoupon = localStorage.getItem("bionativa_applied_coupon") || null;
@@ -642,7 +642,7 @@ class BionativaCart {
     }, 3500);
   }
 
-  openCheckoutModal(mode = "whatsapp") {
+  openCheckoutModal(mode = "yape") {
     const modal = document.getElementById("checkout-modal");
     const content = document.getElementById("checkout-modal-content");
     if (!modal || !content) return;
@@ -659,7 +659,7 @@ class BionativaCart {
     const subtotal = promoEval.finalSubtotal;
     const shippingPrice = this.getShippingCost();
     const total = this.getTotal();
-    const defaultPay = (mode === 'pay-options' || mode === 'yape' || mode === 'card') ? (mode === 'card' ? 'card' : 'yape') : 'whatsapp';
+    const defaultPay = mode === 'card' ? 'card' : 'yape';
 
     content.innerHTML = `
       <div class="space-y-5">
@@ -701,14 +701,6 @@ class BionativaCart {
           <div class="pt-2">
             <label class="block font-bold text-stone-800 mb-2">Selecciona tu Forma de Pago:</label>
             <div class="grid grid-cols-1 gap-2">
-              <label class="flex items-center gap-3 p-3 border rounded-xl border-[#25D366]/40 bg-[#25D366]/5 cursor-pointer">
-                <input type="radio" name="pay-method" value="whatsapp" ${defaultPay === 'whatsapp' ? 'checked' : ''} class="text-[#1E3B2B] focus:ring-0" />
-                <div>
-                  <div class="font-bold text-[#1E3B2B]">Confirmar y coordinar por WhatsApp (Recomendado)</div>
-                  <div class="text-[11px] text-stone-500">Un asesor te envía la confirmación con el método que elijas al chat.</div>
-                </div>
-              </label>
-
               <label class="flex items-center gap-3 p-3 border rounded-xl border-stone-200 hover:border-[#1E3B2B] cursor-pointer">
                 <input type="radio" name="pay-method" value="yape" ${defaultPay === 'yape' ? 'checked' : ''} class="text-[#1E3B2B] focus:ring-0" />
                 <div>
@@ -832,7 +824,7 @@ class BionativaCart {
     const city = document.getElementById("cust-city").value.trim();
     const address = document.getElementById("cust-address").value.trim();
     const payMethodRadio = document.querySelector('input[name="pay-method"]:checked');
-    const payMethod = payMethodRadio ? payMethodRadio.value : "whatsapp";
+    const payMethod = payMethodRadio ? payMethodRadio.value : "yape";
 
     const shippingList = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.shippingOptions) || [
       { id: "lima-express", name: "Delivery Lima Metropolitana (24 a 48 hrs)", price: 10 },
@@ -855,7 +847,7 @@ class BionativaCart {
       window.BionativaPromotions.trackEvent("conversion", { amount: Number(total), couponCode: appliedCoupon });
     }
 
-    if (payMethod === "whatsapp" || payMethod === "yape") {
+    if (payMethod === "yape") {
       const evalItems = promoEval.items || this.items;
       let itemsText = evalItems.map(item => {
         const lineTotal = item.lineTotal !== undefined ? item.lineTotal.toFixed(2) : (item.price * item.quantity).toFixed(2);
@@ -885,29 +877,16 @@ class BionativaCart {
         `• *Teléfono:* ${phone}\n` +
         `• *Ciudad/Destino:* ${city}\n` +
         `• *Dirección/Agencia:* ${address}\n` +
-        `• *Forma de Pago:* ${payMethod === "yape" ? "Yape / Transferencia" : "Coordinar por WhatsApp"}\n` +
+        `• *Forma de Pago:* Yape / Transferencia\n` +
         `-----------------------------------------\n` +
         `Por favor, indíquenme los pasos para concretar la entrega. ¡Muchas gracias!`;
 
       const waNumber = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.whatsappNumber) || "51981278458";
       const whatsappURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
 
-      // Si seleccionó Yape / Transferencia, mostramos los datos bancarios y botón para enviar captura a WhatsApp
-      if (payMethod === "yape") {
-        this.renderBankTransferDetails(total, whatsappURL);
-        return;
-      }
-
-      // Redirigir a WhatsApp (en móviles directo a la app para evitar bloqueo de popups)
-      const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-      if (isMobile) {
-        window.location.href = whatsappURL;
-      } else {
-        window.open(whatsappURL, "_blank");
-      }
-      this.closeCheckoutModal();
-      this.clearCart();
-      this.showToast("¡Pedido enviado a WhatsApp con éxito!");
+      // Mostramos los datos bancarios y botón para enviar captura a WhatsApp
+      this.renderBankTransferDetails(total, whatsappURL);
+      return;
     } else if (payMethod === "card") {
       this.currentCustomerData = { name, doc, phone, city, address };
       const cfg = window.PAYMENT_CONFIG?.mercadopago || {};
