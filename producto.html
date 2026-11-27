@@ -693,18 +693,12 @@
               </button>
             </div>
 
-            <!-- WhatsApp Actions: 7. Botón de Asesoría + Compra Inmediata -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <!-- WhatsApp Actions: 7. Botón de Asesoría -->
+            <div class="grid grid-cols-1 gap-2.5">
               <!-- 7. Botón de Asesoría Técnica Farmacéutica por WhatsApp -->
               <button type="button" onclick="consultAdvisorWhatsApp()" class="w-full bg-[#FAF9F6] hover:bg-[#F0ECE1] text-[#1E3B2B] font-bold py-3 px-4 rounded-2xl text-xs border border-[#D5CDBD] shadow-sm transition flex items-center justify-center gap-2">
                 <svg class="w-4 h-4 text-[#25D366] fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
                 <span>Asesoría de Dosis por WhatsApp</span>
-              </button>
-
-              <!-- Compra Inmediata Express por WhatsApp -->
-              <button type="button" onclick="buyNowWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3 px-4 rounded-2xl text-xs shadow transition flex items-center justify-center gap-2">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.087-.179.182-.077.357.101.174.451.744.968 1.205.666.594 1.228.777 1.402.864.173.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824z"/></svg>
-                <span>Comprar Inmediato por WhatsApp</span>
               </button>
             </div>
           </div>
@@ -1134,31 +1128,6 @@
       const waNumber = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.whatsappNumber) || "51981278458";
       const whatsappURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
       window.open(whatsappURL, "_blank");
-    }
-
-    // 6. Botón de Compra Rápida por WhatsApp
-    function buyNowWhatsApp() {
-      const price = getActivePrice();
-      const unit = getActiveUnitName();
-      const total = (price * selectedQty).toFixed(2);
-
-      const msg = `🌿 *COMPRA DIRECTA INMEDIATA - BIONATIVA LAB*\n` +
-        `• Producto: *${currentProduct.name}*\n` +
-        `• Formato: *${unit}*\n` +
-        `• Cantidad: *${selectedQty}*\n` +
-        `• Total: *S/ ${total}*\n` +
-        `• Dosis diaria planeada: *${currentCustomDose} g/día*\n` +
-        `-----------------------------------------\n` +
-        `Hola, deseo coordinar mi pedido y la entrega inmediata en Lima / Cusco / Provincia.`;
-
-      const waNumber = (window.BIONATIVA_CONFIG && window.BIONATIVA_CONFIG.whatsappNumber) || "51981278458";
-      const whatsappURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
-      const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-      if (isMobile) {
-        window.location.href = whatsappURL;
-      } else {
-        window.open(whatsappURL, "_blank");
-      }
     }
 
     function switchTab(tabId) {
