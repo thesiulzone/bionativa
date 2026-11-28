@@ -24,8 +24,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 85.4,
-        "regularPrice": 98,
+        "price": 94.9,
+        "regularPrice": 109.9,
         "weight": "1 kg",
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -38,7 +38,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 100.65,
+        "price": 109.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -63,7 +63,7 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": "BN-CRE-2026-01"
       }
     ],
-    "price": 85.4,
+    "price": 94.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Farmacéutico (USP)",
     "coaRequired": true,
@@ -78,8 +78,8 @@ const BIONATIVA_PRODUCTS = [
       "assayMethod": "HPLC / USP",
       "coaPdf": "docs/coa/coa-creatina-monohidratada.pdf"
     },
-    "regularPrice": 98,
-    "discountBadge": "-13% WEB",
+    "regularPrice": 109.9,
+    "discountBadge": "-14% WEB",
     "highlightBadge": "🔥 MÁS VENDIDO",
     "description": "Creatina monohidratada micronizada de máxima solubilidad y pureza. Sin maltodextrina, sin saborizantes ni aditivos químicos. Optimiza la producción de ATP celular para incrementar la fuerza explosiva, potencia y regeneración muscular.",
     "benefits": [
@@ -284,7 +284,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 68.6,
+        "price": 89.9,
+        "regularPrice": 109.9,
         "weight": "1 kg",
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -297,7 +298,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 80.85,
+        "price": 104.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -322,12 +323,14 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": null
       }
     ],
-    "price": 68.6,
+    "price": 89.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Fermentación Vegetal",
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.8% Grado USP",
+    "regularPrice": 109.9,
+    "discountBadge": "-18% WEB",
     "description": "L-Glutamina pura de origen vegetal por fermentación natural. El aminoácido más abundante en el músculo y el combustible primordial de los enterocitos (células del intestino) y el sistema inmune.",
     "benefits": [
       "Evita la pérdida y degradación de masa muscular (anticatabólico).",
@@ -398,7 +401,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 57.4,
+        "price": 94.9,
+        "regularPrice": 114.9,
         "weight": "1 kg",
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -411,7 +415,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 67.65,
+        "price": 109.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -436,12 +440,14 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": null
       }
     ],
-    "price": 57.4,
+    "price": 94.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Farmacéutico",
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.5% Purity",
+    "regularPrice": 114.9,
+    "discountBadge": "-17% WEB",
     "description": "Precursor natural directo del óxido nítrico (NO). Dilata los vasos sanguíneos, optimiza la llegada de nutrientes y oxígeno al tejido muscular y apoya la salud cardiovascular.",
     "benefits": [
       "Mejora notablemente la circulación sanguínea y el bombeo muscular.",
@@ -512,8 +518,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 35,
-        "regularPrice": 42,
+        "price": 39.9,
+        "regularPrice": 47.9,
         "weight": "1 kg",
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -526,7 +532,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 41.25,
+        "price": 47.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -551,7 +557,7 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": "BN-SOY-2026-01"
       }
     ],
-    "price": 35,
+    "price": 39.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana No-GMO",
     "coaRequired": true,
@@ -566,7 +572,7 @@ const BIONATIVA_PRODUCTS = [
       "assayMethod": "HPLC / USP",
       "coaPdf": "docs/coa/coa-proteina-soya.pdf"
     },
-    "regularPrice": 42,
+    "regularPrice": 47.9,
     "discountBadge": "-17% WEB",
     "highlightBadge": "🌱 90% AISLADO VEGANO",
     "description": "Proteína vegetal pura extraída de soya no transgénica. Contiene todos los 9 aminoácidos esenciales, con altísimo contenido de glutamina y arginina natural. Textura suave ideal para batidos y repostería fitness.",
@@ -639,8 +645,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 56,
-        "regularPrice": 68,
+        "price": 69.9,
+        "regularPrice": 84.9,
         "weight": "1 kg",
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -653,7 +659,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 66,
+        "price": 79.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -678,7 +684,7 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": "BN-COL-2026-01"
       }
     ],
-    "price": 56,
+    "price": 69.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana (Bovino Pastoreo)",
     "coaRequired": true,
@@ -693,7 +699,7 @@ const BIONATIVA_PRODUCTS = [
       "assayMethod": "HPLC / USP",
       "coaPdf": "docs/coa/coa-colageno-hidrolizado.pdf"
     },
-    "regularPrice": 68,
+    "regularPrice": 84.9,
     "discountBadge": "-18% WEB",
     "highlightBadge": "✨ PÉPTIDOS BIOACTIVOS",
     "description": "Péptidos de colágeno bioactivos hidrolizados enzimáticamente. Al tener un peso molecular ultrabajo, se absorbe en más del 90% en el tracto digestivo estimulando la producción natural de colágeno en piel, cartílagos y ligamentos.",
@@ -766,8 +772,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 60.2,
-        "regularPrice": 72,
+        "price": 79.9,
+        "regularPrice": 95.9,
         "weight": "1 kg",
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -780,7 +786,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 70.95,
+        "price": 92.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -805,7 +811,7 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": "BN-GLS-2026-01"
       }
     ],
-    "price": 60.2,
+    "price": 79.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Certificada",
     "coaRequired": true,
@@ -820,8 +826,8 @@ const BIONATIVA_PRODUCTS = [
       "assayMethod": "HPLC / USP",
       "coaPdf": "docs/coa/coa-glucosamina-sulfato.pdf"
     },
-    "regularPrice": 72,
-    "discountBadge": "-16% WEB",
+    "regularPrice": 95.9,
+    "discountBadge": "-17% WEB",
     "highlightBadge": "🦴 SALUD ARTICULAR",
     "description": "Componente esencial de los glucosaminoglicanos y proteoglicanos del cartílago articular y líquido sinovial. Ideal para deportistas con alto impacto articular y personas con osteoartritis o rigidez matutina.",
     "benefits": [
@@ -893,8 +899,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 98,
-        "regularPrice": 115,
+        "price": 129.9,
+        "regularPrice": 155.9,
         "weight": "1 kg",
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -907,7 +913,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 115.5,
+        "price": 149.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -932,14 +938,14 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": null
       }
     ],
-    "price": 98,
+    "price": 129.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado USP / FCC",
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.8% Grado Farmacéutico",
-    "regularPrice": 115,
-    "discountBadge": "-15% WEB",
+    "regularPrice": 155.9,
+    "discountBadge": "-17% WEB",
     "highlightBadge": "🍊 VITAMINA C ALCALINA",
     "description": "Forma amortiguada (tamponada) y no ácida de la Vitamina C. Con un pH neutro entre 7.0 y 8.0, permite megadosis de antioxidantes sin irritar el estómago, acidez gástrica ni reflujo.",
     "benefits": [
@@ -1252,8 +1258,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 22.4,
-        "regularPrice": 28,
+        "price": 39.9,
+        "regularPrice": 49.9,
         "weight": "1 kg",
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -1266,7 +1272,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 26.4,
+        "price": 49.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1291,7 +1297,7 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": "BN-CMG-2026-01"
       }
     ],
-    "price": 22.4,
+    "price": 39.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado USP",
     "coaRequired": true,
@@ -1306,7 +1312,7 @@ const BIONATIVA_PRODUCTS = [
       "assayMethod": "HPLC / USP",
       "coaPdf": "docs/coa/coa-citrato-magnesio.pdf"
     },
-    "regularPrice": 28,
+    "regularPrice": 49.9,
     "discountBadge": "-20% WEB",
     "highlightBadge": "🔥 MÁS VENDIDO",
     "description": "El magnesio más popular y efectivo para regular el tránsito intestinal, relajar los músculos y combatir calambres nocturnos. Su unión a ácido cítrico garantiza una excelente asimilación en el organismo.",
@@ -1383,8 +1389,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 49,
-        "regularPrice": 58,
+        "price": 79.9,
+        "regularPrice": 95.9,
         "weight": "1 kg",
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -1397,7 +1403,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 57.75,
+        "price": 89.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1422,7 +1428,7 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": "BN-GMG-2026-01"
       }
     ],
-    "price": 49,
+    "price": 79.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Quelado Puro",
     "coaRequired": true,
@@ -1437,8 +1443,8 @@ const BIONATIVA_PRODUCTS = [
       "assayMethod": "HPLC / USP",
       "coaPdf": "docs/coa/coa-bisglicinato-magnesio.pdf"
     },
-    "regularPrice": 58,
-    "discountBadge": "-15% WEB",
+    "regularPrice": 95.9,
+    "discountBadge": "-17% WEB",
     "highlightBadge": "🌙 NOBLE & QUELADO",
     "description": "La forma más avanzada y delicada de magnesio. Al estar unido a dos moléculas de glicina, no causa efecto laxante ni malestar gástrico. Cruza con facilidad hacia el sistema nervioso central promoviendo relajación cerebral profunda y sueño REM.",
     "benefits": [
@@ -1510,8 +1516,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 20.3,
-        "regularPrice": 25,
+        "price": 32.9,
+        "regularPrice": 39.9,
         "weight": "1 kg",
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -1524,7 +1530,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 23.93,
+        "price": 39.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1549,14 +1555,14 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": null
       }
     ],
-    "price": 20.3,
+    "price": 32.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Farmacéutico",
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.0% - 101.0% Grado USP",
-    "regularPrice": 25,
-    "discountBadge": "-19% WEB",
+    "regularPrice": 39.9,
+    "discountBadge": "-18% WEB",
     "highlightBadge": "⚡ SAL MINERAL PURA",
     "description": "La sal clásica de magnesio más tradicional en Perú. Altamente biodisponible y desintoxicante. Aporta iones de cloro y magnesio esenciales para el equilibrio electrolítico, la fijación de calcio en huesos y el alivio articular.",
     "benefits": [
@@ -1628,7 +1634,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 21,
+        "price": 49.9,
+        "regularPrice": 59.9,
         "weight": "1 kg",
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -1641,7 +1648,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 24.75,
+        "price": 59.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1666,12 +1673,14 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": null
       }
     ],
-    "price": 21,
+    "price": 49.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado USP / FCC",
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.5% Purity",
+    "regularPrice": 59.9,
+    "discountBadge": "-17% WEB",
     "description": "Sal potásica que alcaliniza la orina y equilibra el exceso de sodio en la dieta moderna. Mineral electrolítico indispensable para la regulación de la tensión arterial y la prevención de la formación de cristales renales.",
     "benefits": [
       "Ayuda a regular los niveles de presión arterial contrarrestando el sodio.",
@@ -1742,8 +1751,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 12.5,
-        "regularPrice": 16,
+        "price": 24.9,
+        "regularPrice": 29.9,
         "weight": "1 kg",
         "format": "Bolsa de Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -1756,7 +1765,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 14.73,
+        "price": 29.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1781,14 +1790,14 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": null
       }
     ],
-    "price": 12.5,
+    "price": 24.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado USP",
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.9% Sulfato de Magnesio Heptahidratado USP",
-    "regularPrice": 16,
-    "discountBadge": "-22% WEB",
+    "regularPrice": 29.9,
+    "discountBadge": "-17% WEB",
     "highlightBadge": "🛁 PURIFICACIÓN PURA",
     "description": "Sulfato de magnesio puro para baños de inmersión relajantes, pediluvios y desintoxicación corporal. El magnesio se absorbe de forma transdérmica relajando los músculos sobrecargados y aliviando el estrés acumulado.",
     "benefits": [
@@ -1859,8 +1868,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 124.6,
-        "regularPrice": 142,
+        "price": 189,
+        "regularPrice": 229,
         "weight": "1 kg",
         "format": "Bolsa Polietileno Sellada (Formato Ahorro)",
         "packagingType": "bolsa",
@@ -1873,7 +1882,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 146.85,
+        "price": 219,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -1898,14 +1907,14 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": null
       }
     ],
-    "price": 124.6,
+    "price": 189,
     "unit": "1KG",
     "origin": "Materia Prima Americana Estandarizada",
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "Alto porcentaje de Whitanólidos bioactivos",
-    "regularPrice": 142,
-    "discountBadge": "-12% WEB",
+    "regularPrice": 229,
+    "discountBadge": "-17% WEB",
     "highlightBadge": "🧘 ADAPTÓGENO PURO",
     "description": "El adaptógeno ayurvédico rey para regular el eje hipotálamo-hipófisis-adrenal (HHA). Disminuye los niveles de cortisol circulante, modula la respuesta ante situaciones de tensión, mejora la claridad mental y el sueño profundo.",
     "benefits": [
@@ -1976,7 +1985,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 145,
+        "price": 249,
+        "regularPrice": 299,
         "weight": "1 kg",
         "format": "Bolsa Polietileno Sellada (Grado Alimentario)",
         "packagingType": "bolsa",
@@ -1989,7 +1999,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 170.89,
+        "price": 279,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -2014,12 +2024,14 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": null
       }
     ],
-    "price": 145,
+    "price": 249,
     "unit": "1KG",
     "origin": "Materia Prima Importada Certificada (Bovina)",
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.0% Pureza Titulada HPLC",
+    "regularPrice": 299,
+    "discountBadge": "-17% WEB",
     "description": "Componente estructural clave de la matriz extracelular del cartílago. Aporta elasticidad, retiene agua en el tejido conectivo y actúa en sinergia con la glucosamina para frenar el desgaste articular y mejorar la movilidad.",
     "benefits": [
       "Frena la degeneración del cartílago articular en rodillas y columna.",
@@ -2090,7 +2102,8 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "bolsa-1kg",
         "name": "Bolsa de Polietileno 1 kg",
-        "price": 78,
+        "price": 129.9,
+        "regularPrice": 155.9,
         "weight": "1 kg",
         "format": "Bolsa Polietileno Sellada (Grado Alimentario)",
         "packagingType": "bolsa",
@@ -2103,7 +2116,7 @@ const BIONATIVA_PRODUCTS = [
       {
         "id": "pote-1kg",
         "name": "Pote Plastificado 1 kg",
-        "price": 91.93,
+        "price": 149.9,
         "weight": "1 kg",
         "format": "Pote HDPE Blanco Boticario con Precinto",
         "packagingType": "pote",
@@ -2128,12 +2141,14 @@ const BIONATIVA_PRODUCTS = [
         "activeLotId": null
       }
     ],
-    "price": 78,
+    "price": 129.9,
     "unit": "1KG",
     "origin": "Materia Prima Americana Grado Farmacéutico",
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.5% Purity HPLC Tested",
+    "regularPrice": 155.9,
+    "discountBadge": "-17% WEB",
     "description": "Aminoácido transportador fundamental que moviliza los ácidos grasos de cadena larga hacia el interior de las mitocondrias celulares, donde son oxidados para transformarse en ATP y energía biológica.",
     "benefits": [
       "Favorece el uso de depósitos grasos como combustible metabólico.",

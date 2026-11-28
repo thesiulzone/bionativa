@@ -34,3 +34,7 @@
 ## Full Guidelines
 
 See `.agent/workflows/code-generation.md` for complete rules.
+
+## Price List & SSOT Rule
+
+Whenever any product price or cost changes in `data/catalog.master.json`, ALWAYS run `node scripts/build-catalog.mjs` so that `js/products-data.js`, `functions/_shared/catalog.js`, and `LISTA DE PRECIOS/LISTA_PRECIOS_BIONATIVA_LAB_2026.xlsx` are automatically regenerated together.

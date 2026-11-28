@@ -5,7 +5,9 @@
   "description": "Sitio web oficial de BioNativa LAB",
   "scripts": {
     "build:css": "tailwindcss -i ./css/tailwind.input.css -o ./css/tailwind.css --minify",
-    "watch:css": "tailwindcss -i ./css/tailwind.input.css -o ./css/tailwind.css --watch"
+    "watch:css": "tailwindcss -i ./css/tailwind.input.css -o ./css/tailwind.css --watch",
+    "build:catalog": "node scripts/build-catalog.mjs",
+    "export:prices": "python scripts/export-price-list.py"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.17"

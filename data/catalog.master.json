@@ -18,8 +18,8 @@
     "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "99.8% Purity HPLC Tested",
-    "regularPrice": 98,
-    "discountBadge": "-13% WEB",
+    "regularPrice": 109.9,
+    "discountBadge": "-14% WEB",
     "highlightBadge": "🔥 MÁS VENDIDO",
     "description": "Creatina monohidratada micronizada de máxima solubilidad y pureza. Sin maltodextrina, sin saborizantes ni aditivos químicos. Optimiza la producción de ATP celular para incrementar la fuerza explosiva, potencia y regeneración muscular.",
     "benefits": [
@@ -87,11 +87,11 @@
         "image": "img/products/creatina-monohidratada-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": 98,
-          "webPrice": 85.4,
+          "regularPrice": 109.9,
+          "webPrice": 94.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -109,10 +109,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 100.65,
+          "webPrice": 109.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -363,11 +363,11 @@
         "image": "img/products/glutamina-pura-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": null,
-          "webPrice": 68.6,
+          "regularPrice": 109.9,
+          "webPrice": 89.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -385,10 +385,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 80.85,
+          "webPrice": 104.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -417,7 +417,9 @@
       "creatina-monohidratada",
       "proteina-suero-leche-80",
       "colageno-hidrolizado"
-    ]
+    ],
+    "regularPrice": 109.9,
+    "discountBadge": "-18% WEB"
   },
   {
     "id": "arginina-pura",
@@ -499,11 +501,11 @@
         "image": "img/products/arginina-pura-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": null,
-          "webPrice": 57.4,
+          "regularPrice": 114.9,
+          "webPrice": 94.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -521,10 +523,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 67.65,
+          "webPrice": 109.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -553,7 +555,9 @@
       "creatina-monohidratada",
       "l-carnitina-base",
       "ascorbato-de-sodio"
-    ]
+    ],
+    "regularPrice": 114.9,
+    "discountBadge": "-17% WEB"
   },
   {
     "id": "proteina-soya-vegetal",
@@ -574,7 +578,7 @@
     "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "90% Proteína Vegetal Aislada",
-    "regularPrice": 42,
+    "regularPrice": 47.9,
     "discountBadge": "-17% WEB",
     "highlightBadge": "🌱 90% AISLADO VEGANO",
     "description": "Proteína vegetal pura extraída de soya no transgénica. Contiene todos los 9 aminoácidos esenciales, con altísimo contenido de glutamina y arginina natural. Textura suave ideal para batidos y repostería fitness.",
@@ -638,11 +642,11 @@
         "image": "img/products/proteina-soya-vegetal-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": 42,
-          "webPrice": 35,
+          "regularPrice": 47.9,
+          "webPrice": 39.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -660,10 +664,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 41.25,
+          "webPrice": 47.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -713,7 +717,7 @@
     "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "Péptidos bioactivos de bajo peso molecular (<3000 Da)",
-    "regularPrice": 68,
+    "regularPrice": 84.9,
     "discountBadge": "-18% WEB",
     "highlightBadge": "✨ PÉPTIDOS BIOACTIVOS",
     "description": "Péptidos de colágeno bioactivos hidrolizados enzimáticamente. Al tener un peso molecular ultrabajo, se absorbe en más del 90% en el tracto digestivo estimulando la producción natural de colágeno en piel, cartílagos y ligamentos.",
@@ -777,11 +781,11 @@
         "image": "img/products/colageno-hidrolizado-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": 68,
-          "webPrice": 56,
+          "regularPrice": 84.9,
+          "webPrice": 69.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -799,10 +803,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 66,
+          "webPrice": 79.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -852,8 +856,8 @@
     "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "99.2% Pureza HPLC",
-    "regularPrice": 72,
-    "discountBadge": "-16% WEB",
+    "regularPrice": 95.9,
+    "discountBadge": "-17% WEB",
     "highlightBadge": "🦴 SALUD ARTICULAR",
     "description": "Componente esencial de los glucosaminoglicanos y proteoglicanos del cartílago articular y líquido sinovial. Ideal para deportistas con alto impacto articular y personas con osteoartritis o rigidez matutina.",
     "benefits": [
@@ -916,11 +920,11 @@
         "image": "img/products/glucosamina-sulfato-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": 72,
-          "webPrice": 60.2,
+          "regularPrice": 95.9,
+          "webPrice": 79.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -938,10 +942,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 70.95,
+          "webPrice": 92.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -991,8 +995,8 @@
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.8% Grado Farmacéutico",
-    "regularPrice": 115,
-    "discountBadge": "-15% WEB",
+    "regularPrice": 155.9,
+    "discountBadge": "-17% WEB",
     "highlightBadge": "🍊 VITAMINA C ALCALINA",
     "description": "Forma amortiguada (tamponada) y no ácida de la Vitamina C. Con un pH neutro entre 7.0 y 8.0, permite megadosis de antioxidantes sin irritar el estómago, acidez gástrica ni reflujo.",
     "benefits": [
@@ -1055,11 +1059,11 @@
         "image": "img/products/ascorbato-de-sodio-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": 115,
-          "webPrice": 98,
+          "regularPrice": 155.9,
+          "webPrice": 129.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -1077,10 +1081,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 115.5,
+          "webPrice": 149.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -1405,7 +1409,7 @@
     "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "15%-16% Magnesio elemental biodisponible",
-    "regularPrice": 28,
+    "regularPrice": 49.9,
     "discountBadge": "-20% WEB",
     "highlightBadge": "🔥 MÁS VENDIDO",
     "description": "El magnesio más popular y efectivo para regular el tránsito intestinal, relajar los músculos y combatir calambres nocturnos. Su unión a ácido cítrico garantiza una excelente asimilación en el organismo.",
@@ -1473,11 +1477,11 @@
         "image": "img/products/citrato-de-magnesio-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": 28,
-          "webPrice": 22.4,
+          "regularPrice": 49.9,
+          "webPrice": 39.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -1495,10 +1499,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 26.4,
+          "webPrice": 49.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -1548,8 +1552,8 @@
     "coaRequired": true,
     "coaCertified": true,
     "coaPurity": "Bisglicinato 100% quelado grado terapéutico",
-    "regularPrice": 58,
-    "discountBadge": "-15% WEB",
+    "regularPrice": 95.9,
+    "discountBadge": "-17% WEB",
     "highlightBadge": "🌙 NOBLE & QUELADO",
     "description": "La forma más avanzada y delicada de magnesio. Al estar unido a dos moléculas de glicina, no causa efecto laxante ni malestar gástrico. Cruza con facilidad hacia el sistema nervioso central promoviendo relajación cerebral profunda y sueño REM.",
     "benefits": [
@@ -1612,11 +1616,11 @@
         "image": "img/products/glicinato-de-magnesio-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": 58,
-          "webPrice": 49,
+          "regularPrice": 95.9,
+          "webPrice": 79.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -1634,10 +1638,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 57.75,
+          "webPrice": 89.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -1687,8 +1691,8 @@
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.0% - 101.0% Grado USP",
-    "regularPrice": 25,
-    "discountBadge": "-19% WEB",
+    "regularPrice": 39.9,
+    "discountBadge": "-18% WEB",
     "highlightBadge": "⚡ SAL MINERAL PURA",
     "description": "La sal clásica de magnesio más tradicional en Perú. Altamente biodisponible y desintoxicante. Aporta iones de cloro y magnesio esenciales para el equilibrio electrolítico, la fijación de calcio en huesos y el alivio articular.",
     "benefits": [
@@ -1751,11 +1755,11 @@
         "image": "img/products/cloruro-de-magnesio-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": 25,
-          "webPrice": 20.3,
+          "regularPrice": 39.9,
+          "webPrice": 32.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -1773,10 +1777,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 23.93,
+          "webPrice": 39.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -1887,11 +1891,11 @@
         "image": "img/products/citrato-de-potasio-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": null,
-          "webPrice": 21,
+          "regularPrice": 59.9,
+          "webPrice": 49.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -1909,10 +1913,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 24.75,
+          "webPrice": 59.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -1941,7 +1945,9 @@
       "citrato-de-magnesio",
       "sal-de-epsom",
       "glicinato-de-magnesio"
-    ]
+    ],
+    "regularPrice": 59.9,
+    "discountBadge": "-17% WEB"
   },
   {
     "id": "sal-de-epsom",
@@ -1962,8 +1968,8 @@
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "99.9% Sulfato de Magnesio Heptahidratado USP",
-    "regularPrice": 16,
-    "discountBadge": "-22% WEB",
+    "regularPrice": 29.9,
+    "discountBadge": "-17% WEB",
     "highlightBadge": "🛁 PURIFICACIÓN PURA",
     "description": "Sulfato de magnesio puro para baños de inmersión relajantes, pediluvios y desintoxicación corporal. El magnesio se absorbe de forma transdérmica relajando los músculos sobrecargados y aliviando el estrés acumulado.",
     "benefits": [
@@ -2026,11 +2032,11 @@
         "image": "img/products/sal-de-epsom-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": 16,
-          "webPrice": 12.5,
+          "regularPrice": 29.9,
+          "webPrice": 24.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -2048,10 +2054,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 14.73,
+          "webPrice": 29.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -2100,8 +2106,8 @@
     "coaRequired": false,
     "coaCertified": true,
     "coaPurity": "Alto porcentaje de Whitanólidos bioactivos",
-    "regularPrice": 142,
-    "discountBadge": "-12% WEB",
+    "regularPrice": 229.0,
+    "discountBadge": "-17% WEB",
     "highlightBadge": "🧘 ADAPTÓGENO PURO",
     "description": "El adaptógeno ayurvédico rey para regular el eje hipotálamo-hipófisis-adrenal (HHA). Disminuye los niveles de cortisol circulante, modula la respuesta ante situaciones de tensión, mejora la claridad mental y el sueño profundo.",
     "benefits": [
@@ -2164,11 +2170,11 @@
         "image": "img/products/ashwagandha-pura-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": 142,
-          "webPrice": 124.6,
+          "regularPrice": 229.0,
+          "webPrice": 189.0,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -2186,10 +2192,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 146.85,
+          "webPrice": 219.0,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -2299,11 +2305,11 @@
         "image": "img/products/sulfato-de-condroitina-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": null,
-          "webPrice": 145,
+          "regularPrice": 299.0,
+          "webPrice": 249.0,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -2321,10 +2327,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 170.89,
+          "webPrice": 279.0,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -2353,7 +2359,9 @@
       "glucosamina-sulfato",
       "colageno-hidrolizado",
       "ascorbato-de-sodio"
-    ]
+    ],
+    "regularPrice": 299.0,
+    "discountBadge": "-17% WEB"
   },
   {
     "id": "l-carnitina-base",
@@ -2435,11 +2443,11 @@
         "image": "img/products/l-carnitina-base-bolsa-1kg.jpg",
         "pricing": {
           "currency": "PEN",
-          "regularPrice": null,
-          "webPrice": 78,
+          "regularPrice": 155.9,
+          "webPrice": 129.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -2457,10 +2465,10 @@
         "pricing": {
           "currency": "PEN",
           "regularPrice": null,
-          "webPrice": 91.93,
+          "webPrice": 149.9,
           "wholesalePrice": null,
           "igvIncluded": true,
-          "updatedAt": "2026-11-26"
+          "updatedAt": "2026-11-27"
         }
       },
       {
@@ -2489,7 +2497,9 @@
       "te-verde-extracto",
       "creatina-monohidratada",
       "arginina-pura"
-    ]
+    ],
+    "regularPrice": 155.9,
+    "discountBadge": "-17% WEB"
   },
   {
     "id": "stevia-pura",

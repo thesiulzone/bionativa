@@ -36,9 +36,9 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       targetId: "creatina-monohidratada",
       targetName: "Creatina Monohidratada 100% Pura (Bolsa 1 kg)",
       variantId: "bolsa-1kg",
-      regularPrice: 85.40,
-      promoPrice: 74.90,
-      discountPercent: 12,
+      regularPrice: 94.90,
+      promoPrice: 82.90,
+      discountPercent: 13,
       badge: "12% OFF • Semana BioNativa",
       enabled: true
     },
@@ -49,8 +49,8 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       targetId: "citrato-de-magnesio",
       targetName: "Citrato de Magnesio Grado USP (Bolsa 1 kg)",
       variantId: "bolsa-1kg",
-      regularPrice: 22.40,
-      promoPrice: 19.49,
+      regularPrice: 39.90,
+      promoPrice: 34.90,
       discountPercent: 13,
       badge: "13% OFF • Bienestar",
       enabled: true
@@ -102,11 +102,11 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       shortDescription: "Creatina Monohidratada 1kg + Proteína WPC80 1kg",
       description: "Sinergia de alta biodisponibilidad para síntesis de ATP celular y reparación muscular acelerada.",
       items: [
-        { productId: "creatina-monohidratada", variantId: "bolsa-1kg", name: "Creatina Monohidratada 1kg", regularPrice: 85.40 },
+        { productId: "creatina-monohidratada", variantId: "bolsa-1kg", name: "Creatina Monohidratada 1kg", regularPrice: 94.90 },
         { productId: "proteina-suero-leche-80", variantId: "bolsa-1kg", name: "Proteína Whey WPC80 1kg", regularPrice: 131.60 }
       ],
-      regularTotalPrice: 217.00,
-      comboPrice: 217.00,
+      regularTotalPrice: 226.50,
+      comboPrice: 226.50,
       savings: 0,
       image: "img/products/creatina-monohidratada-bolsa-1kg.jpg",
       enabled: false
@@ -118,11 +118,11 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       shortDescription: "Glicinato de Magnesio 1kg + Citrato de Magnesio 1kg",
       description: "Doble modulación del sistema nervioso parasimpático y relajación neuromuscular antes del descanso.",
       items: [
-        { productId: "glicinato-de-magnesio", variantId: "bolsa-1kg", name: "Glicinato de Magnesio 1kg", regularPrice: 49.00 },
-        { productId: "citrato-de-magnesio", variantId: "bolsa-1kg", name: "Citrato de Magnesio 1kg", regularPrice: 22.40 }
+        { productId: "glicinato-de-magnesio", variantId: "bolsa-1kg", name: "Glicinato de Magnesio 1kg", regularPrice: 79.90 },
+        { productId: "citrato-de-magnesio", variantId: "bolsa-1kg", name: "Citrato de Magnesio 1kg", regularPrice: 39.90 }
       ],
-      regularTotalPrice: 71.40,
-      comboPrice: 71.40,
+      regularTotalPrice: 119.80,
+      comboPrice: 119.80,
       savings: 0,
       image: "img/products/citrato-de-magnesio-bolsa-1kg.jpg",
       enabled: false
@@ -134,11 +134,11 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       shortDescription: "Colágeno Hidrolizado 1kg + Citrato de Magnesio 1kg",
       description: "Regeneración de cartílagos, tendones y absorción mineral óptima para movilidad sin dolor.",
       items: [
-        { productId: "colageno-hidrolizado", variantId: "bolsa-1kg", name: "Colágeno Hidrolizado 1kg", regularPrice: 56.00 },
-        { productId: "citrato-de-magnesio", variantId: "bolsa-1kg", name: "Citrato de Magnesio 1kg", regularPrice: 22.40 }
+        { productId: "colageno-hidrolizado", variantId: "bolsa-1kg", name: "Colágeno Hidrolizado 1kg", regularPrice: 69.90 },
+        { productId: "citrato-de-magnesio", variantId: "bolsa-1kg", name: "Citrato de Magnesio 1kg", regularPrice: 39.90 }
       ],
-      regularTotalPrice: 78.40,
-      comboPrice: 78.40,
+      regularTotalPrice: 109.80,
+      comboPrice: 109.80,
       savings: 0,
       image: "img/products/colageno-hidrolizado-peptidos-bolsa-1kg.jpg",
       enabled: false
@@ -192,9 +192,9 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       badge: "Pack más pedido",
       title: "Tu rutina, mejor equipada",
       description: "Pack de Creatina Monohidratada 100% Pura (1 kg) + Proteína de Suero de Leche 80% WPC80 (1 kg), grado USP.",
-      currentPrice: 206.50,
-      regularPrice: 217.00,
-      savingsLabel: "Ahorra S/ 10.50",
+      currentPrice: 214.50,
+      regularPrice: 226.50,
+      savingsLabel: "Ahorra S/ 12.00",
       buttonText: "Comprar pack",
       actionType: "bundle",
       actionValue: "fuerza",
@@ -207,12 +207,12 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
     },
     {
       id: "hero-slide-creatina-1kg",
-      badge: "12% OFF · Semana BioNativa",
+      badge: "13% OFF · Semana BioNativa",
       title: "Creatina 100% Pura",
       description: "Creatina monohidratada micronizada 200 Mesh en bolsa de 1 kg, con certificado COA por lote.",
-      currentPrice: 74.90,
-      regularPrice: 85.40,
-      savingsLabel: "Ahorra S/ 10.50",
+      currentPrice: 82.90,
+      regularPrice: 94.90,
+      savingsLabel: "Ahorra S/ 12.00",
       buttonText: "Comprar creatina",
       actionType: "product",
       actionValue: "creatina-monohidratada",
@@ -228,7 +228,7 @@ window.BIONATIVA_PROMOTIONS_DEFAULT = {
       badge: "Alta absorción",
       title: "Descanso sin molestias",
       description: "Bisglicinato de Magnesio quelado en bolsa de 1 kg, fórmula de alta asimilación sin efecto laxante.",
-      currentPrice: 49.00,
+      currentPrice: 79.90,
       regularPrice: 0,
       savingsLabel: "",
       buttonText: "Comprar magnesio",

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { validateCatalog } from "./validate-catalog.mjs";
 
 function computeStockStatus(inv) {
@@ -147,6 +148,12 @@ if (typeof window !== "undefined") {
 }
 
 if (import.meta.url === `file://${path.resolve(process.argv[1] || "")}` || process.argv[1]?.endsWith("build-catalog.mjs")) {
-  const summary = buildCatalogFiles(process.cwd());
+  const rootDir = process.cwd();
+  const summary = buildCatalogFiles(rootDir);
   console.log(`✔ Build SSOT completado: ${summary.productsCount} productos, ${summary.skusCount} SKUs, ${summary.lotsCount} lotes COA.`);
+  try {
+    execFileSync("python", [path.join(rootDir, "scripts/export-price-list.py")], { stdio: "inherit" });
+  } catch (err) {
+    console.warn("⚠ No se pudo regenerar el Excel Maestro automáticamente:", err.message);
+  }
 }
