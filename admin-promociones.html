@@ -823,25 +823,62 @@
       populateProductSelects();
       window.addEventListener("bionativa:promotions_updated", () => {
         currentConfig = window.BionativaPromotions.config;
+        syncCatalogPricesInConfig(currentConfig);
         renderActiveCampaignCard();
         renderProductDiscountsTable();
         renderVolumeOffersTable();
         renderCombosGrid();
         renderCouponsTable();
         renderHeroSlidesGrid();
+        populateHeroBundleSelect();
         updateTabBadges();
       });
     });
 
+    function syncCatalogPricesInConfig(cfg) {
+      if (!cfg || !Array.isArray(window.BIONATIVA_PRODUCTS)) return;
+      const byId = new Map(window.BIONATIVA_PRODUCTS.map(p => [p.id, p]));
+      (cfg.productDiscounts || []).forEach(d => {
+        if (d.targetType === "product" && byId.has(d.targetId)) {
+          const p = byId.get(d.targetId);
+          const v = (p.variants || []).find(vr => vr.id === d.variantId) || (p.variants || [])[0];
+          const realPrice = Number(v ? v.price : p.price);
+          if (realPrice > 0) d.regularPrice = realPrice;
+        }
+      });
+      (cfg.combos || []).forEach(c => {
+        if (Array.isArray(c.items) && c.items.length > 0) {
+          let sum = 0;
+          c.items.forEach(it => {
+            const p = byId.get(it.productId);
+            if (p) {
+              const v = (p.variants || []).find(vr => vr.id === it.variantId) || (p.variants || [])[0];
+              const realPrice = Number(v ? v.price : p.price);
+              if (realPrice > 0) it.regularPrice = realPrice;
+            }
+            sum += Number(it.regularPrice || 0);
+          });
+          if (sum > 0) {
+            c.regularTotalPrice = Number(sum.toFixed(2));
+            if (Number(c.comboPrice) > 0) {
+              c.savings = Number(Math.max(0, c.regularTotalPrice - Number(c.comboPrice)).toFixed(2));
+            }
+          }
+        }
+      });
+    }
+
     function loadAndRenderAll() {
-      if (!window.BionativaPromotions) return;
+      if (!window.BIONATIVA_PRODUCTS || !window.BionativaPromotions) return;
       currentConfig = window.BionativaPromotions.loadConfig();
+      syncCatalogPricesInConfig(currentConfig);
       renderActiveCampaignCard();
       renderProductDiscountsTable();
       renderVolumeOffersTable();
       renderCombosGrid();
       renderCouponsTable();
       renderHeroSlidesGrid();
+      populateHeroBundleSelect();
       updateTabBadges();
     }
 
@@ -1721,7 +1758,33 @@
       }).join("");
     }
 
+    function populateHeroBundleSelect() {
+      const sel = document.getElementById("hero-slide-bundle-select");
+      if (!sel) return;
+      const combos = (currentConfig && Array.isArray(currentConfig.combos)) ? currentConfig.combos : [];
+      const presets = [
+        { id: "fuerza", label: "Pack Fuerza (Creatina + WPC80)" },
+        { id: "sueno", label: "Pack Sueño (Glicinato + Citrato)" },
+        { id: "articular", label: "Pack Articular (Colágeno + Citrato)" }
+      ];
+      let html = "";
+      if (combos.length > 0) {
+        html += `<optgroup label="Combos & Packs Sinergia (Configurados)">`;
+        html += combos.map(c => {
+          const price = Number(c.comboPrice || c.regularTotalPrice || 0).toFixed(2);
+          const status = c.enabled === false ? " [Pausado]" : "";
+          return `<option value="${c.id}">${c.name} (S/ ${price})${status}</option>`;
+        }).join("");
+        html += `</optgroup>`;
+      }
+      html += `<optgroup label="Packs Predefinidos de Portada">`;
+      html += presets.map(p => `<option value="${p.id}">${p.label}</option>`).join("");
+      html += `</optgroup>`;
+      sel.innerHTML = html;
+    }
+
     function openHeroSlideModal() {
+      populateHeroBundleSelect();
       document.getElementById("modal-hero-slide-title").textContent = "Nuevo Slide del Slider Principal";
       document.getElementById("hero-slide-id").value = "";
       document.getElementById("hero-slide-badge").value = "";
@@ -1732,7 +1795,10 @@
       document.getElementById("hero-slide-savings").value = "";
       document.getElementById("hero-slide-btn-text").value = "Comprar pack";
       document.getElementById("hero-slide-action-type").value = "bundle";
-      document.getElementById("hero-slide-bundle-select").value = "fuerza";
+      const bundleSel = document.getElementById("hero-slide-bundle-select");
+      if (bundleSel && bundleSel.options.length > 0) {
+        bundleSel.selectedIndex = 0;
+      }
       document.getElementById("hero-slide-url-input").value = "";
       document.getElementById("hero-slide-img").value = "img/products/creatina-monohidratada-bolsa-1kg.jpg";
       document.getElementById("hero-slide-img2").value = "";
@@ -1744,6 +1810,7 @@
     }
 
     function editHeroSlide(id) {
+      populateHeroBundleSelect();
       const s = getHeroSlidesList().find(item => item.id === id);
       if (!s) return;
 

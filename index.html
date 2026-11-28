@@ -1880,7 +1880,16 @@
     function addPromoBundle(bundleType) {
       if (!window.cart) return;
 
-      if (bundleType === "sueno") {
+      const combos = (window.BionativaPromotions && window.BionativaPromotions.config && Array.isArray(window.BionativaPromotions.config.combos))
+        ? window.BionativaPromotions.config.combos
+        : [];
+      const dynamicCombo = combos.find(c => c.id === bundleType);
+
+      if (dynamicCombo && Array.isArray(dynamicCombo.items) && dynamicCombo.items.length > 0) {
+        dynamicCombo.items.forEach(item => {
+          window.cart.addItem(item.productId, item.variantId || "bolsa-1kg", 1);
+        });
+      } else if (bundleType === "sueno") {
         window.cart.addItem("glicinato-de-magnesio", "bolsa-1kg", 1);
         window.cart.addItem("citrato-de-magnesio", "bolsa-1kg", 1);
       } else if (bundleType === "fuerza") {
